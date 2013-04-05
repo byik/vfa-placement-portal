@@ -1,3 +1,12 @@
+# Ignore everything inside www folder
+www/*
+# …instead of this file
+!www/README.md
+
+# Sublime Text 
+*.sublime*
+*.sublime*
+
 # Numerous always-ignore extensions
 *.diff
 *.err
