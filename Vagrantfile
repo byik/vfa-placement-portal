@@ -14,6 +14,7 @@ Vagrant::Config.run do |config|
   config.vm.box_url = "http://files.vagrantup.com/precise32.box"
   config.vm.host_name = "devbox"
   config.vm.share_folder("www", "/var/www", "./www", :extra => 'dmode=777,fmode=777', :nfs => true)
+
   # Set the Timezone to something useful
   config.vm.provision :shell, :inline => "echo \"Europe/Berlin\" | sudo tee /etc/timezone && dpkg-reconfigure --frontend noninteractive tzdata"
 
