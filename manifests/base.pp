@@ -33,7 +33,6 @@ include nginx
 include supervisor
 include sphinx
 include redis
-include mongodb
 include git
 include nodejs
 include localtunnel
