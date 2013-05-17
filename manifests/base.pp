@@ -37,3 +37,4 @@ include git
 include nodejs
 include localtunnel
 include composer
+include beanstalkd
