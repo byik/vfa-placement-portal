@@ -9,6 +9,10 @@ class beanstalkd {
         ensure => 'running',
         hasstatus => 'true',
         restart => '/etc/init.d/beanstalkd restart',
+        require   => [
+            File['/etc/init/beanstalkd.conf'],
+            File['/etc/default/beanstalkd'],
+        ],
     }
 
     file { '/etc/default/beanstalkd':
@@ -21,8 +25,8 @@ class beanstalkd {
     } 
 
     file { '/etc/init/beanstalkd.conf':
-		owner => 'root',
-		group => 'root',
+        owner => 'root',
+        group => 'root',
         mode  => '644',
         ensure => 'present',
         require => Package['beanstalkd'],
