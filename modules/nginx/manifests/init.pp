@@ -46,6 +46,16 @@ class nginx::conf {
     source => "puppet:///modules/nginx/sites-available",
   }
 
+  file { 'nginx/sites-enabled':
+    path => '/etc/nginx/sites-enabled',
+    ensure => directory,
+    owner => root,
+    group => root,
+    purge => true,
+    recurse => true,
+    source => "puppet:///modules/nginx/sites-enabled",
+  }
+
   file { 'var/www':
     path => '/var/www',
     ensure => directory,
