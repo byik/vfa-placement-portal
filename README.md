@@ -45,3 +45,24 @@ The www folder is automatically synced to the VM (/var/www). This is why we clon
 For more: Vagrant is [very well documented](http://docs.vagrantup.com/v2/)
 
 Please fork, improve, extend, make pull request, wrap it as a gift. Use the GitHub Issues!
+
+
+## Troubleshoot
+
+* You can't see the website, instead all you see is
+
+  ```
+  It works!
+
+  This is the default web page for this server.
+
+  The web server software is running but no content has been added, yet.
+  ```
+
+  **Solution**
+
+  ```
+  $ vagrant ssh
+  vagrant@devbox:~$ sudo ln -s /etc/nginx/sites-available/laravel.dev /etc/nginx/sites-enabled/aboalarm.dev
+  vagrant@devbox:~$ sudo /etc/init.d/nginx restart
+  ```
