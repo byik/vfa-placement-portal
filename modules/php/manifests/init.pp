@@ -15,36 +15,6 @@ class php {
         require => Exec['update_repo'],
     }
 
-   exec { 'php-pear-channel-update':
-        command => '/usr/bin/pear channel-update pear.php.net',
-        require => Package[php-pear],
-    }
-
-    exec { 'php-pear-upgrade-all':
-        command => '/usr/bin/pear upgrade-all',
-        require => Exec['php-pear-channel-update'],
-    }
-
-    exec { 'php-pear-discover-phpunit':
-        command => '/usr/bin/pear channel-discover pear.phpunit.de',
-        require => Exec['php-pear-upgrade-all'],
-    }
-
-    exec { 'php-pear-discover-symfony':
-        command => '/usr/bin/pear channel-discover pear.symfony.com',
-        require => Exec['php-pear-upgrade-all'],
-    }
-
-    exec { 'php-pear-discover-ez':
-        command => '/usr/bin/pear channel-discover components.ez.no',
-        require => Exec['php-pear-upgrade-all'],
-    }
-
-    exec { 'php-pear-install-phpunit':
-        command => '/usr/bin/pear install phpunit/PHPUnit',
-        require => Exec['php-pear-discover-phpunit', 'php-pear-discover-symfony', 'php-pear-discover-ez'],
-    }
-
     file { 'php.ini':
         path => '/etc/php5/fpm/php.ini',
         ensure => file,
@@ -58,4 +28,6 @@ class php {
         ensure => stopped,
         enable => false,
     }
+
+    include php::pear
 }
