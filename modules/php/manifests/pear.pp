@@ -43,6 +43,8 @@ class php::pear {
     # install phpunit
     exec { 'pear-install':
         command => '/usr/bin/pear install -a -f phpunit/PHPUnit',
-        require => Exec['pear-clear-cache']
+        require => Exec['pear-clear-cache'],
+        timeout => 0,
+        tries => 10
     }
 }
