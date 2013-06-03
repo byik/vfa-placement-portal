@@ -46,14 +46,19 @@ class nginx::conf {
     source => "puppet:///modules/nginx/sites-available",
   }
 
-  file { 'nginx/sites-enabled':
-    path => '/etc/nginx/sites-enabled',
-    ensure => directory,
-    owner => root,
-    group => root,
-    purge => true,
-    recurse => true,
-    source => "puppet:///modules/nginx/sites-enabled",
+  file { '/etc/nginx/sites-enabled/default':
+    ensure => 'link',
+    target => '/etc/nginx/sites-available/default'
+  }
+
+  file { '/etc/nginx/sites-enabled/laravel.dev':
+    ensure => 'link',
+    target => '/etc/nginx/sites-available/laravel.dev'
+  }
+
+  file { '/etc/nginx/sites-enabled/laravel.dev.ssl':
+    ensure => 'link',
+    target => '/etc/nginx/sites-available/laravel.dev.ssl'
   }
 
   file { 'var/www':
