@@ -24,6 +24,15 @@ class php {
         require => Package['php5-fpm'],
     }
     
+    file { 'browscap.ini':
+        path => '/etc/php5/browscap.ini',
+        ensure => file,
+        owner => root,
+        group => root,
+        source => 'puppet:///modules/php/browscap.ini',
+        require => Package['php5-fpm'],
+    }
+
     service { 'apache2':
         ensure => stopped,
         enable => false,
