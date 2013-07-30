@@ -55,7 +55,7 @@ class php {
 #    service { 'apache2':
 #        ensure => stopped,
 #        enable => false,
-    }
+#    }
 
     include php::pear
 }
