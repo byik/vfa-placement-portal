@@ -9,7 +9,7 @@ server {
     }
 
     location @fallback {
-        root /var/www/$host
+        root /var/www/$host;
     }
 
     location ~ \.php$ {
