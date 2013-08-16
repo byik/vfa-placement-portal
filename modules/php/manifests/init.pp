@@ -33,10 +33,10 @@ class php {
         require => Package['php5-fpm'],
     }
 
-#    service { 'apache2':
-#        ensure => stopped,
-#        enable => false,
-#    }
+    service { 'apache2':
+        ensure => stopped,
+        enable => false,
+    }
 
     include php::pear
 }
