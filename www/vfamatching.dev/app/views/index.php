@@ -7,7 +7,7 @@
     <link href="app/css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="app/css/app.css" rel="stylesheet" />
 </head>
-<body ng-app=”myApp”>
+<body ng-app="myApp">
  
 <div class="container" ng-view>Hello, Angular. :]</div>
  
