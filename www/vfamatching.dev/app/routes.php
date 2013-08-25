@@ -13,11 +13,13 @@
 
 Route::get('/', function()
 {
-	$data['name'] = "Scott Lowe";
+	$user = User::first();
+	$mailer = new Mailers\UserMailer($user);
+	if($mailer->welcome()->deliver()){
+		echo "Sent";
+	} else {
+		echo "Not Sent";
+	}
 
-	Mail::send('emails.welcome', $data, function($message){
-		$message->to('me@scottdlowe.com')->subject("It works!");
-	});
-
-	return View::make('index');
+	// return View::make('index');
 });
