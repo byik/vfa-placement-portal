@@ -13,13 +13,5 @@
 
 Route::get('/', function()
 {
-	$user = User::first();
-	$mailer = new Mailers\UserMailer($user);
-	if($mailer->welcome()->deliver()){
-		echo "Sent";
-	} else {
-		echo "Not Sent";
-	}
-
-	// return View::make('index');
+	return View::make('index');
 });
