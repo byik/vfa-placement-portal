@@ -9,4 +9,8 @@ class User extends Eloquent {
 		'last_login' => 'required',
 		'role' => 'required'
 	);
+
+	public static function roles(){
+		return array('Admin', 'Fellow', 'Hiring Manager');
+	}
 }
