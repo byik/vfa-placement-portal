@@ -22,4 +22,11 @@ Route::resource('companies', 'CompaniesController');
 
 Route::resource('medialinks', 'MedialinksController');
 
+
 Route::resource('fellows', 'FellowsController');
+
+Route::resource('opportunities', 'OpportunitiesController');
+
+Route::resource('hiringmanagers', 'HiringmanagersController');
+
+Route::resource('admins', 'AdminsController');
