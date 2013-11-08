@@ -32,3 +32,6 @@ Route::resource('hiringmanagers', 'HiringmanagersController');
 Route::resource('admins', 'AdminsController');
 
 Route::resource('placementstatuses', 'PlacementstatusesController');
+
+
+Route::resource('adminnotes', 'AdminnotesController');
