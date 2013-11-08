@@ -11,6 +11,7 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <!-- Chart.js -->
     <script src="js/Chart.js"></script>
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
