@@ -6,7 +6,7 @@
 	    <span class="icon-bar"></span>
 	    <span class="icon-bar"></span>
 	  </button>
-	    <a href="#"><img src="img/vfa_logo_nav.jpg" alt="VFA rules!"></a>
+	    <a href="#"><img src="img/vfa_logo_nav.png" alt="VFA rules!"></a>
 	  <div class="nav-collapse collapse pull-right">
 	    <ul class="nav">
 	      <li><a href="#">Dashboard</a></li>
