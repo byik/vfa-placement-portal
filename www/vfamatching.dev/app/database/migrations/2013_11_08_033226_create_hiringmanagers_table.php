@@ -18,6 +18,8 @@ class CreateHiringManagersTable extends Migration {
 			$table->int('user_id')->unsigned();
 			$table->int('company_id')->unsigned();
 			$table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
 		});
 	}
 

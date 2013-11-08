@@ -22,6 +22,7 @@ class CreateOpportunitiesTable extends Migration {
 			$table->string('development_answer');
 			$table->boolean('is_published');
 			$table->timestamps();
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
 		});
 	}
 
