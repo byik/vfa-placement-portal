@@ -25,3 +25,5 @@ Route::resource('medialinks', 'MedialinksController');
 Route::resource('opportunities', 'OpportunitiesController');
 
 Route::resource('hiringmanagers', 'HiringmanagersController');
+
+Route::resource('admins', 'AdminsController');
