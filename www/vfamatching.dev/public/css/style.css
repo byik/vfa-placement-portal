@@ -1,3 +1,31 @@
+@font-face {
+	font-family: GillSans;
+	src: url('GillSans.ttc');
+}
+
 body {
-    background: red;
+	padding-top: 140px;
+	font-family: GillSans;
+}
+
+.vfa-navbar {
+	height:140px;
+	background-color: #04274f;
+	color: #fff;
+}
+
+.vfa-navbar a {
+	color: #fff;
+}
+
+ .vfa-navbar .nav li a {
+	color: #fff;
+}
+
+.vfa-navbar .header {
+	margin-top:45px;
+}
+
+.vfa-navbar .header h1 {
+	font-weight: lighter;
 }
