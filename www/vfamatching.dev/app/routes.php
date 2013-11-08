@@ -21,3 +21,5 @@ Route::resource('users', 'UsersController');
 Route::resource('companies', 'CompaniesController');
 
 Route::resource('medialinks', 'MedialinksController');
+
+Route::resource('fellows', 'FellowsController');
