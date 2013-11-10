@@ -9,7 +9,7 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap-responsive.css">
-
+    <script src="js/bootstrap.js"></script>
     <!-- Chart.js -->
     <script src="js/Chart.js"></script>
     <link rel="stylesheet" href="css/style.css">
