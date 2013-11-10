@@ -19,6 +19,8 @@
  
 @include('partials.nav')
 
+@include('partials.header')
+
 <div class="container">
 	@yield('content')
 </div>
