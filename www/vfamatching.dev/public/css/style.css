@@ -9,5 +9,20 @@ body {
 
 .vfa-navbar {
 	background-color: #04274f;
+	margin-bottom: 0px;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom-color: #000;
+	border-radius: 0px;
 }
 
+.vfa-header {
+	background: #04274f url('../img/header_background.png') repeat;
+	margin: 0px;
+}
+
+.vfa-header h1 {
+	color: #777777;
+	font-weight: normal;
+}
