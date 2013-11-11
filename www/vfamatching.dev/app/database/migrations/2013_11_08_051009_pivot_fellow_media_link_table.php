@@ -15,9 +15,9 @@ class PivotFellowMediaLinkTable extends Migration {
 		Schema::create('fellow_mediaLink', function(Blueprint $table) {
 			$table->increments('id');
 			$table->integer('fellow_id')->unsigned()->index();
-			$table->integer('media_link_id')->unsigned()->index();
+			$table->integer('mediaLink_id')->unsigned()->index();
 			$table->foreign('fellow_id')->references('id')->on('fellows')->onDelete('cascade');
-			$table->foreign('media_link_id')->references('id')->on('mediaLinks')->onDelete('cascade');
+			$table->foreign('mediaLink_id')->references('id')->on('mediaLinks')->onDelete('cascade');
 		});
 	}
 
@@ -30,7 +30,7 @@ class PivotFellowMediaLinkTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('fellow_media_link');
+		Schema::drop('fellow_mediaLink');
 	}
 
 }

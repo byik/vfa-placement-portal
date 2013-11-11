@@ -17,10 +17,10 @@ class CreateOpportunitiesTable extends Migration {
 			$table->integer('company_id')->unsigned();
 			$table->string('title');
 			$table->string('description');
-			$table->string('responsibilities_answer');
-			$table->string('skills_answer');
-			$table->string('development_answer');
-			$table->boolean('is_published');
+			$table->string('responsibilitiesAnswer');
+			$table->string('skillsAnswer');
+			$table->string('developmentAnswer');
+			$table->boolean('isPublished');
 			$table->timestamps();
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
 		});

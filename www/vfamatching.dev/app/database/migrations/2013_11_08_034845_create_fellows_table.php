@@ -16,16 +16,16 @@ class CreateFellowsTable extends Migration {
 			$table->increments('id');
 			$table->integer('user_id')->unsigned();
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-			$table->boolean('is_published');
+			$table->boolean('isPublished');
 			$table->text('bio');
 			$table->string('school');
 			$table->string('major');
 			$table->string('degree');
-			$table->integer('graduation_year');
+			$table->integer('graduationYear');
 			$table->string('hometown');
-			$table->boolean('is_remindable');
-			$table->string('resume_path');
-			$table->string('phone_number')->nullable();
+			$table->boolean('isRemindable');
+			$table->string('resumePath');
+			$table->string('phoneNumber')->nullable();
 			$table->timestamps();
 		});
 	}
