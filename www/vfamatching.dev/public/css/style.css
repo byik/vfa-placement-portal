@@ -17,6 +17,10 @@ body {
 	border-radius: 0px;
 }
 
+.vfa-navbar .navbar-collapse li a:hover {
+	color: #fff;
+}
+
 .vfa-header {
 	background: #04274f url('../img/header_background.png') repeat;
 	margin: 0px;
