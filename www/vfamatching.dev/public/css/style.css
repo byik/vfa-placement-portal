@@ -30,3 +30,21 @@ body {
 	color: #fff;
 	font-weight: lighter;
 }
+
+.fellow-dash h2 {
+	margin-bottom: 20px;
+}
+
+.fellow-dash ul {
+	list-style-type: none;
+	padding-left: 0px;
+}
+
+.fellow-dash li {
+	font-size: 16px;
+	line-height: 2;
+}
+
+.red {
+	color: #ec5a41;
+}

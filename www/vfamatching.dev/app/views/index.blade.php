@@ -1,10 +1,22 @@
 @extends('layouts.default')
 
 @section('content')
-	<h1>Hello Angular :]</h1>
+<div class="fellow-dash">
+	<div class="container">
+		<h2><small>Upcoming Events<small></h2>
+		<ul>
+			<li><span class="glyphicon glyphicon-phone"></span><span class="red"> March 23, 6:00pm</span>   Phone interview with Chalkfly</li>
+			<li><span class="glyphicon glyphicon-user"></span><span class="red"> April 8, 2:00pm</span>   In person interview with Teespring</li>
+			<li><span class="glyphicon glyphicon-user"></span><span class="red"> April 12, 3:00pm</span>  In person interview with Swipely</li>
+			<li><span class="glyphicon glyphicon-thumbs-up"></span><span class="red"> April 17, 5:00pm</span>  VCharge offer acceptance deadline</li>
+		</ul>
+		<h2><small>Relationships</small></h2>
+	</div>
+</div>
 
+<div class="container">
 	<!-- Button trigger modal -->
-	<a data-toggle="modal" href="#myModal" class="btn btn-primary btn">Launch demo modal</a>
+	<!-- <a data-toggle="modal" href="#myModal" class="btn btn-primary btn">Launch demo modal</a> -->
 
 	<!-- Sample Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -136,4 +148,6 @@
 		//This will get the first returned node in the jQuery collection.
 		var myNewChart = new Chart(ctx).Line(data,options);
 	</script>
+</div>
 @stop
+
