@@ -18,13 +18,13 @@ class CreateCompaniesTable extends Migration {
 			$table->string('city');
 			$table->string('url');
 			$table->string('tagline');
-			$table->string('vision_answer');
-			$table->string('needs_answer');
-			$table->string('team_answer');
+			$table->string('visionAnswer');
+			$table->string('needsAnswer');
+			$table->string('teamAnswer');
 			$table->integer('employees');
-			$table->integer('year_founded');
-			$table->string('twitter_handle');
-			$table->boolean('is_published');
+			$table->integer('yearFounded');
+			$table->string('twitterHandle');
+			$table->boolean('isPublished');
 			$table->timestamps();
 		});
 	}

@@ -16,10 +16,10 @@ class CreateUsersTable extends Migration {
 			$table->increments('id');
 			$table->string('email');
 			$table->string('password');
-			$table->datetime('last_login')->nullable();
+			$table->datetime('lastLogin')->nullable();
 			$table->enum('role', array("Fellow", "Hiring Manager", "Staff"));
-			$table->string('first_name');
-			$table->string('last_name');
+			$table->string('firstName');
+			$table->string('lastName');
 			$table->timestamps();
 		});
 	}
