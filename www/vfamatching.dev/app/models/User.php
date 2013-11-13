@@ -8,12 +8,9 @@ class User extends Eloquent {
 	public function profile()
 	{
 		if($this->role == 'Fellow') {
-			return $this->fellow();
+			return $this->hasOne('Fellow');
+		} elseif($this->role == 'Hiring Manager') {
+			return $this->hasOne('HiringManager');
 		}
 	}
-
-	private function fellow()
-    {
-        return $this->hasOne('Fellow');
-    }
 }
