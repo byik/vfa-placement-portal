@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder {
 >>>>>>> ca90a6e6e8a74036a438aa2bfddd94490502b421
 		$this->call('AdminnotesTableSeeder');
 		$this->call('PitchesTableSeeder');
+		$this->call('FellowskillsTableSeeder');
 	}
 
 }
