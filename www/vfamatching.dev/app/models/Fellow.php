@@ -14,4 +14,9 @@ class Fellow extends Eloquent {
     {
         return $this->belongsTo('User');
     }
+
+    public function placementStatuses()
+    {
+    	return $this->hasMany('PlacementStatus')
+    }
 }

@@ -9,4 +9,9 @@ class Opportunity extends Eloquent {
     {
         return $this->belongsTo('Company');
     }
+
+    public function placementStatuses()
+    {
+    	return $this->hasMany('PlacementStatus');
+    }
 }
