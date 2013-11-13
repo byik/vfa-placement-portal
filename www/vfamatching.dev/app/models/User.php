@@ -11,6 +11,10 @@ class User extends Eloquent {
 			return $this->hasOne('Fellow');
 		} elseif($this->role == 'Hiring Manager') {
 			return $this->hasOne('HiringManager');
+		} elseif($this->role == 'Admin') {
+			return $this->hasOne('Admin');
+		} else {
+			throw new Exception("Invalid User role!");
 		}
 	}
 }
