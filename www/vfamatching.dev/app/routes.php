@@ -39,3 +39,5 @@ Route::resource('adminnotes', 'AdminnotesController');
 Route::resource('pitches', 'PitchesController');
 
 Route::resource('fellowskills', 'FellowskillsController');
+
+Route::resource('opportunitytags', 'OpportunitytagsController');
