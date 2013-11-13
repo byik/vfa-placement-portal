@@ -35,3 +35,5 @@ Route::resource('placementstatuses', 'PlacementstatusesController');
 
 
 Route::resource('adminnotes', 'AdminnotesController');
+
+Route::resource('pitches', 'PitchesController');
