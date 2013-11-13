@@ -21,8 +21,8 @@ class CreatePlacementStatusesTable extends Migration {
 			$table->integer('score');
 			$table->string('message');
 			$table->timestamps();
-            $table->foreign('fellow_id')->references('id')->on('fellows')->onDelete('cascade');
-            $table->foreign('opportunity_id')->references('id')->on('opportunities')->onDelete('cascade');
+            $table->foreign('fellow_id')->references('id')->on('fellows')->onDelete('restrict');
+            $table->foreign('opportunity_id')->references('id')->on('opportunities')->onDelete('restrict');
 		});
 	}
 

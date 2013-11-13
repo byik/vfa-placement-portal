@@ -15,7 +15,9 @@ class CreatePitchesTable extends Migration {
 		Schema::create('pitches', function(Blueprint $table) {
 			$table->increments('id');
 			$table->integer('fellow_id')->unsigned();
+			$table->foreign('fellow_id')->references('id')->on('fellows')->onDelete('restrict');
 			$table->integer('opportunity_id')->unsigned();
+			$table->foreign('opportunity_id')->references('id')->on('opportunities')->onDelete('restrict');
 			$table->text('body');
 			$table->string('status');
 			$table->timestamps();

@@ -16,8 +16,8 @@ class PivotFellowMediaLinkTable extends Migration {
 			$table->increments('id');
 			$table->integer('fellow_id')->unsigned()->index();
 			$table->integer('mediaLink_id')->unsigned()->index();
-			$table->foreign('fellow_id')->references('id')->on('fellows')->onDelete('cascade');
-			$table->foreign('mediaLink_id')->references('id')->on('mediaLinks')->onDelete('cascade');
+			$table->foreign('fellow_id')->references('id')->on('fellows')->onDelete('restrict');
+			$table->foreign('mediaLink_id')->references('id')->on('mediaLinks')->onDelete('restrict');
 		});
 	}
 

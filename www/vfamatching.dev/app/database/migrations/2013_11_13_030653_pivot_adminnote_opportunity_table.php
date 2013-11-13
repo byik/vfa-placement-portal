@@ -16,8 +16,8 @@ class PivotAdminNoteOpportunityTable extends Migration {
 			$table->increments('id');
 			$table->integer('adminNote_id')->unsigned()->index();
 			$table->integer('opportunity_id')->unsigned()->index();
-			$table->foreign('adminNote_id')->references('id')->on('adminNotes')->onDelete('cascade');
-			$table->foreign('opportunity_id')->references('id')->on('opportunities')->onDelete('cascade');
+			$table->foreign('adminNote_id')->references('id')->on('adminNotes')->onDelete('restrict');
+			$table->foreign('opportunity_id')->references('id')->on('opportunities')->onDelete('restrict');
 		});
 	}
 

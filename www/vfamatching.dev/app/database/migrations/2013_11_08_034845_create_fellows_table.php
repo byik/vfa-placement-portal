@@ -15,7 +15,7 @@ class CreateFellowsTable extends Migration {
 		Schema::create('fellows', function(Blueprint $table) {
 			$table->increments('id');
 			$table->integer('user_id')->unsigned();
-			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
 			$table->boolean('isPublished');
 			$table->text('bio');
 			$table->string('school');

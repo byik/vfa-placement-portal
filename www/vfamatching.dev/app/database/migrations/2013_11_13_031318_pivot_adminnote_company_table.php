@@ -16,8 +16,8 @@ class PivotAdminNoteCompanyTable extends Migration {
 			$table->increments('id');
 			$table->integer('adminNote_id')->unsigned()->index();
 			$table->integer('company_id')->unsigned()->index();
-			$table->foreign('adminNote_id')->references('id')->on('adminNotes')->onDelete('cascade');
-			$table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+			$table->foreign('adminNote_id')->references('id')->on('adminNotes')->onDelete('restrict');
+			$table->foreign('company_id')->references('id')->on('companies')->onDelete('restrict');
 		});
 	}
 

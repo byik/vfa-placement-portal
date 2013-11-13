@@ -16,8 +16,8 @@ class PivotAdminNoteFellowTable extends Migration {
 			$table->increments('id');
 			$table->integer('adminNote_id')->unsigned()->index();
 			$table->integer('fellow_id')->unsigned()->index();
-			$table->foreign('adminNote_id')->references('id')->on('adminNotes')->onDelete('cascade');
-			$table->foreign('fellow_id')->references('id')->on('fellows')->onDelete('cascade');
+			$table->foreign('adminNote_id')->references('id')->on('adminNotes')->onDelete('restrict');
+			$table->foreign('fellow_id')->references('id')->on('fellows')->onDelete('restrict');
 		});
 	}
 

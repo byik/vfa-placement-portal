@@ -16,8 +16,8 @@ class PivotCompanyMediaLinkTable extends Migration {
 			$table->increments('id');
 			$table->integer('company_id')->unsigned()->index();
 			$table->integer('mediaLink_id')->unsigned()->index();
-			$table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
-			$table->foreign('mediaLink_id')->references('id')->on('mediaLinks')->onDelete('cascade');
+			$table->foreign('company_id')->references('id')->on('companies')->onDelete('restrict');
+			$table->foreign('mediaLink_id')->references('id')->on('mediaLinks')->onDelete('restrict');
 		});
 	}
 

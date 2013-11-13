@@ -15,6 +15,7 @@ class CreateFellowSkillsTable extends Migration {
 		Schema::create('fellowSkills', function(Blueprint $table) {
 			$table->increments('id');
 			$table->integer('fellow_id')->nullable();
+			$table->foreign('fellow_id')->references('id')->on('fellows')->onDelete('restrict');
 			$table->string('skill');
 			$table->timestamps();
 		});
