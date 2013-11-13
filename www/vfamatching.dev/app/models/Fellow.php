@@ -9,4 +9,9 @@ class Fellow extends Eloquent {
     {
         return $this->belongsToMany('MediaLink');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('User');
+    }
 }
