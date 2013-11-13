@@ -9,4 +9,9 @@ class Company extends Eloquent {
     {
         return $this->belongsToMany('MediaLink');
     }
+
+    public function opportunities()
+    {
+        return $this->hasMany('Opportunity');
+    }
 }
