@@ -14,4 +14,9 @@ class Company extends Eloquent {
     {
         return $this->hasMany('Opportunity');
     }
+
+    public function hiringManagers()
+    {
+        return $this->hasMany('HiringManager');
+    }
 }

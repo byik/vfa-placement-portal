@@ -9,4 +9,9 @@ class HiringManager extends Eloquent {
     {
         return $this->belongsTo('User');
     }
+
+    public function company()
+    {
+        return $this->belongsTo('Company');
+    }
 }
