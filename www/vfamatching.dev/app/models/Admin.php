@@ -9,4 +9,9 @@ class Admin extends Eloquent {
     {
         return $this->belongsTo('User');
     }
+
+    public function adminNotes()
+    {
+    	return $this->hasMany('AdminNote');
+    }
 }
