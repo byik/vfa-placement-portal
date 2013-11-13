@@ -9,4 +9,9 @@ class MediaLink extends Eloquent {
     {
         return $this->belongsToMany('Company');
     }
+
+    public function fellows()
+    {
+        return $this->belongsToMany('Fellow');
+    }
 }
