@@ -41,3 +41,5 @@ Route::resource('pitches', 'PitchesController');
 Route::resource('fellowskills', 'FellowskillsController');
 
 Route::resource('opportunitytags', 'OpportunitytagsController');
+
+Route::resource('staffrecommendations', 'StaffrecommendationsController');

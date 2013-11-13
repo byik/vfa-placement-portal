@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('PitchesTableSeeder');
 		$this->call('FellowskillsTableSeeder');
 		$this->call('OpportunitytagsTableSeeder');
+		$this->call('StaffrecommendationsTableSeeder');
 	}
 
 }
