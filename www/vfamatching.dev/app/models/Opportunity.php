@@ -14,4 +14,9 @@ class Opportunity extends Eloquent {
     {
     	return $this->hasMany('PlacementStatus');
     }
+
+    public function adminNotes()
+    {
+        return $this->belongsToMany('adminNote');
+    }
 }

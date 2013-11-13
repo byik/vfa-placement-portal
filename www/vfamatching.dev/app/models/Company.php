@@ -19,4 +19,9 @@ class Company extends Eloquent {
     {
         return $this->hasMany('HiringManager');
     }
+
+    public function adminNotes()
+    {
+        return $this->belongsToMany('adminNote');
+    }
 }
