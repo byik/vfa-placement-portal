@@ -15,7 +15,7 @@ class CreateOpportunityTagsTable extends Migration {
 		Schema::create('opportunityTags', function(Blueprint $table) {
 			$table->increments('id');
 			$table->integer('opportunity_id')->nullable();
-			$table->foreign('opportunity_id')->references('id')->on('opportunities')->onDelete('restrict');
+			// $table->foreign('opportunity_id')->references('id')->on('opportunities')->onDelete('restrict');
 			$table->string('tag');
 			$table->timestamps();
 		});

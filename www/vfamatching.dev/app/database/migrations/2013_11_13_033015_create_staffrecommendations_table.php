@@ -15,9 +15,9 @@ class CreateStaffRecommendationsTable extends Migration {
 		Schema::create('staffRecommendations', function(Blueprint $table) {
 			$table->increments('id');
 			$table->integer('opportunity_id')->nullable();
-			$table->foreign('opportunity_id')->references('id')->on('opportunities')->onDelete('restrict');
+			// $table->foreign('opportunity_id')->references('id')->on('opportunities')->onDelete('restrict');
 			$table->integer('fellow_id')->nullable();
-			$table->foreign('fellow_id')->references('id')->on('fellows')->onDelete('restrict');
+			// $table->foreign('fellow_id')->references('id')->on('fellows')->onDelete('restrict');
 			$table->timestamps();
 		});
 	}
