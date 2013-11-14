@@ -17,7 +17,7 @@ class Fellow extends Eloquent {
 
     public function placementStatuses()
     {
-    	return $this->hasMany('PlacementStatus')
+    	return $this->hasMany('PlacementStatus');
     }
 
     public function adminNotes()
@@ -27,6 +27,16 @@ class Fellow extends Eloquent {
 
     public function pitches()
     {
-        return $this->hasMany('Pitch')
+        return $this->hasMany('Pitch');
+    }
+
+    public function fellowSkills()
+    {
+        return $this->hasMany('FellowSkill');
+    }
+
+    public function staffRecommendations()
+    {
+        return $this->hasMany('StaffRecommendation');
     }
 }
