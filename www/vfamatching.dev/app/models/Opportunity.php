@@ -22,6 +22,16 @@ class Opportunity extends Eloquent {
 
     public function pitches()
     {
-        return $this->hasMany('Pitch')
+        return $this->hasMany('Pitch');
+    }
+
+    public function opportunityTags()
+    {
+        return $this->hasMany('OpportunityTag');
+    }
+
+    public function staffRecommendations()
+    {
+        return $this->hasMany('StaffRecommendation');
     }
 }
