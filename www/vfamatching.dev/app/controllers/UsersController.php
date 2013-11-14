@@ -76,4 +76,33 @@ class UsersController extends BaseController {
 		//
 	}
 
+	public function login() 
+	{ 
+		$user = array(
+			'email' => Input::get('email'),
+			'password' => Input::get('password')
+		);   
+		if (Auth::attempt($user)) {
+			if (Session::has('returnUrl'))
+			{
+				Session::forget('returnUrl');
+			    return Redirect::to(Session::get('returnUrl'))
+		    	->with('flash_notice', 'You are successfully logged in.');
+			}
+			return Redirect::to('/')
+		    	->with('flash_notice', 'You are successfully logged in.');
+		}
+		// authentication failure! lets go back to the login page
+		return Redirect::route('login')
+			->with('flash_error', 'Your username/password combination was incorrect.')
+			->withInput();
+	}
+
+	public function logout() {
+	    Auth::logout();
+
+	    return Redirect::route('home')
+	        ->with('flash_notice', 'You are successfully logged out.');
+	}
+
 }

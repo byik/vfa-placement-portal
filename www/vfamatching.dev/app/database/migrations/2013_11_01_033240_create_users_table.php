@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration {
 			$table->string('email');
 			$table->string('password');
 			$table->datetime('lastLogin')->nullable();
-			$table->enum('role', array("Fellow", "Hiring Manager", "Staff"));
+			$table->enum('role', array("Fellow", "Hiring Manager", "Admin"));
 			$table->string('firstName');
 			$table->string('lastName');
 			$table->timestamps();

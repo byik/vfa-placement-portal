@@ -21,7 +21,17 @@
 
 @include('partials.header')
 
-@yield('content')
+<div class="container">
+    @if(Session::has('flash_notice'))
+        @include('partials.alerts.notice', array('notice'=>Session::get('flash_notice')))
+    @endif
+
+    @if (Session::has('flash_error'))
+        @include('partials.alerts.error', array('error'=>Session::get('flash_error')))
+    @endif
+    
+    @yield('content')
+</div>
 
 
 </body>

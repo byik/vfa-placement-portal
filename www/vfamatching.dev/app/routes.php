@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('index');
-});
+Route::get('/', array('as' => 'home', function () { return View::make('index'); }));
+Route::get('login', array('as' => 'login', function () { return View::make('login'); }))->before('guest');
+Route::post('login', 'UsersController@login');
+Route::get('logout', array('uses' => 'UsersController@logout', 'as' => 'logout'))->before('auth');
 
 Route::resource('users', 'UsersController');
 
