@@ -101,7 +101,7 @@ class UsersController extends BaseController {
 	public function logout() {
 	    Auth::logout();
 
-	    return Redirect::route('home')
+	    return Redirect::route('login')
 	        ->with('flash_notice', 'You are successfully logged out.');
 	}
 
