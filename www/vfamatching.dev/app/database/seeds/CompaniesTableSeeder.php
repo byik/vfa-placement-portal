@@ -7,12 +7,19 @@ class CompaniesTableSeeder extends Seeder {
 		// Uncomment the below to wipe the table clean before populating
 		// DB::table('companies')->truncate();
 
-		$companies = array(
-
-		);
-
-		// Uncomment the below to run the seeder
-		// DB::table('companies')->insert($companies);
+		$firstCompany = new Company();
+        $firstCompany->name = "Chalkfly";
+        $firstCompany->city = "Detroit";
+        $firstCompany->url = "http://www.chalkfly.com";
+        $firstCompany->tagline = "Supply & Delight";
+        $firstCompany->visionAnswer = "We want to be the Zappos of office supplies.";
+        $firstCompany->needsAnswer = "We need eCommerce experts.";
+        $firstCompany->teamAnswer = "Chalkfly is a team that works and plays hard.";
+        $firstCompany->employees = 16;
+        $firstCompany->yearFounded = 2012;
+        $firstCompany->twitterHandle = "chalkfly";
+        $firstCompany->isPublished = true;
+        $firstCompany->save();
 	}
 
 }

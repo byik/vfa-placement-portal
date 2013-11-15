@@ -7,12 +7,12 @@
     <!-- jQuery -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/bootstrap-responsive.css">
-    <script src="js/bootstrap.js"></script>
+    <link rel="stylesheet" href="{{ URL::to('css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ URL::to('css/bootstrap-responsive.css') }}">
+    <script src="{{ URL::to('js/bootstrap.js') }}"></script>
     <!-- Chart.js -->
-    <script src="js/Chart.js"></script>
-    <link rel="stylesheet" href="css/style.css">
+    <script src="{{ URL::to('js/Chart.hs') }}"></script>
+    <link rel="stylesheet" href="{{ URL::to('css/style.css') }}">
 
 </head>
 <body>

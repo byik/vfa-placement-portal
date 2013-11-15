@@ -40,7 +40,7 @@ class CompaniesController extends BaseController {
 	 */
 	public function show($id)
 	{
-        return View::make('companies.show');
+        return View::make('companies.show', array('company' => Company::find($id)));
 	}
 
 	/**

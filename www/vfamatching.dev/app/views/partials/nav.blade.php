@@ -7,9 +7,8 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="#"><img src="img/vfa_logo_nav_white.png" alt="Venture for America logo"></a>
+    <a class="navbar-brand" href="#"><img src="{{ URL::to('img/vfa_logo_nav_white.png') }}" alt="Venture for America logo"></a>
   </div>
-
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
     <ul class="nav navbar-nav navbar-right">
