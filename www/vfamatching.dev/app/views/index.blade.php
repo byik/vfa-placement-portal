@@ -1,5 +1,9 @@
 @extends('layouts.default')
 
+@section('header')
+Dashboard
+@stop
+
 @section('content')
 <div class="fellow-dash">
 	<div class="container">

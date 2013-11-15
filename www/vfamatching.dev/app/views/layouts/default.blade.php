@@ -19,7 +19,12 @@
  
 @include('partials.nav')
 
-@include('partials.header')
+
+<div class="page-header vfa-header">
+    <div class="container">
+        <h1>@yield('header')</h1>
+    </div>
+</div>
 
 <div class="container">
     @if(Session::has('flash_notice'))
