@@ -1,25 +1,19 @@
 <?php
 
-class Opportunity extends Eloquent {
+class Opportunity extends BaseModel {
+    private function rules()
+    {
+        return array(
+            'company_id'=>'exits:companies, id',
+            'title'=>'max:140|alpha_num',
+            'description'=>'max:1400|alpha_num',
+            'responsibilitiesAnswer'=>'max:280|alpha_num',                
+            'skillsAnswer'=>'max:280|alpha_num',
+            'developementAnswer'=>'max:280|alpha_num',
+        );
+    }
+
 	protected $guarded = array();
-
-    public static $createRules = array(
-        'company_id'=>'exits:companies, id';
-        'title'=>'max:140|alpha_num';
-        'description'=>'max:1400|alpha_num';
-        'responsibilitiesAnswer'=>'max:280|alpha_num';                
-        'skillsAnswer'=>'max:280|alpha_num';
-        'developementAnswer'=>'max:280|alpha_num';
-        );
-    public static $updateRules = array(
-        'company_id'=>'exits:companies, id';
-        'title'=>'max:140|alpha_num';
-        'description'=>'max:1400|alpha_num';
-        'responsibilitiesAnswer'=>'max:280|alpha_num';                
-        'skillsAnswer'=>'max:280|alpha_num';
-        'developementAnswer'=>'max:280|alpha_num';
-        );
-
 
 	public function company()
     {
