@@ -1,0 +1,16 @@
+<?php
+
+class ValidationFailedException extends exception
+{
+
+    private $_errorMessages;
+
+    public function __construct($errorMessages) 
+    {
+        parent::__construct('Model Failed Validation Rules', 0, null);
+
+        $this->_errorMessages = $errorMessages; 
+    }
+
+    public function getErrorMessages() { return $this->_errorMessages; }
+}

@@ -12,8 +12,12 @@ class Opportunity extends Eloquent {
         'developementAnswer'=>'max:280|alpha_num';
         );
     public static $updateRules = array(
-        'url'=>'url';
-        'title'=>'max:140';
+        'company_id'=>'exits:companies, id';
+        'title'=>'max:140|alpha_num';
+        'description'=>'max:1400|alpha_num';
+        'responsibilitiesAnswer'=>'max:280|alpha_num';                
+        'skillsAnswer'=>'max:280|alpha_num';
+        'developementAnswer'=>'max:280|alpha_num';
         );
 
 
