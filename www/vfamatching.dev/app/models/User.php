@@ -6,7 +6,20 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class User extends Eloquent implements UserInterface, RemindableInterface {
 	protected $guarded = array();
 
-	public static $rules = array();
+	public static $createRules = array(
+        'email'=> 'email|unique';
+        'lastLogin'=>'date';
+        'role'=>'in:Admin, Fellow, Hiring Manager';
+        'firstName'=>'max:100';
+        'lastName'=>'max:100';
+        );
+    public static $updateRules = array(
+        'email'=> 'email';
+        'lastLogin'=>'date';
+        'role'=>'in:Admin, Fellow, Hiring Manager';
+        'firstName'=>'max:100';
+        'lastName'=>'max:100';
+        );
 
 	 /* Required for Laravel Auth */
     protected $hidden = array('password');
