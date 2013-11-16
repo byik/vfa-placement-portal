@@ -3,7 +3,14 @@
 class MediaLink extends Eloquent {
 	protected $guarded = array();
 
-	public static $rules = array();
+	public static $createRules = array(
+        'url'=>'url';
+        'title'=>'max:140';
+        );
+    public static $updateRules = array(
+        'url'=>'url';
+        'title'=>'max:140';
+        );
 
 	public function companies()
     {
