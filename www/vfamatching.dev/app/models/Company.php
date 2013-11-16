@@ -1,9 +1,7 @@
 <?php
 
 class Company extends BaseModel {
-	protected $guarded = array();
-
-    private function rules()
+	private function rules()
     {
         return array(
             'name'=>'max:280|unique:companies,name,' . $this->id,
@@ -18,6 +16,8 @@ class Company extends BaseModel {
             'twitterHandle'=>'max:15',
         );
     }
+
+    protected $guarded = array();
 
 	public function mediaLinks()
     {

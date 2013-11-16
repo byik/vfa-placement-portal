@@ -1,16 +1,15 @@
 <?php
 
-class MediaLink extends Eloquent {
-	protected $guarded = array();
+class MediaLink extends BaseModel {
+    private function rules()
+    {
+        return array(
+            'url'=>'url',
+            'title'=>'max:140',
+        );
+    }
 
-	public static $createRules = array(
-        'url'=>'url';
-        'title'=>'max:140';
-        );
-    public static $updateRules = array(
-        'url'=>'url';
-        'title'=>'max:140';
-        );
+	protected $guarded = array();
 
 	public function companies()
     {
