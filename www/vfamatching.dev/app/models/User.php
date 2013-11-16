@@ -3,9 +3,19 @@
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class User extends Eloquent implements UserInterface, RemindableInterface {
-	protected $guarded = array();
+class User extends BaseModel implements UserInterface, RemindableInterface {
+    private function rules()
+    {
+        return array(
+            'email'=> 'email|unique:users, email,' . $this->id;
+            'lastLogin'=>'date';
+            'role'=>'in:Admin, Fellow, Hiring Manager';
+            'firstName'=>'max:100';
+            'lastName'=>'max:100';
+        );
+    }
 
+	protected $guarded = array();
 
 	 /* Required for Laravel Auth */
     protected $hidden = array('password');
@@ -42,22 +52,4 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			throw new Exception("Invalid User role!");
 		}
 	}
-    public function save(){
-        $validator = Validator::make($this->toArray(),$this->rules());
-        if($validator->pass()){
-            return parent::save();
-        }else{
-            throw new ValidationFailedException($validator->messages());
-        }
-    }
-    public function rules()
-    {
-        return array(
-        'email'=> 'email|unique:users, email,' . $this->id;
-        'lastLogin'=>'date';
-        'role'=>'in:Admin, Fellow, Hiring Manager';
-        'firstName'=>'max:100';
-        'lastName'=>'max:100';
-        );
-    }
 }
