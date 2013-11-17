@@ -1,7 +1,7 @@
 <?php
 
 class Opportunity extends BaseModel {
-    private function rules()
+    protected function rules()
     {
         return array(
             'company_id'=>'exits:companies, id',

@@ -4,7 +4,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends BaseModel implements UserInterface, RemindableInterface {
-    private function rules()
+    protected function rules()
     {
         return array(
             'email'=> 'email|unique:users, email,' . $this->id,

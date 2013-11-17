@@ -3,12 +3,12 @@
 abstract class BaseModel extends Eloquent
 {
 	// Force extending class to have a rules function
-	abstract private function rules();
+	abstract protected function rules();
 
-	public function save(){
+	public function save(array $options = array()){
 		$validator = Validator::make($this->toArray(),$this->rules());
         if($validator->pass()){
-            return parent::save();
+            return parent::save($options);
         }else{
             throw new ValidationFailedException($validator->messages());
         }

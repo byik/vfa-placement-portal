@@ -1,7 +1,7 @@
 <?php
 
 class Company extends BaseModel {
-	private function rules()
+	protected function rules()
     {
         return array(
             'name'=>'max:280|unique:companies,name,' . $this->id,

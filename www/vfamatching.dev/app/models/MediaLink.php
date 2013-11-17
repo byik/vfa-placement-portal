@@ -1,7 +1,7 @@
 <?php
 
 class MediaLink extends BaseModel {
-    private function rules()
+    protected function rules()
     {
         return array(
             'url'=>'url',
