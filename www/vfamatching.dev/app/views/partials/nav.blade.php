@@ -12,22 +12,24 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
     <ul class="nav navbar-nav navbar-right">
-        @if( Auth::check() )
-            <!-- Dynamic nav -->
-            @if( Auth::user()->role == "Admin" )
-            <!-- Do Admin Nav -->
-            @elseif( Auth::user()->role == "Fellow")
-                <!-- Do Fellow Nav -->
-                <li class=""><a href="{{ URL::to('/') }}">Dashboard</a></li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Opportunities</a></li>
-                <li><a href="{{ URL::to('logout') }}">Sign out &raquo;</a></li>
-            @elseif( Auth::user()->role == "Hiring Manager")
-            <!-- Do Hiring Manager Nav -->
-            @else
-            <!-- We've got problems -->
-            @endif
+      @if( Auth::check() )
+        <!-- Dynamic nav -->
+        @if( Auth::user()->role == "Admin" )
+          <!-- Do Admin Nav -->
+          <li class=""><a href="{{ URL::to('/') }}">ADMIN</a></li>
+        @elseif( Auth::user()->role == "Fellow")
+          <!-- Do Fellow Nav -->
+          <li class=""><a href="{{ URL::to('/') }}">Dashboard</a></li>
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">Opportunities</a></li>
+          <li><a href="{{ URL::to('logout') }}">Sign out &raquo;</a></li>
+        @elseif( Auth::user()->role == "Hiring Manager" )
+          <!-- Do Hiring Manager Nav -->
+          <li class=""><a href="{{ URL::to('/') }}">ADMIN</a></li>
+        @else
+          <!-- We've got problems -->
         @endif
+      @endif
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>

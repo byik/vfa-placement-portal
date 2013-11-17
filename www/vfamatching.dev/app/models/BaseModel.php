@@ -7,7 +7,7 @@ abstract class BaseModel extends Eloquent
 
 	public function save(array $options = array()){
 		$validator = Validator::make($this->toArray(),$this->rules());
-        if($validator->pass()){
+        if($validator->passes()){
             return parent::save($options);
         }else{
             throw new ValidationFailedException($validator->messages());

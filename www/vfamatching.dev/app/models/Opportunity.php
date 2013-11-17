@@ -4,7 +4,7 @@ class Opportunity extends BaseModel {
     protected function rules()
     {
         return array(
-            'company_id'=>'exits:companies, id',
+            'company_id'=>'exists:companies,id',
             'title'=>'max:140|alpha_num',
             'description'=>'max:1400|alpha_num',
             'responsibilitiesAnswer'=>'max:280|alpha_num',                

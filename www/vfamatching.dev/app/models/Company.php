@@ -4,7 +4,7 @@ class Company extends BaseModel {
 	protected function rules()
     {
         return array(
-            'name'=>'max:280|unique:companies,name,' . $this->id,
+            'name'=>'max:280|unique:companies,name,'.$this->id,
             'city'=>'max:280',
             'url'=>'url',
             'tagline'=>'max:140',
