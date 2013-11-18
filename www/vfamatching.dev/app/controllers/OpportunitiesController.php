@@ -9,7 +9,7 @@ class OpportunitiesController extends BaseController {
 	 */
 	public function index()
 	{
-        return View::make('opportunities.index');
+        return View::make('opportunities.index', array('opportunities' => Opportunity::all());
 	}
 
 	/**
