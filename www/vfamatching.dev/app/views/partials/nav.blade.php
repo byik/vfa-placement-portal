@@ -21,8 +21,8 @@
           <!-- Do Fellow Nav -->
           <li class=""><a href="{{ URL::to('/') }}">Dashboard</a></li>
           <li><a href="#">Profile</a></li>
-          <li><a href="#">Opportunities</a></li>
-          <li><a href="{{ URL::to('logout') }}">Sign out &raquo;</a></li>
+          <li><a href="{{ URL::to('/opportunities') }}">Opportunities</a></li>
+          <li><a href="{{ URL::to('/logout') }}">Sign out &raquo;</a></li>
         @elseif( Auth::user()->role == "Hiring Manager" )
           <!-- Do Hiring Manager Nav -->
           <li class=""><a href="{{ URL::to('/') }}">ADMIN</a></li>
