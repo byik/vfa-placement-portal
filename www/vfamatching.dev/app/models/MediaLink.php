@@ -4,7 +4,7 @@ class MediaLink extends BaseModel {
     protected function rules()
     {
         return array(
-            'url'=>'url',
+            'url'=>'required|url',
             'title'=>'max:140',
         );
     }

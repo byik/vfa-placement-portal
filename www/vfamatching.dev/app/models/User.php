@@ -7,11 +7,11 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
     protected function rules()
     {
         return array(
-                'email'=> 'email|unique:users,email,'.$this->id,
+                'email'=> 'required|email|unique:users,email,'.$this->id,
                 'lastLogin'=>'date',
-                'role'=>'in:Admin,Fellow,Hiring Manager',
-                'firstName'=>'max:100',
-                'lastName'=>'max:100',
+                'role'=>'required|in:Admin,Fellow,Hiring Manager',
+                'firstName'=>'required|max:100',
+                'lastName'=>'required|max:100',
             );
     }
 

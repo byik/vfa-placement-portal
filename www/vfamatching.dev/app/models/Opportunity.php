@@ -4,12 +4,12 @@ class Opportunity extends BaseModel {
     protected function rules()
     {
         return array(
-            'company_id'=>'exists:companies,id',
-            'title'=>'max:140|alpha_num',
-            'description'=>'max:1400|alpha_num',
-            'responsibilitiesAnswer'=>'max:280|alpha_num',                
-            'skillsAnswer'=>'max:280|alpha_num',
-            'developementAnswer'=>'max:280|alpha_num',
+            'company_id'=>'required|exists:companies,id',
+            'title'=>'required|max:140',
+            'description'=>'required|max:1400',
+            'responsibilitiesAnswer'=>'required|max:280',                
+            'skillsAnswer'=>'required|max:280',
+            'developmentAnswer'=>'required|max:280',
         );
     }
 

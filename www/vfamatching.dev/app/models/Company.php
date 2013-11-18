@@ -4,15 +4,15 @@ class Company extends BaseModel {
 	protected function rules()
     {
         return array(
-            'name'=>'max:280|unique:companies,name,'.$this->id,
-            'city'=>'max:280',
-            'url'=>'url',
-            'tagline'=>'max:140',
-            'visionAnswer'=>'max:280',
-            'needsAnswer'=>'max:280',
-            'teamAnswer'=>'max:280',
-            'employees'=>'integer',
-            'yearFounded'=>'integer',
+            'name'=>'required|max:280|unique:companies,name,'.$this->id,
+            'city'=>'required|max:280',
+            'url'=>'required|url',
+            'tagline'=>'required|max:140',
+            'visionAnswer'=>'required|max:280',
+            'needsAnswer'=>'required|max:280',
+            'teamAnswer'=>'required|max:280',
+            'employees'=>'required|integer',
+            'yearFounded'=>'required|integer',
             'twitterHandle'=>'max:15',
         );
     }
