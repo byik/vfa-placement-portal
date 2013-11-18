@@ -37,6 +37,17 @@ class OpportunitiesTableSeeder extends Seeder {
 
 		$secondCompany = Company::find(2);
 		$secondCompany->opportunities()->save($thirdOpportunity);
+
+		for($i = 0; $i < 15; $i++){
+			$randomOpportunity = new Opportunity();
+			$randomOpportunity->title = substr(simplexml_load_file('http://www.lipsum.com/feed/xml?amount=1&what=paras&start=0')->lipsum,0,120);
+			$randomOpportunity->description = substr(simplexml_load_file('http://www.lipsum.com/feed/xml?amount=1&what=paras&start=0')->lipsum,0,650);
+			$randomOpportunity->responsibilitiesAnswer = substr(simplexml_load_file('http://www.lipsum.com/feed/xml?amount=1&what=paras&start=0')->lipsum,0,170);
+			$randomOpportunity->skillsAnswer = substr(simplexml_load_file('http://www.lipsum.com/feed/xml?amount=1&what=paras&start=0')->lipsum,0,210);
+			$randomOpportunity->developmentAnswer = substr(simplexml_load_file('http://www.lipsum.com/feed/xml?amount=1&what=paras&start=0')->lipsum,0,220);
+			$randomOpportunity->isPublished = true;
+			$secondCompany->opportunities()->save($randomOpportunity);
+		}
 	}
 
 }
