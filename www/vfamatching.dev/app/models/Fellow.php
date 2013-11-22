@@ -1,9 +1,20 @@
 <?php
 
-class Fellow extends Eloquent {
-	protected $guarded = array();
+class Fellow extends BaseModel {
+    protected function rules()
+    {
+        return array(
+            'bio'=> 'required|between:140,1400',
+            'school'=>'required|max:140',
+            'major'=>'required|max:140',
+            'degree'=>'required|in:BA,BS,MS,MA,MBA,PhD,JD',
+            'graduationYear'=> 'digits:4',
+            'hometown'=>'required|max:140',
+            'phoneNumber'=> 'digits:10'
+            );
+    }
 
-	public static $rules = array();
+	protected $guarded = array();
 
 	public function mediaLinks()
     {
