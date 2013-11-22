@@ -1,7 +1,10 @@
 @extends('layouts.default')
 
+@section('header')
+Login
+@stop
+
 @section('content')
-    <h1>Login</h1>
 
     {{ Form::open(array('route' => 'login')) }}
 
