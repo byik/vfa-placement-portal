@@ -12,7 +12,7 @@ class Company extends BaseModel {
             'needsAnswer'=>'required|max:280',
             'teamAnswer'=>'required|max:280',
             'employees'=>'required|integer',
-            'yearFounded'=>'required|integer',
+            'yearFounded'=>'required|digits:4',
             'twitterHandle'=>'max:15',
         );
     }
