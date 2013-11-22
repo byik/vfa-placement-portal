@@ -1,9 +1,12 @@
 <?php
 
-class AdminNote extends Eloquent {
-	protected $guarded = array();
+class AdminNote extends BaseModel {
+    protected function rules()
+    {
+        return array('content'=> 'required|max:1400');
+    }
 
-	public static $rules = array();
+	protected $guarded = array();
 
 	public function admin()
 	{
