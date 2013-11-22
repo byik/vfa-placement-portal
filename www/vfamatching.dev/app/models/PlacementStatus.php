@@ -14,4 +14,17 @@ class PlacementStatus extends Eloquent {
     {
     	return $this->belongsTo('Opportunity');
     }
+
+    public static function statuses()
+    {
+        return array("Introduced",
+            "Contacted",
+            "Phone Interview Pending",
+            "Phone Interview Complete",
+            "On-site Interview Pending",
+            "On-site Interview Complete",
+            "Offer Extended",
+            "Offer Accepted",
+            "Offer Rejected");
+    }
 }
