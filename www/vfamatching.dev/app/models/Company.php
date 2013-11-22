@@ -36,6 +36,6 @@ class Company extends BaseModel {
 
     public function adminNotes()
     {
-        return $this->belongsToMany('adminNote');
+        return $this->belongsToMany('AdminNote');
     }
 }
