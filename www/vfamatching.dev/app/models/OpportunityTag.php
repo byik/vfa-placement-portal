@@ -1,9 +1,12 @@
 <?php
 
-class OpportunityTag extends Eloquent {
-	protected $guarded = array();
+class OpportunityTag extends BaseModel {
+	protected function rules()
+    {
+        return array('tag'=> 'required|between:1,140');
+    }
 
-	public static $rules = array();
+    protected $guarded = array();
 
 	public function opportunity()
 	{
