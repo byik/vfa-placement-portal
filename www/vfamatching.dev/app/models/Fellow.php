@@ -22,7 +22,7 @@ class Fellow extends Eloquent {
 
     public function adminNotes()
     {
-        return $this->belongsToMany('adminNote');
+        return $this->belongsToMany('AdminNote');
     }
 
     public function pitches()
