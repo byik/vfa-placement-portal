@@ -1,9 +1,12 @@
 <?php
 
-class StaffRecommendation extends Eloquent {
-	protected $guarded = array();
+class StaffRecommendation extends BaseModel {
+	protected function rules()
+    {
+        return array(); //no rules :]
+    }
 
-	public static $rules = array();
+    protected $guarded = array();
 
 	public function fellow()
 	{
