@@ -1,9 +1,14 @@
 <?php
 
-class Pitch extends Eloquent {
-	protected $guarded = array();
+class Pitch extends BaseModel {
+    protected function rules()
+    {
+        return array(
+            'body'=> 'required|between:140,1400',
+            'status'=>'required|in:Under Review,Waitlisted,Approved');
+    }
 
-	public static $rules = array();
+	protected $guarded = array();
 
 	public function fellow()
     {
