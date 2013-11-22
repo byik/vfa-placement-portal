@@ -1,9 +1,12 @@
 <?php
 
-class FellowSkill extends Eloquent {
-	protected $guarded = array();
+class FellowSkill extends BaseModel {
+    protected function rules()
+    {
+        return array('skill'=> 'required|between:1,140');
+    }
 
-	public static $rules = array();
+	protected $guarded = array();
 
 	public function fellow()
 	{
