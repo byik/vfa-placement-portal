@@ -1,9 +1,13 @@
 <?php
 
-class HiringManager extends Eloquent {
-	protected $guarded = array();
+class HiringManager extends BaseModel {
+    protected function rules()
+    {
+        return array(
+            'phoneNumber'=> 'digits:10');
+    }
 
-	public static $rules = array();
+    protected $guarded = array();
 
 	public function user()
     {
