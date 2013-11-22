@@ -48,3 +48,13 @@ body {
 .red {
 	color: #ec5a41;
 }
+
+.upcoming-events .row {
+	font-size: 18px;
+}
+
+.relationships .row .col-md-4 {
+	border:1px solid #000;
+	border-radius: 5px;
+}
+
