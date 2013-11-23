@@ -52,4 +52,10 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 			throw new Exception("Invalid User role!");
 		}
 	}
+
+    public function login()
+    {
+        $this->lastLogin = Carbon::now()->toDateTimeString();
+        $this->save();
+    }
 }
