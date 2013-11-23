@@ -53,6 +53,10 @@ body {
 	font-size: 18px;
 }
 
+.upcoming-events .date {
+	padding-left: 40px;
+}
+
 .relationships .row .col-md-4 {
 	border:1px solid #000;
 	border-radius: 5px;
