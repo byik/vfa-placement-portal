@@ -35,26 +35,21 @@ body {
 	margin-bottom: 20px;
 }
 
-.fellow-dash ul {
-	list-style-type: none;
-	padding-left: 0px;
-}
-
-.fellow-dash li {
-	font-size: 16px;
-	line-height: 2;
-}
-
 .red {
 	color: #ec5a41;
 }
 
 .upcoming-events .row {
 	font-size: 18px;
+	padding-bottom: 5px;
+}
+
+.upcoming-events span {
+	vertical-align: middle;
 }
 
 .upcoming-events .date {
-	padding-left: 40px;
+	padding-left: 20px;
 }
 
 .relationships .row .col-md-4 {
