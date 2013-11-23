@@ -85,8 +85,9 @@ class UsersController extends BaseController {
 		if (Auth::attempt($user)) {
 			if (Session::has('returnUrl'))
 			{
+				$intendedDestination = Session::get('returnUrl');
 				Session::forget('returnUrl');
-			    return Redirect::to(Session::get('returnUrl'))
+			    return Redirect::to($intendedDestination)
 		    	->with('flash_notice', 'You are successfully logged in.');
 			}
 			return Redirect::to('/')

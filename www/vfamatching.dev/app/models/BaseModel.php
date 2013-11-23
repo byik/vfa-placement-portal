@@ -8,6 +8,7 @@ abstract class BaseModel extends Eloquent
 	public function save(array $options = array()){
 		$validator = Validator::make($this->toArray(),$this->rules());
         if($validator->passes()){
+        	//todo, scrub $this->phoneNumber if it's set
             return parent::save($options);
         }else{
             throw new ValidationFailedException($validator->messages());

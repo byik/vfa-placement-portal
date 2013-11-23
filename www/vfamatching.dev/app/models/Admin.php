@@ -1,9 +1,12 @@
 <?php
 
-class Admin extends Eloquent {
-	protected $guarded = array();
+class Admin extends BaseModel {
+    protected function rules()
+    {
+        return array('phoneNumber'=> 'digits:10');
+    }
 
-	public static $rules = array();
+	protected $guarded = array();
 
 	public function user()
     {

@@ -25,7 +25,7 @@ class CreateFellowsTable extends Migration {
 			$table->string('hometown');
 			$table->boolean('isRemindable');
 			$table->string('resumePath');
-			$table->string('phoneNumber')->nullable();
+			$table->bigInteger('phoneNumber')->nullable();
 			$table->timestamps();
 		});
 	}

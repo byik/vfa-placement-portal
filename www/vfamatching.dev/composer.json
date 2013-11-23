@@ -17,7 +17,7 @@
 			"app/tests/TestCase.php",
 			"app/mailers",
 			"app/exceptions",
-			"app/interfaces"
+			"app/library"
 		]
 	},
 	"scripts": {

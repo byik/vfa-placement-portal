@@ -37,9 +37,9 @@ Route::filter('auth', function()
 {
 	if (Auth::guest()) {
 		//store the url they were trying to hit in session
-		Session::put('returnUrl', Route::currentRouteName());
+		Session::put('returnUrl', Request::url());
 		return Redirect::route('login')
-			->with('flash_error', 'You must be logged in to view this page!');
+			->with('flash_error', 'You must be logged in to view that page! You\'ll be redirected to your intended destination after logging in.');
 	}
 });
 
