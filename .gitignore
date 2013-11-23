@@ -43,3 +43,6 @@ publish
 
 sftp-config-alt.json
 sftp-config.json
+
+# Twilio config
+/www/vfamatching.dev/app/config/packages/travisjryan/twilio/twilio.php
