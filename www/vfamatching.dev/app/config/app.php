@@ -115,7 +115,7 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
-		'Travisjryan\Twilio\TwilioServiceProvider',
+		// 'Travisjryan\Twilio\TwilioServiceProvider',
 
 	),
 
@@ -181,7 +181,7 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-		'Twilio'		  => 'Travisjryan\Twilio\Facades\Twilio',
+		// 'Twilio'		  => 'Travisjryan\Twilio\Facades\Twilio',
 		'Carbon'          => 'Carbon\Carbon',
 
 	),
