@@ -35,7 +35,7 @@ Dashboard
 				<div class="relationships">
 					<h2><small>RELATIONSHIPS</small></h2>
 						@foreach($relationships as $relationship)
-							@include('partials.indexes.relationship')
+							@include('partials.indexes.relationship', array('relationship' => $relationship))
 						@endforeach
 					</div>
 				</div>

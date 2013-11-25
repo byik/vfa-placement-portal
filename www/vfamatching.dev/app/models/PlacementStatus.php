@@ -24,6 +24,43 @@ class PlacementStatus extends BaseModel {
         return $this->belongsTo('Opportunity');
     }
 
+    public function percent()
+    {
+        $statuses = self::statuses();
+        switch ($this->status) {
+            case $statuses[0]: //Introduced
+                return 1.0/8.0;
+                break;
+            case $statuses[1]: //Contacted
+                return 2.0/8.0;
+                break;
+            case $statuses[2]: //Phone Interview Pending
+                return 3.0/8.0;
+                break;
+            case $statuses[3]: //Phone Interview Complete
+                return 4.0/8.0;
+                break;
+            case $statuses[4]: //On-site Interview Pending
+                return 5.0/8.0;
+                break;
+            case $statuses[5]: //On-site Interview Complete
+                return 6.0/8.0;
+                break;
+            case $statuses[6]: //Offer Extended
+                return 7.0/8.0;
+                break;
+            case $statuses[7]: //Offer Accepted
+                return 8.0/8.0;
+                break;
+            case $statuses[8]: //Offer Rejected
+                return 0.0/8.0;
+                break;
+            default:
+                throw new Exception("Invalid Status: " . $this->status);
+                break;
+        }
+    }
+
     public static function statuses()
     {
         return array(
