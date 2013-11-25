@@ -17,7 +17,7 @@ Route::get('logout', array('uses' => 'UsersController@logout', 'as' => 'logout')
 
 Route::group(array('before' => 'auth'), function()
 {
-    Route::get('/', array('as' => 'home', function () { return View::make('index'); }));
+    Route::get('/', array('as' => 'dashboard', 'uses' => 'UsersController@dashboard'));
     Route::resource('users', 'UsersController');
     Route::resource('companies', 'CompaniesController');
     Route::resource('medialinks', 'MedialinksController');

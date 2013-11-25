@@ -107,4 +107,18 @@ class UsersController extends BaseController {
 	        ->with('flash_notice', 'You are successfully logged out.');
 	}
 
+    public function dashboard() {
+        if( Auth::user()->role == "Admin" ) {
+            echo "Admin";
+        } elseif( Auth::user()->role == "Fellow") {
+            $placementStatuses = Auth::user()->profile->placementStatuses;
+            return View::make('index', array('relationships' => $placementStatuses));
+        } elseif( Auth::user()->role == "Hiring Manager" ) {
+            echo "Hiring Manager";
+        } else {
+            throw new Exception("Invalid user role");
+        }
+        return View::make('index');
+    }
+
 }
