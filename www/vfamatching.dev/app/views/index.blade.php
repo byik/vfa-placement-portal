@@ -34,67 +34,9 @@ Dashboard
 				</div>
 				<div class="relationships">
 					<h2><small>RELATIONSHIPS</small></h2>
-					<div class="row">
-						<div class="col-md-4">
-							<canvas id="myChart1" width="100" height="100"></canvas>
-							<script type="text/javascript">
-								var data = [
-								{
-									value: 30,
-									color:"#ec5a41"
-								},
-								{
-									value: 80,
-									color:"#dedede"
-								}		
-							]
-
-								//Get context with jQuery - using jQuery's .get() method.
-								var ctx = $("#myChart1").get(0).getContext("2d");
-
-								new Chart(ctx).Pie(data);
-							</script>		
-						</div>
-						<div class="col-md-4">
-							<canvas id="myChart2" width="100" height="100"></canvas>
-							<script type="text/javascript">
-								var data = [
-								{
-									value: 30,
-									color:"#ec5a41"
-								},
-								{
-									value: 40,
-									color:"#dedede"
-								}		
-							]
-
-								//Get context with jQuery - using jQuery's .get() method.
-								var ctx = $("#myChart2").get(0).getContext("2d");
-
-								new Chart(ctx).Pie(data);
-							</script>		
-						</div>
-						<div class="col-md-4">
-							<canvas id="myChart3" width="100" height="100"></canvas>
-							<script type="text/javascript">
-								var data = [
-								{
-									value: 30,
-									color:"#ec5a41"
-								},
-								{
-									value: 100,
-									color:"#dedede"
-								}		
-							]
-
-								//Get context with jQuery - using jQuery's .get() method.
-								var ctx = $("#myChart3").get(0).getContext("2d");
-
-								new Chart(ctx).Pie(data);
-							</script>		
-						</div>
+						@foreach($relationships as $relationship)
+							@include('partials.indexes.relationship')
+						@endforeach
 					</div>
 				</div>
 			</div>
