@@ -34,10 +34,18 @@ Dashboard
 				</div>
 				<div class="relationships">
 					<h2><small>RELATIONSHIPS</small></h2>
-						@foreach($relationships as $relationship)
-							@include('partials.indexes.relationship', array('relationship' => $relationship))
-						@endforeach
-					</div>
+                        <div class="row">
+    						@foreach($relationships as $relationship)
+                                <?php 
+                                    $pieChart = new PieChart;
+                                    $pieChart->id = $relationship->id;
+                                    $pieChart->width = 100;
+                                    $pieChart->height = 100;
+                                    $pieChart->percent = $relationship->percent();
+                                ?>
+    							@include('partials.indexes.relationship', array('relationship' => $relationship))->nest('pieChart','partials.charts.pie-percent', array('pieChart' => $pieChart))
+    						@endforeach
+					    </div>
 				</div>
 			</div>
 		</div>
