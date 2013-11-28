@@ -16,6 +16,8 @@ class FellowsTableSeeder extends Seeder {
         $firstFellow->graduationYear = "2014";
         $firstFellow->hometown = substr(simplexml_load_file('http://www.lipsum.com/feed/xml?amount=1&what=paras&start=0')->lipsum,0,60);
         $firstFellow->phoneNumber = 1234567890;
+        $firstFellow->isPublished = true;
+        $firstFellow->isRemindable = true;
         $firstFellow->user()->associate($fourthUser);
         $firstFellow->save();
 	}

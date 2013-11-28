@@ -14,6 +14,7 @@ class Company extends BaseModel {
             'employees'=>'required|integer',
             'yearFounded'=>'required|digits:4',
             'twitterHandle'=>'max:15',
+            'isPublished'=> 'required|in:0,1'
         );
     }
 

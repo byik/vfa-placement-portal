@@ -10,6 +10,7 @@ class Opportunity extends BaseModel {
             'responsibilitiesAnswer'=>'required|max:280',                
             'skillsAnswer'=>'required|max:280',
             'developmentAnswer'=>'required|max:280',
+            'isPublished'=> 'required|in:0,1'
         );
     }
 

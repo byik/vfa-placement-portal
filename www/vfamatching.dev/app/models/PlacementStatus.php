@@ -7,7 +7,9 @@ class PlacementStatus extends BaseModel {
             'status'=> 'required|in:Introduced,Contacted,Phone Interview Pending,Phone Interview Complete,On-site Interview Pending,On-site Interview Complete,Offer Extended,Offer Accepted,Offer Rejected',
             'eventDate'=>'date',
             'score'=>'required|in:1,2,3,4,5',
-            'message'=>'required|max:280');
+            'message'=>'required|max:280',
+            'isRecent'=> 'required|in:0,1'
+            );
     }
 
     protected $guarded = array();

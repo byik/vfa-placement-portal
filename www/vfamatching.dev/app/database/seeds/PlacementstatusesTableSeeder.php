@@ -21,6 +21,7 @@ class PlacementstatusesTableSeeder extends Seeder {
         $firstPlacementStatus->message = "I'm not so sure how I feel about this one...";
         $firstPlacementStatus->fellow_id = $firstFellow->id;
         $firstPlacementStatus->opportunity_id = $firstOpportunity->id;
+        $firstPlacementStatus->isRecent = true;
         $firstPlacementStatus->save();
 
         $secondPlacementStatus = new PlacementStatus();
@@ -30,6 +31,7 @@ class PlacementstatusesTableSeeder extends Seeder {
         $secondPlacementStatus->message = "Seems like a perfect fit!";
         $secondPlacementStatus->fellow_id = $firstFellow->id;
         $secondPlacementStatus->opportunity_id = $thirdOpportunity->id;
+        $secondPlacementStatus->isRecent = true;
         $secondPlacementStatus->save();
 	}
 
