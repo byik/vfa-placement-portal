@@ -35,7 +35,7 @@
     @endif
 
     @if (Session::has('flash_errors'))
-        @foreach(Session::has('flash_errors') as $error)
+        @foreach(Session::get('flash_errors') as $error)
             @include('partials.alerts.error', array('error'=>$error))
         @endforeach
     @endif
