@@ -76,4 +76,14 @@ class PlacementStatus extends BaseModel {
             'Offer Accepted', //8/8
             'Offer Rejected'); //0/8
     }
+
+    public static function scores()
+    {
+        return array(
+            1,
+            2,
+            3,
+            4,
+            5);
+    }
 }
