@@ -5,5 +5,9 @@ Create Fellow Profile
 @stop
 
 @section('content')
-<p>TODO: Replace with the forms for a fellow profile</p>
+<div class="row">
+    <div class="col-md-6">
+        @include('partials.forms.fellow')
+    </div>
+</div>
 @stop

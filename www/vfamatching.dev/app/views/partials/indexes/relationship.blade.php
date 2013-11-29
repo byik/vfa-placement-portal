@@ -37,11 +37,11 @@
                         {{ Form::hidden('fellow_id') }}
                         {{ Form::hidden('opportunity_id') }}
                         <div class="form-group">
-                            {{ Form::label('status', 'Status:'); }}
+                            {{ Form::label('status', 'Status:') }}
                             {{ Form::select('status', array_combine(PlacementStatus::statuses(), PlacementStatus::statuses()), null, array('class'=>'form-control placement-status-select')) }}
                         </div>
                         <div class="form-group">                        
-                            {{ Form::label('score', 'Score:'); }}
+                            {{ Form::label('score', 'Score:') }}
                             <ul class="list-unstyled">
                                 <li>5 = I would absolutely love to work here</li>
                                 <li>3 = This would be a decent fit for me</li>
@@ -50,7 +50,7 @@
                             {{ Form::select('score', array_combine(PlacementStatus::scores(),PlacementStatus::scores()), null, array('class'=>'form-control')) }}
                         </div>
                         <div class="form-group">
-                            {{ Form::label('message', 'Any comments?'); }}
+                            {{ Form::label('message', 'Any comments?') }}
                             {{ Form::textarea('message', null, array('class'=>'form-control')) }}
                         </div>
                     </fieldset>

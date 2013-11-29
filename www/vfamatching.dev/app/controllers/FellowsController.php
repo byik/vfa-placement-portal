@@ -29,7 +29,7 @@ class FellowsController extends BaseController {
      */
     public function store()
     {
-        //
+        die("Form successfully submitted");
     }
 
     /**

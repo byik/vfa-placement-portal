@@ -52,4 +52,16 @@ class Fellow extends BaseModel {
     {
         return $this->hasMany('StaffRecommendation');
     }
+
+    public static function degrees()
+    {
+        return array(
+            "BA",
+            "BS",
+            "MS",
+            "MA",
+            "MBA",
+            "PhD",
+            "JD");
+    }
 }
