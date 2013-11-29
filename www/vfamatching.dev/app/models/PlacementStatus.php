@@ -63,6 +63,19 @@ class PlacementStatus extends BaseModel {
         }
     }
 
+    public function printWithDate()
+    {
+        if($this->status == self::statuses()[2]){
+            return Carbon::now()->diffForHumans(Carbon::createFromFormat('Y-m-d H:i:s', $this->eventDate)) . ' Phone Interview';
+        } else if($this->status == self::statuses()[6]) {
+            return Carbon::now()->diffForHumans(Carbon::createFromFormat('Y-m-d H:i:s', $this->eventDate)) . ' On-site Interview';
+        } else if($this->status == self::statuses()[6]) {
+            return Carbon::now()->diffForHumans(Carbon::createFromFormat('Y-m-d H:i:s', $this->eventDate)) . ' Offer Acceptance Deadline' . $this->status;
+        } else {
+            return $this->status;
+        }
+    }
+
     public static function statuses()
     {
         return array(

@@ -5,7 +5,7 @@
                 <p class="text-center">{{ $pieChart }}</p>
             </div>
             <div class="row">
-                <p class="text-center">{{ $relationship->status }}</p>
+                <p class="text-center">{{ $relationship->printWithDate() }}</p>
             </div>
 		</div>
         <div class="col-xs-6">

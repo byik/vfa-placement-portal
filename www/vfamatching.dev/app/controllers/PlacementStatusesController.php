@@ -37,9 +37,7 @@ class PlacementStatusesController extends BaseController {
             $newPlacementStatus->opportunity_id = Input::get('opportunity_id');
             $newPlacementStatus->status = Input::get('status');
             if(Input::has('eventDate')){
-                $eventDate = Input::get('eventDate');
-                $eventDate = Carbon::createFromFormat('m-d-Y', $eventDate);
-                $newPlacementStatus->eventDate = $eventDate->toDateTimeString();
+                $newPlacementStatus->eventDate = Carbon::createFromFormat('m-d-Y', Input::get('eventDate'))->toDateTimeString();
             }
             $newPlacementStatus->score = Input::get('score');
             $newPlacementStatus->message = Input::get('message');
