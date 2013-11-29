@@ -9,6 +9,9 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{{ URL::to('css/bootstrap.css') }}">
     <script src="{{ URL::to('js/bootstrap.js') }}"></script>
+    <!-- Datepicker -->
+    <link rel="stylesheet" href="{{ URL::to('css/datepicker.css') }}">
+    <script src="{{ URL::to('js/bootstrap-datepicker.js') }}"></script>
     <!-- Chart.js -->
     <script src="{{ URL::to('js/Chart.js') }}"></script>
     <link rel="stylesheet" href="{{ URL::to('css/style.css') }}">

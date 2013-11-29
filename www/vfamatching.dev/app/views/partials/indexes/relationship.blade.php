@@ -17,7 +17,7 @@
             -->
             <!-- Button trigger modal -->
             <a data-toggle="modal" href="#relationship-update-modal-{{ $relationship->id }}" class="btn
-            btn-default btn-large">Update</a>
+            btn-default btn-large modal-btn">Update</a>
         </div>
 	</div>		
 </div>
@@ -38,7 +38,7 @@
                         {{ Form::hidden('opportunity_id') }}
                         <div class="form-group">
                             {{ Form::label('status', 'Status:'); }}
-                            {{ Form::select('status', array_combine(PlacementStatus::statuses(), PlacementStatus::statuses()), null, array('class'=>'form-control')) }}
+                            {{ Form::select('status', array_combine(PlacementStatus::statuses(), PlacementStatus::statuses()), null, array('class'=>'form-control placement-status-select')) }}
                         </div>
                         <div class="form-group">                        
                             {{ Form::label('score', 'Score:'); }}
@@ -76,9 +76,30 @@ $(document).ready(function() {
         e.preventDefault();//don't follow the actual link
     });
     //register dropdown toggle to make datepicker appear on certain statuses
-    $('#Nazione').change(function(){
-        alert( $(this).find("option:selected").attr('prefix') );
-        alert( $(this).attr('prefix') );
+    $('.placement-status-select').unbind().change(function(){
+        //remove the old one, if exists
+        $('#datepicker').remove();
+        if(this.value == "{{ PlacementStatus::statuses()[2] }}" ||
+                this.value == "{{ PlacementStatus::statuses()[4] }}"){ //Phone Interview Pending or On-site Interview Pending
+            $(this).parent().after('<div class="form-group row" id="datepicker"><div class="col-xs-8"><label class="control-label">Interview Date</label><div class="input-group date datepicker" data-date="12-02-2012" data-date-format="mm-dd-yyyy"><input name="eventDate" class="form-control" type="text" readonly="" value="12-02-2012"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></div></div>');
+        } else if(this.value == "{{ PlacementStatus::statuses()[6] }}"){ //Offer Accepted
+            $(this).parent().after('<div class="form-group row" id="datepicker"><div class="col-xs-8"><label class="control-label">Acceptance Deadline</label><div class="input-group date datepicker" data-date="12-02-2012" data-date-format="mm-dd-yyyy"><input name="eventDate" class="form-control" type="text" readonly="" value="12-02-2012"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span></div></div></div>');
+        }
+
+        // adding todays date as the value to the datepickers.
+        var d = new Date();
+        var curr_day = d.getDate();
+        var curr_month = d.getMonth() + 1; //Months are zero based
+        var curr_year = d.getFullYear();
+        var eutoday = curr_day + "-" + curr_month + "-" + curr_year;
+        var ustoday = curr_month + "-" + curr_day + "-" + curr_year;
+        $("div.datepicker input").attr('value', eutoday);
+        $("div.usdatepicker input").attr('value', ustoday);
+        $('.datepicker').datepicker({
+            autoclose: true,
+            startDate: new Date()
+        });
+        
     });
 });
 </script>
