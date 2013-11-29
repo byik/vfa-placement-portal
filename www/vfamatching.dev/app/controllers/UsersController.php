@@ -111,7 +111,7 @@ class UsersController extends BaseController {
         if( Auth::user()->role == "Admin" ) {
             echo "Admin";
         } elseif( Auth::user()->role == "Fellow") {
-            $placementStatuses = Auth::user()->profile->placementStatuses;
+            $placementStatuses = Auth::user()->profile->placementStatuses()->where('isRecent','=',1)->get();
             return View::make('index', array('relationships' => $placementStatuses));
         } elseif( Auth::user()->role == "Hiring Manager" ) {
             echo "Hiring Manager";
