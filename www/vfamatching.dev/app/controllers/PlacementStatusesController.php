@@ -29,7 +29,40 @@ class PlacementStatusesController extends BaseController {
 	 */
 	public function store()
 	{
-		return "Successful submit!";
+        $newPlacementStatus = new PlacementStatus();
+            $newPlacementStatus->fellow_id = Input::get('fellow_id');
+            $newPlacementStatus->opportunity_id = Input::get('opportunity_id');
+            $newPlacementStatus->status = Input::get('status');
+            if(Input::has('eventDate')){
+                $newPlacementStatus->eventDate = Input::get('eventDate');
+            }
+            $newPlacementStatus->score = Input::get('score');
+            $newPlacementStatus->message = Input::get('message');
+            $newPlacementStatus->isRecent = 1;
+        $oldPlacementStatuses = ::where('fellow_id','=',$newPlacementStatus->fellow_id)
+                    ->where('opportunity_id','=',$newPlacementStatus->opportunity_id)
+                    ->where('status', '<>',$newPlacementStatus->status)
+                    ->get();
+        $recentPlacementStatus = ::where('fellow_id','=',$newPlacementStatus->fellow_id)
+                    ->where('opportunity_id','=',$newPlacementStatus->opportunity_id)
+                    ->where('isRecent', '=',1);
+                    ->first();
+        if(array_search($newPlacementStatus->status, PlacementStatus::statuses()) > array_search($recentPlacementStatus->status, PlacementStatus::statuses())){
+            try {
+                $newPlacementStatus->save();
+                //make sure only this new placement status is recent
+                $oldPlacementStatuses->each(function($oldPlacementStatus)
+                        {
+                            $oldPlacementStatus->isRecent = 0;
+                            $oldPlacementStatus->save();
+                        });
+                return Redirect::to(URL::back())->with('flash_notice', 'Relationship successfully updated.');
+            } catch (ValidationFailedException $e) {
+                return Redirect::to(URL::back())->with('flash_errors', $e->getErrorMessages());
+            }
+        } else {
+            return Redirect::to(URL::back())->with('flash_error', 'Placement progress can\'t go backwards!');
+        }
 	}
 
 	/**
