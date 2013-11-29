@@ -4,7 +4,7 @@ class PlacementStatus extends BaseModel {
     protected function rules()
     {
         return array(
-            'status'=> 'required|in:Introduced,Contacted,Phone Interview Pending,Phone Interview Complete,On-site Interview Pending,On-site Interview Complete,Offer Extended,Offer Accepted,Offer Rejected',
+            'status'=> 'required|in:Introduced,Contacted,Phone Interview Pending,Phone Interview Complete,On-site Interview Pending,On-site Interview Complete,Offer Extended,Offer Accepted,Bad Fit',
             'eventDate'=>'date',
             'score'=>'required|in:1,2,3,4,5',
             'message'=>'required|max:280',
@@ -54,7 +54,7 @@ class PlacementStatus extends BaseModel {
             case $statuses[7]: //Offer Accepted
                 return 8.0/8.0;
                 break;
-            case $statuses[8]: //Offer Rejected
+            case $statuses[8]: //Bad Fit
                 return 0.0/8.0;
                 break;
             default:
@@ -74,7 +74,7 @@ class PlacementStatus extends BaseModel {
             'On-site Interview Complete', //6/8
             'Offer Extended', //7/8
             'Offer Accepted', //8/8
-            'Offer Rejected'); //0/8
+            'Bad Fit'); //0/8
     }
 
     public static function scores()
