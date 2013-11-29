@@ -32,7 +32,7 @@
             </div>
             <div class="modal-body">
                 {{-- This Form POST's to /placementstatus. Data is autofilled from PlacementStatus model in $relationship --}}
-                {{ Form::model($relationship, array('route' => array('placementstatuses.store'))) }}
+                {{ Form::model($relationship, array('route' => array('placementstatuses.store'), 'id'=>'placement-status-'.$relationship->id,'class'=>'placement-status-form')) }}
                     <fieldset>
                         {{ Form::hidden('fellow_id') }}
                         {{ Form::hidden('opportunity_id') }}
@@ -55,7 +55,7 @@
             </div>
             <div class="modal-footer">
                 <a href="" class="btn btn-default" data-dismiss="modal">Cancel</a>
-                <a href="#" class="btn btn-primary">Update Relationship</a>
+                <a href="" class="btn btn-primary placement-status-submit">Update Relationship</a>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -64,3 +64,10 @@
 <!-- TODO
     Add Javascript validation to modal input so users don't have to submit to know their input is invalid
  -->
+<script type="text/javascript">
+    //unbind so the click only fires once
+    $('.placement-status-submit').unbind().click(function(e){
+        $(this).parent().parent().find('.placement-status-form').submit();
+        e.preventDefault();//don't follow the actual link
+    });
+</script>
