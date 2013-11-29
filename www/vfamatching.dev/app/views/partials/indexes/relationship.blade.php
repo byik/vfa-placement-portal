@@ -42,8 +42,12 @@
                         </div>
                         <div class="form-group">                        
                             {{ Form::label('score', 'Score:'); }}
+                            <ul class="list-unstyled">
+                                <li>5 = I would absolutely love to work here</li>
+                                <li>3 = This would be a decent fit for me</li>
+                                <li>1 = I would work here only as a last resort</li>
+                            </ul>
                             {{ Form::select('score', array_combine(PlacementStatus::scores(),PlacementStatus::scores()), null, array('class'=>'form-control')) }}
-                            <p class="help-block">5 = I would love to work here, 1 = I would work here only as a last resort</p>
                         </div>
                         <div class="form-group">
                             {{ Form::label('message', 'Any comments?'); }}
@@ -65,9 +69,16 @@
     Add Javascript validation to modal input so users don't have to submit to know their input is invalid
  -->
 <script type="text/javascript">
+$(document).ready(function() {  
     //unbind so the click only fires once
     $('.placement-status-submit').unbind().click(function(e){
         $(this).parent().parent().find('.placement-status-form').submit();
         e.preventDefault();//don't follow the actual link
     });
+    //register dropdown toggle to make datepicker appear on certain statuses
+    $('#Nazione').change(function(){
+        alert( $(this).find("option:selected").attr('prefix') );
+        alert( $(this).attr('prefix') );
+    });
+});
 </script>

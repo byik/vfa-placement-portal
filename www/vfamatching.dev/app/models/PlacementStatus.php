@@ -80,10 +80,10 @@ class PlacementStatus extends BaseModel {
     public static function scores()
     {
         return array(
-            1,
-            2,
-            3,
+            5,
             4,
-            5);
+            3,
+            2,
+            1);
     }
 }
