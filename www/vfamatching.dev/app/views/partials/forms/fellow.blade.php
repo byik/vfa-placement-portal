@@ -52,7 +52,7 @@
             {{ Form::label('displayPicture', 'Select a display picture to upload') }}
             <p>
                 <span class="btn btn-link btn-file">
-                    <span class="btn-file-label">Browser for image...</span>{{ Form::file('image', array('accept'=>'image/*')) }}
+                    <span class="btn-file-label">Browser for image...</span>{{ Form::file('displayPicture', array('accept'=>'image/*')) }}
                 </span>
             </p>
 

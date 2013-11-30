@@ -46,6 +46,32 @@ class FellowsController extends BaseController {
         $newFellow->hometown = Input::get('hometown');
         $newFellow->phoneNumber = Parser::stringToInteger(Input::get('phoneNumber'));
 
+        if (Input::hasFile('displayPicture'))
+        {
+            //process file input
+            //TODO: Validate that this is an image
+            $newName = Uploader::processInputFilename(Input::file('displayPicture')->getClientOriginalName());
+            try{
+                Input::file('displayPicture')->move(public_path() . Config::get('upload.directory'), $newName);
+            } catch (FileException $e) {
+                return Redirect::back()->with('flash_error', "Your file could not be uploaded. Please try again")->withInput();
+            }
+            $newFellow->displayPicturePath = Config::get('upload.directory') . '/' . $newName;
+        }
+
+        if (Input::hasFile('resume'))
+        {
+            //process file input
+            //TODO: Validate that this is a pdf
+            $newName = Uploader::processInputFilename(Input::file('resume')->getClientOriginalName());
+            try{
+                Input::file('resume')->move(public_path() . Config::get('upload.directory'), $newName);
+            } catch (FileException $e) {
+                return Redirect::back()->with('flash_error', "Your file could not be uploaded. Please try again")->withInput();
+            }
+            $newFellow->resumePath = Config::get('upload.directory') . '/' . $newName;
+        }
+
         try {
             $authenticatedUser->save();
             $newFellow->save();
