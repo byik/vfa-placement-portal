@@ -12,20 +12,20 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
     <ul class="nav navbar-nav navbar-right">
-      @if( Auth::check() )
+      @if( Auth::check() && !is_null(Auth::user()->profile))
         <!-- Dynamic nav -->
-        @if( Auth::user()->role == "Admin" )
+        @if( Auth::user()->role == "Admin")
           TODO
         @elseif( Auth::user()->role == "Fellow")
           <li class=""><a href="{{ URL::to('/') }}">Dashboard</a></li>
           <li><a href="{{ URL::to('/fellows/' . Auth::user()->profile->id) }}">Profile</a></li>
           <li><a href="{{ URL::to('/opportunities') }}">Opportunities</a></li>
-          <li><a href="{{ URL::to('/logout') }}">Sign out &raquo;</a></li>
         @elseif( Auth::user()->role == "Hiring Manager" )
           TODO
         @else
           <!-- We've got problems -->
         @endif
+        <li><a href="{{ URL::to('/logout') }}">Sign out &raquo;</a></li>
       @endif
     </ul>
   </div><!-- /.navbar-collapse -->

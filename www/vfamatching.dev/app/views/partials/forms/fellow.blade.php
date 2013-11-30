@@ -47,7 +47,6 @@
                 {{ Form::label('hometown', 'Where is your hometown?') }}
                 {{ Form::text('hometown', Input::old('hometown'), array('class'=>'form-control')) }}
             </div>
-            {{-- TODO: Add inputs for resume mediaLink uploads --}}
             <div class="form-group">
                 {{ Form::submit('Save Profile', array('class'=>'btn btn-primary')) }}
             </div>
