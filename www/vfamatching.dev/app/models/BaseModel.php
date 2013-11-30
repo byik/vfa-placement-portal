@@ -11,7 +11,7 @@ abstract class BaseModel extends Eloquent
         	//todo, scrub $this->phoneNumber if it's set
             return parent::save($options);
         }else{
-            throw new ValidationFailedException($validator->messages()->all());
+            throw new ValidationFailedException($validator->messages());
         }
 	}
 }

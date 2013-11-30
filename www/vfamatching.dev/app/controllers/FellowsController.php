@@ -50,7 +50,7 @@ class FellowsController extends BaseController {
             $authenticatedUser->save();
             $newFellow->save();
         } catch (ValidationFailedException $e) {
-            return Redirect::back()->with('flash_errors', $e->getErrorMessages())->withInput();
+            return Redirect::back()->with('validation_errors', $e->getErrorMessages())->withInput();
         }
 
         return Redirect::route('dashboard')->with('flash_notice', 'Profile successfully updated.');

@@ -57,7 +57,7 @@ class PlacementStatusesController extends BaseController {
                         });
                 return Redirect::back()->with('flash_notice', 'Relationship successfully updated.');
             } catch (ValidationFailedException $e) {
-                return Redirect::back()->with('flash_errors', $e->getErrorMessages());
+                return Redirect::back()->with('validation_errors', $e->getErrorMessages());
             }
         } else {
             return Redirect::back()->with('flash_error', 'Placement progress can\'t go backwards!');

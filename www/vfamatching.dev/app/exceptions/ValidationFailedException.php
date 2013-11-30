@@ -7,7 +7,7 @@ class ValidationFailedException extends Exception
 
     public function __construct($errorMessages) 
     {
-        parent::__construct('Model Failed Validation Rules: ' . json_encode($errorMessages), 0, null);
+        parent::__construct('Model Failed Validation Rules: ' . json_encode($errorMessages->all()), 0, null);
 
         $this->_errorMessages = $errorMessages; 
     }

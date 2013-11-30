@@ -8,9 +8,9 @@ class Fellow extends BaseModel {
             'school'=>'required|max:140',
             'major'=>'required|max:140',
             'degree'=>'required|in:BA,BS,MS,MA,MBA,PhD,JD',
-            'graduationYear'=> 'digits:4',
+            'graduationYear'=> 'required|digits:4',
             'hometown'=>'required|max:140',
-            'phoneNumber'=> 'digits:10',
+            'phoneNumber'=> 'required|digits:10',
             'isPublished'=> 'required|in:0,1',
             'isRemindable'=> 'required|in:0,1'
             );

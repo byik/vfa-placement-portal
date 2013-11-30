@@ -37,9 +37,9 @@
         @include('partials.alerts.error', array('error'=>Session::get('flash_error')))
     @endif
 
-    @if (Session::has('flash_errors'))
-        @foreach(Session::get('flash_errors') as $error)
-            @include('partials.alerts.error', array('error'=>$error))
+    @if (Session::has('validation_errors'))
+        @foreach(Session::get('validation_errors')->all() as $errorMessage)
+            @include('partials.alerts.error', array('error'=>$errorMessage))
         @endforeach
     @endif
     
