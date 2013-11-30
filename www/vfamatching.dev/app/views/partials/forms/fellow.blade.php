@@ -4,7 +4,7 @@
     TODO: Implement form for existing fellow. (Tip: Use Form::model)
 @else
 {{-- Fellow was not passed in, so send an empty form that stores new fellow --}}
-{{ Form::open(array('url' => 'fellows', 'method' => 'post')) }}
+{{ Form::open(array('url' => 'fellows', 'method' => 'post', 'files' => true)) }}
         <fieldset>
             {{-- Get the user stuff out of the way up front --}}
             <div class="form-group @if($validationErrors){{ $validationErrors->has('firstName') ? "has-error" : ""}}@endif">
@@ -48,9 +48,39 @@
                 {{ Form::label('hometown', 'Where is your hometown?') }}
                 {{ Form::text('hometown', Input::old('hometown'), array('class'=>'form-control')) }}
             </div>
+            
+            {{ Form::label('displayPicture', 'Select a display picture to upload') }}
+            <p>
+                <span class="btn btn-link btn-file">
+                    <span class="btn-file-label">Browser for image...</span>{{ Form::file('image', array('accept'=>'image/*')) }}
+                </span>
+            </p>
+
+            {{ Form::label('resume', 'Select a resume to upload') }}
+            <p>
+                <span class="btn btn-link btn-file">
+                    <span class="btn-file-label">Browser for pdf...</span>{{ Form::file('resume', array('accept'=>'.pdf')) }}
+                </span>
+            </p>
+            
             <div class="form-group">
                 {{ Form::submit('Save Profile', array('class'=>'btn btn-primary')) }}
             </div>
         </fieldset>
     {{ Form::close() }}
 @endif
+
+<script type="text/javascript">
+$(document).on('change', '.btn-file :file', function() {
+    var input = $(this),
+        numFiles = input.get(0).files ? input.get(0).files.length : 1,
+        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+    input.trigger('fileselect', [numFiles, label]);
+});
+
+$(document).ready( function() {
+    $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+        $(this).parent().children('.btn-file-label').text(label);
+    });
+});
+</script>
