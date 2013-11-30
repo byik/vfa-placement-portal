@@ -15,20 +15,14 @@
       @if( Auth::check() )
         <!-- Dynamic nav -->
         @if( Auth::user()->role == "Admin" )
-          <li class=""><a href="{{ URL::to('/') }}">Dashboard</a></li>
-          <li><a href="#">Profile</a></li>
-          <li><a href="{{ URL::to('/opportunities') }}">Opportunities</a></li>
-          <li><a href="{{ URL::to('/logout') }}">Sign out &raquo;</a></li>
+          TODO
         @elseif( Auth::user()->role == "Fellow")
           <li class=""><a href="{{ URL::to('/') }}">Dashboard</a></li>
-          <li><a href="#">Profile</a></li>
+          <li><a href="{{ URL::to('/fellows/' . Auth::user()->profile->id) }}">Profile</a></li>
           <li><a href="{{ URL::to('/opportunities') }}">Opportunities</a></li>
           <li><a href="{{ URL::to('/logout') }}">Sign out &raquo;</a></li>
         @elseif( Auth::user()->role == "Hiring Manager" )
-          <li class=""><a href="{{ URL::to('/') }}">Dashboard</a></li>
-          <li><a href="#">Profile</a></li>
-          <li><a href="{{ URL::to('/opportunities') }}">Opportunities</a></li>
-          <li><a href="{{ URL::to('/logout') }}">Sign out &raquo;</a></li>  
+          TODO
         @else
           <!-- We've got problems -->
         @endif
