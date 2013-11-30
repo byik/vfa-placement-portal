@@ -83,3 +83,31 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+/*
+|--------------------------------------------------------------------------
+| Profile Filter
+|--------------------------------------------------------------------------
+|
+| The Profile Filter ensures that the user has a profile before hitting 
+| protected routes. Using this filter requires users to fill out their profile. :]
+|
+*/
+
+Route::filter('profile', function()
+{
+    if(is_null(Auth::user()->profile)){//user doesn't have profile
+        //send them to the profile creation page
+        $flash_notice = 'Please fill out your profile below to gain access to the rest of the site.';
+        if( Auth::user()->role == "Admin" ) {
+            throw new Exception("TODO: Logic not implemented for Hiring Managers without profiles");
+        } elseif( Auth::user()->role == "Fellow" ) {
+            return Redirect::route('fellows.create')->with('flash_notice', $flash_notice);
+        } elseif( Auth::user()->role == "Hiring Manager" ) {
+            throw new Exception("TODO: Logic not implemented for Hiring Managers without profiles");
+        } else {
+            throw new Exception("Invalid User role!");
+        }
+
+    }
+});

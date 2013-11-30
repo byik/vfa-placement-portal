@@ -83,7 +83,7 @@ class UsersController extends BaseController {
 			'password' => Input::get('password')
 		);   
 		if (Auth::attempt($user)) {
-			Auth::user()->login();
+            Auth::user()->login();
 			if (Session::has('returnUrl'))
 			{
 				$intendedDestination = Session::get('returnUrl');

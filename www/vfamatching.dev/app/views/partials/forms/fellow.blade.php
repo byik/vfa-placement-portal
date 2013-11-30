@@ -26,7 +26,7 @@
     {{ Form::close() }}
 @else
 {{-- Fellow was not passed in, so send an empty form that stores new fellow --}}
-{{ Form::open(array('route' => 'fellows.store')) }}
+{{ Form::open(array('url' => 'fellows', 'method' => 'post')) }}
         <fieldset>
             {{-- Get the user stuff out of the way up front --}}
             <div class="form-group">

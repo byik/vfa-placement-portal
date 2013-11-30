@@ -47,6 +47,14 @@ class UsersTableSeeder extends Seeder {
         $fifthUser->lastName = "Doe";
         $fifthUser->save();
 
+        $sixthUser = new User();
+        $sixthUser->email = "fellow@gmail.com";
+        $sixthUser->password = Hash::make("fellowfakepassword");
+        $sixthUser->role = 'Fellow';
+        $sixthUser->firstName = "Julie";
+        $sixthUser->lastName = "Bock";
+        $sixthUser->save();
+
 	}
 
 }
