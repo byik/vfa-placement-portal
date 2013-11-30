@@ -29,7 +29,32 @@ class FellowsController extends BaseController {
      */
     public function store()
     {
-        die("Form successfully submitted");
+        $authenticatedUser = Auth::user();
+        $authenticatedUser->firstName = Input::get('firstName');
+        $authenticatedUser->lastName = Input::get('lastName');
+        $authenticatedUser->email = Input::get('email');
+
+        $newFellow = new Fellow();
+        $newFellow->user_id = Auth::user()->id;
+        $newFellow->isPublished = 1;
+        $newFellow->isRemindable = 1;
+        $newFellow->bio = Input::get('bio');
+        $newFellow->school = Input::get('school');
+        $newFellow->major = Input::get('major');
+        $newFellow->degree = Input::get('degree');
+        $newFellow->graduationYear = Parser::stringToInteger(Input::get('graduationYear'));
+        $newFellow->hometown = Input::get('hometown');
+        $newFellow->phoneNumber = Parser::stringToInteger(Input::get('phoneNumber'));
+
+        try {
+            $authenticatedUser->save();
+            $newFellow->save();
+        } catch (ValidationFailedException $e) {
+            return Redirect::back()->with('flash_errors', $e->getErrorMessages())->withInput();
+        }
+
+        return Redirect::route('dashboard')->with('flash_notice', 'Profile successfully updated.');
+
     }
 
     /**

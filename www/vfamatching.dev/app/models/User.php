@@ -58,4 +58,9 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
         $this->lastLogin = Carbon::now()->toDateTimeString();
         $this->save();
     }
+
+    public static function defaultPassword()
+    {
+        return "VFA_Matching!";
+    }
 }
