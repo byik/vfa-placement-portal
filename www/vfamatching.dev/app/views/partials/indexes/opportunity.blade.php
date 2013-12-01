@@ -1,5 +1,12 @@
 <tr>
-    <td><a data-toggle="modal" href="#pitch-modal-{{ $opportunity->id }}" class="btn btn-default btn-large modal-btn">Pitch</a></td>
+    @if(Auth::user()->role == "Fellow")
+        @if(PlacementStatus::hasPlacementStatus(Auth::user()->profile, $opportunity))
+            <td>{{ PlacementStatus::getRecentPlacementStatus(Auth::user()->profile, $opportunity)->printWithDate() }}</td>
+        @else
+            {{-- TODO: Hide this button if a pitch has been submitted --}}
+            <td><a data-toggle="modal" href="#pitch-modal-{{ $opportunity->id }}" class="btn btn-default btn-large modal-btn">Pitch</a></td>
+        @endif
+    @endif
     <td><a href="{{ URL::to('/opportunities/'.$opportunity->id) }}">{{ $opportunity->title }}</a></td>
     <td><a href="{{ URL::to('/companies/'.$opportunity->company->id) }}">{{ $opportunity->company->name }}</a></td>
     <td>{{ $opportunity->city }}</td>

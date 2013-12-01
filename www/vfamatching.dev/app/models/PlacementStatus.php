@@ -76,6 +76,34 @@ class PlacementStatus extends BaseModel {
         }
     }
 
+    public static function hasPlacementStatus(Fellow $fellow, Opportunity $opportunity)
+    {
+        return (bool) $fellow->placementStatuses()->where('placementStatuses.opportunity_id', '=', $opportunity->id)->count();
+    }
+
+    public static function getRecentPlacementStatus(Fellow $fellow, Opportunity $opportunity)
+    {
+        if(self::hasPlacementStatus($fellow, $opportunity)){
+            return PlacementStatus::where('fellow_id','=', $fellow->id)
+                ->where('opportunity_id','=', $opportunity->id)
+                ->where('isRecent', '=', true)
+                ->first();
+        } else {
+            throw new Exception('This fellow does not have a Placemen Status with this opportunity');
+        }
+    }
+
+    public static function getAllPlacementStatuses(Fellow $fellow, Opportunity $opportunity)
+    {
+        if(self::has($fellow, $opportunity)){
+            return PlacementStatus::where('fellow_id','=', $fellow->id)
+                ->where('opportunity_id','=', $opportunity->id)
+                ->first();
+        } else {
+            throw new Exception('This fellow does not have a Placemen Status with this opportunity');
+        }
+    }
+
     public static function statuses()
     {
         return array(
