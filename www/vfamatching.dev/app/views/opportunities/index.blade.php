@@ -5,6 +5,17 @@ Opportunities
 @stop
 
 @section('content')
+<form class="navbar-form" role="search" method="get" action="{{ URL::route( 'opportunities.index' ) }}">
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search" name="search" id="search">
+        <div class="input-group-btn">
+            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+        </div>
+    </div>
+</form>
+@if($search != "")
+    <h2>Opportunities matching <b><i>"{{ $search }}"</b></i></h2>
+@endif
 <table class="table table-hover">
   <thead>
     <tr>
@@ -21,5 +32,5 @@ Opportunities
     @endforeach
   </tbody>
 </table>
-{{ $opportunities->addQuery('order', $order)->addQuery('sort', $sort)->links(); }}
+{{ $opportunities->addQuery('order', $order)->addQuery('sort', $sort)->addQuery('search', $search)->links(); }}
 @stop
