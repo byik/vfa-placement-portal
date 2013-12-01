@@ -9,6 +9,7 @@ class OpportunitiesTableSeeder extends Seeder {
 
 		$firstOpportunity = new Opportunity();
 		$firstOpportunity->title = "SEO Expert";
+        $firstOpportunity->city = "Detroit";
 		$firstOpportunity->description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, odit, mollitia tempora maxime ullam aperiam officiis maiores asperiores odio tenetur atque natus excepturi ipsum doloremque.";
 		$firstOpportunity->responsibilitiesAnswer = "am, incidunt, perferendis, mollitia pariatur voluptates vel quaerat voluptatum temporibus eaque tenetur quod aut asperiores quos nemo repudiandae e";
 		$firstOpportunity->skillsAnswer = "ae nobis suscipit enim nostrum hic ipsum corporis non deleniti ipsam atque quaerat dicta harum iusto odit. Harum, autem, odio, a commodi maxime dolore ";
@@ -17,6 +18,7 @@ class OpportunitiesTableSeeder extends Seeder {
 
 		$secondOpportunity = new Opportunity();
 		$secondOpportunity->title = "Community Engagement";
+        $secondOpportunity->city = "Detroit";
 		$secondOpportunity->description = "quam maxime magni minus ipsam nihil fugiat quo consectetur.";
 		$secondOpportunity->responsibilitiesAnswer = "ecati neque a quae? Repudiandae, veniam distinctio similique at minima asperiores itaque illo doloribus ab d";
 		$secondOpportunity->skillsAnswer = "temporibus dolorum fugit optio incidunt quisquam quaerat aut natus nostrum quis! Minus, quasi alias enim dolorem eos";
@@ -29,6 +31,7 @@ class OpportunitiesTableSeeder extends Seeder {
 
 		$thirdOpportunity = new Opportunity();
 		$thirdOpportunity->title = "Ruby Developer";
+        $thirdOpportunity->city = "San Francisco";
 		$thirdOpportunity->description = " odio, a commodi maxime dolore modi iste blanditiis dolor delectus amet asperiores veritatis placeat necessitatibus i.";
 		$thirdOpportunity->responsibilitiesAnswer = "mporibus eaque tenetur quod aut asperiores quos nemo repudiandae expedita quis nulla at magnam neque labore voluptate";
 		$thirdOpportunity->skillsAnswer = "ut placeat officia consequatur necessitatibus minus rem adipisci eius enim cum quidem atque sunt asperiores laudantium quasi temporibus dolorum fugit optio incidunt quisquam quaerat aut natus nostrum quis! Minus, quasi alias enim d";
@@ -41,6 +44,7 @@ class OpportunitiesTableSeeder extends Seeder {
 		for($i = 0; $i < 15; $i++){
 			$randomOpportunity = new Opportunity();
 			$randomOpportunity->title = substr(simplexml_load_file('http://www.lipsum.com/feed/xml?amount=1&what=paras&start=0')->lipsum,0,120);
+            $randomOpportunity->city = substr(simplexml_load_file('http://www.lipsum.com/feed/xml?amount=1&what=paras&start=0')->lipsum,0,25);
 			$randomOpportunity->description = substr(simplexml_load_file('http://www.lipsum.com/feed/xml?amount=1&what=paras&start=0')->lipsum,0,650);
 			$randomOpportunity->responsibilitiesAnswer = substr(simplexml_load_file('http://www.lipsum.com/feed/xml?amount=1&what=paras&start=0')->lipsum,0,170);
 			$randomOpportunity->skillsAnswer = substr(simplexml_load_file('http://www.lipsum.com/feed/xml?amount=1&what=paras&start=0')->lipsum,0,210);
