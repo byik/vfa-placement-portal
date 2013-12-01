@@ -5,13 +5,14 @@ Opportunities
 @stop
 
 @section('content')
-<table class="table">
+<table class="table table-hover">
   <thead>
     <tr>
+      <th>Status</th>
       <th>Title</th>
       <th>Company</th>
-      <th>Description</th>
-      <th>Pitch</th>
+      <th>City</th>
+      <th class="hidden-xs">Description</th>
     </tr>
   </thead>
   <tbody>
