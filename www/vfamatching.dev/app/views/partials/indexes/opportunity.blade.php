@@ -3,7 +3,7 @@
     <td><a href="{{ URL::to('/opportunities/'.$opportunity->id) }}">{{ $opportunity->title }}</a></td>
     <td><a href="{{ URL::to('/companies/'.$opportunity->company->id) }}">{{ $opportunity->company->name }}</a></td>
     <td>{{ $opportunity->city }}</td>
-    <td class="hidden-xs">{{ $opportunity->description }}</td>
+    <td>{{ $opportunity->created_at }}</td>
 </tr>
 <!-- Modal -->
 <div class="modal" id="pitch-modal-{{ $opportunity->id }}">

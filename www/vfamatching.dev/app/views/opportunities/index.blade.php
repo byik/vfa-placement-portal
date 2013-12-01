@@ -9,10 +9,10 @@ Opportunities
   <thead>
     <tr>
       <th>Status</th>
-      <th>Title</th>
-      <th>Company</th>
-      <th>City</th>
-      <th class="hidden-xs">Description</th>
+      @include('partials.sort-filter-table-header', array('displayName' => "Title", 'sortName' => "title", 'route' => 'opportunities.index'))
+      @include('partials.sort-filter-table-header', array('displayName' => "Company", 'sortName' => "companies.name", 'route' => 'opportunities.index'))
+      @include('partials.sort-filter-table-header', array('displayName' => "City", 'sortName' => "city", 'route' => 'opportunities.index'))
+      @include('partials.sort-filter-table-header', array('displayName' => "Added On", 'sortName' => "created_at", 'route' => 'opportunities.index'))
     </tr>
   </thead>
   <tbody>
@@ -21,5 +21,5 @@ Opportunities
     @endforeach
   </tbody>
 </table>
-{{ $opportunities->links(); }}
+{{ $opportunities->addQuery('order', $order)->addQuery('sort', $sort)->links(); }}
 @stop

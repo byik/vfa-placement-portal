@@ -9,7 +9,12 @@ class OpportunitiesController extends BaseController {
 	 */
 	public function index()
 	{
-        return View::make('opportunities.index', array('opportunities' => Opportunity::paginate(5)));
+        // $opportunities = Opportunity::all();
+        $sort = (!is_null(Input::get('sort')) ? Input::get('sort') : 'companies.name'); //default to company name
+        $order = (!is_null(Input::get('order')) ? Input::get('order') : 'asc'); //default to asc
+        $opportunities = Opportunity::select('opportunities.*', 'companies.name')->join('companies', 'opportunities.company_id', '=', 'companies.id')->orderBy($sort, $order)->paginate(5);
+
+        return View::make('opportunities.index', array('opportunities' => $opportunities, 'sort' => $sort, 'order' => $order));
 	}
 
 	/**
