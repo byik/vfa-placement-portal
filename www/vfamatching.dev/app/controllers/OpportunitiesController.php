@@ -55,7 +55,12 @@ class OpportunitiesController extends BaseController {
 	 */
 	public function show($id)
 	{
-        return View::make('opportunities.show');
+		try{
+			$opportunity = Opportunity::findOrFail($id);
+		} catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+    		return View::make('404')->with('error', 'Opportunity not found!');
+		}
+        return View::make('opportunities.show')->with('opportunity',$opportunity);
 	}
 
 	/**
