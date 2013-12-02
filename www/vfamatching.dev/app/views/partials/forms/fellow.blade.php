@@ -29,7 +29,7 @@
                 {{ Form::textarea('bio', Input::old('bio'), array('class'=>'form-control')) }}
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('school') ? "has-error" : ""}}@endif">
-                {{ Form::label('school', 'What school did you graduate from?') }}
+                {{ Form::label('school', 'What college or university did you graduate from?') }}
                 {{ Form::text('school', Input::old('school'), array('class'=>'form-control')) }}
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('major') ? "has-error" : ""}}@endif">
