@@ -55,7 +55,6 @@
                             {{ Form::textarea('message', null, array('class'=>'form-control')) }}
                         </div>
                     </fieldset>
-                    {{-- TODO: add event date input conditional on  --}}
                 {{ Form::close() }}
             </div>
             <div class="modal-footer">
