@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-xs-6">
             <div class="row">
-                <p class="text-center">{{ $pieChart }}</p>
+                @include('partials.charts.placement-status-percent', array('relationship' => $relationship))
             </div>
             <div class="row">
                 <p class="text-center">{{ $relationship->printWithDate() }}</p>
