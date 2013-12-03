@@ -1,17 +1,17 @@
 <div class="col-md-4">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3><a href="{{ URL::route('opportunities.show', array('opportunities'=>$relationship->opportunity->id)) }}">{{ $relationship->opportunity->title }}</a></h3>
+            <h3><a href="{{ URL::route('opportunities.show', array('opportunities'=>$placementStatus->opportunity->id)) }}">{{ $placementStatus->opportunity->title }}</a></h3>
         </div>
         <div class="panel-body">
             <div class="col-xs-4 hidden-xs">
                 <div class="placement-status-pie-chart">
-                    @include('partials.charts.placement-status-percent', array('relationship' => $relationship))
+                    @include('partials.charts.placement-status-percent', array('placementStatus' => $placementStatus))
                 </div>
             </div>
             <div class="col-sm-8 col-xs-12">
-                <h3><small><a href="{{ URL::route('companies.show', array('companies'=>$relationship->opportunity->company->id)) }}">{{ $relationship->opportunity->company->name }}</a></small></h3>
-                <h4><small>{{ $relationship->printWithDate() }}</small></h4>
+                <h3><small><a href="{{ URL::route('companies.show', array('companies'=>$placementStatus->opportunity->company->id)) }}">{{ $placementStatus->opportunity->company->name }}</a></small></h3>
+                <h4><small>{{ $placementStatus->printWithDate() }}</small></h4>
                 
                 <!-- TODO:
                     Link opportunity title to opportunity page
@@ -19,7 +19,7 @@
                     Link company name to company page
                 -->
                 <!-- Button trigger modal -->
-                <a data-toggle="modal" href="#relationship-update-modal-{{ $relationship->id }}" class="btn
+                <a data-toggle="modal" href="#placementStatus-update-modal-{{ $placementStatus->id }}" class="btn
             btn-primary btn-large modal-btn form-control">Update</a>    
             </div>
         </div>
@@ -27,16 +27,16 @@
 </div>
 
 <!-- Modal -->
-<div class="modal" id="relationship-update-modal-{{ $relationship->id }}">
+<div class="modal" id="placementStatus-update-modal-{{ $placementStatus->id }}">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <a href="#" class="btn close btn-default" data-dismiss="modal">&times;</a>
-                <h4 class="modal-title">Update Placement Progress: {{ $relationship->opportunity->title }}</h4>
+                <h4 class="modal-title">Update Placement Progress: {{ $placementStatus->opportunity->title }}</h4>
             </div>
             <div class="modal-body">
-                {{-- This Form POST's to /placementstatus. Data is autofilled from PlacementStatus model in $relationship --}}
-                {{ Form::model($relationship, array('route' => array('placementstatuses.store'), 'id'=>'placement-status-'.$relationship->id,'class'=>'placement-status-form')) }}
+                {{-- This Form POST's to /placementstatus. Data is autofilled from PlacementStatus model in $placementStatus --}}
+                {{ Form::model($placementStatus, array('route' => array('placementstatuses.store'), 'id'=>'placement-status-'.$placementStatus->id,'class'=>'placement-status-form')) }}
                     <fieldset>
                         {{ Form::hidden('fellow_id') }}
                         {{ Form::hidden('opportunity_id') }}
@@ -62,7 +62,7 @@
             </div>
             <div class="modal-footer">
                 <a href="" class="btn btn-default" data-dismiss="modal">Cancel</a>
-                <a href="" class="btn btn-primary placement-status-submit">Update Relationship</a>
+                <a href="" class="btn btn-primary placement-status-submit">Update Placement Status</a>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

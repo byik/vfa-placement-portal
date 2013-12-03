@@ -11,7 +11,7 @@ Dashboard
 	@if( Auth::user()->role == "Admin" )
 
 	@elseif( Auth::user()->role == "Fellow") {{-- Fellow's Dashboard --}}
-		@include('partials.dashboards.fellow', array('relationships' => $relationships))
+		@include('partials.dashboards.fellow', array('placementStatuses' => $placementStatuses))
 	@elseif( Auth::user()->role == "Hiring Manager")
 
     @else

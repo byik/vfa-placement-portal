@@ -1,4 +1,4 @@
-@if(count($relationships) > 0)
+@if(count($placementStatuses) > 0)
 	<div class="fellow-dash">
 		<div class="container">
 			<div class="upcoming-events">
@@ -20,13 +20,13 @@
 						<div class="col-md-9"><span>VCharge offer acceptance deadline</span></div>
 					</div>
 			</div>
-			<div class="relationships">
-				<h2><small>RELATIONSHIPS</small></h2>
+			<div class="placementStatuses">
+				<h2><small>Placement Statuses</small></h2>
 	                <div class="row">
 	                	<?php $count = 1 ?>
-						@foreach($relationships as $relationship)
-							@include('partials.indexes.relationship', array('relationship' => $relationship))
-							<?php if($count % 3 == 0) { //every third relationship ?>
+						@foreach($placementStatuses as $placementStatus)
+							@include('partials.indexes.placement-status', array('placementStatus' => $placementStatus))
+							<?php if($count % 3 == 0) { //every third placementStatus ?>
 								</div>
 								<div class="row">
 							<?php }
