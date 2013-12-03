@@ -53,7 +53,7 @@ body {
 }
 
 .relationships .row .col-md-4 {
-	border:1px solid #000;
+	/*border:1px solid #000;*/
 	border-radius: 5px;
 }
 
@@ -74,4 +74,12 @@ body {
     background: red;
     cursor: inherit;
     display: block;
+}
+
+.placement-status-pie-chart {
+	text-align: center;
+}
+
+.placement-status-header {
+	text-align: center;
 }

@@ -23,8 +23,15 @@
 			<div class="relationships">
 				<h2><small>RELATIONSHIPS</small></h2>
 	                <div class="row">
+	                	<?php $count = 1 ?>
 						@foreach($relationships as $relationship)
-							@include('partials.indexes.relationship', array('relationship' => $relationship));
+							@include('partials.indexes.relationship', array('relationship' => $relationship))
+							<?php if($count % 3 == 0) { //every third relationship ?>
+								</div>
+								<div class="row">
+							<?php }
+								$count += 1 ;
+							 ?>
 						@endforeach
 				    </div>
 			</div>

@@ -1,26 +1,29 @@
 <div class="col-md-4">
-	<div class="row">
-		<div class="col-xs-6">
-            <div class="row">
-                @include('partials.charts.placement-status-percent', array('relationship' => $relationship))
-            </div>
-            <div class="row">
-                <p class="text-center">{{ $relationship->printWithDate() }}</p>
-            </div>
-		</div>
-        <div class="col-xs-6">
-            <h2><a href="{{ URL::route('opportunities.show', array('opportunities'=>$relationship->opportunity->id)) }}">{{ $relationship->opportunity->title }}</a></h2>
-            <h3><a href="{{ URL::route('companies.show', array('companies'=>$relationship->opportunity->company->id)) }}">{{ $relationship->opportunity->company->name }}</a></h3>
-            <!-- TODO:
-                Link opportunity title to opportunity page
-                Add company name
-                Link company name to company page
-            -->
-            <!-- Button trigger modal -->
-            <a data-toggle="modal" href="#relationship-update-modal-{{ $relationship->id }}" class="btn
-            btn-default btn-large modal-btn">Update</a>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3><a href="{{ URL::route('opportunities.show', array('opportunities'=>$relationship->opportunity->id)) }}">{{ $relationship->opportunity->title }}</a></h3>
         </div>
-	</div>		
+        <div class="panel-body">
+            <div class="col-xs-4 hidden-xs">
+                <div class="placement-status-pie-chart">
+                    @include('partials.charts.placement-status-percent', array('relationship' => $relationship))
+                </div>
+            </div>
+            <div class="col-sm-8 col-xs-12">
+                <h3><small><a href="{{ URL::route('companies.show', array('companies'=>$relationship->opportunity->company->id)) }}">{{ $relationship->opportunity->company->name }}</a></small></h3>
+                <h4><small>{{ $relationship->printWithDate() }}</small></h4>
+                
+                <!-- TODO:
+                    Link opportunity title to opportunity page
+                    Add company name
+                    Link company name to company page
+                -->
+                <!-- Button trigger modal -->
+                <a data-toggle="modal" href="#relationship-update-modal-{{ $relationship->id }}" class="btn
+            btn-primary btn-large modal-btn form-control">Update</a>    
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Modal -->
