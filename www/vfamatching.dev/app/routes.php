@@ -20,7 +20,7 @@ Route::group(array('before' => 'auth'), function()
     /* These routes are available to users without profiles */
     Route::get('fellows/create', array('uses' => 'FellowsController@create'));
     Route::post('fellows', array('uses' => 'FellowsController@store'));
-    Route::group(array('before' => 'profile'), function()
+    Route::group(array('before' => 'profile'), function() /* Requires a profile to be created before using the site */
     {
         Route::get('/', array('as' => 'dashboard', 'uses' => 'UsersController@dashboard'));
         Route::resource('users', 'UsersController');

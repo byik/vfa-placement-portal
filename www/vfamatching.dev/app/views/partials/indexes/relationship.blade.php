@@ -9,7 +9,8 @@
             </div>
 		</div>
         <div class="col-xs-6">
-            <h3>{{ $relationship->opportunity->title }}</h3>
+            <h2><a href="{{ URL::route('opportunities.show', array('opportunities'=>$relationship->opportunity->id)) }}">{{ $relationship->opportunity->title }}</a></h2>
+            <h3><a href="{{ URL::route('companies.show', array('companies'=>$relationship->opportunity->company->id)) }}">{{ $relationship->opportunity->company->name }}</a></h3>
             <!-- TODO:
                 Link opportunity title to opportunity page
                 Add company name
