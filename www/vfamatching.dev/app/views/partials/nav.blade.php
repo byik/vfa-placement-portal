@@ -17,9 +17,9 @@
         @if( Auth::user()->role == "Admin")
           TODO
         @elseif( Auth::user()->role == "Fellow")
-          <li class=""><a href="{{ URL::to('/') }}">Dashboard</a></li>
-          <li><a href="{{ URL::to('/fellows/' . Auth::user()->profile->id) }}">Profile</a></li>
-          <li><a href="{{ URL::to('/opportunities') }}">Opportunities</a></li>
+          <li class=""><a href="{{ URL::to('/') }}"><span class="glyphicon glyphicon-home"></span> Dashboard</a></li>
+          <li><a href="{{ URL::to('/fellows/' . Auth::user()->profile->id) }}"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+          <li><a href="{{ URL::to('/opportunities') }}"><span class="glyphicon glyphicon-briefcase"></span> Opportunities</a></li>
         @elseif( Auth::user()->role == "Hiring Manager" )
           TODO
         @else

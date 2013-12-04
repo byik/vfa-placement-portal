@@ -1,6 +1,6 @@
 <tr>
-    <td><a href="{{ URL::to('/opportunities/'.$opportunity->id) }}">{{ $opportunity->title }}</a></td>
-    <td><a href="{{ URL::to('/companies/'.$opportunity->company->id) }}"><img src="{{ URL::to('img/glyphicons/png/glyphicons_089_building.png') }}" alt="Company Icon">{{ $opportunity->company->name }}</a></td>
+    <td>@include('partials.links.opportunity', array('opportunity' => $opportunity))</td>
+    <td>@include('partials.links.company', array('company' => $opportunity->company))</td>
     <td>{{ $opportunity->city }}</td>
     <td>{{ Carbon::createFromFormat('Y-m-d H:i:s', $opportunity->created_at)->diffForHumans(); }}</td>
     @if(Auth::user()->role == "Fellow")

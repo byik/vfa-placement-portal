@@ -1,7 +1,7 @@
 <div class="col-md-4">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3><a href="{{ URL::route('opportunities.show', array('opportunities'=>$placementStatus->opportunity->id)) }}">{{ $placementStatus->opportunity->title }}</a></h3>
+            <h3>@include('partials.links.opportunity', array('opportunity' => $placementStatus->opportunity))</h3>
         </div>
         <div class="panel-body">
             <div class="col-xs-4 hidden-xs">
@@ -10,7 +10,9 @@
                 </div>
             </div>
             <div class="col-sm-8 col-xs-12">
-                <h3><small><a href="{{ URL::route('companies.show', array('companies'=>$placementStatus->opportunity->company->id)) }}"><img src="{{ URL::to('img/glyphicons/png/glyphicons_089_building.png') }}" alt="Company Icon">{{ $placementStatus->opportunity->company->name }}</a></small></h3>
+                <h3><small>
+                    @include('partials.links.company', array('company' => $placementStatus->opportunity->company))
+                </small></h3>
                 <h4><small>{{ $placementStatus->printWithDate() }}</small></h4>
                 
                 <!-- TODO:

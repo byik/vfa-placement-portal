@@ -1,0 +1,1 @@
+<a href="{{ URL::route('opportunities.show', array('opportunities'=>$opportunity->id)) }}"><span class="glyphicon glyphicon-briefcase"></span> {{ $opportunity->title }}</a>

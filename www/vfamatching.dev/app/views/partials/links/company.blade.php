@@ -1,0 +1,1 @@
+<a href="{{ URL::route('companies.show', array('companies'=>$company->id)) }}"><img src="{{ URL::to('img/glyphicons/png/glyphicons_089_building.png') }}" alt="Company Icon"> {{ $company->name }}</a>
