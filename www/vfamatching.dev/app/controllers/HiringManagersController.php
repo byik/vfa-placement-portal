@@ -29,7 +29,23 @@ class HiringManagersController extends BaseController {
 	 */
 	public function store()
 	{
-		//
+        $authenticatedUser = Auth::user();
+        $authenticatedUser->firstName = Input::get('firstName');
+        $authenticatedUser->lastName = Input::get('lastName');
+        $authenticatedUser->email = Input::get('email');
+
+        $newHiringManager = new HiringManager();
+        $newHiringManager->user_id = Auth::user()->id;
+        $newHiringManager->company_id = Input::get('company_id');
+
+        try {
+            $authenticatedUser->save();
+            $newHiringManager->save();
+        } catch (ValidationFailedException $e) {
+            return Redirect::back()->with('validation_errors', $e->getErrorMessages())->withInput();
+        }
+
+        return Redirect::route('dashboard')->with('flash_notice', 'Profile successfully updated.');
 	}
 
 	/**

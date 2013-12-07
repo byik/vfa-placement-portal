@@ -1,10 +1,10 @@
 <?php $validationErrors = Session::has('validation_errors') ? Session::get('validation_errors') : null; ?>
-{{-- If $fellow exists, PUT to /fellows/{id} to update, otherwise POST to /fellows to store new  --}}
-@if(isset($fellow))
-    TODO: Implement form for existing fellow. (Tip: Use Form::model)
+{{-- If $hiringmanager exists, PUT to /hiringmanagers/{id} to update, otherwise POST to /hiringmanagers to store new  --}}
+@if(isset($hiringmanager))
+    TODO: Implement form for existing hiringmanager. (Tip: Use Form::model)
 @else
-{{-- Fellow was not passed in, so send an empty form that stores new fellow --}}
-{{ Form::open(array('url' => 'fellows', 'method' => 'post', 'files' => true)) }}
+{{-- Fellow was not passed in, so send an empty form that stores new hiringmanager --}}
+{{ Form::open(array('url' => 'hiringmanagers', 'method' => 'post', 'files' => true)) }}
         <fieldset>
             {{-- Get the user stuff out of the way up front --}}
             <div class="form-group @if($validationErrors){{ $validationErrors->has('firstName') ? "has-error" : ""}}@endif">
