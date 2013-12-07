@@ -1,6 +1,8 @@
 <?php
 
 class StaffRecommendation extends BaseModel {
+    protected $table = 'staffRecommendations';
+
 	protected function rules()
     {
         return array(); //no rules :]

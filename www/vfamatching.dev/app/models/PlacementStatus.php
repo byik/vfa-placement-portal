@@ -1,6 +1,8 @@
 <?php
 
 class PlacementStatus extends BaseModel {
+    protected $table = 'placementStatuses';
+
     protected function rules()
     {
         return array(
