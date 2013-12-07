@@ -1,6 +1,8 @@
 <?php
 
 class Admin extends BaseModel {
+    protected $table = 'admins';
+
     protected function rules()
     {
         return array('phoneNumber'=> 'digits:10');

@@ -1,6 +1,8 @@
 <?php
 
 class Opportunity extends BaseModel {
+    protected $table = 'opportunities';
+
     protected function rules()
     {
         return array(

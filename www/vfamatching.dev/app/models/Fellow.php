@@ -1,6 +1,8 @@
 <?php
 
 class Fellow extends BaseModel {
+    protected $table = 'fellows';
+
     protected function rules()
     {
         return array(

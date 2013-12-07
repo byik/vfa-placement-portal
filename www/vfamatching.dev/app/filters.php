@@ -104,7 +104,7 @@ Route::filter('profile', function()
         } elseif( Auth::user()->role == "Fellow" ) {
             return Redirect::route('fellows.create')->with('flash_notice', $flash_notice);
         } elseif( Auth::user()->role == "Hiring Manager" ) {
-            throw new Exception("TODO: Logic not implemented for Hiring Managers without profiles");
+            return Redirect::route('hiringmanagers.create')->with('flash_notice', $flash_notice);
         } else {
             throw new Exception("Invalid User role!");
         }

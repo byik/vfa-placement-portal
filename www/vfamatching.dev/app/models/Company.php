@@ -1,6 +1,8 @@
 <?php
 
 class Company extends BaseModel {
+    protected $table = 'companies';
+
 	protected function rules()
     {
         return array(

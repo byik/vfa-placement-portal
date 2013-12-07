@@ -1,6 +1,8 @@
 <?php
 
 class MediaLink extends BaseModel {
+    protected $table = 'mediaLinks';
+
     protected function rules()
     {
         return array(

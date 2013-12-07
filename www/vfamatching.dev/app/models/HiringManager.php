@@ -1,6 +1,8 @@
 <?php
 
 class HiringManager extends BaseModel {
+    protected $table = 'hiringManagers';
+
     protected function rules()
     {
         return array(

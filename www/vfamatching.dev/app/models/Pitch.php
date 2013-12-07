@@ -1,6 +1,8 @@
 <?php
 
 class Pitch extends BaseModel {
+    protected $table = 'pitches';
+
     protected function rules()
     {
         return array(
