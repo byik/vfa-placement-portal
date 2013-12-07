@@ -83,3 +83,9 @@ body {
 .placement-status-header {
 	text-align: center;
 }
+
+@media (min-width: 992px){ /*Laptop and Desktop*/
+    #login {
+        margin-top: 100px;
+    }
+}
