@@ -21,7 +21,7 @@
             </div>
             {{-- Now for the fellow profile stuff --}}
             <div class="form-group @if($validationErrors){{ $validationErrors->has('phoneNumber') ? "has-error" : ""}}@endif">
-                {{ Form::label('phoneNumber', 'What the best number for getting ahold of you?') }}
+                {{ Form::label('phoneNumber', 'What the best number to reach you at?') }}
                 {{ Form::text('phoneNumber', Input::old('phoneNumber'), array('class'=>'form-control', 'placeholder' => '(646) 736-6460')) }}
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('bio') ? "has-error" : ""}}@endif">
