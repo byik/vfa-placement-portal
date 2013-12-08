@@ -16,6 +16,7 @@
     @if(count($opportunities) > 0)
         @if($search != "")
             <h3>Opportunities matching <b><i>"{{ $search }}"</b></i>:</h3>
+            <a href="{{ URL::route('opportunities.index') }}">Clear search</a>
         @endif
         <table class="table table-hover">
           <thead>
