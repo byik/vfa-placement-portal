@@ -19,7 +19,7 @@
 	                <div class="row">
 	                	<?php $count = 1 ?>
 						@foreach($placementStatuses as $placementStatus)
-							@include('partials.indexes.placement-status', array('placementStatus' => $placementStatus))
+							@include('partials.indexes.placementStatus', array('placementStatus' => $placementStatus))
 							<?php if($count % 3 == 0) { //every third placementStatus ?>
 								</div>
 								<div class="row">

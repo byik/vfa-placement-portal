@@ -25,7 +25,7 @@
             </div>
             <div class="modal-footer">
                 <a href="" class="btn btn-default" data-dismiss="modal">Cancel</a>
-                <a href="" class="btn btn-primary placement-status-submit">Submit</a>
+                <a href="" class="btn btn-primary placementStatus-submit">Submit</a>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

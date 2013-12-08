@@ -5,8 +5,8 @@
         </div>
         <div class="panel-body">
             <div class="col-xs-4 hidden-xs">
-                <div class="placement-status-pie-chart">
-                    @include('partials.charts.placement-status-percent', array('placementStatus' => $placementStatus))
+                <div class="placementStatus-pie-chart">
+                    @include('partials.charts.placementStatus-percent', array('placementStatus' => $placementStatus))
                 </div>
             </div>
             <div class="col-sm-8 col-xs-12">
@@ -38,13 +38,13 @@
             </div>
             <div class="modal-body">
                 {{-- This Form POST's to /placementstatus. Data is autofilled from PlacementStatus model in $placementStatus --}}
-                {{ Form::open(array('route' => array('placementstatuses.store'), 'id'=>'placement-status-'.$placementStatus->id,'class'=>'placement-status-form')) }}
+                {{ Form::open(array('route' => array('placementstatuses.store'), 'id'=>'placementStatus-'.$placementStatus->id,'class'=>'placementStatus-form')) }}
                     <fieldset>
                         {{ Form::hidden('fellow_id', $placementStatus->fellow_id) }}
                         {{ Form::hidden('opportunity_id', $placementStatus->opportunity_id) }}
                         <div class="form-group">
                             {{ Form::label('status', 'Status:') }}
-                            {{ Form::select('status', array_combine(PlacementStatus::statuses(), PlacementStatus::statuses()), $placementStatus->status, array('class'=>'form-control placement-status-select')) }}
+                            {{ Form::select('status', array_combine(PlacementStatus::statuses(), PlacementStatus::statuses()), $placementStatus->status, array('class'=>'form-control placementStatus-select')) }}
                         </div>
                         <div class="form-group">                        
                             {{ Form::label('score', 'Score:') }}
@@ -64,7 +64,7 @@
             </div>
             <div class="modal-footer">
                 <a href="" class="btn btn-default" data-dismiss="modal">Cancel</a>
-                <a href="" class="btn btn-primary placement-status-submit">Update Placement Status</a>
+                <a href="" class="btn btn-primary placementStatus-submit">Update Placement Status</a>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -76,12 +76,12 @@
 <script type="text/javascript">
 $(document).ready(function() {  
     //unbind so the click only fires once
-    $('.placement-status-submit').unbind().click(function(e){
-        $(this).parent().parent().find('.placement-status-form').submit();
+    $('.placementStatus-submit').unbind().click(function(e){
+        $(this).parent().parent().find('.placementStatus-form').submit();
         e.preventDefault();//don't follow the actual link
     });
     //register dropdown toggle to make datepicker appear on certain statuses
-    $('.placement-status-select').unbind().change(function(){
+    $('.placementStatus-select').unbind().change(function(){
         //remove the old one, if exists
         $('#datepicker').remove();
         if(this.value == "{{ PlacementStatus::statuses()[2] }}" ||
