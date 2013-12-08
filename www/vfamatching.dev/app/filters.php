@@ -109,8 +109,9 @@ Route::filter('profile', function()
             if(is_null(Auth::user()->profile)){
                 return Redirect::route('hiringmanagers.create')->with('flash_notice', $flash_notice);
             } else {
-                //TODO: Add conditional logic to only redirect when the hiring manager's profile isn't "complete"
-                return Redirect::route('hiringmanagers.edit', Auth::user()->profile->id)->with('flash_notice', $flash_notice);
+                if(!Auth::user()->profile->isProfileComplete()){
+                    return Redirect::route('hiringmanagers.edit', Auth::user()->profile->id)->with('flash_notice', $flash_notice);
+                }
             }
         } else {
             throw new Exception("Invalid User role!");

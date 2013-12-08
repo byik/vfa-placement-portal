@@ -20,4 +20,8 @@ class HiringManager extends BaseModel {
     {
         return $this->belongsTo('Company');
     }
+
+    public function isProfileComplete(){
+        return !empty($this->phoneNumber);
+    }
 }
