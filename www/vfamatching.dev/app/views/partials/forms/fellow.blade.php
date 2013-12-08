@@ -4,7 +4,7 @@
     TODO: Implement form for existing fellow. (Tip: Use Form::model)
 @else
 {{-- Fellow was not passed in, so send an empty form that stores new fellow --}}
-{{ Form::open(array('url' => 'fellows', 'method' => 'post', 'files' => true)) }}
+{{ Form::open(array('url' => 'fellows', 'method' => 'POST', 'files' => true)) }}
         <fieldset>
             {{-- Get the user stuff out of the way up front --}}
             <div class="form-group @if($validationErrors){{ $validationErrors->has('firstName') ? "has-error" : ""}}@endif">

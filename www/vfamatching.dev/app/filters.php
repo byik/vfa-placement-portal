@@ -96,18 +96,26 @@ Route::filter('csrf', function()
 
 Route::filter('profile', function()
 {
-    if(is_null(Auth::user()->profile)){//user doesn't have profile
-        //send them to the profile creation page
+    if(Auth::check()){
+        //user is logged in
         $flash_notice = 'Please fill out your profile below to gain access to the rest of the site.';
         if( Auth::user()->role == "Admin" ) {
-            throw new Exception("TODO: Logic not implemented for Hiring Managers without profiles");
+            throw new Exception("TODO: Logic not implemented for Admins without profiles");
         } elseif( Auth::user()->role == "Fellow" ) {
-            return Redirect::route('fellows.create')->with('flash_notice', $flash_notice);
+            if(is_null(Auth::user()->profile)){
+                return Redirect::route('fellows.create')->with('flash_notice', $flash_notice);
+            }
         } elseif( Auth::user()->role == "Hiring Manager" ) {
-            return Redirect::route('hiringmanagers.create')->with('flash_notice', $flash_notice);
+            if(is_null(Auth::user()->profile)){
+                return Redirect::route('hiringmanagers.create')->with('flash_notice', $flash_notice);
+            } else {
+                //TODO: Add conditional logic to only redirect when the hiring manager's profile isn't "complete"
+                return Redirect::route('hiringmanagers.edit', Auth::user()->profile->id)->with('flash_notice', $flash_notice);
+            }
         } else {
             throw new Exception("Invalid User role!");
         }
-
+    } else {
+        throw new Exception("This route should require authentication");
     }
 });

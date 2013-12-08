@@ -37,6 +37,7 @@ class HiringManagersController extends BaseController {
         $newHiringManager = new HiringManager();
         $newHiringManager->user_id = Auth::user()->id;
         $newHiringManager->company_id = Input::get('company_id');
+        $newHiringManager->phoneNumber = Parser::stringToInteger(Input::get('phoneNumber'));
 
         try {
             $authenticatedUser->save();
@@ -67,7 +68,12 @@ class HiringManagersController extends BaseController {
 	 */
 	public function edit($id)
 	{
-        return View::make('hiringmanagers.edit');
+        try{
+            $hiringManager = HiringManager::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return View::make('404')->with('error', 'Hiring Manager not found!');
+        }
+        return View::make('hiringmanagers.edit')->with('hiringManager',$hiringManager);
 	}
 
 	/**
@@ -78,7 +84,26 @@ class HiringManagersController extends BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$authenticatedUser = Auth::user();
+        $authenticatedUser->firstName = Input::get('firstName');
+        $authenticatedUser->lastName = Input::get('lastName');
+        $authenticatedUser->email = Input::get('email');
+
+        try{
+            $hiringManager = HiringManager::findorFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return View::make('404')->with('error', 'Can\'t update a Hiring Manager that doesn\t exist!');
+        }
+        $hiringManager->phoneNumber = empty(Input::get('phoneNumber')) ? null : Parser::stringToInteger(Input::get('phoneNumber'));
+
+        try {
+            $authenticatedUser->save();
+            $hiringManager->save();
+        } catch (ValidationFailedException $e) {
+            return Redirect::back()->with('validation_errors', $e->getErrorMessages())->withInput();
+        }
+
+        return Redirect::route('dashboard')->with('flash_notice', 'Profile successfully updated.');
 	}
 
 	/**

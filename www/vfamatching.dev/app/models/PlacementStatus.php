@@ -16,8 +16,6 @@ class PlacementStatus extends BaseModel {
 
     protected $guarded = array();
 
-    protected $table = 'placementStatuses';
-
     public function fellow()
     {
         return $this->belongsTo('Fellow');
