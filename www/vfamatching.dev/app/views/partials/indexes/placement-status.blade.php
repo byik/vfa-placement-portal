@@ -38,13 +38,13 @@
             </div>
             <div class="modal-body">
                 {{-- This Form POST's to /placementstatus. Data is autofilled from PlacementStatus model in $placementStatus --}}
-                {{ Form::model($placementStatus, array('route' => array('placementstatuses.store'), 'id'=>'placement-status-'.$placementStatus->id,'class'=>'placement-status-form')) }}
+                {{ Form::open(array('route' => array('placementstatuses.store'), 'id'=>'placement-status-'.$placementStatus->id,'class'=>'placement-status-form')) }}
                     <fieldset>
-                        {{ Form::hidden('fellow_id') }}
-                        {{ Form::hidden('opportunity_id') }}
+                        {{ Form::hidden('fellow_id', $placementStatus->fellow_id) }}
+                        {{ Form::hidden('opportunity_id', $placementStatus->opportunity_id) }}
                         <div class="form-group">
                             {{ Form::label('status', 'Status:') }}
-                            {{ Form::select('status', array_combine(PlacementStatus::statuses(), PlacementStatus::statuses()), null, array('class'=>'form-control placement-status-select')) }}
+                            {{ Form::select('status', array_combine(PlacementStatus::statuses(), PlacementStatus::statuses()), $placementStatus->status, array('class'=>'form-control placement-status-select')) }}
                         </div>
                         <div class="form-group">                        
                             {{ Form::label('score', 'Score:') }}
@@ -53,7 +53,7 @@
                                 <li>3 = This would be a decent fit for me</li>
                                 <li>1 = I would work here only as a last resort</li>
                             </ul>
-                            {{ Form::select('score', array_combine(PlacementStatus::scores(),PlacementStatus::scores()), null, array('class'=>'form-control')) }}
+                            {{ Form::select('score', array_combine(PlacementStatus::scores(),PlacementStatus::scores()), 3, array('class'=>'form-control')) }}
                         </div>
                         <div class="form-group">
                             {{ Form::label('message', 'Any comments?') }}

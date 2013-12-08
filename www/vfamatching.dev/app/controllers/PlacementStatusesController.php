@@ -60,7 +60,7 @@ class PlacementStatusesController extends BaseController {
                 return Redirect::back()->with('validation_errors', $e->getErrorMessages());
             }
         } else {
-            return Redirect::back()->with('flash_error', 'Placement progress can\'t go backwards!');
+            return Redirect::back()->with('flash_error', 'You must select a new status to update your placement progress!');
         }
 	}
 
