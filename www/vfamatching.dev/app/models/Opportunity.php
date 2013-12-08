@@ -17,6 +17,11 @@ class Opportunity extends BaseModel {
         );
     }
 
+    protected function adminRules()
+    {
+        return $this->rules();
+    }
+
 	protected $guarded = array();
 
 	public function company()

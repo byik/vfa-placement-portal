@@ -10,6 +10,11 @@ class Pitch extends BaseModel {
             'status'=>'required|in:Under Review,Waitlisted,Approved');
     }
 
+    protected function adminRules()
+    {
+        return $this->rules();
+    }
+
 	protected $guarded = array();
 
 	public function fellow()

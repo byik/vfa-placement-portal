@@ -8,6 +8,11 @@ class StaffRecommendation extends BaseModel {
         return array(); //no rules :]
     }
 
+    protected function adminRules()
+    {
+        return $this->rules();
+    }
+
     protected $guarded = array();
 
 	public function fellow()

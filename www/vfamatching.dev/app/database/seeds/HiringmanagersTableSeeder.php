@@ -15,7 +15,7 @@ class HiringmanagersTableSeeder extends Seeder {
         $firstHiringManager->user_id = $fifthUser->id;
         $firstHiringManager->company_id = $firstCompany->id;
         $firstHiringManager->phoneNumber = null;
-        $firstHiringManager->save();
+        $firstHiringManager->save(array('adminValidation' => true));
 
 		// Uncomment the below to run the seeder
 		// DB::table('hiringmanagers')->insert($hiringmanagers);

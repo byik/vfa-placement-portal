@@ -18,6 +18,11 @@ class Fellow extends BaseModel {
             );
     }
 
+    protected function adminRules()
+    {
+        return $this->rules();
+    }
+
 	protected $guarded = array();
 
 	public function mediaLinks()

@@ -5,8 +5,12 @@ class HiringManager extends BaseModel {
 
     protected function rules()
     {
-        return array(
-            'phoneNumber'=> 'digits:10');
+        return array('phoneNumber'=> 'required|digits:10');
+    }
+
+    protected function adminRules()
+    {
+        return array('phoneNumber'=> 'digits:10');
     }
 
     protected $guarded = array();

@@ -8,6 +8,11 @@ class Admin extends BaseModel {
         return array('phoneNumber'=> 'digits:10');
     }
 
+    protected function adminRules()
+    {
+        return $this->rules();
+    }
+
 	protected $guarded = array();
 
 	public function user()

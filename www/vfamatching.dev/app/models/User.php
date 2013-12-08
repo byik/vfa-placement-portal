@@ -15,6 +15,11 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
             );
     }
 
+    protected function adminRules()
+    {
+        return $this->rules();
+    }
+
 	protected $guarded = array();
 
 	 /* Required for Laravel Auth */
