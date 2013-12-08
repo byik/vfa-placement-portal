@@ -84,6 +84,8 @@ class UsersController extends BaseController {
 		);   
 		if (Auth::attempt($user)) {
             Auth::user()->login();
+            Auth::user()->lastLogin = Carbon::now();
+            Auth::user()->save();
 			if (Session::has('returnUrl'))
 			{
 				$intendedDestination = Session::get('returnUrl');
