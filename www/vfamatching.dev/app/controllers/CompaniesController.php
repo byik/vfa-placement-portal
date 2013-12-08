@@ -40,7 +40,12 @@ class CompaniesController extends BaseController {
 	 */
 	public function show($id)
 	{
-        return View::make('companies.show', array('company' => Company::find($id)));
+        try{
+            $company = Company::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return View::make('404')->with('error', 'Company not found!');
+        }
+        return View::make('companies.show', array('company' => $company));
 	}
 
 	/**
