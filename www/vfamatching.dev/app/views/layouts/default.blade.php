@@ -8,6 +8,8 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{{ URL::to('css/bootstrap.css') }}">
+    <!-- Fontawesome -->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <script src="{{ URL::to('js/bootstrap.js') }}"></script>
     <!-- Datepicker -->
     <link rel="stylesheet" href="{{ URL::to('css/datepicker.css') }}">

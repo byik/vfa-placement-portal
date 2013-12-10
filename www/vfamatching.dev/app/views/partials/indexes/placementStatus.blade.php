@@ -1,4 +1,4 @@
-<div class="col-md-4">
+<div class="col-lg-4">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3>@include('partials.links.opportunity', array('opportunity' => $placementStatus->opportunity))</h3>

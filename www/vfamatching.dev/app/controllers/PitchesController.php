@@ -29,7 +29,7 @@ class PitchesController extends BaseController {
 	 */
 	public function store()
 	{
-		//
+		throw new Exception('pitches.store not implemented yet');
 	}
 
 	/**

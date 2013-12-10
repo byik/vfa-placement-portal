@@ -1,1 +1,1 @@
-<a href="{{ URL::route('opportunities.show', array('opportunities'=>$opportunity->id)) }}"><span class="glyphicon glyphicon-briefcase"></span> {{ $opportunity->title }}</a>
+<a href="{{ URL::route('opportunities.show', array('opportunities'=>$opportunity->id)) }}"><i class="fa fa-briefcase"></i> {{ $opportunity->title }}</a>

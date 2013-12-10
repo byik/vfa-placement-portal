@@ -7,7 +7,6 @@
         @if(PlacementStatus::hasPlacementStatus(Auth::user()->profile, $opportunity))
             <td>{{ PlacementStatus::getRecentPlacementStatus(Auth::user()->profile, $opportunity)->printWithDate() }}</td>
         @else
-            {{-- TODO: Hide this button if a pitch has been submitted --}}
             <td><a data-toggle="modal" href="#pitch-modal-{{ $opportunity->id }}" class="btn btn-primary modal-btn">Pitch</a></td>
         @endif
     @endif
@@ -18,15 +17,24 @@
         <div class="modal-content">
             <div class="modal-header">
                 <a href="#" class="btn close btn-default" data-dismiss="modal">&times;</a>
-                <h4 class="modal-title">Pitch for the {{ $opportunity->title }} Opportunity</h4>
+                <h4 class="modal-title">Pitch for the {{ $opportunity->title }} Opportunity at {{ $opportunity->company->name }}</h4>
             </div>
             <div class="modal-body">
-                <h1>TODO: put a form here</h1>
+                @if(Auth::user()->role == "Fellow")
+                    @include('partials.forms.pitch', array('fellow_id' => Auth::user()->profile->id, 'opportunity_id' => $opportunity->id))
+                @endif
             </div>
             <div class="modal-footer">
                 <a href="" class="btn btn-default" data-dismiss="modal">Cancel</a>
-                <a href="" class="btn btn-primary placementStatus-submit">Submit</a>
+                <a href="" class="btn btn-primary pitch-submit">Submit</a>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<script type="text/javascript">
+    $('.pitch-submit').unbind().click(function(e){
+        $(this).parent().parent().find('.pitch-form').submit();
+        e.preventDefault();//don't follow the actual link
+    });
+</script>
