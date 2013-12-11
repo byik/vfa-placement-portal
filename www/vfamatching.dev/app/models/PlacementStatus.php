@@ -105,7 +105,7 @@ class PlacementStatus extends BaseModel {
                 ->where('opportunity_id','=', $opportunity->id)
                 ->first();
         } else {
-            throw new Exception('This fellow does not have a Placemen Status with this opportunity');
+            throw new Exception('This fellow does not have a Placement Status with this opportunity');
         }
     }
 

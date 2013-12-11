@@ -26,4 +26,20 @@ class Pitch extends BaseModel {
     {
     	return $this->belongsTo('Opportunity');
     }
+
+    public static function hasPitch(Fellow $fellow, Opportunity $opportunity)
+    {
+        return (bool) $fellow->pitches()->where('pitches.opportunity_id', '=', $opportunity->id)->count();
+    }
+
+    public static function getPitch(Fellow $fellow, Opportunity $opportunity)
+    {
+        if(self::hasPitch($fellow, $opportunity)){
+            return Pitch::where('fellow_id','=', $fellow->id)
+                ->where('opportunity_id','=', $opportunity->id)
+                ->first();
+        } else {
+            throw new Exception('This fellow does not have a Pitch with this opportunity');
+        }
+    }
 }
