@@ -29,7 +29,19 @@ class PitchesController extends BaseController {
 	 */
 	public function store()
 	{
-		throw new Exception('pitches.store not implemented yet');
+		$newPitch = new Pitch();
+        $newPitch->fellow_id = Input::get('fellow_id');
+        $newPitch->opportunity_id = Input::get('opportunity_id');
+        $newPitch->status = "Under Review";
+        $newPitch->body = Input::get('body');
+
+        try {
+            $newPitch->save();
+            //make sure only this new placement status is recent
+            return Redirect::back()->with('flash_notice', 'Pitch successfully submitted.');
+        } catch (ValidationFailedException $e) {
+            return Redirect::back()->with('validation_errors', $e->getErrorMessages());
+        }
 	}
 
 	/**
