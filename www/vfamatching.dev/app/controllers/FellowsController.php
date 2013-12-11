@@ -107,7 +107,12 @@ class FellowsController extends BaseController {
      */
     public function edit($id)
     {
-        return View::make('fellows.edit');
+        try{
+            $fellow = Fellow::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return View::make('404')->with('error', 'Fellow not found!');
+        }
+        return View::make('fellows.edit', array('fellow' => $fellow));
     }
 
     /**
