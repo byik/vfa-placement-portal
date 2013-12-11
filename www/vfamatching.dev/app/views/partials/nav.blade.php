@@ -15,7 +15,10 @@
       @if( Auth::check() && !is_null(Auth::user()->profile))
         <!-- Dynamic nav -->
         @if( Auth::user()->role == "Admin")
-          TODO
+          <li class=""><a href="{{ URL::to('/') }}"><i class="fa fa-home"></i> Dashboard</a></li>
+          <li><a href="{{ URL::to('/users') }}"><i class="fa fa-users"></i> Users</a></li>
+          <li><a href="{{ URL::to('/fellows') }}"><i class="fa fa-user"></i> Fellows</a></li>
+          <li><a href="{{ URL::to('/companies') }}"><i class="fa fa-building-o"></i> Companies</a></li>
         @elseif( Auth::user()->role == "Fellow")
           <li class=""><a href="{{ URL::to('/') }}"><i class="fa fa-home"></i> Dashboard</a></li>
           <li><a href="{{ URL::to('/fellows/' . Auth::user()->profile->id) }}"><i class="fa fa-user"></i> Profile</a></li>
@@ -25,7 +28,7 @@
         @else
           <!-- We've got problems -->
         @endif
-        <li><a href="{{ URL::to('/logout') }}">Sign out &raquo;</a></li>
+        <li><a href="{{ URL::to('/logout') }}">Sign out</a></li>
       @endif
     </ul>
   </div><!-- /.navbar-collapse -->

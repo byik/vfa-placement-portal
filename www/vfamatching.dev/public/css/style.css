@@ -93,6 +93,11 @@ ul.nav li a {
 	background-color: rgba(236, 90, 65, .5) !important;
 	padding: 15px 45px;
 	/*font-size: 14pt;*/
+} ul.nav li a i {
+	transition: 0.3s;
+	-webkit-transition: 0.3s; /* Safari */
+} ul.nav li a:hover  i {
+	font-size: 16pt;
 }
 
 .navbar-toggle.collapsed {
