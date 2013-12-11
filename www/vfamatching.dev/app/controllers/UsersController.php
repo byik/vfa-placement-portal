@@ -111,7 +111,7 @@ class UsersController extends BaseController {
 
     public function dashboard() {
         if( Auth::user()->role == "Admin" ) {
-            throw new Exception("TODO: Logic not implemented for Admin dashboard");
+            return View::make('index');
         } elseif( Auth::user()->role == "Fellow") {
             $placementStatuses = Auth::user()->profile->placementStatuses()->where('isRecent','=',1)->get();
             return View::make('index', array('placementStatuses' => $placementStatuses));

@@ -100,7 +100,7 @@ Route::filter('profile', function()
         //user is logged in
         $flash_notice = 'Please fill out your profile below to gain access to the rest of the site.';
         if( Auth::user()->role == "Admin" ) {
-            throw new Exception("TODO: Logic not implemented for Admins without profiles");
+            Redirect::route('dashboard');
         } elseif( Auth::user()->role == "Fellow" ) {
             if(is_null(Auth::user()->profile)){
                 return Redirect::route('fellows.create')->with('flash_notice', $flash_notice);
