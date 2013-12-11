@@ -123,7 +123,61 @@ class FellowsController extends BaseController {
      */
     public function update($id)
     {
-        //
+        $authenticatedUser = Auth::user();
+        $authenticatedUser->firstName = Input::get('firstName');
+        $authenticatedUser->lastName = Input::get('lastName');
+        $authenticatedUser->email = Input::get('email');
+
+        try{
+            $fellow = Fellow::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return View::make('404')->with('error', 'Trying to update a fellow that doesn\'t exist!');
+        }
+        $fellow->user_id = Auth::user()->id;
+        $fellow->isPublished = 1;
+        $fellow->isRemindable = 1;
+        $fellow->bio = Input::get('bio');
+        $fellow->school = Input::get('school');
+        $fellow->major = Input::get('major');
+        $fellow->degree = Input::get('degree');
+        $fellow->graduationYear = Parser::stringToInteger(Input::get('graduationYear'));
+        $fellow->hometown = Input::get('hometown');
+        $fellow->phoneNumber = Parser::stringToInteger(Input::get('phoneNumber'));
+
+        if (Input::hasFile('displayPicture'))
+        {
+            //process file input
+            //TODO: Validate that this is an image
+            $newName = Uploader::processInputFilename(Input::file('displayPicture')->getClientOriginalName());
+            try{
+                Input::file('displayPicture')->move(public_path() . Config::get('upload.directory'), $newName);
+            } catch (FileException $e) {
+                return Redirect::back()->with('flash_error', "Your file could not be uploaded. Please try again")->withInput();
+            }
+            $fellow->displayPicturePath = Config::get('upload.directory') . '/' . $newName;
+        }
+
+        if (Input::hasFile('resume'))
+        {
+            //process file input
+            //TODO: Validate that this is a pdf
+            $newName = Uploader::processInputFilename(Input::file('resume')->getClientOriginalName());
+            try{
+                Input::file('resume')->move(public_path() . Config::get('upload.directory'), $newName);
+            } catch (FileException $e) {
+                return Redirect::back()->with('flash_error', "Your file could not be uploaded. Please try again")->withInput();
+            }
+            $fellow->resumePath = Config::get('upload.directory') . '/' . $newName;
+        }
+
+        try {
+            $authenticatedUser->save();
+            $fellow->save();
+        } catch (ValidationFailedException $e) {
+            return Redirect::back()->with('validation_errors', $e->getErrorMessages())->withInput();
+        }
+
+        return Redirect::route('fellows.show', $fellow->id)->with('flash_notice', 'Profile successfully updated.');
     }
 
     /**
