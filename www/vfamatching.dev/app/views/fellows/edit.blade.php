@@ -6,6 +6,10 @@
 
 @section('content')
     @if(Auth::user()->id == $fellow->user->id)
-        @include('partials.forms.fellow', array('fellow' => $fellow))
+    	<div class="row">
+    		<div class="col-md-6">
+        		@include('partials.forms.fellow', array('fellow' => $fellow))
+    		</div>
+    	</div>
     @endif
 @stop

@@ -22,12 +22,12 @@ body {
 }
 
 .vfa-header {
-	background: #04274f url('../img/header_background.png') repeat;
+	color: #04274f;
+	background-color: #eef3f7;
 	margin: 0px;
 }
 
 .vfa-header h1 {
-	color: #fff;
 	font-weight: lighter;
 }
 
@@ -80,7 +80,34 @@ body {
 	text-align: center;
 }
 
+ul.nav li a {
+	color: #eef3f7 !important;
+	letter-spacing: 1px;
+	height: 52px;
+	margin: 2px;
+	padding: 15px 15px;
+	/*border-radius: 5px;*/
+	transition: 0.3s;
+	-webkit-transition: 0.3s; /* Safari */
+} ul.nav li a:hover {
+	background-color: rgba(236, 90, 65, .5) !important;
+	padding: 15px 45px;
+	/*font-size: 14pt;*/
+}
+
+.navbar-toggle.collapsed {
+	background-color: #04274f !important;
+} .navbar-toggle:hover {
+	background-color: #eef3f7 !important;
+}
+
 @media (min-width: 992px){ /*Laptop and Desktop*/
+    #login {
+        margin-top: 100px;
+    }
+}
+
+@media (min-width: 480px){ /*Phone*/
     #login {
         margin-top: 100px;
     }
