@@ -1,19 +1,27 @@
 @extends('layouts.default')
 
 @section('header')
-    Opportunities
+
+<div class="row">
+    <div class="col-md-6">Opportunities</div>
+    <div class="col-md-6">
+      <form class="navbar-form" role="search" method="get" action="{{ URL::route( 'opportunities.index' ) }}">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search" name="search" id="search">
+        <div class="input-group-btn">
+            <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+        </div>
+      </div>
+    </form>
+    </div>
+</div>
+
 @stop
 
 @section('content')
-    <form class="navbar-form" role="search" method="get" action="{{ URL::route( 'opportunities.index' ) }}">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search" name="search" id="search">
-            <div class="input-group-btn">
-                <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
-            </div>
-        </div>
-    </form>
-    @if(count($opportunities) > 0)
+
+<div class="container">
+      @if(count($opportunities) > 0)
         @if($search != "")
             <h3>Opportunities matching <b><i>"{{ $search }}"</b></i>:</h3>
             <a href="{{ URL::route('opportunities.index') }}">Clear search</a>
@@ -39,4 +47,6 @@
         <h2>Sorry!</h2>
         <p>There are no opportunities mathing that criteria. <a href="{{ URL::route('opportunities.index') }}">View all Opportunities</a></p>
     @endif
+</div>
+
 @stop

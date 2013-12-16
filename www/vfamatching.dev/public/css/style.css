@@ -3,6 +3,18 @@
 	src: url('../Fonts/GillSans.ttc');
 }
 
+@media (min-width: 992px){ /*Laptop and Desktop*/
+    #login {
+        margin-top: 100px;
+    }
+}
+
+@media (min-width: 480px){ /*Phone*/
+    #login {
+        margin-top: 100px;
+    }
+}
+
 body {
 	font-family: GillSans;
 }
@@ -110,14 +122,6 @@ ul.nav li a {
 	background-color: #eef3f7 !important;
 }
 
-@media (min-width: 992px){ /*Laptop and Desktop*/
-    #login {
-        margin-top: 100px;
-    }
-}
-
-@media (min-width: 480px){ /*Phone*/
-    #login {
-        margin-top: 100px;
-    }
+.navbar-form {
+	margin: 0px;
 }
