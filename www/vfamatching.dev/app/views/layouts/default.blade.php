@@ -30,7 +30,7 @@
     </div>
 </div>
 
-<div class="container" id="content">
+<div id="content">
     @if(Session::has('flash_notice'))
         @include('partials.alerts.notice', array('notice'=>Session::get('flash_notice')))
     @endif
