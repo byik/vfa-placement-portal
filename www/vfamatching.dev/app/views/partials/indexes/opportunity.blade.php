@@ -5,9 +5,9 @@
     <td>{{ Carbon::createFromFormat('Y-m-d H:i:s', $opportunity->created_at)->diffForHumans(); }}</td>
     @if(Auth::user()->role == "Fellow")
         @if(PlacementStatus::hasPlacementStatus(Auth::user()->profile, $opportunity))
-            <td>Placement Status: {{ PlacementStatus::getRecentPlacementStatus(Auth::user()->profile, $opportunity)->printWithDate() }}</td>
+            <td>{{ PlacementStatus::getRecentPlacementStatus(Auth::user()->profile, $opportunity)->printWithDate() }}</td>
         @elseif(Pitch::hasPitch(Auth::user()->profile, $opportunity))
-            <td>Pitch Status: {{ Pitch::getPitch(Auth::user()->profile, $opportunity)->status }}</td>
+            <td>{{ Pitch::getPitch(Auth::user()->profile, $opportunity)->status }}</td>
         @else
             <td><a data-toggle="modal" href="#pitch-modal-{{ $opportunity->id }}" class="btn btn-primary modal-btn">Pitch</a></td>
         @endif

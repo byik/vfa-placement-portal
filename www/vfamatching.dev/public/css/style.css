@@ -7,6 +7,14 @@ body {
 	font-family: GillSans;
 }
 
+.secondary {
+	background-color: #eef3f7;
+}
+
+.red {
+	color: #ec5a41;
+}
+
 .vfa-navbar {
 	background-color: #04274f;
 	margin-bottom: 0px;
@@ -33,10 +41,6 @@ body {
 
 .fellow-dash h2 {
 	margin-bottom: 20px;
-}
-
-.red {
-	color: #ec5a41;
 }
 
 .upcoming-events .row {

@@ -1,31 +1,49 @@
 @extends('layouts.default')
 
 @section('header')
-Company
+{{ $company->name }} <small><em>{{ $company->tagline }}</em></small>
 @stop
 
 @section('content')
 
 <!-- TODO: ADD COMPANY LOGO -->
 
-<h1><a href="{{ $company->url }}" target="_blank">{{ $company->name }}</a><small> <em>{{ $company->tagline }}</em></small></h1>
-
-<div class="row">
-	<div class="col-md-4"><h3 class="text-center">City</h3><p class="text-center">{{ $company->city }}</p></div>
-	<div class="col-md-4"><h3 class="text-center">Founded</h3><p class="text-center">{{ $company->yearFounded }}</div>
-	<div class="col-md-4"><h3 class="text-center">Employees</h3><p class="text-center">{{ $company->employees }}</div>
+<div class="container">
+	<div class="row">
+	<div class="col-md-3"><h2 class="text-center"><small>City</small></h2><h3 class="text-center">{{ $company->city }}</h3></div>
+	<div class="col-md-3"><h2 class="text-center"><small>Founded</small></h2><h3 class="text-center">{{ $company->yearFounded }}</h3></div>
+	<div class="col-md-3"><h2 class="text-center"><small>Employees</small></h2><h3 class="text-center">{{ $company->employees }}</h3></div>
+	<div class="col-md-3"><h2 class="text-center"><small>URL</small></h2><h3 class="text-center"><a href="{{ $company->url }}" target="_blank">{{ $company->url }}</a></h3></div>
 </div>
 
-<h4>Vision</h4>
+<h2><small>Vision</small></h2>
 <p>{{ $company->visionAnswer }}</p>
-<h4>Needs</h4>
+<h2><small>Needs</small></h2>
 <p>{{ $company->needsAnswer }}</p>
-<h4>Team</h4>
+<h2><small>Team</small></h2>
 <p>{{ $company->teamAnswer }}</p>
+</div>
 
-<h3>Opportunities</h3>
-@foreach($company->opportunities as $opportunity)
-  <p>{{ $opportunity->title }}</p>
-@endforeach
+<div class="secondary">
+	<div class="container">
+		<h2>Opportunities</h2>
+		<table class="table table-hover">
+	      <thead>
+	        <tr>
+				<th>Title</th>
+				<th>Company</th>
+				<th>City</th>
+				<th>Added On</th>
+	        	<th>Status</th>
+	        </tr>
+	      </thead>
+		  <tbody>
+		    @foreach($company->opportunities as $opportunity)
+		      @include('partials.indexes.opportunity', array('opportunity' => $opportunity))
+		    @endforeach
+		  </tbody>
+		</table>
+	</div>
+</div>
 
 @stop
