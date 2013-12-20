@@ -1,7 +1,10 @@
 @extends('layouts.default')
 
 @section('header')
-Opportunity
+	<div class="row">
+		<div class="col-md-8">{{ $opportunity->title }} <small>{{ $opportunity->city }}</small></div>
+		<div class="col-md-4">{{ $opportunity->company->name }} <small><a href="{{ URL::to('/companies/' . $opportunity->company->id) }}"> company profile</a></small></div>
+	</div>
 @stop
 
 @section('content')
@@ -9,10 +12,7 @@ Opportunity
 
 	<!-- TODO: ADD COMPANY LOGO -->
 	
-	<div class="row">
-		<div class="col-md-8"><h1>{{ $opportunity->title }} <small>{{ $opportunity->city }}</small></h1></div>
-		<div class="col-md-4"><h2><a href="{{ URL::to('/companies/' . $opportunity->company->id) }}">{{ $opportunity->company->name }}</a></h2></div>
-	</div>
+
 	<h4>Description</h4>
 	<p>{{ $opportunity->description }}</p>
 	<h4>Responsibilities</h4>

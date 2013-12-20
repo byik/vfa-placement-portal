@@ -19,6 +19,10 @@ body {
 	font-family: GillSans;
 }
 
+p {
+	font-size: 18px;
+}
+
 .secondary {
 	background-color: #eef3f7;
 }
