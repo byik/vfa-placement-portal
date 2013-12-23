@@ -26,22 +26,30 @@
             <h3>Opportunities matching <b><i>"{{ $search }}"</b></i>:</h3>
             <a href="{{ URL::route('opportunities.index') }}">Clear search</a>
         @endif
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              @include('partials.sort-filter-table-header', array('displayName' => "Title", 'sortName' => "title", 'route' => 'opportunities.index'))
-              @include('partials.sort-filter-table-header', array('displayName' => "Company", 'sortName' => "companies.name", 'route' => 'opportunities.index'))
-              @include('partials.sort-filter-table-header', array('displayName' => "City", 'sortName' => "city", 'route' => 'opportunities.index'))
-              @include('partials.sort-filter-table-header', array('displayName' => "Added On", 'sortName' => "created_at", 'route' => 'opportunities.index'))
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach($opportunities as $opportunity)
-              @include('partials.indexes.opportunity', array('opportunity' => $opportunity))
-            @endforeach
-          </tbody>
-        </table>
+        <h3>Sort By:</h3>
+        <?php
+            $pills  = array();
+            array_push($pills, new Pill("Title", array(
+                    new DropdownItem("", URL::route( 'opportunities.index', array('sort' => 'title', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'opportunities.index', array('sort' => 'title', 'order' => 'desc', 'search' => $search)), "sort-alpha-desc")
+                )));
+            array_push($pills, new Pill("Company", array(
+                    new DropdownItem("", URL::route( 'opportunities.index', array('sort' => 'companies.name', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'opportunities.index', array('sort' => 'companies.name', 'order' => 'desc', 'search' => $search)), "sort-alpha-desc")
+                )));
+            array_push($pills, new Pill("City", array(
+                    new DropdownItem("", URL::route( 'opportunities.index', array('sort' => 'city', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'opportunities.index', array('sort' => 'city', 'order' => 'desc', 'search' => $search)), "sort-alpha-asc")
+                )));
+            array_push($pills, new Pill("Date Added", array(
+                    new DropdownItem("Oldest first", URL::route( 'opportunities.index', array('sort' => 'companies.name', 'order' => 'asc', 'search' => $search))),
+                    new DropdownItem("Newest first", URL::route( 'opportunities.index', array('sort' => 'companies.name', 'order' => 'desc', 'search' => $search)))
+                )));
+        ?>
+        @include('partials.components.pillDropDowns', array('pills' => $pills))
+        @foreach($opportunities as $opportunity)
+          @include('partials.indexes.opportunity', array('opportunity' => $opportunity))
+        @endforeach
         {{ $opportunities->addQuery('order', $order)->addQuery('sort', $sort)->addQuery('search', $search)->links(); }}
     @else
         <h2>Sorry!</h2>

@@ -100,7 +100,7 @@ p {
 	text-align: center;
 }
 
-ul.nav li a {
+.vfa-navbar ul.nav li a {
 	color: #eef3f7 !important;
 	letter-spacing: 1px;
 	height: 52px;
@@ -109,14 +109,14 @@ ul.nav li a {
 	/*border-radius: 5px;*/
 	transition: 0.3s;
 	-webkit-transition: 0.3s; /* Safari */
-} ul.nav li a:hover {
+} .vfa-navbar ul.nav li a:hover {
 	background-color: rgba(236, 90, 65, .5) !important;
 	padding: 15px 45px;
 	/*font-size: 14pt;*/
-} ul.nav li a i {
+} .vfa-navbar ul.nav li a i {
 	transition: 0.3s;
 	-webkit-transition: 0.3s; /* Safari */
-} ul.nav li a:hover  i {
+} .vfa-navbar ul.nav li a:hover  i {
 	font-size: 16pt;
 }
 

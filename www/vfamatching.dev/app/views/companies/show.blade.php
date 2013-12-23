@@ -27,22 +27,9 @@
 <div class="secondary">
 	<div class="container">
 		<h2>Opportunities</h2>
-		<table class="table table-hover">
-	      <thead>
-	        <tr>
-				<th>Title</th>
-				<th>Company</th>
-				<th>City</th>
-				<th>Added On</th>
-	        	<th>Status</th>
-	        </tr>
-	      </thead>
-		  <tbody>
-		    @foreach($company->opportunities as $opportunity)
-		      @include('partials.indexes.opportunity', array('opportunity' => $opportunity))
-		    @endforeach
-		  </tbody>
-		</table>
+	    @foreach($company->opportunities as $opportunity)
+            @include('partials.indexes.opportunity', array('opportunity' => $opportunity))
+	    @endforeach
 	</div>
 </div>
 

@@ -14,12 +14,6 @@
                     @include('partials.links.company', array('company' => $placementStatus->opportunity->company))
                 </small></h3>
                 <h4><small>{{ $placementStatus->printWithDate() }}</small></h4>
-                
-                <!-- TODO:
-                    Link opportunity title to opportunity page
-                    Add company name
-                    Link company name to company page
-                -->
                 <!-- Button trigger modal -->
                 <a data-toggle="modal" href="#placementStatus-update-modal-{{ $placementStatus->id }}" class="btn
             btn-primary btn-large modal-btn form-control">Update</a>    
