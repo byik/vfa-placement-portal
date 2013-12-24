@@ -50,7 +50,10 @@
         @foreach($opportunities as $opportunity)
           @include('partials.indexes.opportunity', array('opportunity' => $opportunity))
         @endforeach
-        {{ $opportunities->addQuery('order', $order)->addQuery('sort', $sort)->addQuery('search', $search)->links(); }}
+        <div class="row">
+            <div class="pull-right">
+        {{ $opportunities->addQuery('order', $order)->addQuery('sort', $sort)->addQuery('search', $search)->links(); }}</div>
+        </div>
     @else
         <h2>Sorry!</h2>
         <p>There are no opportunities mathing that criteria. <a href="{{ URL::route('opportunities.index') }}">View all Opportunities</a></p>
