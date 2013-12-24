@@ -13,7 +13,7 @@
                 <h3><small>
                     @include('partials.links.company', array('company' => $placementStatus->opportunity->company))
                 </small></h3>
-                <h4><small>{{ $placementStatus->printWithDate() }}</small></h4>
+                <h4><small><strong>{{ $placementStatus->printWithDate() }}</strong></small></h4>
                 <!-- Button trigger modal -->
                 <a data-toggle="modal" href="#placementStatus-update-modal-{{ $placementStatus->id }}" class="btn
             btn-primary btn-large modal-btn form-control">Update</a>    

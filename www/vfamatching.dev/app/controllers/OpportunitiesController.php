@@ -13,6 +13,7 @@ class OpportunitiesController extends BaseController {
         $sort = (!is_null(Input::get('sort')) ? Input::get('sort') : 'companies.name'); //default to company name
         $order = (!is_null(Input::get('order')) ? Input::get('order') : 'asc'); //default to asc
         $search = (!is_null(Input::get('search')) ? Input::get('search') : ''); //default to empty string
+        $pagination = (!is_null(Input::get('limit')) ? Input::get('limit') : 5); //default to 5
         $opportunities = Opportunity::select('opportunities.*', 'companies.name')
             ->join('companies', 'opportunities.company_id', '=', 'companies.id')
             ->join('opportunityTags', 'opportunities.id', '=', 'opportunityTags.opportunity_id');
@@ -26,8 +27,8 @@ class OpportunitiesController extends BaseController {
                     ->orWhere('opportunities.city', 'LIKE', "%$search%")
                     ->orWhere('opportunityTags.tag', 'LIKE', "%$search%");
         }
-        $opportunities = $opportunities->orderBy($sort, $order)->groupBy('opportunities.id')->paginate(5);
-        return View::make('opportunities.index', array('opportunities' => $opportunities, 'sort' => $sort, 'order' => $order, 'search' => $search));
+        $opportunities = $opportunities->orderBy($sort, $order)->groupBy('opportunities.id')->paginate($pagination);
+        return View::make('opportunities.index', array('total' => Opportunity::count(), 'opportunities' => $opportunities, 'sort' => $sort, 'order' => $order, 'search' => $search));
     }
 
     /**

@@ -13,6 +13,9 @@ class PlacementstatusesTableSeeder extends Seeder {
         $firstFellow = Fellow::find(1);
         $firstOpportunity = Opportunity::find(1);
         $thirdOpportunity = Opportunity::find(3);
+        $fourthOpportunity = Opportunity::find(4);
+        $fifthOpportunity = Opportunity::find(5);
+        $sixthOpportunity = Opportunity::find(6);
 
         $firstPlacementStatus = new PlacementStatus();
         $firstPlacementStatus->status = "Introduced";
@@ -33,6 +36,36 @@ class PlacementstatusesTableSeeder extends Seeder {
         $secondPlacementStatus->opportunity_id = $thirdOpportunity->id;
         $secondPlacementStatus->isRecent = true;
         $secondPlacementStatus->save();
+
+        $thirdPlacementStatus = new PlacementStatus();
+        $thirdPlacementStatus->status = "Introduced";
+        $thirdPlacementStatus->eventDate = null;
+        $thirdPlacementStatus->score = 3;
+        $thirdPlacementStatus->message = "Seems like a perfect fit!";
+        $thirdPlacementStatus->fellow_id = $firstFellow->id;
+        $thirdPlacementStatus->opportunity_id = $fourthOpportunity->id;
+        $thirdPlacementStatus->isRecent = true;
+        $thirdPlacementStatus->save();
+
+        $fourthPlacementStatus = new PlacementStatus();
+        $fourthPlacementStatus->status = "Introduced";
+        $fourthPlacementStatus->eventDate = null;
+        $fourthPlacementStatus->score = 3;
+        $fourthPlacementStatus->message = "Seems like a perfect fit!";
+        $fourthPlacementStatus->fellow_id = $firstFellow->id;
+        $fourthPlacementStatus->opportunity_id = $fifthOpportunity->id;
+        $fourthPlacementStatus->isRecent = true;
+        $fourthPlacementStatus->save();
+
+        $fifthPlacementStatus = new PlacementStatus();
+        $fifthPlacementStatus->status = "Introduced";
+        $fifthPlacementStatus->eventDate = null;
+        $fifthPlacementStatus->score = 3;
+        $fifthPlacementStatus->message = "Seems like a perfect fit!";
+        $fifthPlacementStatus->fellow_id = $firstFellow->id;
+        $fifthPlacementStatus->opportunity_id = $sixthOpportunity->id;
+        $fifthPlacementStatus->isRecent = true;
+        $fifthPlacementStatus->save();
 	}
 
 }

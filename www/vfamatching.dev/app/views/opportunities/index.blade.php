@@ -2,7 +2,7 @@
 
 @section('header')
 
-    @include('partials.components.searchHeader', array('label' => "Opportunities", 'url' => URL::route( 'opportunities.index' )))
+    @include('partials.components.searchHeader', array('label' => "Opportunities <small>(<em>" . $opportunities->getTotal() ." of $total</em>)</small>", 'url' => URL::route( 'opportunities.index' )))
 
 @stop
 
@@ -11,8 +11,8 @@
 <div class="container">
       @if(count($opportunities) > 0)
         @if($search != "")
-            <h3>Opportunities matching <b><i>"{{ $search }}"</b></i>:</h3>
-            <a href="{{ URL::route('opportunities.index') }}">Clear search</a>
+            <h3>matching <b><i>"{{ $search }}"</b></i>:</h3>
+            <a class="btn btn-primary" href="{{ URL::route('opportunities.index') }}">Clear search</a>
         @endif
         <h3>Sort By:</h3>
         <?php
@@ -44,7 +44,7 @@
         </div>
     @else
         <h2>Sorry!</h2>
-        <p>There are no opportunities mathing that criteria. <a href="{{ URL::route('opportunities.index') }}">View all Opportunities</a></p>
+        <p>There are no opportunities mathing that search. <a class="btn btn-primary" href="{{ URL::route('opportunities.index') }}">View all Opportunities</a></p>
     @endif
 </div>
 

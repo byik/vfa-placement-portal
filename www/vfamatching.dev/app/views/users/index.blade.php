@@ -2,7 +2,7 @@
 
 @section('header')
 
-    @include('partials.components.searchHeader', array('label' => "Opportunities", 'url' => URL::route( 'users.index' )))
+    @include('partials.components.searchHeader', array('label' => "Users <small>(<em>" . $users->getTotal() ." of $total</em>)</small>", 'url' => URL::route( 'users.index' )))
 
 @stop
 
@@ -11,8 +11,8 @@
 <div class="container">
       @if(count($users) > 0)
         @if($search != "")
-            <h3>Users matching <b><i>"{{ $search }}"</b></i>:</h3>
-            <a href="{{ URL::route('users.index') }}">Clear search</a>
+            <h3>matching <b><i>"{{ $search }}"</b></i>:</h3>
+            <a class="btn btn-primary" href="{{ URL::route('users.index') }}">Clear search</a>
         @endif
         <h3>Sort By:</h3>
         <?php
@@ -35,16 +35,17 @@
                 )));
         ?>
         @include('partials.components.pillDropDowns', array('pills' => $pills))
-        @foreach($users as $user)
-          @include('partials.indexes.user', array('user' => $user))
-        @endforeach
         <div class="row">
-            <div class="pull-right">
-        {{ $users->addQuery('order', $order)->addQuery('sort', $sort)->addQuery('search', $search)->links(); }}</div>
+            @foreach($users as $user)
+              @include('partials.indexes.user', array('user' => $user))
+            @endforeach
+        </div>
+        <div class="row">
+        {{ $users->addQuery('order', $order)->addQuery('sort', $sort)->addQuery('search', $search)->links(); }}
         </div>
     @else
         <h2>Sorry!</h2>
-        <p>There are no opportunities mathing that criteria. <a href="{{ URL::route('opportunities.index') }}">View all Opportunities</a></p>
+        <p>There are no users mathing that search. <a class="btn btn-primary" href="{{ URL::route('users.index') }}">View all Users</a></p>
     @endif
 </div>
 

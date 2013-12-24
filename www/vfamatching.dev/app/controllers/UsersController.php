@@ -12,7 +12,7 @@ class UsersController extends BaseController {
         $sort = (!is_null(Input::get('sort')) ? Input::get('sort') : 'users.email'); //default to company name
         $order = (!is_null(Input::get('order')) ? Input::get('order') : 'asc'); //default to asc
         $search = (!is_null(Input::get('search')) ? Input::get('search') : ''); //default to empty string
-        $pagination = (!is_null(Input::get('limit')) ? Input::get('limit') : 5); //default to empty string
+        $pagination = (!is_null(Input::get('limit')) ? Input::get('limit') : 21); //default to 21
         $users = User::select('users.email', 'users.lastLogin', 'users.role', 'users.firstName', 'users.lastName');
         if($search != ''){
             $searchTerms = explode(' ', $search);
@@ -24,7 +24,7 @@ class UsersController extends BaseController {
             }
         }
         $users = $users->orderBy($sort, $order)->groupBy('id')->paginate($pagination);
-        return View::make('users.index', array('users' => $users, 'sort' => $sort, 'order' => $order, 'search' => $search));
+        return View::make('users.index', array('total' => User::count(), 'users' => $users, 'sort' => $sort, 'order' => $order, 'search' => $search));
 	}
 
 	/**
