@@ -13,7 +13,9 @@ class OpportunitiesController extends BaseController {
         $sort = (!is_null(Input::get('sort')) ? Input::get('sort') : 'companies.name'); //default to company name
         $order = (!is_null(Input::get('order')) ? Input::get('order') : 'asc'); //default to asc
         $search = (!is_null(Input::get('search')) ? Input::get('search') : ''); //default to asc
-        $opportunities = Opportunity::select('opportunities.*', 'companies.name')->join('companies', 'opportunities.company_id', '=', 'companies.id');
+        $opportunities = Opportunity::select('opportunities.*', 'companies.name')
+            ->join('companies', 'opportunities.company_id', '=', 'companies.id')
+            ->join('opportunityTags', 'opportunities.id', '=', 'opportunityTags.opportunity_id');
         if($search != ''){
             $opportunities = $opportunities->where('title', 'LIKE', "%$search%")
                     ->orWhere('companies.name', 'LIKE', "%$search%")
@@ -21,9 +23,10 @@ class OpportunitiesController extends BaseController {
                     ->orWhere('responsibilitiesAnswer', 'LIKE', "%$search%")
                     ->orWhere('skillsAnswer', 'LIKE', "%$search%")
                     ->orWhere('developmentAnswer', 'LIKE', "%$search%")
-                    ->orWhere('opportunities.city', 'LIKE', "%$search%");
+                    ->orWhere('opportunities.city', 'LIKE', "%$search%")
+                    ->orWhere('opportunityTags.tag', 'LIKE', "%$search%");
         }
-        $opportunities = $opportunities->orderBy($sort, $order)->paginate(5);
+        $opportunities = $opportunities->orderBy($sort, $order)->groupBy('opportunities.id')->paginate(5);
         return View::make('opportunities.index', array('opportunities' => $opportunities, 'sort' => $sort, 'order' => $order, 'search' => $search));
     }
 
