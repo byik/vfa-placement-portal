@@ -21,7 +21,7 @@
                 @elseif(Pitch::hasPitch(Auth::user()->profile, $opportunity))
                     <div class="col-md-3"><strong>Pitch Status: </strong>{{ Pitch::getPitch(Auth::user()->profile, $opportunity)->status }}</div>
                 @else
-                    <div class="col-md-3"><a data-toggle="modal" href="#pitch-modal-{{ $opportunity->id }}" class="btn btn-primary modal-btn form-control">Pitch</a></div>
+                    <div class="col-md-3"><a data-toggle="modal" href="#pitch-modal-{{ $opportunity->id }}" class="btn btn-primary modal-btn form-control"><i class="fa fa-comment"></i> Pitch</a></div>
                 @endif
             @endif
         </div>
