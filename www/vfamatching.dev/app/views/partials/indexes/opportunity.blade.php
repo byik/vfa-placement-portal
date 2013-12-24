@@ -7,7 +7,7 @@
                     <h4><small><em>{{ $opportunity->teaser }}</em></small></h4>
                 </div>
                 <div class="col-md-4">
-                    TODO TAGS
+                    @include('partials.components.tags', array('tags' => $opportunity->opportunityTags))
                 </div>
             </div>
         </div>
