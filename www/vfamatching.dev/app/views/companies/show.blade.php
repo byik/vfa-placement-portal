@@ -9,24 +9,33 @@
 <!-- TODO: ADD COMPANY LOGO -->
 
 <div class="container">
-	<div class="row">
-	<div class="col-md-3"><h2 class="text-center"><small>City</small></h2><h3 class="text-center">{{ $company->city }}</h3></div>
-	<div class="col-md-3"><h2 class="text-center"><small>Founded</small></h2><h3 class="text-center">{{ $company->yearFounded }}</h3></div>
-	<div class="col-md-3"><h2 class="text-center"><small>Employees</small></h2><h3 class="text-center">{{ $company->employees }}</h3></div>
-	<div class="col-md-3"><h2 class="text-center"><small>URL</small></h2><h3 class="text-center"><a href="{{ $company->url }}" target="_blank">{{ $company->url }}</a></h3></div>
-</div>
+	<div class="row" id="company-highlights">
+    	<div class="col-md-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>City</small></h2><h3 class="text-center">{{ $company->city }}</h3></div>
+    	<div class="col-md-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>Founded</small></h2><h3 class="text-center">{{ $company->yearFounded }}</h3></div>
+    	<div class="col-md-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>Employees</small></h2><h3 class="text-center">{{ $company->employees }}</h3></div>
+    	<div class="col-md-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>Website</small></h2><h3 class="text-center"><a class="btn btn-primary form-control" href="{{ $company->url }}" target="_blank">Visit <i class="fa fa-external-link"></i></a></h3></div>
+    </div>
 
-<h2><small>Vision</small></h2>
-<p>{{ $company->visionAnswer }}</p>
-<h2><small>Needs</small></h2>
-<p>{{ $company->needsAnswer }}</p>
-<h2><small>Team</small></h2>
-<p>{{ $company->teamAnswer }}</p>
+
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
+            <h4><strong>What is your company's vision?</strong></h4>
+            <p>{{ $company->visionAnswer }}</p>
+        </div>
+        <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
+            <h4><strong>What are your company's greatest needs?</strong></h4>
+            <p>{{ $company->needsAnswer }}</p>
+        </div>
+        <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
+            <h4><strong>Describe your team</strong></h4>
+            <p>{{ $company->teamAnswer }}</p>
+        </div>
+    </div>
 </div>
 
 <div class="secondary">
 	<div class="container">
-		<h2>Opportunities</h2>
+		<h3>{{ "$company->name's Opportunities <small>(<em>" . count($company->opportunities) ."</em>)</small>" }}</h3>
 	    @foreach($company->opportunities as $opportunity)
             @include('partials.indexes.opportunity', array('opportunity' => $opportunity))
 	    @endforeach

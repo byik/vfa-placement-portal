@@ -2,11 +2,11 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-7">
                     <h3>@include('partials.links.opportunity', array('opportunity' => $opportunity))</h3>
                     <h4><small><strong><em>{{ $opportunity->teaser }}</em></strong></small></h4>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-5">
                     @include('partials.components.tags', array('tags' => $opportunity->opportunityTags))
                 </div>
             </div>
