@@ -9,6 +9,7 @@ class OpportunitiesTableSeeder extends Seeder {
 
 		$firstOpportunity = new Opportunity();
 		$firstOpportunity->title = "SEO Expert";
+        $firstOpportunity->teaser = "We're looking for someone who can sell shit with keywords";
         $firstOpportunity->city = "Detroit";
 		$firstOpportunity->description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, odit, mollitia tempora maxime ullam aperiam officiis maiores asperiores odio tenetur atque natus excepturi ipsum doloremque.";
 		$firstOpportunity->responsibilitiesAnswer = "am, incidunt, perferendis, mollitia pariatur voluptates vel quaerat voluptatum temporibus eaque tenetur quod aut asperiores quos nemo repudiandae e";
@@ -18,6 +19,7 @@ class OpportunitiesTableSeeder extends Seeder {
 
 		$secondOpportunity = new Opportunity();
 		$secondOpportunity->title = "Community Engagement";
+        $secondOpportunity->teaser = "If you can tug on heart strings, then we want you!";
         $secondOpportunity->city = "Detroit";
 		$secondOpportunity->description = "quam maxime magni minus ipsam nihil fugiat quo consectetur.";
 		$secondOpportunity->responsibilitiesAnswer = "ecati neque a quae? Repudiandae, veniam distinctio similique at minima asperiores itaque illo doloribus ab d";
@@ -31,6 +33,7 @@ class OpportunitiesTableSeeder extends Seeder {
 
 		$thirdOpportunity = new Opportunity();
 		$thirdOpportunity->title = "Ruby Developer";
+        $thirdOpportunity->teaser = "Code monkeys only, please :P";
         $thirdOpportunity->city = "San Francisco";
 		$thirdOpportunity->description = " odio, a commodi maxime dolore modi iste blanditiis dolor delectus amet asperiores veritatis placeat necessitatibus i.";
 		$thirdOpportunity->responsibilitiesAnswer = "mporibus eaque tenetur quod aut asperiores quos nemo repudiandae expedita quis nulla at magnam neque labore voluptate";
@@ -41,9 +44,10 @@ class OpportunitiesTableSeeder extends Seeder {
 		$secondCompany = Company::find(2);
 		$secondCompany->opportunities()->save($thirdOpportunity);
 
-		for($i = 0; $i < 15; $i++){
+		for($i = 0; $i < 3; $i++){
 			$randomOpportunity = new Opportunity();
-			$randomOpportunity->title = substr(simplexml_load_file('http://www.lipsum.com/feed/xml?amount=1&what=paras&start=0')->lipsum,0,120);
+			$randomOpportunity->title = substr(simplexml_load_file('http://www.lipsum.com/feed/xml?amount=1&what=paras&start=0')->lipsum,0,40);
+            $randomOpportunity->teaser = substr(simplexml_load_file('http://www.lipsum.com/feed/xml?amount=1&what=paras&start=0')->lipsum,0,100);
             $randomOpportunity->city = substr(simplexml_load_file('http://www.lipsum.com/feed/xml?amount=1&what=paras&start=0')->lipsum,0,25);
 			$randomOpportunity->description = substr(simplexml_load_file('http://www.lipsum.com/feed/xml?amount=1&what=paras&start=0')->lipsum,0,650);
 			$randomOpportunity->responsibilitiesAnswer = substr(simplexml_load_file('http://www.lipsum.com/feed/xml?amount=1&what=paras&start=0')->lipsum,0,170);
