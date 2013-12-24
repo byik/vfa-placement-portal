@@ -1,7 +1,15 @@
 <div class="col-lg-12">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3>@include('partials.links.opportunity', array('opportunity' => $opportunity))</h3>
+            <div class="row">
+                <div class="col-md-8">
+                    <h3>@include('partials.links.opportunity', array('opportunity' => $opportunity))</h3>
+                    <h4><small><em>{{ $opportunity->teaser }}</em></small></h4>
+                </div>
+                <div class="col-md-4">
+                    TODO TAGS
+                </div>
+            </div>
         </div>
         <div class="panel-body">
             <div class="col-md-3"><strong>Company: </strong>@include('partials.links.company', array('company' => $opportunity->company))</div>
@@ -13,7 +21,7 @@
                 @elseif(Pitch::hasPitch(Auth::user()->profile, $opportunity))
                     <div class="col-md-3"><strong>Pitch Status: </strong>{{ Pitch::getPitch(Auth::user()->profile, $opportunity)->status }}</div>
                 @else
-                    <div class="col-md-3"><a data-toggle="modal" href="#pitch-modal-{{ $opportunity->id }}" class="btn btn-primary modal-btn">Pitch</a></div>
+                    <div class="col-md-3"><a data-toggle="modal" href="#pitch-modal-{{ $opportunity->id }}" class="btn btn-primary modal-btn form-control">Pitch</a></div>
                 @endif
             @endif
         </div>
