@@ -15,11 +15,11 @@ class CreateOpportunitiesTable extends Migration {
 		Schema::create('opportunities', function(Blueprint $table) {
 			$table->increments('id');
 			$table->integer('company_id')->unsigned();
-			$table->string('title');
-			$table->string('description');
-			$table->string('responsibilitiesAnswer');
-			$table->string('skillsAnswer');
-			$table->string('developmentAnswer');
+			$table->string('title', 70);
+			$table->string('description', 1400);
+			$table->string('responsibilitiesAnswer', 280);
+			$table->string('skillsAnswer', 280);
+			$table->string('developmentAnswer', 280);
 			$table->boolean('isPublished');
 			$table->timestamps();
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('restrict');

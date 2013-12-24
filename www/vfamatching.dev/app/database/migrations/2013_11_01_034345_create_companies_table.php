@@ -14,13 +14,13 @@ class CreateCompaniesTable extends Migration {
 	{
 		Schema::create('companies', function(Blueprint $table) {
 			$table->increments('id');
-			$table->string('name');
-			$table->string('city');
+			$table->string('name', 280);
+			$table->string('city', 280);
 			$table->string('url');
-			$table->string('tagline');
-			$table->string('visionAnswer');
-			$table->string('needsAnswer');
-			$table->string('teamAnswer');
+			$table->string('tagline', 140);
+			$table->string('visionAnswer', 280);
+			$table->string('needsAnswer', 280);
+			$table->string('teamAnswer', 280);
 			$table->integer('employees');
 			$table->integer('yearFounded');
 			$table->string('twitterHandle');

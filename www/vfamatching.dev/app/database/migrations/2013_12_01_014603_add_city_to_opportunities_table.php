@@ -13,7 +13,7 @@ class AddCityToOpportunitiesTable extends Migration {
 	public function up()
 	{
 		Schema::table('opportunities', function(Blueprint $table) {
-			$table->string('city');
+			$table->string('city', 280);
 		});
 	}
 

@@ -16,7 +16,7 @@ class CreateAdminNotesTable extends Migration {
 			$table->increments('id');
 			$table->integer('admin_id')->unsigned();
 			$table->foreign('admin_id')->references('id')->on('admins')->onDelete('restrict');
-			$table->text('content');
+			$table->text('content', 1400);
 			$table->timestamps();
 		});
 	}

@@ -13,7 +13,7 @@ class AddTeaserToOpportunitiesTable extends Migration {
 	public function up()
 	{
 		Schema::table('opportunities', function(Blueprint $table) {
-			$table->string('teaser');
+			$table->string('teaser', 140);
 		});
 	}
 

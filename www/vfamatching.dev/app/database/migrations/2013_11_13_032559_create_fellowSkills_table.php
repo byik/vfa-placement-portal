@@ -16,7 +16,7 @@ class CreateFellowSkillsTable extends Migration {
 			$table->increments('id');
 			$table->integer('fellow_id')->nullable();
 			// $table->foreign('fellow_id')->references('id')->on('fellows')->onDelete('restrict');
-			$table->string('skill');
+			$table->string('skill', 140);
 			$table->timestamps();
 		});
 	}

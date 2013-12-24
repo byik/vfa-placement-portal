@@ -17,12 +17,12 @@ class CreateFellowsTable extends Migration {
 			$table->integer('user_id')->unsigned();
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
 			$table->boolean('isPublished');
-			$table->text('bio');
-			$table->string('school');
-			$table->string('major');
+			$table->text('bio', 1400);
+			$table->string('school', 140);
+			$table->string('major', 140);
 			$table->string('degree');
 			$table->integer('graduationYear');
-			$table->string('hometown');
+			$table->string('hometown', 140);
 			$table->boolean('isRemindable');
 			$table->string('resumePath');
 			$table->bigInteger('phoneNumber')->nullable();

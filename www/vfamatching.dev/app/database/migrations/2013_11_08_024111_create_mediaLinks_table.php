@@ -15,7 +15,7 @@ class CreateMediaLinksTable extends Migration {
 		Schema::create('mediaLinks', function(Blueprint $table) {
 			$table->increments('id');
 			$table->string('url');
-			$table->string('title');
+			$table->string('title', 140);
 			$table->timestamps();
 		});
 	}

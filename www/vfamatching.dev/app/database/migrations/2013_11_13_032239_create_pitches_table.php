@@ -18,7 +18,7 @@ class CreatePitchesTable extends Migration {
 			$table->foreign('fellow_id')->references('id')->on('fellows')->onDelete('restrict');
 			$table->integer('opportunity_id')->unsigned();
 			$table->foreign('opportunity_id')->references('id')->on('opportunities')->onDelete('restrict');
-			$table->text('body');
+			$table->text('body', 1400);
 			$table->string('status');
 			$table->timestamps();
 		});
