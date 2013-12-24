@@ -32,6 +32,8 @@
 		</div>
 	</div>
 @else
-	<p>Looks like you aren't introduced to any Opportunities yet...<p>
-	<p>Head on over to the list of <a href="{{ URL::route('opportunities.index') }}">Opportunities</a> and start pitching!<p>
+    <div class="container">
+    	<p>Looks like you aren't introduced to any Opportunities yet...<p>
+    	<p>Head on over to the list of <a href="{{ URL::route('opportunities.index') }}">Opportunities</a> and start pitching!<p>
+    </div>
 @endif
