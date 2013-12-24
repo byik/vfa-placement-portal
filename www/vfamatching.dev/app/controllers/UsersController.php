@@ -24,7 +24,24 @@ class UsersController extends BaseController {
             }
         }
         $users = $users->orderBy($sort, $order)->groupBy('id')->paginate($pagination);
-        return View::make('users.index', array('total' => User::count(), 'users' => $users, 'sort' => $sort, 'order' => $order, 'search' => $search));
+        $pills  = array();
+            array_push($pills, new Pill("Email", array(
+                    new DropdownItem("", URL::route( 'users.index', array('sort' => 'email', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'users.index', array('sort' => 'email', 'order' => 'desc', 'search' => $search)), "sort-alpha-desc")
+                )));
+            array_push($pills, new Pill("Role", array(
+                    new DropdownItem("", URL::route( 'users.index', array('sort' => 'role', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'users.index', array('sort' => 'role', 'order' => 'desc', 'search' => $search)), "sort-alpha-desc")
+                )));
+            array_push($pills, new Pill("First Name", array(
+                    new DropdownItem("", URL::route( 'users.index', array('sort' => 'firstName', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'users.index', array('sort' => 'firstName', 'order' => 'desc', 'search' => $search)), "sort-alpha-desc")
+                )));
+            array_push($pills, new Pill("Last Name", array(
+                    new DropdownItem("", URL::route( 'users.index', array('sort' => 'lastName', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'users.index', array('sort' => 'lastName', 'order' => 'desc', 'search' => $search)), "sort-alpha-desc")
+                )));
+        return View::make('users.index', array('total' => User::count(), 'users' => $users, 'sort' => $sort, 'order' => $order, 'search' => $search, 'pills' => $pills));
 	}
 
 	/**
