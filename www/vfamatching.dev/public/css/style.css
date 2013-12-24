@@ -134,3 +134,7 @@ p {
 .navbar-form {
 	margin: 0px;
 }
+
+.navbar-collapse {
+    max-height: none;
+}
