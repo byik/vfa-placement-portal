@@ -1,7 +1,7 @@
 <?php
 
 class OpportunityTag extends BaseModel {
-    protected $table = 'opportunityTag';
+    protected $table = 'opportunityTags';
 
 	protected function rules()
     {
