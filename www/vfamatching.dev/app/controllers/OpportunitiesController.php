@@ -12,7 +12,7 @@ class OpportunitiesController extends BaseController {
         // $opportunities = Opportunity::all();
         $sort = (!is_null(Input::get('sort')) ? Input::get('sort') : 'companies.name'); //default to company name
         $order = (!is_null(Input::get('order')) ? Input::get('order') : 'asc'); //default to asc
-        $search = (!is_null(Input::get('search')) ? Input::get('search') : ''); //default to asc
+        $search = (!is_null(Input::get('search')) ? Input::get('search') : ''); //default to empty string
         $opportunities = Opportunity::select('opportunities.*', 'companies.name')
             ->join('companies', 'opportunities.company_id', '=', 'companies.id')
             ->join('opportunityTags', 'opportunities.id', '=', 'opportunityTags.opportunity_id');

@@ -9,7 +9,22 @@ class UsersController extends BaseController {
 	 */
 	public function index()
 	{
-        return View::make('users.index');
+        $sort = (!is_null(Input::get('sort')) ? Input::get('sort') : 'users.email'); //default to company name
+        $order = (!is_null(Input::get('order')) ? Input::get('order') : 'asc'); //default to asc
+        $search = (!is_null(Input::get('search')) ? Input::get('search') : ''); //default to empty string
+        $pagination = (!is_null(Input::get('limit')) ? Input::get('limit') : 5); //default to empty string
+        $users = User::select('users.email', 'users.lastLogin', 'users.role', 'users.firstName', 'users.lastName');
+        if($search != ''){
+            $searchTerms = explode(' ', $search);
+            foreach($searchTerms as $searchTerm){
+                $users = $users->where('email', 'LIKE', "%$searchTerm%")
+                        ->orWhere('firstName', 'LIKE', "%$searchTerm%")
+                        ->orWhere('lastName', 'LIKE', "%$searchTerm%")
+                        ->orWhere('role', 'LIKE', "%$searchTerm%");
+            }
+        }
+        $users = $users->orderBy($sort, $order)->groupBy('id')->paginate($pagination);
+        return View::make('users.index', array('users' => $users, 'sort' => $sort, 'order' => $order, 'search' => $search));
 	}
 
 	/**

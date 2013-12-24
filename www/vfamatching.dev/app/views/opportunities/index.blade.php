@@ -2,19 +2,7 @@
 
 @section('header')
 
-<div class="row">
-    <div class="col-md-6">Opportunities</div>
-    <div class="col-md-6">
-      <form class="navbar-form" role="search" method="get" action="{{ URL::route( 'opportunities.index' ) }}">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search" name="search" id="search">
-        <div class="input-group-btn">
-            <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
-        </div>
-      </div>
-    </form>
-    </div>
-</div>
+    @include('partials.components.searchHeader', array('label' => "Opportunities", 'url' => URL::route( 'opportunities.index' )))
 
 @stop
 
