@@ -8,7 +8,8 @@ class Opportunity extends BaseModel {
         return array(
             'company_id'=>'required|exists:companies,id',
             'city'=>'required|max:280',
-            'title'=>'required|max:140',
+            'title'=>'required|max:70',
+            'teaser'=>'required|max:140',
             'description'=>'required|max:1400',
             'responsibilitiesAnswer'=>'required|max:280',                
             'skillsAnswer'=>'required|max:280',
