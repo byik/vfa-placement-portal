@@ -6,7 +6,7 @@ Placement Portal Login
 
 @section('content')
 
-<div id="login" class="well col-md-6 col-md-offset-3">
+<div id="login" class="well col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
     {{ Form::open(array('route' => 'login')) }}
         <fieldset>
             <!-- email field -->
@@ -22,7 +22,7 @@ Placement Portal Login
             </div>
 
             <!-- submit button -->
-            <p>{{ Form::submit('Login',  array('class'=>'btn btn-primary')) }}</p>
+            <p>{{ Form::submit('Login',  array('class'=>'btn btn-primary form-control')) }}</p>
         </fieldset>
     {{ Form::close() }}
 </div>

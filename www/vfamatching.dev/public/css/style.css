@@ -3,79 +3,62 @@
 	src: url('../Fonts/GillSans.ttc');
 }
 
-@media (min-width: 992px){ /*Laptop and Desktop*/
-    #login {
-        margin-top: 100px;
-    }
-
-    #company-highlights {
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-}
-
-@media (min-width: 480px){ /*Phone*/
-    #login {
-        margin-top: 100px;
-    }
-}
-
 body {
-	font-family: GillSans;
+    font-family: GillSans;
 }
 
 p {
-	font-size: 18px;
+    font-size: 18px;
 }
 
 .secondary {
-	background-color: #eef3f7;
+    background-color: #eef3f7;
 }
 
 .red {
-	color: #ec5a41;
+    color: #ec5a41;
 }
 
 .vfa-navbar {
-	background-color: #04274f;
-	margin-bottom: 0px;
-	border-top: none;
-	border-left: none;
-	border-right: none;
-	border-bottom-color: #000;
-	border-radius: 0px;
+    background-color: #04274f;
+    margin-bottom: 0px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom-color: #000;
+    border-radius: 0px;
 }
 
 .vfa-navbar .navbar-collapse li a:hover {
-	color: #fff;
+    color: #fff;
 }
 
 .vfa-header {
-	color: #04274f;
-	background-color: #eef3f7;
-	margin: 0px;
+    color: #04274f;
+    background-color: #eef3f7;
+    margin: 0px;
 }
 
 .vfa-header h1 {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 .fellow-dash h2 {
-	margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .upcoming-events .row {
-	font-size: 18px;
-	padding-bottom: 5px;
+    font-size: 18px;
+    padding-bottom: 5px;
 }
 
 .upcoming-events span {
-	vertical-align: middle;
+    vertical-align: middle;
 }
 
 .relationships .row .col-md-4 {
-	/*border:1px solid #000;*/
-	border-radius: 5px;
+    /*border:1px solid #000;*/
+    border-radius: 5px;
 }
 
 .btn-file {
@@ -98,41 +81,41 @@ p {
 }
 
 .placementStatus-pie-chart {
-	text-align: center;
+    text-align: center;
 }
 
 .placementStatus-header {
-	text-align: center;
+    text-align: center;
 }
 
 .vfa-navbar ul.nav li a {
-	color: #eef3f7 !important;
-	letter-spacing: 1px;
-	height: 52px;
-	margin: 2px;
-	padding: 15px 15px;
-	/*border-radius: 5px;*/
-	transition: 0.3s;
-	-webkit-transition: 0.3s; /* Safari */
+    color: #eef3f7 !important;
+    letter-spacing: 1px;
+    height: 52px;
+    margin: 2px;
+    padding: 15px 15px;
+    /*border-radius: 5px;*/
+    transition: 0.3s;
+    -webkit-transition: 0.3s; /* Safari */
 } .vfa-navbar ul.nav li a:hover {
-	background-color: rgba(236, 90, 65, .5) !important;
-	padding: 15px 45px;
-	/*font-size: 14pt;*/
+    background-color: rgba(236, 90, 65, .5) !important;
+    padding: 15px 45px;
+    /*font-size: 14pt;*/
 } .vfa-navbar ul.nav li a i {
-	transition: 0.3s;
-	-webkit-transition: 0.3s; /* Safari */
+    transition: 0.3s;
+    -webkit-transition: 0.3s; /* Safari */
 } .vfa-navbar ul.nav li a:hover  i {
-	font-size: 16pt;
+    font-size: 16pt;
 }
 
 .navbar-toggle.collapsed {
-	background-color: #04274f !important;
+    background-color: #04274f !important;
 } .navbar-toggle:hover {
-	background-color: #eef3f7 !important;
+    background-color: #eef3f7 !important;
 }
 
 .navbar-form {
-	margin: 0px;
+    margin: 0px;
 }
 
 .navbar-collapse {
@@ -142,4 +125,21 @@ p {
 #fellow-list-bio {
     margin-top: 10px;
     margin-bottom: 20px;
+}
+
+#login {
+    margin-top: 50px;
+}
+
+@media (min-width: 992px){ /*Laptop and Desktop*/
+    #company-highlights {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (min-width: 480px){ /*Tablet*/
+    #login {
+        margin-top: 100px;
+    }
 }
