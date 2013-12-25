@@ -13,19 +13,23 @@ class OpportunitiesController extends BaseController {
         $sort = (!is_null(Input::get('sort')) ? Input::get('sort') : 'companies.name'); //default to company name
         $order = (!is_null(Input::get('order')) ? Input::get('order') : 'asc'); //default to asc
         $search = (!is_null(Input::get('search')) ? Input::get('search') : ''); //default to empty string
-        $pagination = (!is_null(Input::get('limit')) ? Input::get('limit') : 5); //default to 5
+        $pagination = (!is_null(Input::get('limit')) ? Input::get('limit') : 10); //default to 10
         $opportunities = Opportunity::select('opportunities.*', 'companies.name')
             ->join('companies', 'opportunities.company_id', '=', 'companies.id')
             ->join('opportunityTags', 'opportunities.id', '=', 'opportunityTags.opportunity_id');
         if($search != ''){
-            $opportunities = $opportunities->where('title', 'LIKE', "%$search%")
-                    ->orWhere('companies.name', 'LIKE', "%$search%")
-                    ->orWhere('description', 'LIKE', "%$search%")
-                    ->orWhere('responsibilitiesAnswer', 'LIKE', "%$search%")
-                    ->orWhere('skillsAnswer', 'LIKE', "%$search%")
-                    ->orWhere('developmentAnswer', 'LIKE', "%$search%")
-                    ->orWhere('opportunities.city', 'LIKE', "%$search%")
-                    ->orWhere('opportunityTags.tag', 'LIKE', "%$search%");
+            $searchTerms = explode(' ', $search);
+            foreach($searchTerms as $searchTerm){
+                $opportunities = $opportunities->Where('title', 'LIKE', "%$searchTerm%")
+                    ->orWhere('companies.name', 'LIKE', "%$searchTerm%")
+                    ->orWhere('teaser', 'LIKE', "%$searchTerm%")
+                    ->orWhere('description', 'LIKE', "%$searchTerm%")
+                    ->orWhere('responsibilitiesAnswer', 'LIKE', "%$searchTerm%")
+                    ->orWhere('skillsAnswer', 'LIKE', "%$searchTerm%")
+                    ->orWhere('developmentAnswer', 'LIKE', "%$searchTerm%")
+                    ->orWhere('opportunities.city', 'LIKE', "%$searchTerm%")
+                    ->orWhere('opportunityTags.tag', 'LIKE', "%$searchTerm%");
+            }
         }
         $opportunities = $opportunities->orderBy($sort, $order)->groupBy('opportunities.id')->paginate($pagination);
         $pills  = array();
