@@ -1,7 +1,15 @@
 @extends('layouts.default')
 
 @section('header')
-Dashboard
+    @if( Auth::user()->role == "Admin" )
+        Admin Dashboard
+    @elseif( Auth::user()->role == "Fellow") {{-- Fellow's Dashboard --}}
+        Fellow Dashboard
+    @elseif( Auth::user()->role == "Hiring Manager")
+        Hiring Manager Dashboard
+    @else
+  <!-- We've got problems -->
+    @endif
 @stop
 
 @section('content')
