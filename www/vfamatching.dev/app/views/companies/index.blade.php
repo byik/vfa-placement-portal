@@ -5,5 +5,7 @@ Companies
 @stop
 
 @section('content')
-<h1>TODO: Replace with a list of companies</h1>
+<div class="container">
+    <h1>TODO: Replace with a list of companies</h1>
+</div>
 @stop
