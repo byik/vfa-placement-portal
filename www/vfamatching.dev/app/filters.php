@@ -120,3 +120,24 @@ Route::filter('profile', function()
         throw new Exception("This route should require authentication");
     }
 });
+
+/*
+|--------------------------------------------------------------------------
+| Admin Filter
+|--------------------------------------------------------------------------
+|
+| The Profile Filter ensures that the user is an admin before hitting 
+| protected routes.
+|
+*/
+
+Route::filter('admin', function()
+{
+    if(Auth::check()){
+        if( Auth::user()->role != "Admin" ) {
+            Redirect::route('dashboard')->with('flash_error', "You don't have the necessary permissions to do that.");
+        }
+    } else {
+        throw new Exception("This route should require authentication");
+    }
+});

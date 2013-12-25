@@ -31,7 +31,7 @@ class OpportunitiesController extends BaseController {
                     ->orWhere('opportunityTags.tag', 'LIKE', "%$searchTerm%");
             }
         }
-        $opportunities = $opportunities->orderBy($sort, $order)->groupBy('opportunities.id')->paginate($pagination);
+        $opportunities = $opportunities->orderBy($sort, $order)->groupBy('opportunities.id')->having('isPublished', '=', true)->paginate($pagination);
         $pills  = array();
             array_push($pills, new Pill("Title", array(
                     new DropdownItem("", URL::route( 'opportunities.index', array('sort' => 'title', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
@@ -49,7 +49,7 @@ class OpportunitiesController extends BaseController {
                     new DropdownItem("Oldest first", URL::route( 'opportunities.index', array('sort' => 'created_at', 'order' => 'asc', 'search' => $search))),
                     new DropdownItem("Newest first", URL::route( 'opportunities.index', array('sort' => 'created_at', 'order' => 'desc', 'search' => $search)))
                 )));
-        return View::make('opportunities.index', array('total' => Opportunity::count(), 'opportunities' => $opportunities, 'sort' => $sort, 'order' => $order, 'search' => $search, 'pills' => $pills));
+        return View::make('opportunities.index', array('total' => Opportunity::Where('isPublished', '=', true)->count(), 'opportunities' => $opportunities, 'sort' => $sort, 'order' => $order, 'search' => $search, 'pills' => $pills));
     }
 
     /**
@@ -119,6 +119,30 @@ class OpportunitiesController extends BaseController {
     public function destroy($id)
     {
        //
+    }
+
+    public function publish($id)
+    {
+        try{
+            $opportunity = Opportunity::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return View::make('404')->with('error', 'Opportunity not found!');
+        }
+        $opportunity->isPublished = true;
+        $opportunity->save();
+        return Redirect::back()->with('flash_notice', "Opportunity published");
+    }
+
+    public function unpublish($id)
+    {
+        try{
+            $opportunity = Opportunity::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return View::make('404')->with('error', 'Opportunity not found!');
+        }
+        $opportunity->isPublished = false;
+        $opportunity->save();
+        return Redirect::back()->with('flash_notice', "Opportunity unpublished");
     }
 
 }

@@ -23,6 +23,18 @@
                 @else
                     <div class="col-md-3"><a data-toggle="modal" href="#pitch-modal-{{ $opportunity->id }}" class="btn btn-primary modal-btn form-control"><i class="fa fa-comment"></i> Pitch</a></div>
                 @endif
+            @elseif(Auth::user()->role == "Admin")
+                <div class="col-md-3">
+                    @if( $opportunity->isPublished )
+                        {{ Form::open(array('url' => 'opportunities/'.$opportunity->id.'/unpublish', 'method' => 'PUT', 'class'=>'publishable-form')) }}
+                            <a href="#" class="btn btn-danger form-control publishable"><i class="fa fa-eye-slash"></i> Unpublish</a>
+                        {{ Form::close() }}
+                    @else
+                        {{ Form::open(array('url' => 'opportunities/'.$opportunity->id.'/publish', 'method' => 'PUT', 'class'=>'publishable-form')) }}
+                            <a href="#" class="btn btn-primary form-control publishable"><i class="fa fa-eye"></i> Publish</a>
+                        {{ Form::close() }}
+                    @endif
+                </div>
             @endif
         </div>
     </div>
@@ -52,5 +64,13 @@
     $('.pitch-submit').unbind().click(function(e){
         $(this).parent().parent().find('.pitch-form').submit();
         e.preventDefault();//don't follow the actual link
+    });
+
+    $(document).ready(function() {  
+        //unbind so the click only fires once
+        $('.publishable').unbind().click(function(e){
+            $(this).parent('.publishable-form').submit();
+            e.preventDefault();//don't follow the actual link
+        });
     });
 </script>

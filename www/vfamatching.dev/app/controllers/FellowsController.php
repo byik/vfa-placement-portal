@@ -28,10 +28,7 @@ class FellowsController extends BaseController {
                     ->orWhere('users.lastName', 'LIKE', "%$searchTerm%");
             }
         }
-        if(Auth::user()->role != "Admin"){
-            $fellows = $fellows->where('isPublished', '=', true);
-        }
-        $fellows = $fellows->orderBy($sort, $order)->groupBy('fellows.id')->paginate($pagination);
+        $fellows = $fellows->orderBy($sort, $order)->groupBy('fellows.id')->having('isPublished','=',true)->paginate($pagination);
         $pills  = array();
             array_push($pills, new Pill("First Name", array(
                     new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'users.firstName', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
@@ -57,7 +54,7 @@ class FellowsController extends BaseController {
                     new DropdownItem("Oldest first", URL::route( 'fellows.index', array('sort' => 'hometown', 'order' => 'asc', 'search' => $search))),
                     new DropdownItem("Newest first", URL::route( 'fellows.index', array('sort' => 'hometown', 'order' => 'desc', 'search' => $search)))
                 )));
-        return View::make('fellows.index', array('total' => Fellow::Where('isPublished', '=', 1)->count(), 'fellows' => $fellows, 'sort' => $sort, 'order' => $order, 'search' => $search, 'pills' => $pills));
+        return View::make('fellows.index', array('total' => Fellow::Where('isPublished', '=', true)->count(), 'fellows' => $fellows, 'sort' => $sort, 'order' => $order, 'search' => $search, 'pills' => $pills));
     }
 
     /**
