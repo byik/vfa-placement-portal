@@ -89,7 +89,7 @@
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('bio') ? "has-error" : ""}}@endif">
                 {{ Form::label('bio', 'Tell us about yourself') }}
-                {{ Form::textarea('bio', Input::old('bio'), array('class'=>'form-control')) }}
+                {{ Form::textarea('bio', Input::old('bio'), array('class'=>'form-control limit', 'limit'=>1400)) }}
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('school') ? "has-error" : ""}}@endif">
                 {{ Form::label('school', 'What college or university did you graduate from?') }}
