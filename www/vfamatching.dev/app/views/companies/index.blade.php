@@ -1,11 +1,9 @@
 @extends('layouts.default')
 
 @section('header')
-Companies
+    @include('partials.components.searchHeader', array('title' => "Companies", 'results' => $companies->getTotal(), 'total' => $total, 'url' => URL::route( 'companies.index' )))
 @stop
 
 @section('content')
-<div class="container">
-    <h1>TODO: Replace with a list of companies</h1>
-</div>
+    @include('partials.list', array('listItems' => $companies, 'search' => $search, 'url' => URL::route('companies.index'), 'pills' => $pills, 'indexView' => 'partials.indexes.company', 'type' => 'company'))
 @stop

@@ -9,7 +9,44 @@ class CompaniesController extends BaseController {
 	 */
 	public function index()
 	{
-        return View::make('companies.index');
+        $sort = (!is_null(Input::get('sort')) ? Input::get('sort') : 'name'); //default to name
+        $order = (!is_null(Input::get('order')) ? Input::get('order') : 'asc'); //default to asc
+        $search = (!is_null(Input::get('search')) ? Input::get('search') : ''); //default to empty string
+        $pagination = (!is_null(Input::get('limit')) ? Input::get('limit') : 10); //default to 10
+        $companies = Company::select('companies.*');
+        if($search != ''){
+            $searchTerms = explode(' ', $search);
+            foreach($searchTerms as $searchTerm){
+                $companies = $companies->where('name', 'LIKE', "%$searchTerm%")
+                    ->orWhere('tagline', 'LIKE', "%$searchTerm%")
+                    ->orWhere('city', 'LIKE', "%$searchTerm%")
+                    ->orWhere('url', 'LIKE', "%$searchTerm%")
+                    ->orWhere('visionAnswer', 'LIKE', "%$searchTerm%")
+                    ->orWhere('needsAnswer', 'LIKE', "%$searchTerm%")
+                    ->orWhere('teamAnswer', 'LIKE', "%$searchTerm%")
+                    ->orWhere('employees', '=', $searchTerm)
+                    ->orWhere('twitterHandle', 'LIKE', "%$searchTerm%");
+            }
+        }
+        $companies = $companies->orderBy($sort, $order)->groupBy('companies.id')->having('isPublished', '=', true)->paginate($pagination);
+        $pills  = array();
+            array_push($pills, new Pill("Name", array(
+                    new DropdownItem("", URL::route( 'companies.index', array('sort' => 'name', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'companies.index', array('sort' => 'name', 'order' => 'desc', 'search' => $search)), "sort-alpha-desc")
+                )));
+            array_push($pills, new Pill("City", array(
+                    new DropdownItem("", URL::route( 'companies.index', array('sort' => 'city', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'companies.index', array('sort' => 'city', 'order' => 'desc', 'search' => $search)), "sort-alpha-desc")
+                )));
+            array_push($pills, new Pill("Employees", array(
+                    new DropdownItem("", URL::route( 'companies.index', array('sort' => 'employees', 'order' => 'asc', 'search' => $search)), "sort-numeric-asc"),
+                    new DropdownItem("", URL::route( 'companies.index', array('sort' => 'employees', 'order' => 'desc', 'search' => $search)), "sort-numeric-desc")
+                )));
+            array_push($pills, new Pill("Date Added", array(
+                    new DropdownItem("Oldest first", URL::route( 'companies.index', array('sort' => 'created_at', 'order' => 'asc', 'search' => $search))),
+                    new DropdownItem("Newest first", URL::route( 'companies.index', array('sort' => 'created_at', 'order' => 'desc', 'search' => $search)))
+                )));
+        return View::make('companies.index', array('total' => Company::Where('isPublished', '=', true)->count(), 'companies' => $companies, 'sort' => $sort, 'order' => $order, 'search' => $search, 'pills' => $pills));
 	}
 
 	/**
