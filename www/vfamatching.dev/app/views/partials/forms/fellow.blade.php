@@ -45,6 +45,11 @@
                 {{ Form::label('hometown', 'Where is your hometown?') }}
                 {{ Form::text('hometown', Input::old('hometown'), array('class'=>'form-control')) }}
             </div>
+            <div class="form-group @if($validationErrors){{ $validationErrors->has('skills') ? "has-error" : ""}}@endif">
+                {{ Form::label('skills', 'List your skills, seperated commas') }}
+                {{ Form::text('skills', Input::old('skills'), array('class'=>'form-control')) }}
+                <small><span class="">Example:<em> Excel, Graphic Design, Social Media Marketing</em></span></small>
+            </div>
             
             {{ Form::label('displayPicture', 'Select a display picture to upload') }}
             <p>
@@ -111,7 +116,11 @@
                 {{ Form::label('hometown', 'Where is your hometown?') }}
                 {{ Form::text('hometown', Input::old('hometown'), array('class'=>'form-control')) }}
             </div>
-            
+            <div class="form-group @if($validationErrors){{ $validationErrors->has('skills') ? "has-error" : ""}}@endif">
+                {{ Form::label('skills', 'List your skills, seperated commas') }}
+                {{ Form::text('skills', Input::old('skills'), array('class'=>'form-control')) }}
+                <small><span class="">Example:<em> Excel, Graphic Design, Social Media Marketing</em></span></small>
+            </div>
             {{ Form::label('displayPicture', 'Select a display picture to upload') }}
             <p>
                 <span class="btn btn-link btn-file">
