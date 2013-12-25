@@ -21,7 +21,7 @@
             <p>{{ $fellow->bio }}</p>
         </div>
         @if(!empty($fellow->resumePath))
-            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                 <a class="btn btn-primary form-control" href="{{ $fellow->resumePath }}" target="_blank"><i class="fa fa-cloud-download"></i> Download Résumé</a>
             </div>
         @endif
