@@ -16,7 +16,7 @@ class OpportunitiesController extends BaseController {
         $pagination = (!is_null(Input::get('limit')) ? Input::get('limit') : 10); //default to 10
         $opportunities = Opportunity::select('opportunities.*', 'companies.name')
             ->join('companies', 'opportunities.company_id', '=', 'companies.id')
-            ->join('opportunityTags', 'opportunities.id', '=', 'opportunityTags.opportunity_id');
+            ->leftJoin('opportunityTags', 'opportunities.id', '=', 'opportunityTags.opportunity_id');
         if($search != ''){
             $searchTerms = explode(' ', $search);
             foreach($searchTerms as $searchTerm){

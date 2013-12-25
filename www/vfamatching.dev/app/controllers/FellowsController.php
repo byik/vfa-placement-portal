@@ -14,7 +14,8 @@ class FellowsController extends BaseController {
         $search = (!is_null(Input::get('search')) ? Input::get('search') : ''); //default to empty string
         $pagination = (!is_null(Input::get('limit')) ? Input::get('limit') : 10); //default to 10
         $fellows = Fellow::select('fellows.*', 'users.firstName', 'users.lastName')
-            ->join('users', 'fellows.user_id', '=', 'users.id');
+            ->join('users', 'fellows.user_id', '=', 'users.id')
+            ->leftJoin('fellowSkills', 'fellows.id', '=', 'fellowSkills.fellow_id');
         if($search != ''){
             $searchTerms = explode(' ', $search);
             foreach($searchTerms as $searchTerm){
@@ -25,7 +26,8 @@ class FellowsController extends BaseController {
                     ->orWhere('graduationYear', '=', $searchTerm)
                     ->orWhere('hometown', 'LIKE', "%$searchTerm%")
                     ->orWhere('users.firstName', 'LIKE', "%$searchTerm%")
-                    ->orWhere('users.lastName', 'LIKE', "%$searchTerm%");
+                    ->orWhere('users.lastName', 'LIKE', "%$searchTerm%")
+                    ->orWhere('fellowSkills.skill', 'LIKE', "%$searchTerm%");
             }
         }
         $fellows = $fellows->orderBy($sort, $order)->groupBy('fellows.id')->having('isPublished','=',true)->paginate($pagination);
