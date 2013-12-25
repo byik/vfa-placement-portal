@@ -1,19 +1,20 @@
 @extends('layouts.default')
 
 @section('header')
-	<div class="row">
-		<div class="col-md-8">
-            {{ $opportunity->title }}
-            <small>{{ $opportunity->city }}</small>
-        </div>
-		<div class="col-md-4">
-            <h3>@include('partials.links.company', array('company' => $opportunity->company))</h3>
-        </div>
-	</div>
+    {{ $opportunity->title }}
+    <small><em>{{ $opportunity->city }}</em></small>
 @stop
 
 @section('content')
     <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                @include('partials.components.tags', array('tags' => $opportunity->opportunityTags))
+            </div>
+            <div class="col-md-4">
+                <h2>@include('partials.links.company', array('company' => $opportunity->company))</h2>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12">
             	<h3><strong>Opportunity Description</strong></h3>

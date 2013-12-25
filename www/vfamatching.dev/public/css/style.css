@@ -132,8 +132,12 @@ p {
     margin-top: 50px;
 }
 
+#company-answers {
+    margin: 50px auto;
+}
+
 @media (min-width: 992px){ /*Laptop and Desktop*/
-    #company-highlights {
+    #highlights {
         margin-top: 20px;
         margin-bottom: 20px;
     }

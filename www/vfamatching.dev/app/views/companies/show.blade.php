@@ -9,7 +9,7 @@
 <!-- TODO: ADD COMPANY LOGO -->
 
 <div class="container">
-	<div class="row" id="company-highlights">
+	<div class="row" id="highlights">
     	<div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>City</small></h2><h3 class="text-center">{{ $company->city }}</h3></div>
     	<div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>Founded</small></h2><h3 class="text-center">{{ $company->yearFounded }}</h3></div>
     	<div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>Employees</small></h2><h3 class="text-center">{{ $company->employees }}</h3></div>
@@ -17,7 +17,7 @@
     </div>
 
 
-    <div class="row">
+    <div class="row" id="company-answers">
         <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
             <h4><strong>What is your company's vision?</strong></h4>
             <p>{{ $company->visionAnswer }}</p>

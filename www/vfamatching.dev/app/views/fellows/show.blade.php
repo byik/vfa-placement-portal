@@ -1,17 +1,36 @@
 @extends('layouts.default')
 
 @section('header')
-    Fellow Profile
+    {{ $fellow->user->firstName . ' ' . $fellow->user->lastName }}
+    @if(Auth::user()->id == $fellow->user->id)
+        <small><em><a href="{{ URL::route('fellows.edit', $fellow->id) }}"><i class="fa fa-pencil-square-o"></i>Edit your profile</a></em></small>
+    @endif
 @stop
 
 @section('content')
 <div class="container">
-	@if(Auth::user()->id == $fellow->user->id)
-        <a href="{{ URL::route('fellows.edit', $fellow->id) }}">Edit your profile &raquo;</a>
-    @endif
-    <h1>{{ $fellow->user->firstName . ' ' . $fellow->user->lastName }}</h1>
     @if(!empty($fellow->displayPicturePath))
     	<img src="{{ $fellow->displayPicturePath }}" class="img-responsive" alt="Responsive image">
     @endif
+    <div class="row">
+        @include('partials.components.skills', array('skills' => $fellow->fellowSkills))
+    </div>
+    <div class="row">
+        <div class="col-md-12" id="fellow-list-bio">
+            <h3>Bio</h3>
+            <p>{{ $fellow->bio }}</p>
+        </div>
+        @if(!empty($fellow->resumePath))
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                <a class="btn btn-primary form-control" href="{{ $fellow->resumePath }}" target="_blank"><i class="fa fa-cloud-download"></i> Download Résumé</a>
+            </div>
+        @endif
+    </div>
+    <div class="row" id="highlights">
+        <div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>School</small></h2><h3 class="text-center">{{ $fellow->school }}</h3></div>
+        <div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>Major</small></h2><h3 class="text-center">{{ $fellow->degree . " in " . $fellow->major }}</h3></div>
+        <div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>Hometown</small></h2><h3 class="text-center">{{ $fellow->hometown }}</h3></div>
+        <div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>Graduated</small></h2><h3 class="text-center">{{ $fellow->graduationYear }}</h3></div>
+    </div>
 </div>
 @stop
