@@ -9,7 +9,55 @@ class FellowsController extends BaseController {
      */
     public function index()
     {
-        return View::make('fellows.index');
+        $sort = (!is_null(Input::get('sort')) ? Input::get('sort') : 'firstName'); //default to fellow first name
+        $order = (!is_null(Input::get('order')) ? Input::get('order') : 'asc'); //default to asc
+        $search = (!is_null(Input::get('search')) ? Input::get('search') : ''); //default to empty string
+        $pagination = (!is_null(Input::get('limit')) ? Input::get('limit') : 10); //default to 10
+        $fellows = Fellow::select('fellows.*', 'users.firstName', 'users.lastName')
+            ->join('users', 'fellows.user_id', '=', 'users.id');
+        if($search != ''){
+            $searchTerms = explode(' ', $search);
+            foreach($searchTerms as $searchTerm){
+                $fellows = $fellows->Where('bio', 'LIKE', "%$searchTerm%")
+                    ->orWhere('school', 'LIKE', "%$searchTerm%")
+                    ->orWhere('major', 'LIKE', "%$searchTerm%")
+                    ->orWhere('degree', 'LIKE', "%$searchTerm%")
+                    ->orWhere('graduationYear', '=', $searchTerm)
+                    ->orWhere('hometown', 'LIKE', "%$searchTerm%")
+                    ->orWhere('users.firstName', 'LIKE', "%$searchTerm%")
+                    ->orWhere('users.lastName', 'LIKE', "%$searchTerm%");
+            }
+        }
+        if(Auth::user()->role != "Admin"){
+            $fellows = $fellows->where('isPublished', '=', true);
+        }
+        $fellows = $fellows->orderBy($sort, $order)->groupBy('fellows.id')->paginate($pagination);
+        $pills  = array();
+            array_push($pills, new Pill("First Name", array(
+                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'users.firstName', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'users.firstName', 'order' => 'desc', 'search' => $search)), "sort-alpha-desc")
+                )));
+            array_push($pills, new Pill("Last Name", array(
+                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'users.lastName', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'users.lastName', 'order' => 'desc', 'search' => $search)), "sort-alpha-desc")
+                )));
+            array_push($pills, new Pill("Major", array(
+                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'major', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'major', 'order' => 'desc', 'search' => $search)), "sort-alpha-desc")
+                )));
+            array_push($pills, new Pill("School", array(
+                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'school', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'school', 'order' => 'desc', 'search' => $search)), "sort-alpha-desc")
+                )));
+            array_push($pills, new Pill("Hometown", array(
+                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'hometown', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'hometown', 'order' => 'desc', 'search' => $search)), "sort-alpha-desc")
+                )));
+            array_push($pills, new Pill("Date Added", array(
+                    new DropdownItem("Oldest first", URL::route( 'fellows.index', array('sort' => 'hometown', 'order' => 'asc', 'search' => $search))),
+                    new DropdownItem("Newest first", URL::route( 'fellows.index', array('sort' => 'hometown', 'order' => 'desc', 'search' => $search)))
+                )));
+        return View::make('fellows.index', array('total' => Fellow::Where('isPublished', '=', 1)->count(), 'fellows' => $fellows, 'sort' => $sort, 'order' => $order, 'search' => $search, 'pills' => $pills));
     }
 
     /**
@@ -189,6 +237,30 @@ class FellowsController extends BaseController {
     public function destroy($id)
     {
         //
+    }
+
+    public function publish($id)
+    {
+        try{
+            $fellow = Fellow::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return View::make('404')->with('error', 'Fellow not found!');
+        }
+        $fellow->isPublished = true;
+        $fellow->save();
+        return Redirect::back()->with('flash_notice', "Fellow published");
+    }
+
+    public function unpublish($id)
+    {
+        try{
+            $fellow = Fellow::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return View::make('404')->with('error', 'Fellow not found!');
+        }
+        $fellow->isPublished = false;
+        $fellow->save();
+        return Redirect::back()->with('flash_notice', "Fellow unpublished");
     }
 
 }

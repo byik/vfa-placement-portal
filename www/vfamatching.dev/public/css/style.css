@@ -138,3 +138,8 @@ p {
 .navbar-collapse {
     max-height: none;
 }
+
+#fellow-list-bio {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}

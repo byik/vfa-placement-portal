@@ -16,13 +16,8 @@
 			</div>
 			<div class="placementStatuses">
 				<h2><small>Placement Statuses</small></h2>
-                	<?php $count = 1 ?>
 					@foreach($placementStatuses as $placementStatus)
 						@include('partials.indexes.placementStatus', array('placementStatus' => $placementStatus))
-						<?php if($count % 3 == 0) { //every third placementStatus ?>
-						<?php }
-							$count += 1 ;
-						 ?>
 					@endforeach
 			</div>
 		</div>
@@ -30,6 +25,6 @@
 @else
     <div class="container">
     	<p>Looks like you aren't introduced to any Opportunities yet...<p>
-    	<p>Head on over to the list of <a href="{{ URL::route('opportunities.index') }}">Opportunities</a> and start pitching!<p>
+    	<p>Head on over to the <a class="btn btn-default" href="{{ URL::route('opportunities.index') }}">list of Opportunities</a> and start pitching!<p>
     </div>
 @endif
