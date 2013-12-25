@@ -19,4 +19,5 @@ class FellowSkill extends BaseModel {
 	{
 		$this->belongsTo("Fellow");
 	}
+
 }

@@ -117,9 +117,30 @@ class FellowsController extends BaseController {
             $newFellow->resumePath = Config::get('upload.directory') . '/' . $newName;
         }
 
+        if (Input::has('skills'))
+        {
+            //process file input
+            //TODO: Validate that this is a pdf
+            $fellowSkills = array();
+            $skills = explode(',', Input::get('skills'));
+            //trim each skill
+            array_walk($skills, function(&$value, $key){
+                $value = trim($value);
+            });
+            foreach($skills as $skill){
+                $fellowSkill = new FellowSkill();
+                $fellowSkill->skill = $skill;
+                array_push($fellowSkills, $fellowSkill);
+            }
+        }
+
         try {
             $authenticatedUser->save();
             $newFellow->save();
+            foreach($fellowSkills as $fellowSkill){
+                $fellowSkill->fellow_id = $newFellow->id;
+                $fellowSkill->save();
+            }
         } catch (ValidationFailedException $e) {
             return Redirect::back()->with('validation_errors', $e->getErrorMessages())->withInput();
         }
@@ -215,9 +236,33 @@ class FellowsController extends BaseController {
             $fellow->resumePath = Config::get('upload.directory') . '/' . $newName;
         }
 
+        if (Input::has('skills'))
+        {
+            //process file input
+            //TODO: Validate that this is a pdf
+            $fellowSkills = array();
+            $skills = explode(',', Input::get('skills'));
+            //trim each skill
+            array_walk($skills, function(&$value, $key){
+                $value = trim($value);
+            });
+            foreach($skills as $skill){
+                $fellowSkill = new FellowSkill();
+                $fellowSkill->skill = $skill;
+                array_push($fellowSkills, $fellowSkill);
+            }
+        }
+
         try {
             $authenticatedUser->save();
             $fellow->save();
+            foreach($fellow->fellowSkills as $fellowSkill){
+                $fellowSkill->delete();
+            }
+            foreach($fellowSkills as $fellowSkill){
+                $fellowSkill->fellow_id = $fellow->id;
+                $fellowSkill->save();
+            }
         } catch (ValidationFailedException $e) {
             return Redirect::back()->with('validation_errors', $e->getErrorMessages())->withInput();
         }
