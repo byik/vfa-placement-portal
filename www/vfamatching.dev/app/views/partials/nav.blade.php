@@ -20,17 +20,15 @@
           <li><a href="{{ URL::to('/fellows') }}"><i class="fa fa-book"></i> Fellows</a></li>
           <li><a href="{{ URL::to('/companies') }}"><i class="fa fa-building-o"></i> Companies</a></li>
           <li><a href="{{ URL::to('/opportunities') }}"><i class="fa fa-briefcase"></i> Opportunities</a></li>
-          <li><a href="{{ URL::to('/logout') }}">Sign out</a></li>
         @elseif( Auth::user()->role == "Fellow")
           <li class=""><a href="{{ URL::to('/') }}"><i class="fa fa-home"></i> Dashboard</a></li>
           <li><a href="{{ URL::to('/fellows/' . Auth::user()->profile->id) }}"><i class="fa fa-user"></i> Profile</a></li>
           <li><a href="{{ URL::to('/opportunities') }}"><i class="fa fa-briefcase"></i> Opportunities</a></li>
-          <li><a href="{{ URL::to('/logout') }}">Sign out</a></li>
         @elseif( Auth::user()->role == "Hiring Manager" )
-          TODO
         @else
           <!-- We've got problems -->
         @endif
+          <li><a href="{{ URL::to('/logout') }}">Sign out</a></li>
       @endif
     </ul>
   </div><!-- /.navbar-collapse -->
