@@ -6,7 +6,7 @@
                     <h3><strong><a href="{{ URL::route('fellows.show', array('fellows'=>$fellow->id)) }}">{{ $fellow->firstName . ' ' . $fellow->lastName }}</a></strong></h3>
                 </div>
                 <div class="col-md-5">
-                    SKILLZ
+                    @include('partials.components.skills', array('skills' => $fellow->fellowSkills))
                 </div>
             </div>
         </div>
