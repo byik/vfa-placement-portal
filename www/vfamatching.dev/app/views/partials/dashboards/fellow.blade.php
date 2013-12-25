@@ -24,7 +24,8 @@
 	</div>
 @else
     <div class="container">
-    	<p>Looks like you aren't introduced to any Opportunities yet... Head on over to the <a href="{{ URL::route('opportunities.index') }}">list of Opportunities</a> and start pitching!<p>
-        <p>Your pitches will be reviewed by VFA Staff, and you'll receive an email when they're approved.</p>
+        <h4>Welcome to the Fellow Dashboard!</h4>
+    	<p>This is were you'll find your upcoming events and progress with each Opportunity you're interested in. But you haven't been introduced to any companies yet... <p>
+        <p>Head on over to the <a href="{{ URL::route('opportunities.index') }}">list of Opportunities</a> and start pitching! Your pitches will be reviewed by VFA Staff, and you'll receive an email when they're approved.</p>
     </div>
 @endif
