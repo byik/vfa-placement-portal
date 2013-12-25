@@ -45,6 +45,9 @@
                 {{ Form::label('hometown', 'Where is your hometown?') }}
                 {{ Form::text('hometown', Input::old('hometown'), array('class'=>'form-control')) }}
             </div>
+            <?php  
+                $fellow->skills = $fellow->printSkills();
+            ?>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('skills') ? "has-error" : ""}}@endif">
                 {{ Form::label('skills', 'List your skills, seperated commas') }}
                 {{ Form::text('skills', Input::old('skills'), array('class'=>'form-control')) }}

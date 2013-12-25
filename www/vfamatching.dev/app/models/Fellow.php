@@ -71,4 +71,18 @@ class Fellow extends BaseModel {
             "PhD",
             "JD");
     }
+
+    public function printSkills()
+    {
+        $current = 0;
+        $count = count($this->fellowSkills);
+        foreach($this->fellowSkills as $fellowSkill){
+            $this->skills .= $fellowSkill->skill;
+            $current += 1;
+            if($current != $count){
+                $this->skills .= ", ";
+            }
+        }
+        return $this->skills;
+    }
 }
