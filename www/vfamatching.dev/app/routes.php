@@ -46,6 +46,8 @@ Route::group(array('before' => 'auth'), function()
             Route::put('fellows/{id}/unpublish', 'FellowsController@unpublish');
             Route::put('opportunities/{id}/publish', 'OpportunitiesController@publish');
             Route::put('opportunities/{id}/unpublish', 'OpportunitiesController@unpublish');
+            Route::put('companies/{id}/publish', 'CompaniesController@publish');
+            Route::put('companies/{id}/unpublish', 'CompaniesController@unpublish');
         });
     });
 });

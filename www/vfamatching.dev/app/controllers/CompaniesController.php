@@ -122,4 +122,28 @@ class CompaniesController extends BaseController {
 		//
 	}
 
+    public function publish($id)
+    {
+        try{
+            $company = Company::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return View::make('404')->with('error', 'Company not found!');
+        }
+        $company->isPublished = true;
+        $company->save();
+        return Redirect::back()->with('flash_notice', "Company published");
+    }
+
+    public function unpublish($id)
+    {
+        try{
+            $company = Company::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return View::make('404')->with('error', 'Company not found!');
+        }
+        $company->isPublished = false;
+        $company->save();
+        return Redirect::back()->with('flash_notice', "Company unpublished");
+    }
+
 }
