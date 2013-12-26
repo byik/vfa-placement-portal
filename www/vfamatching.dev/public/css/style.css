@@ -123,6 +123,10 @@ p {
     max-height: none;
 }
 
+.list-summary {
+    margin: 20px auto;
+}
+
 #fellow-list-bio {
     margin-top: 10px;
     margin-bottom: 20px;

@@ -17,24 +17,24 @@
                     {{ $fellow->bio }}
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3"><strong>School: </strong>{{ $fellow->school }}</div>
-                <div class="col-md-3"><strong>Major: </strong>{{ $fellow->degree }} in {{ $fellow->major }}</div>
-                <div class="col-md-3"><strong>Hometown: </strong>{{ $fellow->hometown }}</div>
-                @if(Auth::user()->role == "Admin")
-                    <div class="col-md-3">
-                        @if( $fellow->isPublished )
-                            {{ Form::open(array('url' => 'fellows/'.$fellow->id.'/unpublish', 'method' => 'PUT', 'class'=>'publishable-form')) }}
-                                <a href="#" class="btn btn-danger form-control publishable"><i class="fa fa-eye-slash"></i> Unpublish</a>
-                            {{ Form::close() }}
-                        @else
-                            {{ Form::open(array('url' => 'fellows/'.$fellow->id.'/publish', 'method' => 'PUT', 'class'=>'publishable-form')) }}
-                                <a href="#" class="btn btn-primary form-control publishable"><i class="fa fa-eye"></i> Publish</a>
-                            {{ Form::close() }}
-                        @endif
-                    </div>
+            <div class="row list-summary">
+                <div class="col-md-4"><strong>School: </strong>{{ $fellow->school }}</div>
+                <div class="col-md-4"><strong>Major: </strong>{{ $fellow->degree }} in {{ $fellow->major }}</div>
+                <div class="col-md-4"><strong>Hometown: </strong>{{ $fellow->hometown }}</div>
+            </div>
+            @if(Auth::user()->role == "Admin")
+            <div class="pull-right admin-controls">
+                @if( $fellow->isPublished )
+                    {{ Form::open(array('url' => 'fellows/'.$fellow->id.'/unpublish', 'method' => 'PUT', 'class'=>'publishable-form')) }}
+                        <a href="#" class="btn btn-danger form-control publishable"><i class="fa fa-eye-slash"></i> Unpublish</a>
+                    {{ Form::close() }}
+                @else
+                    {{ Form::open(array('url' => 'fellows/'.$fellow->id.'/publish', 'method' => 'PUT', 'class'=>'publishable-form')) }}
+                        <a href="#" class="btn btn-primary form-control publishable"><i class="fa fa-eye"></i> Publish</a>
+                    {{ Form::close() }}
                 @endif
             </div>
+            @endif
         </div>
     </div>
 </div>

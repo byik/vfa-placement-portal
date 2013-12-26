@@ -42,6 +42,10 @@ class CompaniesController extends BaseController {
                     new DropdownItem("", URL::route( 'companies.index', array('sort' => 'employees', 'order' => 'asc', 'search' => $search)), "sort-numeric-asc"),
                     new DropdownItem("", URL::route( 'companies.index', array('sort' => 'employees', 'order' => 'desc', 'search' => $search)), "sort-numeric-desc")
                 )));
+            array_push($pills, new Pill("Founded", array(
+                    new DropdownItem("Oldest first", URL::route( 'companies.index', array('sort' => 'yearFounded', 'order' => 'asc', 'search' => $search)), ""),
+                    new DropdownItem("Youngest first", URL::route( 'companies.index', array('sort' => 'yearFounded', 'order' => 'desc', 'search' => $search)), "")
+                )));
             array_push($pills, new Pill("Date Added", array(
                     new DropdownItem("Oldest first", URL::route( 'companies.index', array('sort' => 'created_at', 'order' => 'asc', 'search' => $search))),
                     new DropdownItem("Newest first", URL::route( 'companies.index', array('sort' => 'created_at', 'order' => 'desc', 'search' => $search)))

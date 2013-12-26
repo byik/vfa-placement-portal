@@ -12,19 +12,22 @@
             </div>
         </div>
         <div class="panel-body">
-            <div class="col-md-3"><strong>Company: </strong>@include('partials.links.company', array('company' => $opportunity->company))</div>
-            <div class="col-md-3"><strong>City: </strong>{{ $opportunity->city }}</div>
-            <div class="col-md-3"><strong>Date Added: </strong>{{ Carbon::createFromFormat('Y-m-d H:i:s', $opportunity->created_at)->diffForHumans(); }}</div>
-            @if(Auth::user()->role == "Fellow")
-                @if(PlacementStatus::hasPlacementStatus(Auth::user()->profile, $opportunity))
-                    <div class="col-md-3"><strong>Placement Status: </strong>{{ PlacementStatus::getRecentPlacementStatus(Auth::user()->profile, $opportunity)->printWithDate() }}</div>
-                @elseif(Pitch::hasPitch(Auth::user()->profile, $opportunity))
-                    <div class="col-md-3"><strong>Pitch Status: </strong>{{ Pitch::getPitch(Auth::user()->profile, $opportunity)->status }}</div>
-                @else
-                    <div class="col-md-3"><a data-toggle="modal" href="#pitch-modal-{{ $opportunity->id }}" class="btn btn-primary modal-btn form-control"><i class="fa fa-comment"></i> Pitch</a></div>
+            <div class="row list-summary">
+                <div class="col-md-3"><strong>Company: </strong>@include('partials.links.company', array('company' => $opportunity->company))</div>
+                <div class="col-md-3"><strong>City: </strong>{{ $opportunity->city }}</div>
+                <div class="col-md-3"><strong>Date Added: </strong>{{ Carbon::createFromFormat('Y-m-d H:i:s', $opportunity->created_at)->diffForHumans(); }}</div>
+                @if(Auth::user()->role == "Fellow")
+                    @if(PlacementStatus::hasPlacementStatus(Auth::user()->profile, $opportunity))
+                        <div class="col-md-3"><strong>Placement Status: </strong>{{ PlacementStatus::getRecentPlacementStatus(Auth::user()->profile, $opportunity)->printWithDate() }}</div>
+                    @elseif(Pitch::hasPitch(Auth::user()->profile, $opportunity))
+                        <div class="col-md-3"><strong>Pitch Status: </strong>{{ Pitch::getPitch(Auth::user()->profile, $opportunity)->status }}</div>
+                    @else
+                        <div class="col-md-3"><a data-toggle="modal" href="#pitch-modal-{{ $opportunity->id }}" class="btn btn-primary modal-btn form-control"><i class="fa fa-comment"></i> Pitch</a></div>
+                    @endif
                 @endif
-            @elseif(Auth::user()->role == "Admin")
-                <div class="col-md-3">
+            </div>
+            @if(Auth::user()->role == "Admin")
+                <div class="pull-right admin-controls">
                     @if( $opportunity->isPublished )
                         {{ Form::open(array('url' => 'opportunities/'.$opportunity->id.'/unpublish', 'method' => 'PUT', 'class'=>'publishable-form')) }}
                             <a href="#" class="btn btn-danger form-control publishable"><i class="fa fa-eye-slash"></i> Unpublish</a>

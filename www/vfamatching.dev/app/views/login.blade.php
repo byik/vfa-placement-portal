@@ -6,7 +6,7 @@ Placement Portal Login
 
 @section('content')
 
-<div id="login" class="well col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+<div id="login" class="well col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
     {{ Form::open(array('route' => 'login')) }}
         <fieldset>
             <!-- email field -->
