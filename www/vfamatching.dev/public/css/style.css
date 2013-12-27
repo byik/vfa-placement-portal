@@ -90,23 +90,24 @@ p {
 }
 
 .vfa-navbar ul.nav li a {
-    color: #eef3f7 !important;
+    color: #eef3f7;
     letter-spacing: 1px;
     height: 52px;
     margin: 2px;
     padding: 15px 15px;
+    text-transform: uppercase;
     /*border-radius: 5px;*/
     transition: 0.3s;
     -webkit-transition: 0.3s; /* Safari */
 } .vfa-navbar ul.nav li a:hover {
-    background-color: rgba(236, 90, 65, .5) !important;
+    background-color: rgba(255, 255, 255, .2);
     padding: 15px 45px;
     /*font-size: 14pt;*/
 } .vfa-navbar ul.nav li a i {
     transition: 0.3s;
     -webkit-transition: 0.3s; /* Safari */
 } .vfa-navbar ul.nav li a:hover  i {
-    font-size: 16pt;
+    /*font-size: 16pt;*/
 }
 
 .navbar-toggle.collapsed {
@@ -120,6 +121,7 @@ p {
 }
 
 .navbar-collapse {
+    border: none;
     max-height: none;
 }
 
