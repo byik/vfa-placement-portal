@@ -37,7 +37,9 @@
 <div class="admin-notes">
     <div class="container">
         <div class="col-xs-12 well">
-            Notes go here
+            @foreach( $fellow->adminNotes as $adminNote)
+                @include('partials.indexes.adminNote', array('adminNote' => $adminNote))
+            @endforeach
         </div>
         <div class="col-xs-12 well">
             @include('partials.forms.adminNote', array('entityId' => $fellow->id, 'entityType' => "Fellow"))

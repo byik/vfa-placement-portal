@@ -132,6 +132,13 @@ p {
     padding: 20px;
 }
 
+.note {
+    background: white;
+    margin: 20px auto;
+} .note p {
+    font-size: normal;
+}
+
 #fellow-list-bio {
     margin-top: 10px;
     margin-bottom: 20px;
