@@ -8,15 +8,22 @@ class Parser {
 
     //source: http://css-tricks.com/snippets/php/find-urls-in-text-make-links/
     public static function linkUrlsInText($text){
-        // The Regular Expression filter
-        $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
-        // Check if there is a url in the text
-        if(preg_match($reg_exUrl, $text, $url)) {
-               // make the urls hyper links
-               return preg_replace($reg_exUrl, "<a href=" . $url[0] . ">" . $url[0] . "</a> ", $text);
+        // URL starting with http://
+        $reg_exUrl = "/(^|\A|\s)((http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,4}(\/\S*)?)/";
+            if(preg_match($reg_exUrl, $text, $url)) {
+           // make the urls hyper links
+           $textesult=preg_replace( $reg_exUrl, "$1<a href=\"$2\">$2</a> ", $text );
         } else {
-            return $text;
+           // if no urls in the text just return the text
+            $textesult=$text;
+        }   
+        // URL starting www.
+        $reg_exUrl = "/(^|\A|\s)((www\.)[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,4}(\/\S*)?)/";
+        if(preg_match($reg_exUrl, $textesult, $url)) {
+           // make the urls hyper links
+           $textesult=preg_replace( $reg_exUrl, "$1<a href=\"http://$2\">$2</a>", $textesult );
         }
+        return $textesult;
     }
 
 }

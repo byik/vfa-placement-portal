@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-md-12">
             	<h3><strong>Opportunity Description</strong></h3>
-            	<p>{{ $opportunity->description }}</p>
+            	<p>{{ Parser::linkUrlsInText($opportunity->description) }}</p>
             </div>
         </div>
         <div class="row">

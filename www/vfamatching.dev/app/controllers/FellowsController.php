@@ -119,11 +119,10 @@ class FellowsController extends BaseController {
             $newFellow->resumePath = Config::get('upload.directory') . '/' . $newName;
         }
 
+        $fellowSkills = array();
         if (Input::has('skills'))
         {
-            //process file input
             //TODO: Validate that this is a pdf
-            $fellowSkills = array();
             $skills = explode(',', Input::get('skills'));
             //trim each skill
             array_walk($skills, function(&$value, $key){
@@ -238,11 +237,10 @@ class FellowsController extends BaseController {
             $fellow->resumePath = Config::get('upload.directory') . '/' . $newName;
         }
 
+        $fellowSkills = array();
         if (Input::has('skills'))
         {
-            //process file input
             //TODO: Validate that this is a pdf
-            $fellowSkills = array();
             $skills = explode(',', Input::get('skills'));
             //trim each skill
             array_walk($skills, function(&$value, $key){
