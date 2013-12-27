@@ -16,6 +16,8 @@
         <script src="{{ URL::to('js/bootstrap-datepicker.js') }}"></script>
         <!-- Chart.js -->
         <script src="{{ URL::to('js/Chart.js') }}"></script>
+        <!-- Noty -->
+        <script type="text/javascript" src="{{ URL::to('js/noty/packaged/jquery.noty.packaged.min.js') }}"></script>
         <!-- character-limit.js -->
         <script src="{{ URL::to('js/character-limit.js') }}"></script>
         <!-- Our custom css -->
