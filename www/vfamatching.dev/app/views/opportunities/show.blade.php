@@ -39,5 +39,7 @@
 
     @if(Auth::user()->role == "Admin")
         @include('partials.components.adminNotes', array('adminNotes' => $opportunity->adminNotes, 'entityType' => "Opportunity", 'entityId' => $opportunity->id))
+    @elseif(Auth::user()->role == "Fellow")
+        @include('partials.components.fellowNotes', array('fellowNotes' => $opportunity->fellowNotes, 'entityType' => "Opportunity", 'entityId' => $opportunity->id))
     @endif
 @stop

@@ -1,5 +1,5 @@
 {{-- Requires $adminNotes--}}
-<div id="admin-notes">
+<div id="notes">
     <div class="container">
         <h3>Admin Notes</h3>
         @if(count($adminNotes))

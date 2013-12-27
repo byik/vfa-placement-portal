@@ -5,7 +5,7 @@ abstract class BaseModel extends Eloquent
 	// Force extending class to have a rules function
 	abstract protected function rules();
     // and an admin rules function
-    abstract protected function adminRules();
+    // abstract protected function adminRules();
 
 	public function save(array $options = array()){
         if(!empty($options['adminValidation']) && $options['adminValidation'] == true){

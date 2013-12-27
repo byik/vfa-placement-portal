@@ -40,6 +40,11 @@ class Opportunity extends BaseModel {
         return $this->belongsToMany('AdminNote', 'adminNote_opportunity', 'opportunity_id', 'adminNote_id');
     }
 
+    public function fellowNotes()
+    {
+        return $this->belongsToMany('FellowNote', 'fellowNote_opportunity', 'opportunity_id', 'fellowNote_id');
+    }
+
     public function pitches()
     {
         return $this->hasMany('Pitch');

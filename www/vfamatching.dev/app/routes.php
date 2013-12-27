@@ -36,6 +36,7 @@ Route::group(array('before' => 'auth'), function()
         Route::resource('admins', 'AdminsController');
         Route::resource('placementstatuses', 'PlacementstatusesController');
         Route::resource('adminnotes', 'AdminnotesController');
+        Route::resource('fellownotes', 'FellownotesController');
         Route::resource('pitches', 'PitchesController');
         Route::resource('fellowskills', 'FellowskillsController');
         Route::resource('opportunitytags', 'OpportunitytagsController');

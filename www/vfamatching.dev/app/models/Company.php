@@ -46,4 +46,9 @@ class Company extends BaseModel {
     {
         return $this->belongsToMany('AdminNote', 'adminNote_company', 'company_id', 'adminNote_id');
     }
+
+    public function fellowNotes()
+    {
+        return $this->belongsToMany('FellowNote', 'fellowNote_company', 'company_id', 'fellowNote_id');
+    }
 }
