@@ -33,4 +33,15 @@
         <div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>Graduated</small></h2><h3 class="text-center">{{ $fellow->graduationYear }}</h3></div>
     </div>
 </div>
+
+<div class="admin-notes">
+    <div class="container">
+        <div class="col-xs-12 well">
+            Notes go here
+        </div>
+        <div class="col-xs-12 well">
+            @include('partials.forms.adminNote', array('entityId' => $fellow->id, 'entityType' => "Fellow"))
+        </div>
+    </div>
+</div>
 @stop

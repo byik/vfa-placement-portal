@@ -1,10 +1,10 @@
 @font-face {
-	font-family: GillSans;
-	src: url('../Fonts/GillSans.ttc');
+	/*font-family: GillSans;*/
+	/*src: url('../Fonts/GillSans.ttc');*/
 }
 
 body {
-    font-family: GillSans;
+    /*font-family: GillSans;*/
 }
 
 p {
@@ -125,6 +125,11 @@ p {
 
 .list-summary {
     margin: 20px auto;
+}
+
+.admin-notes {
+    background-color: #04274f;
+    padding: 20px;
 }
 
 #fellow-list-bio {

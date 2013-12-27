@@ -29,7 +29,34 @@ class AdminNotesController extends BaseController {
 	 */
 	public function store()
 	{
-		//
+	    $entityType = Input::get('entityType');
+        $entityId = Input::get('entityId');
+        $admin = Auth::user()->profile;
+        $content = Input::get('content');
+
+        $adminNote = new AdminNote();
+        $adminNote->content = $content;
+        $adminNote->admin_id = $admin->id;
+
+        try {
+            $adminNote->save();
+            if($entityType == "Fellow"){
+                $entity = Fellow::find($entityId);
+            } elseif($entityType == "Company"){
+                $entity = Company::find($entityId);
+            } elseif($entityType == "Opportunity"){
+                $entity = Opportunity::find($entityId);
+            } else {
+                throw new Exception('Invalid note type');
+            }
+            $entity->adminNotes()->save($adminNote);
+        } catch (ValidationFailedException $e) {
+            return Redirect::back()->with('validation_errors', $e->getErrorMessages())->withInput();
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return Redirect::back()->with('flash_error', 'Invalid $entityType')->withInput();
+        }
+
+        return Redirect::back()->with('flash_notice', 'Note saved.');
 	}
 
 	/**

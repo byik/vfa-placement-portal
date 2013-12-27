@@ -42,7 +42,7 @@ class Fellow extends BaseModel {
 
     public function adminNotes()
     {
-        return $this->belongsToMany('AdminNote');
+        return $this->belongsToMany('AdminNote', 'adminNote_fellow', 'fellow_id', 'adminNote_id');
     }
 
     public function pitches()
