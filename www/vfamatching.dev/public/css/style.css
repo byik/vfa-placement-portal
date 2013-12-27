@@ -127,10 +127,6 @@ p {
     margin: 20px auto;
 }
 
-.admin-notes {
-    background-color: #04274f;
-    padding: 20px;
-}
 
 .note {
     background: white;
@@ -163,4 +159,11 @@ p {
     #login {
         margin-top: 100px;
     }
+}
+
+#admin-notes {
+    background-color: #04274f;
+    padding: 20px;
+} #admin-notes h3 {
+    color: white;
 }

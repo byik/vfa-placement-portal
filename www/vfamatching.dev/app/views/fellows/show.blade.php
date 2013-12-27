@@ -35,17 +35,6 @@
 </div>
 
 @if(Auth::user()->role == "Admin")
-    <div class="admin-notes">
-        <div class="container">
-            <div class="col-xs-12 well">
-                @foreach( $fellow->adminNotes as $adminNote)
-                    @include('partials.indexes.adminNote', array('adminNote' => $adminNote))
-                @endforeach
-            </div>
-            <div class="col-xs-12 well">
-                @include('partials.forms.adminNote', array('entityId' => $fellow->id, 'entityType' => "Fellow"))
-            </div>
-        </div>
-    </div>
+    @include('partials.components.adminNotes', array('adminNotes' => $fellow->adminNotes, 'entityType' => "Fellow", 'entityId' => $fellow->id))
 @endif
 @stop

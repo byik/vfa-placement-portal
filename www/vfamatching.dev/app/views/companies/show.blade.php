@@ -42,4 +42,8 @@
 	</div>
 </div>
 
+@if(Auth::user()->role == "Admin")
+    @include('partials.components.adminNotes', array('adminNotes' => $company->adminNotes, 'entityType' => "Company", 'entityId' => $company->id))
+@endif
+
 @stop
