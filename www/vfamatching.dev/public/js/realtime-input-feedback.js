@@ -23,6 +23,18 @@ $(document).ready(function() {
                 input.parent().removeClass('has-success');
                 input.parent().addClass('has-error');
             }
+            if(input.attr('character-limit-min') != undefined){
+                if(input.val().length < input.attr('character-limit-min')){
+                    input.parent().removeClass('has-success');
+                    input.parent().addClass('has-error');    
+                }
+            }
+            if(input.attr('character-limit-max') != undefined){
+                if(input.val().length > input.attr('character-limit-max')){
+                    input.parent().removeClass('has-success');
+                    input.parent().addClass('has-error');    
+                }
+            }
         });
     }
 });
