@@ -85,4 +85,33 @@ class Fellow extends BaseModel {
         }
         return $this->skills;
     }
+
+    //returns the percent of current fellows with accepted offers
+    public static function percentWithAcceptedOffer()
+    {
+        //calculate the percent of fellows that are new this year or currently published that have a placementStatus 
+        //with status = Offer Accepted
+        $withAcceptedOfferCount = Fellow::select('fellows.*', 'placementStatuses.status')
+            ->leftJoin('placementStatuses', 'fellows.id', '=', 'placementStatuses.fellow_id')
+            ->where('placementStatuses.status','=','Offer Accepted')
+            ->where(function($query) {
+                $query->where('fellows.created_at', '>', DB::raw('DATE_SUB(NOW(),INTERVAL 1 YEAR)'))//added this year
+                ->orWhere('fellows.isPublished', '=', true);//or is published
+            })
+            ->groupBy('fellows.id')
+            // ->having('fellows.created_at', '>', 'DATE_SUB(NOW(),INTERVAL 1 YEAR)')//added this year
+            // ->having('fellows.isPublished', '=', true)//or is published
+            ->count();
+        $totalCount = Fellow::select('fellows.*', 'users.firstName', 'users.lastName')
+            ->where('fellows.created_at', '>', DB::raw('DATE_SUB(NOW(),INTERVAL 1 YEAR)'))//added this year
+            ->orWhere('fellows.isPublished', '=', true)//or is published
+            ->count();
+        if($totalCount == 0){
+            return 0;
+        } elseif($totalCount < $withAcceptedOfferCount) {
+            return 1;
+        } else {
+            return floatval($withAcceptedOfferCount)/floatval($totalCount);
+        }
+    }
 }

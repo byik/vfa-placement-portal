@@ -1,3 +1,3 @@
 <div class="container">
-    TODO: Build admin dashboard
+    {{ $placedFellowPercent }}
 </div>
