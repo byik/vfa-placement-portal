@@ -13,6 +13,7 @@
     var n = noty({ 
         text: "<?php echo $notice; ?>",
         type: "success",
-        timeout: 3000
+        timeout: 3000,
+        closeWith: ['click', 'hover']
     });
 </script>

@@ -13,6 +13,7 @@
     var n = noty({ 
         text: "<?php echo $error; ?>",
         type: "error",
-        timeout: 5000
+        timeout: 5000,
+        closeWith: ['click', 'hover']
     });
 </script>
