@@ -11,6 +11,12 @@ p {
     font-size: 18px;
 }
 
+canvas {
+    width: 100% !important;
+    max-width: 800px;
+    height: auto !important;
+}
+
 .secondary {
     background-color: #eef3f7;
 }
@@ -135,6 +141,10 @@ p {
     margin: 20px auto;
 } .note p {
     font-size: normal;
+}
+
+.chart {
+    text-align: center;
 }
 
 #fellow-list-bio {

@@ -125,7 +125,9 @@ class Fellow extends BaseModel {
         $histogram = array();
         $histogram['No Introductions'] = 0;
         foreach(PlacementStatus::statuses() as $status){
-            $histogram[$status] = 0;
+            if($status != "Bad Fit"){
+                $histogram[$status] = 0;
+            }
         }
         foreach($currentFellows as $fellow){
             //find fellow's furthest relationship

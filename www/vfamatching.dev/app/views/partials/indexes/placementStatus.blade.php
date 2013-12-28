@@ -4,12 +4,13 @@
             <h3>@include('partials.links.opportunity', array('opportunity' => $placementStatus->opportunity))</h3>
         </div>
         <div class="panel-body">
-            <div class="col-xs-4 hidden-xs">
+            <div class="row">
+            <div class="col-xs-4">
                 <div class="placementStatus-pie-chart">
                     @include('partials.charts.placementStatus-percent', array('placementStatus' => $placementStatus))
                 </div>
             </div>
-            <div class="col-sm-8 col-xs-12">
+            <div class="col-xs-8">
                 <h3><small>
                     @include('partials.links.company', array('company' => $placementStatus->opportunity->company))
                 </small></h3>
@@ -17,6 +18,7 @@
                 <!-- Button trigger modal -->
                 <a data-toggle="modal" href="#placementStatus-update-modal-{{ $placementStatus->id }}" class="btn
             btn-primary btn-large modal-btn form-control">Update</a>    
+            </div>
             </div>
         </div>
     </div>

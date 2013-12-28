@@ -1,4 +1,4 @@
-<canvas id="myChart{{ $placementStatus->id }}"></canvas>
+<canvas id="pie-percent"></canvas>
 <script type="text/javascript">
     //define the data for this pie chart
     function resizeChart(canvas){
@@ -7,11 +7,11 @@
         canvas.prop('height', newWidth);
         var data = [
             {
-                value: {{ $placementStatus->percent() }},
+                value: {{ $percent }},
                 color:"#ec5a41"
             },
             {
-                value: {{ 1 - $placementStatus->percent() }},
+                value: {{ 1 - $percent }},
                 color:"#dedede"
             }
         ]
@@ -19,8 +19,8 @@
         new Chart(ctx).Pie(data);
     }
 
-    resizeChart($("#myChart{{ $placementStatus->id }}"));
+    resizeChart($("#pie-percent"));
     // $(window).resize(function(){
-    //     resizeChart($("#myChart{{ $placementStatus->id }}"));
+    //     resizeChart($("#pie-percent"));
     // });
 </script>
