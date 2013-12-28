@@ -114,4 +114,55 @@ class Fellow extends BaseModel {
             return floatval($withAcceptedOfferCount)/floatval($totalCount);
         }
     }
+
+    //returns an associative array mapping placement statuses to the number of current fellows
+    //with that being their furthest status
+    public static function placementProgressHistogram()
+    {
+        $currentFellows = Fellow::where('fellows.created_at', '>', DB::raw('DATE_SUB(NOW(),INTERVAL 1 YEAR)'))//added this year
+            ->orWhere('fellows.isPublished', '=', true)//or is published
+            ->get();
+        $histogram = array();
+        $histogram['No Introductions'] = 0;
+        foreach(PlacementStatus::statuses() as $status){
+            $histogram[$status] = 0;
+        }
+        foreach($currentFellows as $fellow){
+            //find fellow's furthest relationship
+            $histogram[$fellow->getPlacementProgress()] += 1;
+        }
+
+        return $histogram;
+    }
+
+    public function getRecentPlacementStatus(Opportunity $opportunity)
+    {
+        return PlacementStatus::where('fellow_id','=',$this->id)
+            ->where('opportunity_id', '=', $opportunity->id)
+            ->where('isRecent','=',true)->first();
+    }
+
+    public function getPlacementProgress()
+    {
+        if(count($this->placementStatuses)){
+            $placementStatuses = PlacementStatus::statuses();
+            $progressIndex = -1;
+            foreach($this->placementStatuses()->where('isRecent','=',true)->get() as $placementStatus){
+                if($placementStatus->status != "Bad Fit"){
+                    if(array_search($placementStatus->status, $placementStatuses)){
+                        $progressIndex = array_search($placementStatus->status, $placementStatuses);
+                    }
+                }
+            }
+
+            if($progressIndex < 0){
+                throw new Exception('Cannot determine placement progress: Invalid Statuses');
+            }
+
+            return $placementStatuses[$progressIndex];
+
+        } else {
+            return "No Introductions";
+        }
+    }
 }

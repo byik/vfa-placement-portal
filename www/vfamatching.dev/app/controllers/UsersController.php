@@ -143,10 +143,16 @@ class UsersController extends BaseController {
 
     public function dashboard() {
         if( Auth::user()->role == "Admin" ) {
-            $placedFellowPercent = Fellow::percentWithAcceptedOffer();
-            return View::make('index', array('placedFellowPercent' => $placedFellowPercent));
+            return View::make('index', array(
+                'placedFellowPercent' => Fellow::percentWithAcceptedOffer(),
+                'placementProgressHistogram' => Fellow::placementProgressHistogram()
+                ));
         } elseif( Auth::user()->role == "Fellow") {
-            $placementStatuses = Auth::user()->profile->placementStatuses()->where('isRecent','=',1)->get();
+            $placementStatuses = Auth::user()->profile
+                ->placementStatuses()
+                ->where('isRecent','=',1)
+                ->orderBy('created_at', 'DESC')
+                ->get();
             return View::make('index', array('placementStatuses' => $placementStatuses));
         } elseif( Auth::user()->role == "Hiring Manager" ) {
             throw new Exception("TODO: Logic not implemented for Hiring Manager dashboard");
