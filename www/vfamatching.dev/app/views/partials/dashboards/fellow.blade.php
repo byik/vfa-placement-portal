@@ -16,10 +16,19 @@
 			</div>
 			<div class="placementStatuses">
 				<h2><small>Placement Statuses</small></h2>
-					@foreach($placementStatuses as $placementStatus)
-						@include('partials.indexes.placementStatus', array('placementStatus' => $placementStatus))
-					@endforeach
-			</div>
+                    <div class="row">
+                    <?php $count = 0; ?>
+                    @foreach($placementStatuses as $placementStatus)
+                        @include('partials.indexes.placementStatus', array('placementStatus' => $placementStatus))
+                        <?php 
+                            $count++;
+                            if($count % 3 == 0){
+                                echo '<div class="row"></div>';
+                            }
+                        ?>
+                    @endforeach
+                    </div>
+            </div>
 		</div>
 	</div>
 @else
