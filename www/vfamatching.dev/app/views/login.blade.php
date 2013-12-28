@@ -12,13 +12,13 @@ Placement Portal Login
             <!-- email field -->
             <div class="form-group">
                 {{ Form::label('email', 'Email') }}<br/>
-                {{ Form::text('email', Input::old('email'), array('class'=>'form-control')) }}
+                {{ Form::text('email', Input::old('email'), array('class'=>'form-control required')) }}
             </div>
 
             <!-- password field -->
             <div class="form-group">
                 {{ Form::label('password', 'Password') }}<br/>
-                {{ Form::password('password', array('class'=>'form-control')) }}
+                {{ Form::password('password', array('class'=>'form-control required')) }}
             </div>
 
             <!-- submit button -->

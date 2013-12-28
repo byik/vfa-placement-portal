@@ -20,6 +20,8 @@
         <script type="text/javascript" src="{{ URL::to('js/noty/packaged/jquery.noty.packaged.min.js') }}"></script>
         <!-- character-limit.js -->
         <script src="{{ URL::to('js/character-limit.js') }}"></script>
+        <!-- required-fields.js -->
+        <script src="{{ URL::to('js/realtime-input-feedback.js') }}"></script>
         <!-- Our custom css -->
         <link rel="stylesheet" href="{{ URL::to('css/style.css') }}">
     </head>
