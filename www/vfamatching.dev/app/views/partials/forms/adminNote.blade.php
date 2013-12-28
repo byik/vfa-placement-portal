@@ -4,7 +4,7 @@
         {{ Form::hidden('entityType', $entityType) }}
         <div class="form-group">
             {{ Form::label('content', 'Leave a note:') }}
-            {{ Form::textarea('content', null, array('class'=>'form-control limit', 'limit'=>1400)) }}
+            {{ Form::textarea('content', null, array('class'=>'form-control character-limit', 'character-limit-max'=>1400)) }}
             <small>Your notes will only be visible to other Admins.</small>
         </div>
     </fieldset>

@@ -17,7 +17,7 @@
         </div>
         <div class="form-group">
             {{ Form::label('message', 'How are you feeling about this opportunity?') }}
-            {{ Form::textarea('message', null, array('class'=>'form-control limit', 'limit'=>280)) }}
+            {{ Form::textarea('message', null, array('class'=>'form-control character-limit required', 'character-limit-max'=>280)) }}
         </div>
     </fieldset>
 {{ Form::close() }}
