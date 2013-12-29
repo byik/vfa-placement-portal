@@ -16,4 +16,16 @@
             @include('partials.charts.histogram', array('data' => $placementProgressHistogram))
         </div>
     </div>
+    <div class="row">
+        <!-- <div class="col-md-9" id="new-pitches"> -->
+        <div class="col-md-12" id="new-pitches">
+            <h2>New Fellow Pitches <small>(<em> {{ count($newPitches) }}</em>)</small></h2>
+            @foreach($newPitches as $pitch)
+                @include('partials.indexes.pitch', array('pitch' => $pitch))
+            @endforeach
+        </div>
+        <!-- <div class="col-md-3">
+            <h2>Accepted Offers</h2>
+        </div> -->
+    </div>
 </div>

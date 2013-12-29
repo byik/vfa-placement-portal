@@ -42,4 +42,11 @@ class Pitch extends BaseModel {
             throw new Exception('This fellow does not have a Pitch with this opportunity');
         }
     }
+
+    public static function underReview()
+    {
+        return Pitch::where('status','=',"Under Review")
+            ->orderBy('created_at', 'ASC')
+            ->get(); //newest first
+    }
 }

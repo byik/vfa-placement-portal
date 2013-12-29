@@ -145,7 +145,8 @@ class UsersController extends BaseController {
         if( Auth::user()->role == "Admin" ) {
             return View::make('index', array(
                 'placedFellowPercent' => Fellow::percentWithAcceptedOffer(),
-                'placementProgressHistogram' => Fellow::placementProgressHistogram()
+                'placementProgressHistogram' => Fellow::placementProgressHistogram(),
+                'newPitches' => Pitch::underReview()
                 ));
         } elseif( Auth::user()->role == "Fellow") {
             $placementStatuses = Auth::user()->profile

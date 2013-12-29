@@ -176,6 +176,7 @@ canvas {
 #notes {
     background-color: #04274f;
     padding: 20px;
+    overflow: hidden;
 } #notes h3 {
     color: white;
 }
@@ -186,4 +187,14 @@ canvas {
 
 #content {
     margin-bottom: 100px;
+}
+
+#new-pitches {
+    background-color: #04274f;
+    border-radius: 5px;
+    overflow: hidden;
+} #new-pitches h2 {
+    color: white;
+} #new-pitches .actions {
+    margin-right: 20px;
 }
