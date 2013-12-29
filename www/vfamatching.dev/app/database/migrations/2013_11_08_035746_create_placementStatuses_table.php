@@ -18,7 +18,7 @@ class CreatePlacementStatusesTable extends Migration {
 			$table->integer('opportunity_id')->unsigned();
             $table->enum('status', array("Introduced", "Contacted", "Phone Interview Pending", "Phone Interview Complete", "On-site Interview Pending", "On-site Interview Complete", "Offer Extended", "Offer Accepted", "Bad Fit"));
 			$table->datetime('eventDate')->nullable();
-			$table->integer('score');
+			$table->integer('score')->nullable();
 			$table->string('message', 280);
 			$table->timestamps();
             $table->foreign('fellow_id')->references('id')->on('fellows')->onDelete('restrict');

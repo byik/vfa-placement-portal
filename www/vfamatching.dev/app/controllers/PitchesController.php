@@ -92,11 +92,24 @@ class PitchesController extends BaseController {
     {
         try{
             $pitch = Pitch::findOrFail($id);
+	        $pitch->status = "Approved";
+	        $pitch->save();
+            //introduce the two
+            $newPlacementStatus = new PlacementStatus();
+            $newPlacementStatus->fellow_id = $pitch->fellow_id;
+            $newPlacementStatus->opportunity_id = $pitch->opportunity_id;
+            $newPlacementStatus->fromRole = "Admin";
+            $newPlacementStatus->status = "Introduced";
+            $newPlacementStatus->eventDate = null;
+            $newPlacementStatus->score = null;
+            $newPlacementStatus->message = "";
+            $newPlacementStatus->isRecent = 1;
+            $newPlacementStatus->save();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return View::make('404')->with('error', 'Pitch not found!');
+        } catch (ValidationFailedException $e) {
+            return Redirect::back()->with('validation_errors', $e->getErrorMessages());
         }
-        $pitch->status = "Approved";
-        $pitch->save();
         return Redirect::back()->with('flash_notice', "Pitch approved!");
     }
 
@@ -104,11 +117,13 @@ class PitchesController extends BaseController {
     {
         try{
             $pitch = Pitch::findOrFail($id);
+	        $pitch->status = "Waitlisted";
+	        $pitch->save();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return View::make('404')->with('error', 'Pitch not found!');
+        } catch (ValidationFailedException $e) {
+            return Redirect::back()->with('validation_errors', $e->getErrorMessages());
         }
-        $pitch->status = "Waitlisted";
-        $pitch->save();
         return Redirect::back()->with('flash_notice', "Pitch waitlisted");
     }
 

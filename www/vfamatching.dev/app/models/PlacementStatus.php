@@ -8,8 +8,9 @@ class PlacementStatus extends BaseModel {
         return array(
             'status'=> 'required|in:Introduced,Contacted,Phone Interview Pending,Phone Interview Complete,On-site Interview Pending,On-site Interview Complete,Offer Extended,Offer Accepted,Bad Fit',
             'eventDate'=>'date',
-            'score'=>'required|in:1,2,3,4,5',
+            'score'=>'in:1,2,3,4,5',
             'message'=>'max:280',
+            'fromRole'=>'required|in:Admin,Fellow,Hiring Manager',
             'isRecent'=> 'required|in:0,1'
             );
     }

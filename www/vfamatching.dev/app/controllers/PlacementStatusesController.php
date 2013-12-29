@@ -42,6 +42,7 @@ class PlacementStatusesController extends BaseController {
             $newPlacementStatus->score = Input::get('score');
             $newPlacementStatus->message = Input::get('message');
             $newPlacementStatus->isRecent = 1;
+            $newPlacementStatus->fromRole = Auth::user()->role;
         $recentPlacementStatus = PlacementStatus::where('fellow_id','=',$newPlacementStatus->fellow_id)
                     ->where('opportunity_id','=',$newPlacementStatus->opportunity_id)
                     ->where('isRecent', '=',1)
