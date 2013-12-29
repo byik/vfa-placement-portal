@@ -9,16 +9,32 @@
 	</div>
 	<div class="panel-footer">
 		<div class="row">
-			<span class="pull-right">
-				<div class="btn-group actions">
-					<button type="button" class="btn btn-success">
-						Introduce
-					</button>
-					<button type="button" class="btn btn-danger">
+			<div class="col-xs-12">
+				<span class="pull-right">
+				{{ Form::open(array('url' => 'pitches/'.$pitch->id.'/waitlist', 'method' => 'PUT', 'class'=>'submittable-form')) }}
+					<button type="button" class="btn btn-danger submittable">
 						Waitlist
 					</button>
-				</div>
+				{{ Form::close() }}
 			</span>
+			<span class="pull-right">
+				{{ Form::open(array('url' => 'pitches/'.$pitch->id.'/approve', 'method' => 'PUT', 'class'=>'submittable-form')) }}
+					<button type="button" class="btn btn-success submittable">
+						Introduce
+					</button>
+				{{ Form::close() }}
+				</span>
+			</div>
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function() {  
+    //unbind so the click only fires once
+    $('.submittable').unbind().click(function(e){
+        $(this).parent('.submittable-form').submit();
+        e.preventDefault();//don't follow the actual link
+    });
+});
+</script>

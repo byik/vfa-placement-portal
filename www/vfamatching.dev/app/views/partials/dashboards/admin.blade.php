@@ -8,7 +8,7 @@
             <h3><em>( {{ round($placedFellowPercent, 2) * 100 . '%' }})</em></h3>
         </div>
         <div class="col-xs-12 visible-sm visible-xs">
-            <h2>Fellows Placed: <strong>{{ round($placedFellowPercent, 2) * 100 . '%' }}</strong></h2>
+            <h2 id="admin-dashboard-highlight">Fellows Placed: <strong>{{ round($placedFellowPercent, 2) * 100 . '%' }}</strong></h2>
         </div>
         <!-- Include histogram of fellow progress -->
         <div class="col-md-9 chart hidden-sm hidden-xs">
@@ -19,7 +19,11 @@
     <div class="row">
         <!-- <div class="col-md-9" id="new-pitches"> -->
         <div class="col-md-12" id="new-pitches">
-            <h2>New Fellow Pitches <small>(<em> {{ count($newPitches) }}</em>)</small></h2>
+            <h2>{{ count($newPitches) ? "" : "No "}}New Fellow Pitches 
+                @if(count($newPitches))
+                    <small>(<em> {{ count($newPitches) }}</em>)</small>
+                @endif
+            </h2>
             @foreach($newPitches as $pitch)
                 @include('partials.indexes.pitch', array('pitch' => $pitch))
             @endforeach

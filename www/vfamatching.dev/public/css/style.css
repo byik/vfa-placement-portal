@@ -199,4 +199,10 @@ input#limit {
     overflow: hidden;
 } #new-pitches h2 {
     color: white;
-} #new-pitches .actions {}
+} #new-pitches .controls {
+    margin-right: 20px;
+}
+
+#admin-dashboard-highlight {
+    margin: 0px 0px 50px 0px;
+}

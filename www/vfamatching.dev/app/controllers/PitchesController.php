@@ -107,7 +107,7 @@ class PitchesController extends BaseController {
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return View::make('404')->with('error', 'Pitch not found!');
         }
-        $pitch->status = "Approved";
+        $pitch->status = "Waitlisted";
         $pitch->save();
         return Redirect::back()->with('flash_notice', "Pitch waitlisted");
     }
