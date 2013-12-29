@@ -36,7 +36,7 @@
                         {{ Form::close() }}
                     @else
                         {{ Form::open(array('url' => 'opportunities/'.$opportunity->id.'/publish', 'method' => 'PUT', 'class'=>'publishable-form')) }}
-                            <a href="#" class="btn btn-primary form-control publishable"><i class="fa fa-eye"></i> Publish</a>
+                            <a href="#" class="btn btn-danger form-control publishable"><i class="fa fa-eye"></i> Publish</a>
                         {{ Form::close() }}
                     @endif
                 </div>

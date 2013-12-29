@@ -5,5 +5,5 @@
 @stop
 
 @section('content')
-    @include('partials.list', array('listItems' => $opportunities, 'search' => $search, 'url' => URL::route('opportunities.index'), 'pills' => $pills, 'indexView' => 'partials.indexes.opportunity', 'type' => 'opportunity'))
+    @include('partials.list', array('listItems' => $opportunities, 'search' => $search, 'url' => URL::route('opportunities.index'), 'pills' => $pills, 'indexView' => 'partials.indexes.opportunity', 'type' => 'opportunity', 'total' => $total))
 @stop

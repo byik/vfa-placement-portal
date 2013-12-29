@@ -53,8 +53,8 @@ class FellowsController extends BaseController {
                     new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'hometown', 'order' => 'desc', 'search' => $search, 'limit' => $limit)), "sort-alpha-desc")
                 )));
             array_push($pills, new Pill("Date Added", array(
-                    new DropdownItem("Oldest first", URL::route( 'fellows.index', array('sort' => 'hometown', 'order' => 'asc', 'search' => $search, 'limit' => $limit))),
-                    new DropdownItem("Newest first", URL::route( 'fellows.index', array('sort' => 'hometown', 'order' => 'desc', 'search' => $search, 'limit' => $limit)))
+                    new DropdownItem("Oldest first", URL::route( 'fellows.index', array('sort' => 'created_at', 'order' => 'asc', 'search' => $search, 'limit' => $limit))),
+                    new DropdownItem("Newest first", URL::route( 'fellows.index', array('sort' => 'created_at', 'order' => 'desc', 'search' => $search, 'limit' => $limit)))
                 )));
         return View::make('fellows.index', array('total' => Fellow::Where('isPublished', '=', true)->count(), 'fellows' => $fellows, 'sort' => $sort, 'order' => $order, 'search' => $search, 'limit' => $limit, 'pills' => $pills));
     }

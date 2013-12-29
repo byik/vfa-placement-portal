@@ -10,7 +10,13 @@
         <div class="input-group-btn">
             <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
         </div>
+        <?php $queryData = Parser::extractDataFromQueryString($_SERVER['QUERY_STRING']); ?>
+        @foreach($queryData as $name => $value)
+          @include('partials.components.hidden-input', array('name'=>$name, 'value'=>$value))
+        @endforeach
       </div>
     </form>
     </div>
 </div>
+
+<!-- Preserve querystring parameters -->

@@ -26,4 +26,20 @@ class Parser {
         return $textesult;
     }
 
+    public static function extractDataFromQueryString($queryString){
+      // die(json_encode($queryString));
+      if($queryString != ""){
+        $queryParameters = explode('&', $queryString);
+        foreach($queryParameters as $queryParameter){
+          $queryParameter = explode('=', $queryParameter);
+          $data = array();
+          if($queryParameter[0] != "search"){
+            $data[$queryParameter[0]] = $queryParameter[1];
+          }
+        }
+        return $data;
+      }
+      return array();
+    }
+
 }
