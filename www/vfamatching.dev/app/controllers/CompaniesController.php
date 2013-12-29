@@ -2,6 +2,12 @@
 
 class CompaniesController extends BaseController {
 
+    public function __construct()
+    {
+        // Exit if not admin or a fellow
+        $this->beforeFilter('adminOrFellow', array('only' => array('index', 'show')));
+    }
+
 	/**
 	 * Display a listing of the resource.
 	 *
