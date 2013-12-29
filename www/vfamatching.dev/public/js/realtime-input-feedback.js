@@ -17,12 +17,13 @@
 */
 $(document).ready(function() {  
 
+    //TEXT INPUT
     setInterval(function(){
-        displayRealtimeFeedback();
+        displayRealtimeTextFeedback(); //need timer to account for autofills
     }, 200);
 
-    function displayRealtimeFeedback(){
-        $('.required').each(function(){
+    function displayRealtimeTextFeedback(){
+        $('input.required, textarea.required').each(function(){
             input = $(this);
             if(input.val().length > 0){
                 input.parent().removeClass('has-error');
@@ -85,6 +86,39 @@ $(document).ready(function() {
                     input.parent().addClass('has-error');    
                 }
             }
+            //Phone
+            if(input.hasClass('requires-phone')){
+                var re = /^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/;
+                if(!re.test(input.val())){
+                    input.parent().removeClass('has-success');
+                    input.parent().addClass('has-error');    
+                }
+            }
         });
+    }
+
+    //SELECT BOXES
+    $('select.required').each(function(){
+        displayRealtimeSelectFeedback($(this));
+    });
+    $('select.required').on('change', function(){
+        displayRealtimeSelectFeedback($(this));
+    });
+
+    function displayRealtimeSelectFeedback(input){
+        if(input.find(":selected").text() == ""){
+            input.parent().removeClass('has-success');
+            input.parent().addClass('has-error');
+        } else {
+            input.parent().removeClass('has-error');
+            input.parent().addClass('has-success');
+        }
+        //Change
+        if(input.attr('change-from') != undefined){
+            if(input.find(":selected").text() == input.attr('change-from')){
+                input.parent().removeClass('has-success');
+                input.parent().addClass('has-error');    
+            }
+        }
     }
 });
