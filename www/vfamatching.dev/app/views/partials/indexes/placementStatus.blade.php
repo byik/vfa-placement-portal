@@ -38,7 +38,7 @@
             </div>
             <div class="modal-footer">
                 <a href="" class="btn btn-default" data-dismiss="modal">Cancel</a>
-                <a href="" class="btn btn-primary placementStatus-submit">Update Placement Status</a>
+                <a href="" class="btn btn-primary placementStatus-submit">Update Placement Status and Submit Feedback</a>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

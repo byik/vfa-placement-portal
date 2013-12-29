@@ -6,7 +6,7 @@
             {{-- Get the user stuff out of the way up front --}}
             <div class="form-group @if($validationErrors){{ $validationErrors->has('firstName') ? "has-error" : ""}}@endif">
                 {{ Form::label('firstName', 'First Name') }}
-                {{ Form::text('firstName', Input::old('firstName') ? Input::old('firstName') : Auth::user()->firstName, array('class'=>'form-control')) }}
+                {{ Form::text('firstName', Input::old('firstName') ? Input::old('firstName') : Auth::user()->firstName, array('class'=>'form-control required', 'character-limit-max' => '100')) }}
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('lastName') ? "has-error" : ""}}@endif">
                 {{ Form::label('lastName', 'Last Name') }}
@@ -80,7 +80,7 @@
             {{-- Get the user stuff out of the way up front --}}
             <div class="form-group @if($validationErrors){{ $validationErrors->has('firstName') ? "has-error" : ""}}@endif">
                 {{ Form::label('firstName', 'First Name') }}
-                {{ Form::text('firstName', Input::old('firstName') ? Input::old('firstName') : Auth::user()->firstName, array('class'=>'form-control')) }}
+                {{ Form::text('firstName', Input::old('firstName') ? Input::old('firstName') : Auth::user()->firstName, array('class'=>'form-control required', 'character-limit-max' => '100')) }}
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('lastName') ? "has-error" : ""}}@endif">
                 {{ Form::label('lastName', 'Last Name') }}

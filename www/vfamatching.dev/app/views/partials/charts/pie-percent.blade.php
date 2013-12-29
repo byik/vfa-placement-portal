@@ -8,7 +8,7 @@
         var data = [
             {
                 value: {{ $percent }},
-                color:"#ec5a41"
+                color:"rgba(4,39,79,1)"
             },
             {
                 value: {{ 1 - $percent }},

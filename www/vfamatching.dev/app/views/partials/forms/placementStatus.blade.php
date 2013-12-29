@@ -7,17 +7,21 @@
             {{ Form::select('status', array_combine(PlacementStatus::statuses(), PlacementStatus::statuses()), $placementStatus->status, array('class'=>'form-control placementStatus-select')) }}
         </div>
         <div class="form-group">
-            {{ Form::label('score', 'Score:') }}
-            <ul class="list-unstyled">
+            {{ Form::label('score', 'Feedback:') }}
+            <?php 
+                $scores = PlacementStatus::scores(); 
+                array_unshift($scores, "");
+            ?>
+            {{ Form::select('score', array_combine($scores,$scores), " ", array('class'=>'form-control')) }}
+            <small><ul class="list-unstyled">
                 <li>5 = I would absolutely love to work here</li>
                 <li>3 = This would be a decent fit for me</li>
                 <li>1 = I would work here only as a last resort</li>
-            </ul>
-            {{ Form::select('score', array_combine(PlacementStatus::scores(),PlacementStatus::scores()), 3, array('class'=>'form-control')) }}
+            </ul></small>
         </div>
         <div class="form-group">
             {{ Form::label('message', 'How are you feeling about this opportunity?') }}
-            {{ Form::textarea('message', null, array('class'=>'form-control character-limit required', 'character-limit-max'=>280)) }}
+            {{ Form::textarea('message', null, array('class'=>'form-control character-limit', 'character-limit-max'=>280)) }}
         </div>
     </fieldset>
 {{ Form::close() }}
