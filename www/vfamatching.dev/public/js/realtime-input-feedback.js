@@ -94,6 +94,14 @@ $(document).ready(function() {
                     input.parent().addClass('has-error');    
                 }
             }
+            //Ignore empty
+            if(input.hasClass('ignore-empty')){
+                if(input.val() == ""){
+                    input.parent().removeClass('has-error');
+                    input.parent().removeClass('has-success');
+                }
+            }
+
         });
     }
 

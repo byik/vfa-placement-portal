@@ -12,7 +12,7 @@ class FellowsController extends BaseController {
         $sort = (!is_null(Input::get('sort')) ? Input::get('sort') : 'firstName'); //default to fellow first name
         $order = (!is_null(Input::get('order')) ? Input::get('order') : 'asc'); //default to asc
         $search = (!is_null(Input::get('search')) ? Input::get('search') : ''); //default to empty string
-        $pagination = (!is_null(Input::get('limit')) ? Input::get('limit') : 10); //default to 10
+        $limit = (!is_null(Input::get('limit')) ? Input::get('limit') : 5); //default to 5
         $fellows = Fellow::select('fellows.*', 'users.firstName', 'users.lastName')
             ->join('users', 'fellows.user_id', '=', 'users.id')
             ->leftJoin('fellowSkills', 'fellows.id', '=', 'fellowSkills.fellow_id');
@@ -30,33 +30,33 @@ class FellowsController extends BaseController {
                     ->orWhere('fellowSkills.skill', 'LIKE', "%$searchTerm%");
             }
         }
-        $fellows = $fellows->orderBy($sort, $order)->groupBy('fellows.id')->having('isPublished','=',true)->paginate($pagination);
+        $fellows = $fellows->orderBy($sort, $order)->groupBy('fellows.id')->having('isPublished','=',true)->paginate($limit);
         $pills  = array();
             array_push($pills, new Pill("First Name", array(
-                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'users.firstName', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
-                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'users.firstName', 'order' => 'desc', 'search' => $search)), "sort-alpha-desc")
+                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'users.firstName', 'order' => 'asc', 'search' => $search, 'limit' => $limit)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'users.firstName', 'order' => 'desc', 'search' => $search, 'limit' => $limit)), "sort-alpha-desc")
                 )));
             array_push($pills, new Pill("Last Name", array(
-                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'users.lastName', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
-                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'users.lastName', 'order' => 'desc', 'search' => $search)), "sort-alpha-desc")
+                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'users.lastName', 'order' => 'asc', 'search' => $search, 'limit' => $limit)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'users.lastName', 'order' => 'desc', 'search' => $search, 'limit' => $limit)), "sort-alpha-desc")
                 )));
             array_push($pills, new Pill("Major", array(
-                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'major', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
-                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'major', 'order' => 'desc', 'search' => $search)), "sort-alpha-desc")
+                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'major', 'order' => 'asc', 'search' => $search, 'limit' => $limit)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'major', 'order' => 'desc', 'search' => $search, 'limit' => $limit)), "sort-alpha-desc")
                 )));
             array_push($pills, new Pill("School", array(
-                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'school', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
-                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'school', 'order' => 'desc', 'search' => $search)), "sort-alpha-desc")
+                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'school', 'order' => 'asc', 'search' => $search, 'limit' => $limit)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'school', 'order' => 'desc', 'search' => $search, 'limit' => $limit)), "sort-alpha-desc")
                 )));
             array_push($pills, new Pill("Hometown", array(
-                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'hometown', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
-                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'hometown', 'order' => 'desc', 'search' => $search)), "sort-alpha-desc")
+                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'hometown', 'order' => 'asc', 'search' => $search, 'limit' => $limit)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'fellows.index', array('sort' => 'hometown', 'order' => 'desc', 'search' => $search, 'limit' => $limit)), "sort-alpha-desc")
                 )));
             array_push($pills, new Pill("Date Added", array(
-                    new DropdownItem("Oldest first", URL::route( 'fellows.index', array('sort' => 'hometown', 'order' => 'asc', 'search' => $search))),
-                    new DropdownItem("Newest first", URL::route( 'fellows.index', array('sort' => 'hometown', 'order' => 'desc', 'search' => $search)))
+                    new DropdownItem("Oldest first", URL::route( 'fellows.index', array('sort' => 'hometown', 'order' => 'asc', 'search' => $search, 'limit' => $limit))),
+                    new DropdownItem("Newest first", URL::route( 'fellows.index', array('sort' => 'hometown', 'order' => 'desc', 'search' => $search, 'limit' => $limit)))
                 )));
-        return View::make('fellows.index', array('total' => Fellow::Where('isPublished', '=', true)->count(), 'fellows' => $fellows, 'sort' => $sort, 'order' => $order, 'search' => $search, 'pills' => $pills));
+        return View::make('fellows.index', array('total' => Fellow::Where('isPublished', '=', true)->count(), 'fellows' => $fellows, 'sort' => $sort, 'order' => $order, 'search' => $search, 'limit' => $limit, 'pills' => $pills));
     }
 
     /**

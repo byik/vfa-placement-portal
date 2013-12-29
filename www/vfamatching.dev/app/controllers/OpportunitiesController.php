@@ -13,7 +13,7 @@ class OpportunitiesController extends BaseController {
         $sort = (!is_null(Input::get('sort')) ? Input::get('sort') : 'companies.name'); //default to company name
         $order = (!is_null(Input::get('order')) ? Input::get('order') : 'asc'); //default to asc
         $search = (!is_null(Input::get('search')) ? Input::get('search') : ''); //default to empty string
-        $pagination = (!is_null(Input::get('limit')) ? Input::get('limit') : 10); //default to 10
+        $limit = (!is_null(Input::get('limit')) ? Input::get('limit') : 5); //default to 5
         $opportunities = Opportunity::select('opportunities.*', 'companies.name')
             ->join('companies', 'opportunities.company_id', '=', 'companies.id')
             ->leftJoin('opportunityTags', 'opportunities.id', '=', 'opportunityTags.opportunity_id');
@@ -31,25 +31,25 @@ class OpportunitiesController extends BaseController {
                     ->orWhere('opportunityTags.tag', 'LIKE', "%$searchTerm%");
             }
         }
-        $opportunities = $opportunities->orderBy($sort, $order)->groupBy('opportunities.id')->having('isPublished', '=', true)->paginate($pagination);
+        $opportunities = $opportunities->orderBy($sort, $order)->groupBy('opportunities.id')->having('isPublished', '=', true)->paginate($limit);
         $pills  = array();
             array_push($pills, new Pill("Title", array(
-                    new DropdownItem("", URL::route( 'opportunities.index', array('sort' => 'title', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
-                    new DropdownItem("", URL::route( 'opportunities.index', array('sort' => 'title', 'order' => 'desc', 'search' => $search)), "sort-alpha-desc")
+                    new DropdownItem("", URL::route( 'opportunities.index', array('sort' => 'title', 'order' => 'asc', 'search' => $search, 'limit' => $limit)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'opportunities.index', array('sort' => 'title', 'order' => 'desc', 'search' => $search, 'limit' => $limit)), "sort-alpha-desc")
                 )));
             array_push($pills, new Pill("Company", array(
-                    new DropdownItem("", URL::route( 'opportunities.index', array('sort' => 'companies.name', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
-                    new DropdownItem("", URL::route( 'opportunities.index', array('sort' => 'companies.name', 'order' => 'desc', 'search' => $search)), "sort-alpha-desc")
+                    new DropdownItem("", URL::route( 'opportunities.index', array('sort' => 'companies.name', 'order' => 'asc', 'search' => $search, 'limit' => $limit)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'opportunities.index', array('sort' => 'companies.name', 'order' => 'desc', 'search' => $search, 'limit' => $limit)), "sort-alpha-desc")
                 )));
             array_push($pills, new Pill("City", array(
-                    new DropdownItem("", URL::route( 'opportunities.index', array('sort' => 'city', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
-                    new DropdownItem("", URL::route( 'opportunities.index', array('sort' => 'city', 'order' => 'desc', 'search' => $search)), "sort-alpha-desc")
+                    new DropdownItem("", URL::route( 'opportunities.index', array('sort' => 'city', 'order' => 'asc', 'search' => $search, 'limit' => $limit)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'opportunities.index', array('sort' => 'city', 'order' => 'desc', 'search' => $search, 'limit' => $limit)), "sort-alpha-desc")
                 )));
             array_push($pills, new Pill("Date Added", array(
-                    new DropdownItem("Oldest first", URL::route( 'opportunities.index', array('sort' => 'created_at', 'order' => 'asc', 'search' => $search))),
-                    new DropdownItem("Newest first", URL::route( 'opportunities.index', array('sort' => 'created_at', 'order' => 'desc', 'search' => $search)))
+                    new DropdownItem("Oldest first", URL::route( 'opportunities.index', array('sort' => 'created_at', 'order' => 'asc', 'search' => $search, 'limit' => $limit))),
+                    new DropdownItem("Newest first", URL::route( 'opportunities.index', array('sort' => 'created_at', 'order' => 'desc', 'search' => $search, 'limit' => $limit)))
                 )));
-        return View::make('opportunities.index', array('total' => Opportunity::Where('isPublished', '=', true)->count(), 'opportunities' => $opportunities, 'sort' => $sort, 'order' => $order, 'search' => $search, 'pills' => $pills));
+        return View::make('opportunities.index', array('total' => Opportunity::Where('isPublished', '=', true)->count(), 'opportunities' => $opportunities, 'sort' => $sort, 'order' => $order, 'search' => $search, 'limit' => $limit, 'pills' => $pills));
     }
 
     /**

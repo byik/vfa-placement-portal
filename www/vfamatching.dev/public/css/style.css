@@ -179,3 +179,11 @@ canvas {
 } #notes h3 {
     color: white;
 }
+
+#limit {
+    width: 50px;
+}
+
+#content {
+    margin-bottom: 100px;
+}

@@ -12,7 +12,7 @@ class UsersController extends BaseController {
         $sort = (!is_null(Input::get('sort')) ? Input::get('sort') : 'users.email'); //default to company name
         $order = (!is_null(Input::get('order')) ? Input::get('order') : 'asc'); //default to asc
         $search = (!is_null(Input::get('search')) ? Input::get('search') : ''); //default to empty string
-        $pagination = (!is_null(Input::get('limit')) ? Input::get('limit') : 21); //default to 21
+        $limit = (!is_null(Input::get('limit')) ? Input::get('limit') : 21); //default to 21
         $users = User::select('users.email', 'users.lastLogin', 'users.role', 'users.firstName', 'users.lastName');
         if($search != ''){
             $searchTerms = explode(' ', $search);
@@ -23,25 +23,25 @@ class UsersController extends BaseController {
                         ->orWhere('role', 'LIKE', "%$searchTerm%");
             }
         }
-        $users = $users->orderBy($sort, $order)->groupBy('id')->paginate($pagination);
+        $users = $users->orderBy($sort, $order)->groupBy('id')->paginate($limit);
         $pills  = array();
             array_push($pills, new Pill("Email", array(
-                    new DropdownItem("", URL::route( 'users.index', array('sort' => 'email', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
-                    new DropdownItem("", URL::route( 'users.index', array('sort' => 'email', 'order' => 'desc', 'search' => $search)), "sort-alpha-desc")
+                    new DropdownItem("", URL::route( 'users.index', array('sort' => 'email', 'order' => 'asc', 'search' => $search, 'limit' => $limit)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'users.index', array('sort' => 'email', 'order' => 'desc', 'search' => $search, 'limit' => $limit)), "sort-alpha-desc")
                 )));
             array_push($pills, new Pill("Role", array(
-                    new DropdownItem("", URL::route( 'users.index', array('sort' => 'role', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
-                    new DropdownItem("", URL::route( 'users.index', array('sort' => 'role', 'order' => 'desc', 'search' => $search)), "sort-alpha-desc")
+                    new DropdownItem("", URL::route( 'users.index', array('sort' => 'role', 'order' => 'asc', 'search' => $search, 'limit' => $limit)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'users.index', array('sort' => 'role', 'order' => 'desc', 'search' => $search, 'limit' => $limit)), "sort-alpha-desc")
                 )));
             array_push($pills, new Pill("First Name", array(
-                    new DropdownItem("", URL::route( 'users.index', array('sort' => 'firstName', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
-                    new DropdownItem("", URL::route( 'users.index', array('sort' => 'firstName', 'order' => 'desc', 'search' => $search)), "sort-alpha-desc")
+                    new DropdownItem("", URL::route( 'users.index', array('sort' => 'firstName', 'order' => 'asc', 'search' => $search, 'limit' => $limit)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'users.index', array('sort' => 'firstName', 'order' => 'desc', 'search' => $search, 'limit' => $limit)), "sort-alpha-desc")
                 )));
             array_push($pills, new Pill("Last Name", array(
-                    new DropdownItem("", URL::route( 'users.index', array('sort' => 'lastName', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
-                    new DropdownItem("", URL::route( 'users.index', array('sort' => 'lastName', 'order' => 'desc', 'search' => $search)), "sort-alpha-desc")
+                    new DropdownItem("", URL::route( 'users.index', array('sort' => 'lastName', 'order' => 'asc', 'search' => $search, 'limit' => $limit)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'users.index', array('sort' => 'lastName', 'order' => 'desc', 'search' => $search, 'limit' => $limit)), "sort-alpha-desc")
                 )));
-        return View::make('users.index', array('total' => User::count(), 'users' => $users, 'sort' => $sort, 'order' => $order, 'search' => $search, 'pills' => $pills));
+        return View::make('users.index', array('total' => User::count(), 'users' => $users, 'sort' => $sort, 'order' => $order, 'search' => $search, 'limit' => $limit, 'pills' => $pills));
 	}
 
 	/**

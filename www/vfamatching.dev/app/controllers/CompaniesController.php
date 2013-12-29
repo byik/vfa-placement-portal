@@ -12,7 +12,7 @@ class CompaniesController extends BaseController {
         $sort = (!is_null(Input::get('sort')) ? Input::get('sort') : 'name'); //default to name
         $order = (!is_null(Input::get('order')) ? Input::get('order') : 'asc'); //default to asc
         $search = (!is_null(Input::get('search')) ? Input::get('search') : ''); //default to empty string
-        $pagination = (!is_null(Input::get('limit')) ? Input::get('limit') : 10); //default to 10
+        $limit = (!is_null(Input::get('limit')) ? Input::get('limit') : 5); //default to 5
         $companies = Company::select('companies.*');
         if($search != ''){
             $searchTerms = explode(' ', $search);
@@ -28,29 +28,29 @@ class CompaniesController extends BaseController {
                     ->orWhere('twitterHandle', 'LIKE', "%$searchTerm%");
             }
         }
-        $companies = $companies->orderBy($sort, $order)->groupBy('companies.id')->having('isPublished', '=', true)->paginate($pagination);
+        $companies = $companies->orderBy($sort, $order)->groupBy('companies.id')->having('isPublished', '=', true)->paginate($limit);
         $pills  = array();
             array_push($pills, new Pill("Name", array(
-                    new DropdownItem("", URL::route( 'companies.index', array('sort' => 'name', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
-                    new DropdownItem("", URL::route( 'companies.index', array('sort' => 'name', 'order' => 'desc', 'search' => $search)), "sort-alpha-desc")
+                    new DropdownItem("", URL::route( 'companies.index', array('sort' => 'name', 'order' => 'asc', 'search' => $search, 'limit' => $limit)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'companies.index', array('sort' => 'name', 'order' => 'desc', 'search' => $search, 'limit' => $limit)), "sort-alpha-desc")
                 )));
             array_push($pills, new Pill("City", array(
-                    new DropdownItem("", URL::route( 'companies.index', array('sort' => 'city', 'order' => 'asc', 'search' => $search)), "sort-alpha-asc"),
-                    new DropdownItem("", URL::route( 'companies.index', array('sort' => 'city', 'order' => 'desc', 'search' => $search)), "sort-alpha-desc")
+                    new DropdownItem("", URL::route( 'companies.index', array('sort' => 'city', 'order' => 'asc', 'search' => $search, 'limit' => $limit)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'companies.index', array('sort' => 'city', 'order' => 'desc', 'search' => $search, 'limit' => $limit)), "sort-alpha-desc")
                 )));
             array_push($pills, new Pill("Employees", array(
-                    new DropdownItem("", URL::route( 'companies.index', array('sort' => 'employees', 'order' => 'asc', 'search' => $search)), "sort-numeric-asc"),
-                    new DropdownItem("", URL::route( 'companies.index', array('sort' => 'employees', 'order' => 'desc', 'search' => $search)), "sort-numeric-desc")
+                    new DropdownItem("", URL::route( 'companies.index', array('sort' => 'employees', 'order' => 'asc', 'search' => $search, 'limit' => $limit)), "sort-numeric-asc"),
+                    new DropdownItem("", URL::route( 'companies.index', array('sort' => 'employees', 'order' => 'desc', 'search' => $search, 'limit' => $limit)), "sort-numeric-desc")
                 )));
             array_push($pills, new Pill("Founded", array(
-                    new DropdownItem("Oldest first", URL::route( 'companies.index', array('sort' => 'yearFounded', 'order' => 'asc', 'search' => $search)), ""),
-                    new DropdownItem("Youngest first", URL::route( 'companies.index', array('sort' => 'yearFounded', 'order' => 'desc', 'search' => $search)), "")
+                    new DropdownItem("Oldest first", URL::route( 'companies.index', array('sort' => 'yearFounded', 'order' => 'asc', 'search' => $search, 'limit' => $limit)), ""),
+                    new DropdownItem("Youngest first", URL::route( 'companies.index', array('sort' => 'yearFounded', 'order' => 'desc', 'search' => $search, 'limit' => $limit)), "")
                 )));
             array_push($pills, new Pill("Date Added", array(
-                    new DropdownItem("Oldest first", URL::route( 'companies.index', array('sort' => 'created_at', 'order' => 'asc', 'search' => $search))),
-                    new DropdownItem("Newest first", URL::route( 'companies.index', array('sort' => 'created_at', 'order' => 'desc', 'search' => $search)))
+                    new DropdownItem("Oldest first", URL::route( 'companies.index', array('sort' => 'created_at', 'order' => 'asc', 'search' => $search, 'limit' => $limit))),
+                    new DropdownItem("Newest first", URL::route( 'companies.index', array('sort' => 'created_at', 'order' => 'desc', 'search' => $search, 'limit' => $limit)))
                 )));
-        return View::make('companies.index', array('total' => Company::Where('isPublished', '=', true)->count(), 'companies' => $companies, 'sort' => $sort, 'order' => $order, 'search' => $search, 'pills' => $pills));
+        return View::make('companies.index', array('total' => Company::Where('isPublished', '=', true)->count(), 'companies' => $companies, 'sort' => $sort, 'order' => $order, 'search' => $search, 'limit' => $limit, 'pills' => $pills));
 	}
 
 	/**
