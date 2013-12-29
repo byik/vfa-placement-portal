@@ -141,6 +141,10 @@ class CompaniesController extends BaseController {
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return View::make('404')->with('error', 'Company not found!');
         }
+        foreach($company->opportunities as $opportunity){
+            $opportunity->isPublished = false;
+            $opportunity->save();
+        }
         $company->isPublished = false;
         $company->save();
         return Redirect::back()->with('flash_notice', "Company unpublished");

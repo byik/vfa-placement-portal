@@ -140,6 +140,7 @@ class OpportunitiesController extends BaseController {
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return View::make('404')->with('error', 'Opportunity not found!');
         }
+        //TODO: Cascade the effects of unpublishing an opportunity
         $opportunity->isPublished = false;
         $opportunity->save();
         return Redirect::back()->with('flash_notice', "Opportunity unpublished");
