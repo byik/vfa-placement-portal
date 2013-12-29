@@ -33,8 +33,19 @@
 	</div>
 @else
     <div class="container">
-        <h4>Welcome to the Fellow Dashboard!</h4>
-    	<p>This is were you'll find your upcoming events and progress with each Opportunity you're interested in. But you haven't been introduced to any companies yet... <p>
-        <p>Head on over to the <a href="{{ URL::route('opportunities.index') }}">list of Opportunities</a> and start pitching! Your pitches will be reviewed by VFA Staff, and you'll receive an email when they're approved.</p>
+        <div class="row">
+        	<div class="col-xs-12">
+        		<h4>Welcome to the Fellow Dashboard!</h4>
+		    	<p>This is were you'll find your upcoming events and progress with each Opportunity you're interested in. But you haven't been introduced to any companies yet... <p>
+		        <p>Head on over to the list of Opportunities and start pitching! Your pitches will be reviewed by VFA Staff, and you'll receive an email when they're approved.</p>
+        	</div>
+        </div>
+        <div class="row">
+        	<div class="col-xs-12">
+        		<div class="pull-right">
+	        		<a href="{{ URL::route('opportunities.index') }}" class="btn btn-primary">View Opportunities</a>
+	        	</div>
+        	</div>
+        </div>
     </div>
 @endif

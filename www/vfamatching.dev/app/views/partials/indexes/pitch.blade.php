@@ -12,7 +12,7 @@
 			<span class="pull-right">
 				<div class="btn-group actions">
 					<button type="button" class="btn btn-success">
-						Approve
+						Introduce
 					</button>
 					<button type="button" class="btn btn-danger">
 						Waitlist

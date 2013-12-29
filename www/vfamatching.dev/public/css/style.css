@@ -17,6 +17,10 @@ canvas {
     height: auto !important;
 }
 
+input#limit {
+    text-align: right;
+}
+
 .secondary {
     background-color: #eef3f7;
 }
@@ -107,7 +111,7 @@ canvas {
     -webkit-transition: 0.3s; /* Safari */
 } .vfa-navbar ul.nav li a:hover {
     background-color: rgba(255, 255, 255, .2);
-    padding: 15px 45px;
+    /*padding: 15px 45px;*/
     /*font-size: 14pt;*/
 } .vfa-navbar ul.nav li a i {
     transition: 0.3s;
@@ -195,6 +199,4 @@ canvas {
     overflow: hidden;
 } #new-pitches h2 {
     color: white;
-} #new-pitches .actions {
-    margin-right: 20px;
-}
+} #new-pitches .actions {}

@@ -20,11 +20,13 @@
             <h3>Bio</h3>
             <p>{{ Parser::linkUrlsInText($fellow->bio) }}</p>
         </div>
-        @if(!empty($fellow->resumePath))
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                <a class="btn btn-primary form-control" href="{{ $fellow->resumePath }}" target="_blank"><i class="fa fa-cloud-download"></i> Download Résumé</a>
-            </div>
-        @endif
+        <div class="col-md-12">
+            @if(!empty($fellow->resumePath))
+                <span class="pull-right">
+                    <a class="btn btn-primary form-control" href="{{ $fellow->resumePath }}" target="_blank"><i class="fa fa-cloud-download"></i> Download Résumé</a>
+                </span>
+            @endif
+        </div>
     </div>
     <div class="row" id="highlights">
         <div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>School</small></h2><h3 class="text-center">{{ $fellow->school }}</h3></div>

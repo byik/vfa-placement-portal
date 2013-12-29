@@ -9,11 +9,11 @@
         {{ Form::hidden('fellow_id', $placementStatus->fellow_id) }}
         {{ Form::hidden('opportunity_id', $placementStatus->opportunity_id) }}
         <div class="form-group">
-            {{ Form::label('status', 'Status:') }}
+            {{ Form::label('status', 'Status') }}
             {{ Form::select('status', array_combine($statuses, $statuses), "", array('class'=>'form-control placementStatus-select required')) }}
         </div>
         <div class="form-group">
-            {{ Form::label('score', 'Feedback:') }}
+            {{ Form::label('score', 'Feedback*') }}
             {{ Form::select('score', array_combine($scores,$scores), "", array('class'=>'form-control required')) }}
             <small><ul class="list-unstyled">
                 <li>5 = I would absolutely love to work here</li>
@@ -22,8 +22,9 @@
             </ul></small>
         </div>
         <div class="form-group">
-            {{ Form::label('message', 'How are you feeling about this opportunity?') }}
+            {{ Form::label('message', 'How are you feeling about this opportunity?*') }}
             {{ Form::textarea('message', null, array('class'=>'form-control character-limit required', 'character-limit-max'=>280)) }}
         </div>
     </fieldset>
+    <em>*</em> Only VFA staff will be able to see this
 {{ Form::close() }}

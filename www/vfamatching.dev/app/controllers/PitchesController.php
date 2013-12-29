@@ -88,4 +88,28 @@ class PitchesController extends BaseController {
 		//
 	}
 
+	public function approve($id)
+    {
+        try{
+            $pitch = Pitch::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return View::make('404')->with('error', 'Pitch not found!');
+        }
+        $pitch->status = "Approved";
+        $pitch->save();
+        return Redirect::back()->with('flash_notice', "Pitch approved!");
+    }
+
+    public function waitlist($id)
+    {
+        try{
+            $pitch = Pitch::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return View::make('404')->with('error', 'Pitch not found!');
+        }
+        $pitch->status = "Approved";
+        $pitch->save();
+        return Redirect::back()->with('flash_notice', "Pitch waitlisted");
+    }
+
 }

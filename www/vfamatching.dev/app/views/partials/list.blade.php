@@ -13,18 +13,22 @@
             @endforeach
         </div>
         <div class="row">
-            {{ $listItems->addQuery('order', $order)->addQuery('sort', $sort)->addQuery('search', $search)->addQuery('limit', $limit)->links(); }}
+            <div class="col-xs-12">
+                {{ $listItems->addQuery('order', $order)->addQuery('sort', $sort)->addQuery('search', $search)->addQuery('limit', $limit)->links(); }}
+            </div>
         </div>
         <div class="row">
-            <form class="form-inline" role="form">
-                <div class="form-group">
-                    {{ ucfirst(str_plural($type)) }} per page: 
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control required requires-int ignore-empty" id="limit" name="limit" value="{{$limit}}">
-                </div>
-                <button type="submit" class="btn btn-default">Show</button>
-            </form>
+            <div class="col-xs-12">
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        {{ ucfirst(str_plural($type)) }} per page: 
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control required requires-int ignore-empty" id="limit" name="limit" value="{{$limit}}">
+                    </div>
+                    <button type="submit" class="btn btn-default">Show</button>
+                </form>
+            </div>
         </div>
 
     @else
