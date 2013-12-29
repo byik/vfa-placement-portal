@@ -2,6 +2,12 @@
 
 class UsersController extends BaseController {
 
+	public function __construct()
+    {
+        // Exit if not admin
+        $this->beforeFilter('admin', array('only' => array('index', 'create', 'store')));
+    }
+
 	/**
 	 * Display a listing of the resource.
 	 *

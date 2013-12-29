@@ -135,7 +135,49 @@ Route::filter('admin', function()
 {
     if(Auth::check()){
         if( Auth::user()->role != "Admin" ) {
-            Redirect::route('dashboard')->with('flash_error', "You don't have the necessary permissions to do that.");
+            return Redirect::route('dashboard')->with('flash_error', "You don't have the necessary permissions to do that!");
+        }
+    } else {
+        throw new Exception("This route should require authentication");
+    }
+});
+
+/*
+|--------------------------------------------------------------------------
+| AdminOrFellow Filter
+|--------------------------------------------------------------------------
+|
+| The Profile Filter ensures that the user is an admin or a fellow before hitting 
+| protected routes.
+|
+*/
+
+Route::filter('adminOrFellow', function()
+{
+    if(Auth::check()){
+        if( !(Auth::user()->role == "Admin" || Auth::user()->role == "Fellow") ) {
+            return Redirect::route('dashboard')->with('flash_error', "You don't have the necessary permissions to do that!");
+        }
+    } else {
+        throw new Exception("This route should require authentication");
+    }
+});
+
+/*
+|--------------------------------------------------------------------------
+| AdminOrHiringManager Filter
+|--------------------------------------------------------------------------
+|
+| The Profile Filter ensures that the user is an admin or a hiring manager before hitting 
+| protected routes.
+|
+*/
+
+Route::filter('adminOrHiringManager', function()
+{
+    if(Auth::check()){
+        if( !(Auth::user()->role == "Admin" || Auth::user()->role == "Hiring Manager") ) {
+            return Redirect::route('dashboard')->with('flash_error', "You don't have the necessary permissions to do that!");
         }
     } else {
         throw new Exception("This route should require authentication");
