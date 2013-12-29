@@ -51,6 +51,7 @@ Route::group(array('before' => 'auth'), function()
             Route::put('companies/{id}/unpublish', 'CompaniesController@unpublish');
             Route::put('pitches/{id}/approve', 'PitchesController@approve');
             Route::put('pitches/{id}/waitlist', 'PitchesController@waitlist');
+            Route::get('archive', 'AdminsController@archive');
         });
     });
 });

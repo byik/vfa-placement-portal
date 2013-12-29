@@ -76,4 +76,18 @@ class AdminsController extends BaseController {
 		//
 	}
 
+	public function archive()
+	{
+		if(Input::has('type')){
+			if(Input::get('type') == "Fellow"){
+				return View::make('archives.fellows');		
+			} elseif(Input::get('type') == "Opportunity") {
+				return View::make('archives.opportunities');		
+			}  elseif(Input::get('type') == "Company") {
+				return View::make('archives.companies');		
+			}
+		}
+		return View::make('archives.index');
+	}
+
 }
