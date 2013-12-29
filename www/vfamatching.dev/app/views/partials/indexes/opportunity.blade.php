@@ -13,12 +13,14 @@
         </div>
         <div class="panel-body">
             <div class="row list-summary">
-                <div class="col-md-3"><strong>Company: </strong>@include('partials.links.company', array('company' => $opportunity->company))</div>
+                <div class="col-md-3"><h4>@include('partials.links.company', array('company' => $opportunity->company))</h4></div>
                 <div class="col-md-3"><strong>City: </strong>{{ $opportunity->city }}</div>
                 <div class="col-md-3"><strong>Date Added: </strong>{{ Carbon::createFromFormat('Y-m-d H:i:s', $opportunity->created_at)->diffForHumans(); }}</div>
                 @if(Auth::user()->role == "Fellow")
                     @if(PlacementStatus::hasPlacementStatus(Auth::user()->profile, $opportunity))
-                        <div class="col-md-3"><strong>Placement Status: </strong>{{ PlacementStatus::getRecentPlacementStatus(Auth::user()->profile, $opportunity)->printWithDate() }}</div>
+                        <div class="col-md-3">
+                            <h4><em><small><strong>{{ PlacementStatus::getRecentPlacementStatus(Auth::user()->profile, $opportunity)->printWithDate() }}</strong></small></em></h4>
+                        </div>
                     @elseif(Pitch::hasPitch(Auth::user()->profile, $opportunity))
                         <div class="col-md-3"><strong>Pitch Status: </strong>{{ Pitch::getPitch(Auth::user()->profile, $opportunity)->status }}</div>
                     @else

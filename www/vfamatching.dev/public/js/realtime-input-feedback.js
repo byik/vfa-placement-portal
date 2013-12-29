@@ -106,6 +106,7 @@ $(document).ready(function() {
     });
 
     function displayRealtimeSelectFeedback(input){
+        console.log(input.find(":selected").text());
         if(input.find(":selected").text() == ""){
             input.parent().removeClass('has-success');
             input.parent().addClass('has-error');

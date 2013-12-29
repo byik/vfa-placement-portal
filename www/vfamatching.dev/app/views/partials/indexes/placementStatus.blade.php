@@ -11,10 +11,8 @@
                 </div>
             </div>
             <div class="col-xs-8">
-                <h3><small>
-                    @include('partials.links.company', array('company' => $placementStatus->opportunity->company))
-                </small></h3>
-                <h4><small><strong>{{ $placementStatus->printWithDate() }}</strong></small></h4>
+                <h4>@include('partials.links.company', array('company' => $placementStatus->opportunity->company))</h4>
+                <h4><em><small><strong>{{ $placementStatus->printWithDate() }}</strong></small></em></h4>
                 <!-- Button trigger modal -->
                 <a data-toggle="modal" href="#placementStatus-update-modal-{{ $placementStatus->id }}" class="btn
             btn-primary btn-large modal-btn form-control">Update</a>    
@@ -55,7 +53,7 @@ $(document).ready(function() {
         e.preventDefault();//don't follow the actual link
     });
     //register dropdown toggle to make datepicker appear on certain statuses
-    $('.placementStatus-select').unbind().change(function(){
+    $('.placementStatus-select').change(function(){
         //remove the old one, if exists
         $('#datepicker').remove();
         if(this.value == "{{ PlacementStatus::statuses()[2] }}" ||

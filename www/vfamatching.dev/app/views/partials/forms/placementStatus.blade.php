@@ -1,18 +1,20 @@
+<?php 
+    $scores = PlacementStatus::scores(); 
+    $statuses = PlacementStatus::statuses();
+    array_unshift($scores, "");
+    array_unshift($statuses, "");
+?>
 {{ Form::open(array('route' => 'placementstatuses.store', 'id'=>'placementStatus-'.$placementStatus->id,'class'=>'placementStatus-form')) }}
     <fieldset>
         {{ Form::hidden('fellow_id', $placementStatus->fellow_id) }}
         {{ Form::hidden('opportunity_id', $placementStatus->opportunity_id) }}
         <div class="form-group">
             {{ Form::label('status', 'Status:') }}
-            {{ Form::select('status', array_combine(PlacementStatus::statuses(), PlacementStatus::statuses()), $placementStatus->status, array('class'=>'form-control placementStatus-select')) }}
+            {{ Form::select('status', array_combine($statuses, $statuses), "", array('class'=>'form-control placementStatus-select required')) }}
         </div>
         <div class="form-group">
             {{ Form::label('score', 'Feedback:') }}
-            <?php 
-                $scores = PlacementStatus::scores(); 
-                array_unshift($scores, "");
-            ?>
-            {{ Form::select('score', array_combine($scores,$scores), " ", array('class'=>'form-control')) }}
+            {{ Form::select('score', array_combine($scores,$scores), "", array('class'=>'form-control required')) }}
             <small><ul class="list-unstyled">
                 <li>5 = I would absolutely love to work here</li>
                 <li>3 = This would be a decent fit for me</li>
@@ -21,7 +23,7 @@
         </div>
         <div class="form-group">
             {{ Form::label('message', 'How are you feeling about this opportunity?') }}
-            {{ Form::textarea('message', null, array('class'=>'form-control character-limit', 'character-limit-max'=>280)) }}
+            {{ Form::textarea('message', null, array('class'=>'form-control character-limit required', 'character-limit-max'=>280)) }}
         </div>
     </fieldset>
 {{ Form::close() }}
