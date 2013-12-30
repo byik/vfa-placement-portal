@@ -41,12 +41,12 @@ Route::group(array('before' => 'auth'), function()
         Route::resource('fellowskills', 'FellowskillsController');
         Route::resource('opportunitytags', 'OpportunitytagsController');
         Route::resource('staffrecommendations', 'StaffrecommendationsController');
+        Route::put('opportunities/{id}/publish', 'OpportunitiesController@publish');
+        Route::put('opportunities/{id}/unpublish', 'OpportunitiesController@unpublish');
         Route::group(array('before' => 'admin'), function() /* Requires the user to be an admin */
         {
             Route::put('fellows/{id}/publish', 'FellowsController@publish');
             Route::put('fellows/{id}/unpublish', 'FellowsController@unpublish');
-            Route::put('opportunities/{id}/publish', 'OpportunitiesController@publish');
-            Route::put('opportunities/{id}/unpublish', 'OpportunitiesController@unpublish');
             Route::put('companies/{id}/publish', 'CompaniesController@publish');
             Route::put('companies/{id}/unpublish', 'CompaniesController@unpublish');
             Route::put('pitches/{id}/approve', 'PitchesController@approve');

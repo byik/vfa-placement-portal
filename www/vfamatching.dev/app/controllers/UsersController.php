@@ -217,7 +217,7 @@ class UsersController extends BaseController {
                 ->get();
             return View::make('index', array('placementStatuses' => $placementStatuses));
         } elseif( Auth::user()->role == "Hiring Manager" ) {
-            throw new Exception("TODO: Logic not implemented for Hiring Manager dashboard");
+            return View::make('index');
         } else {
             throw new Exception("Invalid user role");
         }

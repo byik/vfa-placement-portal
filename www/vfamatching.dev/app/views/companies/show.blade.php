@@ -2,6 +2,11 @@
 
 @section('header')
 {{ $company->name }} <small><em>{{ $company->tagline }}</em></small>
+    @if(Auth::user()->role == "Hiring Manager")
+        @if(Auth::user()->profile->company->id == $company->id)
+            <small><em><a href="{{ URL::route('companies.edit', $company->id) }}"><i class="fa fa-pencil-square-o"></i>Edit your Company profile</a></em></small>
+        @endif
+    @endif
 @stop
 
 @section('content')
@@ -33,14 +38,16 @@
     </div>
 </div>
 
-<div class="secondary">
-	<div class="container">
-		<h3>{{ "$company->name's Opportunities <small>(<em>" . count($company->opportunities) ."</em>)</small>" }}</h3>
-	    @foreach($company->opportunities as $opportunity)
-            @include('partials.indexes.opportunity', array('opportunity' => $opportunity))
-	    @endforeach
-	</div>
-</div>
+@if(Auth::user()->role != "Hiring Manager")
+    <div class="secondary">
+    	<div class="container">
+    		<h3>{{ "$company->name's Opportunities <small>(<em>" . count($company->opportunities) ."</em>)</small>" }}</h3>
+    	    @foreach($company->opportunities as $opportunity)
+                @include('partials.indexes.opportunity', array('opportunity' => $opportunity))
+    	    @endforeach
+    	</div>
+    </div>
+@endif
 
 @if(Auth::user()->role == "Admin")
     @include('partials.components.adminNotes', array('adminNotes' => $company->adminNotes, 'entityType' => "Company", 'entityId' => $company->id))

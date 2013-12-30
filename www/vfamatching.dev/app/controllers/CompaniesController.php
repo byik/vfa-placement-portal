@@ -4,8 +4,8 @@ class CompaniesController extends BaseController {
 
     public function __construct()
     {
-        // Exit if not admin or a fellow
-        $this->beforeFilter('adminOrFellow', array('only' => array('index', 'show')));
+        $this->beforeFilter('adminOrFellow', array('only' => array('index')));
+        $this->beforeFilter('admin', array('only' => array('publish','unpublish')));
     }
 
 	/**
@@ -91,6 +91,11 @@ class CompaniesController extends BaseController {
             $company = Company::findOrFail($id);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return View::make('404')->with('error', 'Company not found!');
+        }
+        if(Auth::user()->role == "Hiring Manager"){
+            if($company->id != Auth::user()->profile->company->id){
+                return Redirect::route('dashboard')->with('flash_error', "You don't have the necessary permissions to do that!");
+            }
         }
         return View::make('companies.show', array('company' => $company));
 	}

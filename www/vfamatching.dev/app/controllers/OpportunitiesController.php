@@ -4,8 +4,7 @@ class OpportunitiesController extends BaseController {
 
     public function __construct()
     {
-        // Exit if not admin or a fellow
-        $this->beforeFilter('adminOrFellow', array('only' => array('index', 'show')));
+        $this->beforeFilter('adminOrHiringManager', array('only' => array('publish','unpublish')));
     }
 
     /**
@@ -20,7 +19,7 @@ class OpportunitiesController extends BaseController {
         $order = (!is_null(Input::get('order')) ? Input::get('order') : 'asc'); //default to asc
         $search = (!is_null(Input::get('search')) ? Input::get('search') : ''); //default to empty string
         $limit = (!is_null(Input::get('limit')) ? Input::get('limit') : 5); //default to 5
-        $opportunities = Opportunity::select('opportunities.*', 'companies.name')
+        $opportunities = Opportunity::select('opportunities.*', 'companies.name', 'companies.id')
             ->join('companies', 'opportunities.company_id', '=', 'companies.id')
             ->leftJoin('opportunityTags', 'opportunities.id', '=', 'opportunityTags.opportunity_id');
         if($search != ''){
@@ -36,6 +35,13 @@ class OpportunitiesController extends BaseController {
                     ->orWhere('opportunities.city', 'LIKE', "%$searchTerm%")
                     ->orWhere('opportunityTags.tag', 'LIKE', "%$searchTerm%");
             }
+        }
+        if(Auth::user()->role == "Hiring Manager"){//Ensure Hiring Manaers only see their Opportunities
+            $opportunities = $opportunities->where('companies.id','=',Auth::user()->profile->company->id);
+            $total = Opportunity::join('companies', 'opportunities.company_id', '=', 'companies.id')
+            ->where('opportunities.isPublished', '=', true)->where('companies.id','=',Auth::user()->profile->company->id)->count();
+        } else {
+            $total = Opportunity::Where('isPublished', '=', true)->count();
         }
         $opportunities = $opportunities->orderBy($sort, $order)->groupBy('opportunities.id')->having('isPublished', '=', true)->paginate($limit);
         $pills  = array();
@@ -55,7 +61,7 @@ class OpportunitiesController extends BaseController {
                     new DropdownItem("Oldest first", URL::route( 'opportunities.index', array('sort' => 'created_at', 'order' => 'asc', 'search' => $search, 'limit' => $limit))),
                     new DropdownItem("Newest first", URL::route( 'opportunities.index', array('sort' => 'created_at', 'order' => 'desc', 'search' => $search, 'limit' => $limit)))
                 )));
-        return View::make('opportunities.index', array('total' => Opportunity::Where('isPublished', '=', true)->count(), 'opportunities' => $opportunities, 'sort' => $sort, 'order' => $order, 'search' => $search, 'limit' => $limit, 'pills' => $pills));
+        return View::make('opportunities.index', array('total' => $total, 'opportunities' => $opportunities, 'sort' => $sort, 'order' => $order, 'search' => $search, 'limit' => $limit, 'pills' => $pills));
     }
 
     /**
@@ -90,6 +96,11 @@ class OpportunitiesController extends BaseController {
             $opportunity = Opportunity::findOrFail($id);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return View::make('404')->with('error', 'Opportunity not found!');
+        }
+        if(Auth::user()->role == "Hiring Manager"){
+            if($opportunity->company->id != Auth::user()->profile->company->id){
+                return Redirect::route('dashboard')->with('flash_error', "You don't have the necessary permissions to do that!");
+            }
         }
         return View::make('opportunities.show')->with('opportunity',$opportunity);
     }

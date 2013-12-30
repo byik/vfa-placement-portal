@@ -4,8 +4,8 @@ class FellowsController extends BaseController {
 
     public function __construct()
     {
-        // Exit if not admin or a hiring manager
         $this->beforeFilter('adminOrHiringManager', array('only' => array('index', 'show')));
+        $this->beforeFilter('admin', array('only' => array('publish', 'unpublish')));
     }
 
     /**

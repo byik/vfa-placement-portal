@@ -28,11 +28,11 @@
                     @endif
                 @endif
             </div>
-            @if(Auth::user()->role == "Admin")
+            @if(Auth::user()->role == "Admin" || Auth::user()->role == "Hiring Manager")
                 <div class="pull-right admin-controls">
                     @if( $opportunity->isPublished )
                         {{ Form::open(array('url' => 'opportunities/'.$opportunity->id.'/unpublish', 'method' => 'PUT', 'class'=>'publishable-form')) }}
-                            <a href="#" class="btn btn-danger form-control publishable"><i class="fa fa-eye-slash"></i> Unpublish</a>
+                            <a href="#" class="btn btn-danger form-control verify-submit"><i class="fa fa-eye-slash"></i> Unpublish</a>
                         {{ Form::close() }}
                     @else
                         {{ Form::open(array('url' => 'opportunities/'.$opportunity->id.'/publish', 'method' => 'PUT', 'class'=>'publishable-form')) }}
@@ -44,6 +44,7 @@
         </div>
     </div>
 </div>
+@if(Auth::user()->role == "Fellow")
 <!-- Modal -->
 <div class="modal" id="pitch-modal-{{ $opportunity->id }}">
     <div class="modal-dialog">
@@ -64,7 +65,7 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
+@endif
 <script type="text/javascript">
     $('.pitch-submit').unbind().click(function(e){
         $(this).parent().parent().find('.pitch-form').submit();
@@ -76,6 +77,25 @@
         $('.publishable').unbind().click(function(e){
             $(this).parent('.publishable-form').submit();
             e.preventDefault();//don't follow the actual link
+        });
+
+        $('.verify-submit').unbind().click(function(e){
+            publishableForm = $(this).parent('.publishable-form');        
+            noty({
+              text: 'Fellows will no longer be able to view this Opportunity if you unpublish it. Would you like to continue?',
+              buttons: [
+                {addClass: 'btn btn-danger', text: '<i class="fa fa-eye-slash"></i> Unpublish', onClick: function($noty) {
+                    publishableForm.submit();
+                    e.preventDefault();//don't follow the actual link
+                    $noty.close();
+                  }
+                },
+                {addClass: 'btn btn-default', text: 'Cancel', onClick: function($noty) {
+                    $noty.close();
+                  }
+                }
+              ]
+            });
         });
     });
 </script>
