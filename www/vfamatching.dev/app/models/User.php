@@ -68,4 +68,9 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
     {
         return "VFA_Matching!";
     }
+
+    public static function roles()
+    {
+        return array('Fellow','Hiring Manager', 'Admin');
+    }
 }

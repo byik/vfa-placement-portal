@@ -51,4 +51,16 @@ class Company extends BaseModel {
     {
         return $this->belongsToMany('FellowNote', 'fellowNote_company', 'company_id', 'fellowNote_id');
     }
+
+    public static function dropdownOfAllNames()
+    {
+        $html = '<div class="form-group" id="company-picker"><label>Which Company?</label><div class="input-group"><span class="input-group-addon"><i class="fa fa-building-o"></i></span><select name="company" class="form-control company-dropdown required">';
+        $html .= '<option value=""></option>';
+        $html .= '<option value="0">New Company</option>';
+        foreach(Company::all() as $company){
+            $html .= '<option value="'.$company->id.'">'.$company->name.'</option>';
+        }
+        $html .= '</div></div>';
+        return $html;
+    }
 }

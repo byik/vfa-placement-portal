@@ -20,6 +20,14 @@ $(document).ready(function() {
     //TEXT INPUT
     setInterval(function(){
         displayRealtimeTextFeedback(); //need timer to account for autofills
+
+        //SELECT BOXES - Binding here for selectboxes that appear after initial load
+        $('select.required').each(function(){
+            displayRealtimeSelectFeedback($(this));
+        });
+        $('select.required').on('change', function(){
+            displayRealtimeSelectFeedback($(this));
+        });
     }, 200);
 
     function displayRealtimeTextFeedback(){
@@ -105,16 +113,7 @@ $(document).ready(function() {
         });
     }
 
-    //SELECT BOXES
-    $('select.required').each(function(){
-        displayRealtimeSelectFeedback($(this));
-    });
-    $('select.required').on('change', function(){
-        displayRealtimeSelectFeedback($(this));
-    });
-
     function displayRealtimeSelectFeedback(input){
-        console.log(input.find(":selected").text());
         if(input.find(":selected").text() == ""){
             input.parent().removeClass('has-success');
             input.parent().addClass('has-error');

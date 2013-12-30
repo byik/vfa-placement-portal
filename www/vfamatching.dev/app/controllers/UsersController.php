@@ -57,7 +57,7 @@ class UsersController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('users.create');
+        return View::make('users.create', array('companyPicker' => Company::dropdownOfAllNames()));
 	}
 
 	/**
@@ -67,7 +67,7 @@ class UsersController extends BaseController {
 	 */
 	public function store()
 	{
-		//
+		die("TODO: Store submitted data");
 	}
 
 	/**
