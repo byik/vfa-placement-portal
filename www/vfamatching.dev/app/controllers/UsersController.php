@@ -18,7 +18,7 @@ class UsersController extends BaseController {
         $sort = (!is_null(Input::get('sort')) ? Input::get('sort') : 'users.email'); //default to company name
         $order = (!is_null(Input::get('order')) ? Input::get('order') : 'asc'); //default to asc
         $search = (!is_null(Input::get('search')) ? Input::get('search') : ''); //default to empty string
-        $limit = (!is_null(Input::get('limit')) ? Input::get('limit') : 21); //default to 21
+        $limit = (!is_null(Input::get('limit')) ? Input::get('limit') : 5); //default to 5
         $users = User::select('users.email', 'users.lastLogin', 'users.role', 'users.firstName', 'users.lastName');
         if($search != ''){
             $searchTerms = explode(' ', $search);
@@ -47,6 +47,10 @@ class UsersController extends BaseController {
                     new DropdownItem("", URL::route( 'users.index', array('sort' => 'lastName', 'order' => 'asc', 'search' => $search, 'limit' => $limit)), "sort-alpha-asc"),
                     new DropdownItem("", URL::route( 'users.index', array('sort' => 'lastName', 'order' => 'desc', 'search' => $search, 'limit' => $limit)), "sort-alpha-desc")
                 )));
+            array_push($pills, new Pill("Date Added", array(
+                    new DropdownItem("Oldest First", URL::route( 'users.index', array('sort' => 'created_at', 'order' => 'asc', 'search' => $search, 'limit' => $limit)), "sort-alpha-asc"),
+                    new DropdownItem("Newest First", URL::route( 'users.index', array('sort' => 'created_at', 'order' => 'desc', 'search' => $search, 'limit' => $limit)), "sort-alpha-desc")
+                )));
         return View::make('users.index', array('total' => User::count(), 'users' => $users, 'sort' => $sort, 'order' => $order, 'search' => $search, 'limit' => $limit, 'pills' => $pills));
 	}
 
@@ -67,7 +71,57 @@ class UsersController extends BaseController {
 	 */
 	public function store()
 	{
-		die("TODO: Store submitted data");
+		// die(json_encode(Input::all()));
+		if(Input::get('role') == "Hiring Manager"){
+			//Hiring managers have special needs, create or get the company
+			if(Input::get('company') == 0){
+				//create company
+				$company = new Company();
+				$company->name = Input::get('new-company');
+				try {
+			        $company->save(array('adminValidation'=>true));
+			    } catch (ValidationFailedException $e) {
+			        return Redirect::back()->with('validation_errors', $e->getErrorMessages())->withInput();
+			    }
+			} else {
+				//lookup company
+				try{
+		            $company = Company::findOrFail(Input::get('company'));
+		        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+		            return View::make('404')->with('error', 'Company not found!');
+		        }
+			}
+		}
+
+		//now try to create the new user
+		$user = new User();
+		$user->firstName = Input::get('firstName');
+		$user->lastName = Input::get('lastName');
+		$user->email = Input::get('email');
+		//NOTE: THIS IS A HUGE FUCKING SECURITY FLAW. RANDOMIZE THIS SHIT AND EMAIL IT OUT ONCE EMAIL IS WORKING
+		$user->password = Hash::make("fakepassword");
+		$user->role = Input::get('role');
+		try {
+	        $user->save(array('adminValidation'=>true));
+	        //TODO EMAIL THE NEW USER
+	    } catch (ValidationFailedException $e) {
+	        return Redirect::back()->with('validation_errors', $e->getErrorMessages())->withInput();
+	    }
+
+		//Create Hiring Manager and Company if this new user is a hiring manager
+		// (this is required so that admins can control which hiring mangers
+		// belong to which companies)
+		if(Input::get('role') == "Hiring Manager"){
+			$hiringManager = new HiringManager();
+			$hiringManager->user_id = $user->id;
+			$hiringManager->company_id = $company->id;
+			try {
+				$hiringManager->save(array('adminValidation'=>true));
+		    } catch (ValidationFailedException $e) {
+		        return Redirect::back()->with('validation_errors', $e->getErrorMessages())->withInput();
+		    }
+		}
+		return Redirect::route('users.index')->with('flash_notice', 'User added!');
 	}
 
 	/**

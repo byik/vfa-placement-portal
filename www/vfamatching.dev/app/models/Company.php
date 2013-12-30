@@ -22,7 +22,19 @@ class Company extends BaseModel {
 
     protected function adminRules()
     {
-        return $this->rules();
+        return array(
+            'name'=>'max:280|unique:companies,name,'.$this->id,
+            'city'=>'max:280',
+            'url'=>'url',
+            'tagline'=>'max:140',
+            'visionAnswer'=>'max:280',
+            'needsAnswer'=>'max:280',
+            'teamAnswer'=>'max:280',
+            'employees'=>'integer',
+            'yearFounded'=>'digits:4',
+            'twitterHandle'=>'max:15',
+            'isPublished'=> 'in:0,1'
+        );
     }
 
     protected $guarded = array();
