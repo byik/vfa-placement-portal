@@ -75,4 +75,20 @@ class Company extends BaseModel {
         $html .= '</div></div>';
         return $html;
     }
+
+    public function isProfileComplete(){
+        if(empty($this->name) ||
+            empty($this->city) ||
+            empty($this->url) ||
+            empty($this->tagline) ||
+            empty($this->visionAnswer) ||
+            empty($this->needsAnswer) ||
+            empty($this->teamAnswer) ||
+            empty($this->employees) ||
+            empty($this->yearFounded)){
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

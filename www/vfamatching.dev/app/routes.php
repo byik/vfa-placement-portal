@@ -24,6 +24,7 @@ Route::group(array('before' => 'auth'), function()
     Route::post('hiringmanagers', array('uses' => 'HiringmanagersController@store'));
     Route::get('hiringmanagers/{id}/edit', array('uses' => 'HiringmanagersController@edit'));
     Route::put('hiringmanagers/{id}', array('uses' => 'HiringmanagersController@update'));
+    Route::get('companies/{id}/edit', array('uses' => 'CompaniesController@edit'));
     Route::group(array('before' => 'profile'), function() /* Requires a profile to be created before using the site */
     {
         Route::get('/', array('as' => 'dashboard', 'uses' => 'UsersController@dashboard'));

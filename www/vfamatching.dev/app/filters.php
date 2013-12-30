@@ -37,7 +37,9 @@ Route::filter('auth', function()
 {
 	if (Auth::guest()) {
 		//store the url they were trying to hit in session
-		Session::put('returnUrl', Request::url());
+        if(Request::segment(1) != "logout"){
+		    Session::put('returnUrl', Request::url());
+        }
 		return Redirect::route('login')
 			->with('flash_error', 'You must be logged in to view that page! You\'ll be redirected to your intended destination after logging in.');
 	}
@@ -106,11 +108,17 @@ Route::filter('profile', function()
                 return Redirect::route('fellows.create')->with('flash_notice', $flash_notice);
             }
         } elseif( Auth::user()->role == "Hiring Manager" ) {
+            //has a profile
             if(is_null(Auth::user()->profile)){
                 return Redirect::route('hiringmanagers.create')->with('flash_notice', $flash_notice);
             } else {
+                //profile is complete
                 if(!Auth::user()->profile->isProfileComplete()){
                     return Redirect::route('hiringmanagers.edit', Auth::user()->profile->id)->with('flash_notice', $flash_notice);
+                }
+                //company profile is complete
+                if(!Auth::user()->profile->company->isProfileComplete()){
+                    return Redirect::route('companies.edit', Auth::user()->profile->company->id)->with('flash_notice', "Now fill us in on your awesome copmany!");
                 }
             }
         } else {
