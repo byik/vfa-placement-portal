@@ -233,3 +233,7 @@ input#limit {
 	color: #ec5a41;
 	text-decoration: none;
 }
+
+.update-button {
+	margin-bottom: 5px;
+}

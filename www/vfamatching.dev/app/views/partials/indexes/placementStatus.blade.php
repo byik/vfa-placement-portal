@@ -15,14 +15,16 @@
                 <h4><em><small><strong>{{ $placementStatus->printWithDate() }}</strong></small></em></h4>
                 <!-- Button trigger modal -->
                 <a data-toggle="modal" href="#placementStatus-update-modal-{{ $placementStatus->id }}" class="btn
-            btn-primary btn-large modal-btn form-control">Update</a>    
+                btn-primary btn-large modal-btn form-control update-button">Update</a>
+                <a data-toggle="modal" href="#placementStatus-history-modal-{{ $placementStatus->id }}" class="btn
+                btn-primary btn-large modal-btn form-control">History</a>    
             </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Status Update Modal -->
 <div class="modal" id="placementStatus-update-modal-{{ $placementStatus->id }}">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -37,6 +39,25 @@
             <div class="modal-footer">
                 <a href="" class="btn btn-default" data-dismiss="modal">Cancel</a>
                 <a href="" class="btn btn-primary placementStatus-submit">Update Placement Status and Submit Feedback</a>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Status History Modal -->
+<div class="modal" id="placementStatus-history-modal-{{ $placementStatus->id }}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="btn close btn-default" data-dismiss="modal">&times;</a>
+                <h4 class="modal-title">Placement Status History: {{ $placementStatus->opportunity->title }}</h4>
+            </div>
+            <div class="modal-body">
+                <div>{{ $placementStatus->timestamps }}: {{ $placementStatus->status }}</div>
+                TODO: ADD STATUS HISTORY
+            </div>
+            <div class="modal-footer">
+                <a href="" class="btn btn-default" data-dismiss="modal">Close</a>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
