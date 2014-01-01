@@ -2,16 +2,13 @@
 
 @section('header')
     {{ $opportunity->title }}
-    <small><em>{{ $opportunity->city }}</em></small>
+    <small><em><a href="{{ URL::to('/companies/' . $opportunity->company->id) }}">{{ $opportunity->company->name }},</a> {{ $opportunity->city }}</em></small>
 @stop
 
 @section('content')
     <div class="container">
         <div class="row">
-        	<div class="col-md-4">
-                <h2>@include('partials.links.company', array('company' => $opportunity->company))</h2>
-            </div>
-            <div class="col-md-8">
+            <div class="col-md-12">
                 @include('partials.components.tags', array('tags' => $opportunity->opportunityTags))
             </div>
         </div>
