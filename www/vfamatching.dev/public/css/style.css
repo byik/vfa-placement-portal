@@ -206,3 +206,30 @@ input#limit {
 #admin-dashboard-highlight {
     margin: 0px 0px 50px 0px;
 }
+
+.vfa-footer {
+    background-color: #fff;
+    margin:10px;
+}
+
+.vfa-footer ul {
+	list-style-type:none;
+	margin:0;
+	padding:0;
+	text-align: center;
+}
+
+.vfa-footer li {
+	display:inline;
+	margin: 20px;
+}
+
+.vfa-footer a {
+	color: #04274f;
+	font-weight: bold;
+}
+
+.vfa-footer a:hover {
+	color: #ec5a41;
+	text-decoration: none;
+}
