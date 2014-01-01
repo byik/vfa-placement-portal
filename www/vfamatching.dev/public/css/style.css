@@ -105,7 +105,7 @@ input#limit {
     height: 52px;
     margin: 2px;
     padding: 15px 15px;
-    text-transform: uppercase;
+    text-transform: ;
     /*border-radius: 5px;*/
     transition: 0.3s;
     -webkit-transition: 0.3s; /* Safari */
