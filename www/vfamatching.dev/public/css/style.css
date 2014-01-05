@@ -250,3 +250,7 @@ input#limit {
 .panel-heading h3 a {
 	color: #505050;
 }
+
+.panel-body h4 {
+	margin: 0px;
+}
