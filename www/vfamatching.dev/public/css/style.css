@@ -254,3 +254,7 @@ input#limit {
 .panel-body h4 {
 	margin: 0px;
 }
+
+.upcoming-events i {
+	margin: 0px 10px;
+}
