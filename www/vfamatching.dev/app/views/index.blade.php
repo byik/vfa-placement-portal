@@ -21,7 +21,7 @@
 	@elseif( Auth::user()->role == "Fellow") {{-- Fellow's Dashboard --}}
 		@include('partials.dashboards.fellow', array('placementStatuses' => $placementStatuses))
 	@elseif( Auth::user()->role == "Hiring Manager")
-        TODO: Hiring Manager Dashboard
+        @include('partials.dashboards.hiringManager')
     @else
   <!-- We've got problems -->
 	@endif
