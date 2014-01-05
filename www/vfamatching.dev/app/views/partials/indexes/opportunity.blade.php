@@ -16,17 +16,7 @@
                 <div class="col-md-3"><h4>@include('partials.links.company', array('company' => $opportunity->company))</h4></div>
                 <div class="col-md-3"><strong>City: </strong>{{ $opportunity->city }}</div>
                 <div class="col-md-3"><strong>Date Added: </strong>{{ Carbon::createFromFormat('Y-m-d H:i:s', $opportunity->created_at)->diffForHumans(); }}</div>
-                @if(Auth::user()->role == "Fellow")
-                    @if(PlacementStatus::hasPlacementStatus(Auth::user()->profile, $opportunity))
-                        <div class="col-md-3">
-                            <h4><em><small><strong>{{ PlacementStatus::getRecentPlacementStatus(Auth::user()->profile, $opportunity)->printWithDate() }}</strong></small></em></h4>
-                        </div>
-                    @elseif(Pitch::hasPitch(Auth::user()->profile, $opportunity))
-                        <div class="col-md-3"><strong>Pitch Status: </strong>{{ Pitch::getPitch(Auth::user()->profile, $opportunity)->status }}</div>
-                    @else
-                        <div class="col-md-3"><a data-toggle="modal" href="#pitch-modal-{{ $opportunity->id }}" class="btn btn-primary modal-btn form-control"><i class="fa fa-comment"></i> Pitch</a></div>
-                    @endif
-                @endif
+                <div class="col-md-3">@include('partials.components.pitch-button')</div>
             </div>
             @if(Auth::user()->role == "Admin" || Auth::user()->role == "Hiring Manager")
                 <div class="pull-right admin-controls">
