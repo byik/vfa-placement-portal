@@ -18,6 +18,7 @@
 			      <li><a href="{{ URL::to('/companies') }}"> Companies</a></li>
 			    @elseif( Auth::user()->role == "Hiring Manager" )
 			      @if(Auth::user()->profile->isProfileComplete())
+			      	<li class=""><a href="{{ URL::to('/') }}"> Dashboard</a></li>
 			        <li><a href="{{ URL::to('/fellows') }}"> Fellows</a></li>
 			        <li><a href="{{ URL::to('/companies/' . Auth::user()->profile->company->id) }}"> {{ Auth::user()->profile->company->name }}</a></li>
 			        <li><a href="{{ URL::route('opportunities.index') }}"> Opportunities</a></li>
