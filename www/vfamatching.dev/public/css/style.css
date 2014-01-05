@@ -252,6 +252,18 @@ input#limit {
 	padding: 5px 10px;
 }
 
+.panel-default > .panel-heading {
+	background-color: #fcf8f7;
+background: #fbfafa;
+background: 
+linear-gradient(115deg, transparent 75%, rgba(255,255,255,.8) 75%) 0 0,
+linear-gradient(245deg, transparent 75%, rgba(255,255,255,.8) 75%) 0 0,
+linear-gradient(115deg, transparent 75%, rgba(255,255,255,.8) 75%) 7px -15px,
+linear-gradient(245deg, transparent 75%, rgba(255,255,255,.8) 75%) 7px -15px,
+#fbfafa;
+background-size: 15px 30px
+}
+
 .panel-heading h3 {
 	margin-top: 10px;
 
@@ -266,7 +278,7 @@ input#limit {
 }
 
 .upcoming-events i {
-	margin: 0px 10px;
+	margin-right: 10px;
 }
 
 
