@@ -236,7 +236,7 @@ input#limit {
 
 .vfa-footer a {
 	color: #04274f;
-	font-weight: bold;
+	font-weight: ;
 }
 
 .vfa-footer a:hover {
@@ -281,5 +281,11 @@ background-size: 15px 30px
 	margin-right: 10px;
 }
 
+.upcoming-events .col-md-3 {
+    padding-right: 0px;
+}
 
+.center-pagination {
+    text-align: center;
+}
 
