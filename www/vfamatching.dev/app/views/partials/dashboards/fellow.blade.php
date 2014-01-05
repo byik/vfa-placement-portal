@@ -2,7 +2,7 @@
 	<div class="fellow-dash">
 		<div class="container">
 			<div class="upcoming-events">
-					<h2><small>Upcoming Events</small></h2>
+					<h3>Upcoming Events</h3>
 					<?php $eventCount = 0; ?>
 					@foreach($placementStatuses as $placementStatus)
 						@if($placementStatus->eventDate != "")
@@ -15,7 +15,7 @@
 					@endif
 			</div>
 			<div class="placementStatuses">
-				<h2><small>Placement Statuses</small></h2>
+				<h3>Placement Statuses</h3>
                     <div class="row">
                     <?php $count = 0; ?>
                     @foreach($placementStatuses as $placementStatus)
