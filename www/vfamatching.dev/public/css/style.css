@@ -237,3 +237,16 @@ input#limit {
 .update-button {
 	margin-bottom: 5px;
 }
+
+.panel-heading {
+	padding: 5px 10px;
+}
+
+.panel-heading h3 {
+	margin-top: 10px;
+
+}
+
+.panel-heading h3 a {
+	color: #505050;
+}
