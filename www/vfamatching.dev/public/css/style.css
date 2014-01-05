@@ -210,6 +210,8 @@ input#limit {
 .vfa-footer {
     background-color: #fff;
     margin:10px;
+    padding: 5px;
+    border-top: 1px solid #04274f;
 }
 
 .vfa-footer ul {
@@ -258,3 +260,4 @@ input#limit {
 .upcoming-events i {
 	margin: 0px 10px;
 }
+
