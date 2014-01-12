@@ -3,6 +3,10 @@
 	/*src: url('../Fonts/GillSans.ttc');*/
 }
 
+html {
+    background-color: #04274F;;
+}
+
 body {
     /*font-family: GillSans;*/
 }
