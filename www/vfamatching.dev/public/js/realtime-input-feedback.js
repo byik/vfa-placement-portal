@@ -16,15 +16,15 @@
 * requires-int
 */
 $(document).ready(function() {  
+    displayRealtimeTextFeedback();
+    $('select.required').each(function(){
+        displayRealtimeSelectFeedback($(this));
+    });
 
     //TEXT INPUT
     setInterval(function(){
         displayRealtimeTextFeedback(); //need timer to account for autofills
 
-        //SELECT BOXES - Binding here for selectboxes that appear after initial load
-        $('select.required').each(function(){
-            displayRealtimeSelectFeedback($(this));
-        });
         $('select.required').on('change', function(){
             displayRealtimeSelectFeedback($(this));
         });

@@ -1,5 +1,6 @@
 <?php 
     $roles = User::roles();
+    array_unshift($roles, '');
     $roles = array_combine($roles, $roles); 
 ?>
 {{ Form::open(array('url' => 'users', 'method' => 'POST', 'files' => true)) }}
@@ -40,8 +41,8 @@ $(document).ready(function() {
 
 	    $('.company-dropdown').change(function(){
 	    	$('#new-company-name').remove();
-	        if($(this).val() == 0){
-	        	$(this).parent().parent().after('<div class="form-group" id="new-company-name"><label>Company Name</label><div class="input-group"><input name="new-company" class="form-control required" type="text"></div></div>');
+	        if($(this).val() != "" && $(this).val() == 0){
+	        	$(this).parent().parent().after('<div class="form-group" id="new-company-name"><label for="new-company">Company Name</label><input name="new-company" class="form-control required" type="text" value="" character-limit-max="280"></div>');
 	        }
 	    });
     });
