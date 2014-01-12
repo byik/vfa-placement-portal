@@ -157,14 +157,12 @@ class Fellow extends BaseModel {
                 }
             }
 
-            if($progressIndex < 0){
-                throw new Exception('Cannot determine placement progress: Invalid Statuses');
+            if($progressIndex >= 0){
+                return $placementStatuses[$progressIndex];
             }
 
-            return $placementStatuses[$progressIndex];
-
-        } else {
-            return "No Introductions";
         }
+
+        return "No Introductions";
     }
 }
