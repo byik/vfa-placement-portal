@@ -1,7 +1,8 @@
 {{-- Requires $pitch --}}
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<strong><h3><a href="{{ URL::route('fellows.show', array('fellows'=> $pitch->fellow->id)) }}">{{ $pitch->fellow->user->firstName . ' ' . $pitch->fellow->user->lastName}}</a> <i class="fa fa-arrows-h"></i> @include('partials.links.opportunity', array('opportunity' => $pitch->opportunity))</h3></strong>
+		<strong><h3><a href="{{ URL::route('fellows.show', array('fellows'=> $pitch->fellow->id)) }}">{{ $pitch->fellow->user->firstName . ' ' . $pitch->fellow->user->lastName}}</a> <i class="fa fa-arrows-h"></i> @include('partials.links.opportunity', array('opportunity' => $pitch->opportunity))
+         at @include('partials.links.company', array('company' => $pitch->opportunity->company))</h3></strong>
         <em>{{ Carbon::createFromFormat('Y-m-d H:i:s', $pitch->created_at)->diffForHumans() }}</em>
 	</div>
 	<div class="panel-body">
