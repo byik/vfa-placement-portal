@@ -4,7 +4,7 @@ class FellowsController extends BaseController {
 
     public function __construct()
     {
-        $this->beforeFilter('adminOrHiringManager', array('only' => array('index', 'show')));
+        $this->beforeFilter('adminOrHiringManager', array('only' => array('index')));
         $this->beforeFilter('admin', array('only' => array('publish', 'unpublish')));
     }
 
@@ -164,6 +164,11 @@ class FellowsController extends BaseController {
      */
     public function show($id)
     {
+        if(Auth::user()->role == "Fellow"){
+            if(Auth::user()->profile->id != $id){
+                return Redirect::route('dashboard')->with('flash_error', "You don't have the necessary permissions to do that!");
+            }
+        }
         try{
             $fellow = Fellow::findOrFail($id);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
