@@ -20,6 +20,12 @@
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
           <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
+        <!-- jQuery -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <!-- Chart.js -->
+        <script src="{{ URL::to('js/Chart.js') }}"></script>
+        <!-- Noty -->
+        <script type="text/javascript" src="{{ URL::to('js/noty/packaged/jquery.noty.packaged.min.js') }}"></script>
     </head>
     <body> 
         @include('partials.nav')
@@ -47,16 +53,10 @@
         </div>
         @include('partials.footer')
         
-        <!-- jQuery -->
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <!-- Bootstrap JS -->
         <script src="{{ URL::to('js/bootstrap.js') }}"></script>
         <!-- Datepicker JS -->
         <script src="{{ URL::to('js/bootstrap-datepicker.js') }}"></script>
-        <!-- Chart.js -->
-        <script src="{{ URL::to('js/Chart.js') }}"></script>
-        <!-- Noty -->
-        <script type="text/javascript" src="{{ URL::to('js/noty/packaged/jquery.noty.packaged.min.js') }}"></script>
         <!-- character-limit.js -->
         <script src="{{ URL::to('js/character-limit.js') }}"></script>
         <!-- required-fields.js -->
