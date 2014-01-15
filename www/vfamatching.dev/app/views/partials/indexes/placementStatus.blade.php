@@ -53,7 +53,10 @@
                 <h4 class="modal-title">Placement Status History: {{ $placementStatus->opportunity->title }}</h4>
             </div>
             <div class="modal-body">
-                <div>{{ $placementStatus->timestamps }}: {{ $placementStatus->status }}</div>
+                @foreach($placementStatus->history() as $oldPlacementStatus)
+
+                @end
+                <div>{{ $placementStatus->fellow_id }}: {{ $placementStatus->opportunity_id }}</div>
                 TODO: ADD STATUS HISTORY
             </div>
             <div class="modal-footer">

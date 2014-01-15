@@ -124,6 +124,17 @@ class PlacementStatus extends BaseModel {
             'Bad Fit'); //0/8
     }
 
+    public function history()
+    {
+        $fellow_id = $this->fellow_id;
+        $opportunity_id = $this->opportunity_id;
+        $history = PlacementStatus::where('fellow_id','=',$fellow_id)->where('opportunity_id','=',$opportunity_id)->
+            orderBy('created_at', 'DESC')
+            ->get();
+
+        return $history;
+    }
+
     public static function scores()
     {
         return array(
