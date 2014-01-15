@@ -55,7 +55,7 @@
             <div class="modal-body">
                 @foreach($placementStatus->history() as $oldPlacementStatus)
 
-                @end
+                @endforeach
                 <div>{{ $placementStatus->fellow_id }}: {{ $placementStatus->opportunity_id }}</div>
                 TODO: ADD STATUS HISTORY
             </div>
