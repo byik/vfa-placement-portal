@@ -257,15 +257,15 @@ div#content {
 }
 
 .panel-default > .panel-heading {
-	background-color: #fcf8f7;
-/*     background: #fbfafa;
-background: 
-linear-gradient(115deg, transparent 75%, rgba(255,255,255,.8) 75%) 0 0,
-linear-gradient(245deg, transparent 75%, rgba(255,255,255,.8) 75%) 0 0,
-linear-gradient(115deg, transparent 75%, rgba(255,255,255,.8) 75%) 7px -15px,
-linear-gradient(245deg, transparent 75%, rgba(255,255,255,.8) 75%) 7px -15px,
-#fbfafa;
-background-size: 15px 30px */
+	background-color: #fbfafa;
+    /*background: #fbfafa;
+    background: 
+    linear-gradient(115deg, transparent 75%, rgba(255,255,255,.8) 75%) 0 0,
+    linear-gradient(245deg, transparent 75%, rgba(255,255,255,.8) 75%) 0 0,
+    linear-gradient(115deg, transparent 75%, rgba(255,255,255,.8) 75%) 7px -15px,
+    linear-gradient(245deg, transparent 75%, rgba(255,255,255,.8) 75%) 7px -15px,
+    #fbfafa;
+    background-size: 15px 30px */
 }
 
 .panel-heading h3 {
@@ -275,6 +275,7 @@ background-size: 15px 30px */
 
 .panel-heading h3 a {
 	color: #505050;
+
 }
 
 .panel-body h4 {
