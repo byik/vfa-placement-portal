@@ -52,14 +52,6 @@ input#limit {
     margin: 0px;
     margin-bottom: 0px;
 	background-color:#e4ecf3;
-	background-image: linear-gradient(30deg, #eef3f7 12%, transparent 12.5%, transparent 87%, #eef3f7 87.5%, #eef3f7),
-	linear-gradient(150deg, #eef3f7 12%, transparent 12.5%, transparent 87%, #eef3f7 87.5%, #eef3f7),
-	linear-gradient(30deg, #eef3f7 12%, transparent 12.5%, transparent 87%, #eef3f7 87.5%, #eef3f7),
-	linear-gradient(150deg, #eef3f7 12%, transparent 12.5%, transparent 87%, #eef3f7 87.5%, #eef3f7),
-	linear-gradient(60deg, #e4ecf3 25%, transparent 25.5%, transparent 75%, #e4ecf3 75%, #e4ecf3), 
-	linear-gradient(60deg, #e4ecf3 25%, transparent 25.5%, transparent 75%, #e4ecf3 75%, #e4ecf3);
-	background-size:40px 70px;
-	background-position: 0 0, 0 0, 20px 35px, 20px 35px, 0 0, 20px 35px;
 }
 
 .vfa-header h1 {
