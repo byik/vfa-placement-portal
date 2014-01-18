@@ -5,7 +5,7 @@ class CompaniesController extends BaseController {
     public function __construct()
     {
         $this->beforeFilter('adminOrFellow', array('only' => array('index')));
-        $this->beforeFilter('adminOrHiringManager', array('only' => array('edit')));
+        $this->beforeFilter('adminOrHiringManager', array('only' => array('edit, update')));
         $this->beforeFilter('admin', array('only' => array('publish','unpublish')));
     }
 
@@ -131,7 +131,32 @@ class CompaniesController extends BaseController {
 	 */
 	public function update($id)
 	{
-		die("PUT sent to update company");
+        if(Auth::user()->role == "Hiring Manager" && Auth::user()->profile->company->id != $id){
+            return Redirect::route('dashboard')->with('flash_error', "You don't have the necessary permissions to do that!");
+        }
+        try{
+            $company = Company::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return View::make('404')->with('error', 'Company not found!');
+        }
+        $company->name = Input::get('name');
+        $company->city = Input::get('city');
+        $company->url = Input::get('url');
+        $company->twitterPitch = Input::get('twitterPitch');
+        $company->bio = Input::get('bio');
+        $company->teamAnswer = Input::get('teamAnswer');
+        $company->employees = Input::get('employees');
+        $company->yearFounded = Input::get('yearFounded');
+        $company->twitterHandle = Input::get('twitterHandle');
+
+        try {
+            $company->save();
+        } catch (ValidationFailedException $e) {
+            return Redirect::back()->with('validation_errors', $e->getErrorMessages())->withInput();
+        }
+
+        return Redirect::route('companies.show', $company->id)->with('flash_notice', 'Profile successfully updated.');
+
 	}
 
 	/**
