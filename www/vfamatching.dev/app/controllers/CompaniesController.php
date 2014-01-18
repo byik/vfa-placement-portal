@@ -5,6 +5,7 @@ class CompaniesController extends BaseController {
     public function __construct()
     {
         $this->beforeFilter('adminOrFellow', array('only' => array('index')));
+        $this->beforeFilter('adminOrHiringManager', array('only' => array('edit')));
         $this->beforeFilter('admin', array('only' => array('publish','unpublish')));
     }
 
@@ -25,6 +26,7 @@ class CompaniesController extends BaseController {
             foreach($searchTerms as $searchTerm){
                 $companies = $companies->where('name', 'LIKE', "%$searchTerm%")
                     ->orWhere('twitterPitch', 'LIKE', "%$searchTerm%")
+                    ->orWhere('bio', 'LIKE', "%$searchTerm%")
                     ->orWhere('city', 'LIKE', "%$searchTerm%")
                     ->orWhere('url', 'LIKE', "%$searchTerm%")
                     ->orWhere('visionAnswer', 'LIKE', "%$searchTerm%")
@@ -108,7 +110,17 @@ class CompaniesController extends BaseController {
 	 */
 	public function edit($id)
 	{
-        return View::make('companies.edit');
+        try{
+            $company = Company::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return View::make('404')->with('error', 'Company not found!');
+        }
+        if(Auth::user()->role == "Hiring Manager"){
+            if($company->id != Auth::user()->profile->company->id){
+                return Redirect::route('dashboard')->with('flash_error', "You don't have the necessary permissions to do that!");
+            }
+        }
+        return View::make('companies.edit', array('company' => $company));
 	}
 
 	/**
@@ -119,7 +131,7 @@ class CompaniesController extends BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		die("PUT sent to update company");
 	}
 
 	/**
