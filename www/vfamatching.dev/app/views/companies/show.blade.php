@@ -52,7 +52,8 @@
 @if(Auth::user()->role == "Admin")
     @include('partials.components.adminNotes', array('adminNotes' => $company->adminNotes, 'entityType' => "Company", 'entityId' => $company->id))
 @elseif(Auth::user()->role == "Fellow")
-    @include('partials.components.fellowNotes', array('fellowNotes' => $company->fellowNotes, 'entityType' => "Company", 'entityId' => $company->id))
+    {{-- Commented out due to VFA's request: https://github.com/lowe0292/vfa-placement-portal/issues/16 }}
+    {{-- @include('partials.components.fellowNotes', array('fellowNotes' => $company->fellowNotes, 'entityType' => "Company", 'entityId' => $company->id)) --}}
 @endif
 
 @stop
