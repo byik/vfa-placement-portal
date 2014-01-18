@@ -3,7 +3,9 @@
 @section('header')
     {{ $fellow->user->firstName . ' ' . $fellow->user->lastName }}
     @if(Auth::user()->id == $fellow->user->id)
-        <small><em><a href="{{ URL::route('fellows.edit', $fellow->id) }}"><i class="fa fa-pencil-square-o"></i>Edit your profile</a></em></small>
+        <span class="pull-right">
+            <small><em><a href="{{ URL::route('fellows.edit', $fellow->id) }}"><i class="fa fa-pencil-square-o"></i>Edit your profile</a></em></small>
+        </span>
     @endif
 @stop
 

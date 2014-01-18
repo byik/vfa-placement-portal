@@ -24,7 +24,7 @@
               <li><a href="{{ URL::to('archive') }}"><i class="fa fa-archive"></i> Archives</a></li>
             @elseif( Auth::user()->role == "Fellow")
               <li class=""><a href="{{ URL::to('/') }}"><i class="fa fa-home"></i> Dashboard</a></li>
-              <li><a href="{{ URL::to('/fellows/' . Auth::user()->profile->id) }}"><i class="fa fa-user"></i> Profile</a></li>
+              <li><a href="{{ URL::to('/fellows/' . Auth::user()->profile->id) }}"><i class="fa fa-user"></i> {{ Auth::user()->firstName }}</a></li>
               <li><a href="{{ URL::to('/opportunities') }}"><i class="fa fa-briefcase"></i> Opportunities</a></li>
               <li><a href="{{ URL::to('/companies') }}"><i class="fa fa-building-o"></i> Companies</a></li>
             @elseif( Auth::user()->role == "Hiring Manager" )

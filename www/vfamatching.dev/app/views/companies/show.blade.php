@@ -4,7 +4,9 @@
 {{ $company->name }} <small><em>{{ $company->twitterPitch }}</em></small>
     @if(Auth::user()->role == "Hiring Manager")
         @if(Auth::user()->profile->company->id == $company->id)
-            <small><em><a href="{{ URL::route('companies.edit', $company->id) }}"><i class="fa fa-pencil-square-o"></i>Edit your Company profile</a></em></small>
+            <span class="pull-right">
+                <small><em><a href="{{ URL::route('companies.edit', $company->id) }}"><i class="fa fa-pencil-square-o"></i>Edit your Company profile</a></em></small>
+            </span>
         @endif
     @endif
 @stop
@@ -18,7 +20,7 @@
     	<div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>City</small></h2><h3 class="text-center">{{ $company->city }}</h3></div>
     	<div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>Founded</small></h2><h3 class="text-center">{{ $company->yearFounded }}</h3></div>
     	<div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>Employees</small></h2><h3 class="text-center">{{ $company->employees }}</h3></div>
-    	<div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>Website</small></h2><h3 class="text-center"><a class="btn btn-primary form-control" href="{{ $company->url }}" target="_blank">Visit <i class="fa fa-external-link"></i></a></h3></div>
+    	<div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>Website</small></h2><h3 class="text-center"><a class="btn btn-link form-control" href="{{ $company->url }}" target="_blank">Visit <i class="fa fa-external-link"></i></a></h3></div>
     </div>
 
     <div class="row">
