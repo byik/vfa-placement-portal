@@ -21,6 +21,12 @@
     	<div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>Website</small></h2><h3 class="text-center"><a class="btn btn-primary form-control" href="{{ $company->url }}" target="_blank">Visit <i class="fa fa-external-link"></i></a></h3></div>
     </div>
 
+    <div class="row">
+            <div class="col-md-12">
+                <h4><strong>About {{ $company->name }}</strong></h4>
+                <p>{{ Parser::linkUrlsInText($company->bio) }}</p>
+            </div>
+        </div>
 
     <div class="row" id="company-answers">
         <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
