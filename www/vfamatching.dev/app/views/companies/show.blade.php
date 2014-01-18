@@ -22,23 +22,12 @@
     </div>
 
     <div class="row">
-            <div class="col-md-12">
-                <h4><strong>About {{ $company->name }}</strong></h4>
-                <p>{{ Parser::linkUrlsInText($company->bio) }}</p>
-            </div>
+        <div class="col-md-8">
+            <h4><strong>About {{ $company->name }}</strong></h4>
+            <p>{{ Parser::linkUrlsInText($company->bio) }}</p>
         </div>
-
-    <div class="row" id="company-answers">
-        <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
-            <h4><strong>What is your company's vision?</strong></h4>
-            <p>{{ $company->visionAnswer }}</p>
-        </div>
-        <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
-            <h4><strong>What are your company's greatest needs?</strong></h4>
-            <p>{{ $company->needsAnswer }}</p>
-        </div>
-        <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
-            <h4><strong>Describe your team</strong></h4>
+        <div class="col-md-4 ">
+            <h4><strong>About Chalkfly's Team</strong></h4>
             <p>{{ $company->teamAnswer }}</p>
         </div>
     </div>
