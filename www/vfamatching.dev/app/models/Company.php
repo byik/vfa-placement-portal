@@ -9,7 +9,7 @@ class Company extends BaseModel {
             'name'=>'required|max:280|unique:companies,name,'.$this->id,
             'city'=>'required|max:280',
             'url'=>'required|url',
-            'tagline'=>'required|max:140',
+            'twitterPitch'=>'required|max:140',
             'visionAnswer'=>'required|max:280',
             'needsAnswer'=>'required|max:280',
             'teamAnswer'=>'required|max:280',
@@ -26,7 +26,7 @@ class Company extends BaseModel {
             'name'=>'max:280|unique:companies,name,'.$this->id,
             'city'=>'max:280',
             'url'=>'url',
-            'tagline'=>'max:140',
+            'twitterPitch'=>'max:140',
             'visionAnswer'=>'max:280',
             'needsAnswer'=>'max:280',
             'teamAnswer'=>'max:280',
@@ -80,7 +80,7 @@ class Company extends BaseModel {
         if(empty($this->name) ||
             empty($this->city) ||
             empty($this->url) ||
-            empty($this->tagline) ||
+            empty($this->twitterPitch) ||
             empty($this->visionAnswer) ||
             empty($this->needsAnswer) ||
             empty($this->teamAnswer) ||

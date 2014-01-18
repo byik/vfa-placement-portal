@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('header')
-{{ $company->name }} <small><em>{{ $company->tagline }}</em></small>
+{{ $company->name }} <small><em>{{ $company->twitterPitch }}</em></small>
     @if(Auth::user()->role == "Hiring Manager")
         @if(Auth::user()->profile->company->id == $company->id)
             <small><em><a href="{{ URL::route('companies.edit', $company->id) }}"><i class="fa fa-pencil-square-o"></i>Edit your Company profile</a></em></small>

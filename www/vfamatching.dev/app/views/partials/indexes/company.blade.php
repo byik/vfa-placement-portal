@@ -2,7 +2,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3>@include('partials.links.company', array('company' => $company))</h3>
-            <h4><small><strong><em>{{ $company->tagline }}</em></strong></small></h4>
+            <h4><small><strong><em>{{ $company->twitterPitch }}</em></strong></small></h4>
         </div>
         <div class="panel-body">
             <div class="row list-summary">

@@ -17,7 +17,7 @@ class CreateCompaniesTable extends Migration {
 			$table->string('name', 280);
 			$table->string('city', 280);
 			$table->string('url');
-			$table->string('tagline', 140);
+			$table->string('twitterPitch', 140);
 			$table->string('visionAnswer', 280);
 			$table->string('needsAnswer', 280);
 			$table->string('teamAnswer', 280);

@@ -181,7 +181,7 @@ class AdminsController extends BaseController {
 		            $searchTerms = explode(' ', $search);
 		            foreach($searchTerms as $searchTerm){
 		                $companies = $companies->where('name', 'LIKE', "%$searchTerm%")
-		                    ->orWhere('tagline', 'LIKE', "%$searchTerm%")
+		                    ->orWhere('twitterPitch', 'LIKE', "%$searchTerm%")
 		                    ->orWhere('city', 'LIKE', "%$searchTerm%")
 		                    ->orWhere('url', 'LIKE', "%$searchTerm%")
 		                    ->orWhere('visionAnswer', 'LIKE', "%$searchTerm%")
