@@ -1,1 +1,1 @@
-<a href="{{ URL::route('opportunities.show', array('opportunities'=>$opportunity->id)) }}"> {{ Str::limit($opportunity->title, 50) }}</a>
+<a href="{{ URL::route('opportunities.show', array('opportunities'=>$opportunity->id)) }}"><i class="fa fa-briefcase"></i> {{ Str::limit($opportunity->title, 50) }}</a>
