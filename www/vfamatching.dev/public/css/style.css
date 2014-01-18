@@ -146,7 +146,7 @@ input#limit {
 
 .note {
     background: white;
-    margin: 20px auto;
+    margin: 10px auto;
 } .note p {
     font-size: normal;
 }
@@ -182,11 +182,9 @@ input#limit {
 }
 
 #notes {
-    background-color: #04274f;
+    /*background-color: #04274f;*/
     padding: 20px;
     overflow: hidden;
-} #notes h3 {
-    color: white;
 }
 
 #limit {
@@ -213,7 +211,7 @@ div#content {
 
 .vfa-footer {
     background-color: #fff;
-    margin:10px;
+    margin:10px 10px 50px 10px;
     padding: 5px;
     border-top: 1px solid #04274f;
 }
