@@ -15,6 +15,7 @@
     	<img src="{{ $fellow->displayPicturePath }}" class="img-responsive" alt="Responsive image">
     @endif
     <div class="row">
+        <div class="container"><h3>Skills</h3></div>
         @include('partials.components.skills', array('skills' => $fellow->fellowSkills))
     </div>
     <div class="row">
