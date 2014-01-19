@@ -292,3 +292,7 @@ div#content {
     font-size: 15pt;
 }
 
+#pagination-limit {
+    text-align: center;
+}
+

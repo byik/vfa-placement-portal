@@ -19,7 +19,7 @@
         </div>
         <div class="row">
             <div class="col-xs-12">
-                <form class="form-inline" role="form">
+                <form class="form-inline" role="form" id="pagination-limit">
                     <div class="form-group">
                         {{ ucfirst(str_plural($type)) }} per page: 
                     </div>
