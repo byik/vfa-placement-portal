@@ -17,24 +17,26 @@
                 {{ $listItems->addQuery('order', $order)->addQuery('sort', $sort)->addQuery('search', $search)->addQuery('limit', $limit)->addQuery('type', ucfirst($type))->links(); }}
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <form class="form-inline" role="form" id="pagination-limit">
-                    <div class="form-group">
-                        {{ ucfirst(str_plural($type)) }} per page: 
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control required requires-int ignore-empty" id="limit" name="limit" value="{{$limit}}">
-                        <!-- missing hidden fields -->
-                        <?php $queryData = Parser::extractDataFromQueryString($_SERVER['QUERY_STRING']); ?>
-                        @foreach($queryData as $name => $value)
-                          @include('partials.components.hidden-input', array('name'=>$name, 'value'=>$value))
-                        @endforeach
-                    </div>
-                    <button type="submit" class="btn btn-default">Show</button>
-                </form>
+        @if($listItems->getTotal() > $limit)
+            <div class="row">
+                <div class="col-xs-12">
+                    <form class="form-inline" role="form" id="pagination-limit">
+                        <div class="form-group">
+                            {{ ucfirst(str_plural($type)) }} per page: 
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control required requires-int ignore-empty" id="limit" name="limit" value="{{$limit}}">
+                            <!-- missing hidden fields -->
+                            <?php $queryData = Parser::extractDataFromQueryString($_SERVER['QUERY_STRING']); ?>
+                            @foreach($queryData as $name => $value)
+                              @include('partials.components.hidden-input', array('name'=>$name, 'value'=>$value))
+                            @endforeach
+                        </div>
+                        <button type="submit" class="btn btn-default">Show</button>
+                    </form>
+                </div>
             </div>
-        </div>
+        @endif
 
     @else
         @if($total == 0)
