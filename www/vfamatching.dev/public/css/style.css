@@ -168,19 +168,6 @@ input#limit {
     margin: 50px auto;
 }
 
-@media (min-width: 992px){ /*Laptop and Desktop*/
-    #highlights {
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-}
-
-@media (min-width: 480px){ /*Tablet*/
-    #login {
-        margin-top: 100px;
-    }
-}
-
 #notes {
     /*background-color: #04274f;*/
     padding: 20px;
@@ -206,7 +193,7 @@ div#content {
 }
 
 #admin-dashboard-highlight {
-    margin: 0px 0px 50px 0px;
+    margin: 20px 0px 50px 0px;
 }
 
 .vfa-footer {
@@ -296,3 +283,22 @@ div#content {
     text-align: center;
 }
 
+@media (min-width: 992px){ /*Laptop and Desktop*/
+    #highlights {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (min-width: 480px){ /*Tablet and up*/
+    #login {
+        margin-top: 100px;
+    }
+}
+
+@media (max-width: 480px){ /*Phone*/
+    .vfa-footer li {
+        display:block;
+        margin: 10px;
+    }
+}
