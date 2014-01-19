@@ -33,6 +33,15 @@
             <p>{{ $company->teamAnswer }}</p>
         </div>
     </div>
+
+    @if($company->canViewContactInfo())
+        <div class="row" id="contact-info">
+            <div class="col-xs-10 col-xs-offset-1">
+                <h2>Contact Info:</h2>
+                @include('partials.components.company-contacts', array('company' => $company))
+            </div>
+        </div>
+    @endif
 </div>
 
 @if(Auth::user()->role != "Hiring Manager")

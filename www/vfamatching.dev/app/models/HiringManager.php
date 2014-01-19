@@ -25,7 +25,18 @@ class HiringManager extends BaseModel {
         return $this->belongsTo('Company');
     }
 
-    public function isProfileComplete(){
+    public function isProfileComplete()
+    {
         return !empty($this->phoneNumber);
+    }
+
+    public function isIntroduced(Fellow $fellow)
+    {
+        foreach($this->company->opportunities as $opportunity){
+            if(PlacementStatus::hasPlacementStatus($fellow, $opportunity)){
+                return true;
+            }
+        }
+        return false;
     }
 }

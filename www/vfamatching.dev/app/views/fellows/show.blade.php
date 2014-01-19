@@ -36,6 +36,14 @@
         <div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>Hometown</small></h2><h3 class="text-center">{{ $fellow->hometown }}</h3></div>
         <div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>Graduated</small></h2><h3 class="text-center">{{ $fellow->graduationYear }}</h3></div>
     </div>
+    @if($fellow->canViewContactInfo())
+        <div class="row" id="contact-info">
+            <div class="col-xs-10 col-xs-offset-1">
+                <h2>Contact Info:</h2>
+                @include('partials.components.contact-info', array('name' => $fellow->user->firstName . ' ' . $fellow->user->lastName, 'email' => $fellow->user->email, 'phoneNumber' => $fellow->phoneNumber))
+            </div>
+        </div>
+    @endif
 </div>
 
 @if(Auth::user()->role == "Admin")

@@ -165,4 +165,28 @@ class Fellow extends BaseModel {
 
         return "No Introductions";
     }
+
+    public function canViewContactInfo()
+    {
+        if(Auth::check()){
+            if(Auth::user()->role == "Admin"){
+                return true;
+            } elseif(Auth::user()->role == "Hiring Manager" && Auth::user()->profile->isIntroduced($this)){
+                return true;
+            } elseif(Auth::user()->role == "Fellow" && $this->id == Auth::user()->profile->id){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function isIntroduced(Company $company)
+    {
+        foreach($company->opportunities as $opportunity){
+            if(PlacementStatus::hasPlacementStatus($this, $opportunity)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

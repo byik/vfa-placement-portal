@@ -93,4 +93,20 @@ class Company extends BaseModel {
             return true;
         }
     }
+
+    public function canViewContactInfo()
+    {
+        if(count($this->hiringManagers) > 0){
+            if(Auth::check()){
+                if(Auth::user()->role == "Admin"){
+                    return true;
+                } elseif(Auth::user()->role == "Fellow" && Auth::user()->profile->isIntroduced($this)){
+                    return true;
+                } elseif(Auth::user()->role == "Hiring Manager" && $this->id == Auth::user()->profile->company->id){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
