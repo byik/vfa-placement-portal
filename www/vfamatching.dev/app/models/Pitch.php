@@ -43,9 +43,18 @@ class Pitch extends BaseModel {
         }
     }
 
-    public static function underReview()
+    public static function underAdminReview()
     {
         return Pitch::where('status','=',"Under Review")
+            ->where('hasAdminApproval', '=', false)
+            ->orderBy('created_at', 'ASC')
+            ->get(); //newest first
+    }
+
+    public static function underHiringManagerReview()
+    {
+        return Pitch::where('status','=',"Under Review")
+            ->where('hasAdminApproval', '=', true)
             ->orderBy('created_at', 'ASC')
             ->get(); //newest first
     }

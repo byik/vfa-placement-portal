@@ -206,7 +206,7 @@ class UsersController extends BaseController {
             return View::make('index', array(
                 'placedFellowPercent' => Fellow::percentWithAcceptedOffer(),
                 'placementProgressHistogram' => Fellow::placementProgressHistogram(),
-                'newPitches' => Pitch::underReview()
+                'newPitches' => Pitch::underAdminReview()
                 ));
         } elseif( Auth::user()->role == "Fellow") {
             $placementStatuses = Auth::user()->profile
