@@ -110,4 +110,12 @@ class Company extends BaseModel {
         }
         return false;
     }
+
+    public function hasPublishedOpportunities()
+    {
+        if($this->opportunities()->where('opportunities.isPublished','=',true)->count() < 1){
+            return false;
+        }
+        return true;
+    }
 }

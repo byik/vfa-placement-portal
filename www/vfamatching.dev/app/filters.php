@@ -118,7 +118,11 @@ Route::filter('profile', function()
                 }
                 //company profile is complete
                 if(!Auth::user()->profile->company->isProfileComplete()){
-                    return Redirect::route('companies.edit', Auth::user()->profile->company->id)->with('flash_notice', "Now fill us in on your awesome copmany!");
+                    return Redirect::route('companies.edit', Auth::user()->profile->company->id)->with('flash_notice', "Next, fill us in on your awesome copmany!");
+                }
+                //company has at least one published opportunity
+                if(!Auth::user()->profile->company->hasPublishedOpportunities()){
+                    return Redirect::route('opportunities.create')->with('flash_notice', "Finally, create at least one open Opportunity at your Company to gain access to the VFA Fellows.");
                 }
             }
         } else {
