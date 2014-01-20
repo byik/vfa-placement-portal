@@ -19,7 +19,7 @@ class OpportunitiesController extends BaseController {
         $order = (!is_null(Input::get('order')) ? Input::get('order') : 'asc'); //default to asc
         $search = (!is_null(Input::get('search')) ? Input::get('search') : ''); //default to empty string
         $limit = (!is_null(Input::get('limit')) ? Input::get('limit') : 5); //default to 5
-        $opportunities = Opportunity::select('opportunities.*', 'companies.name', 'companies.id')
+        $opportunities = Opportunity::select('*', 'companies.name', 'companies.id', 'opportunities.id')
             ->join('companies', 'opportunities.company_id', '=', 'companies.id')
             ->leftJoin('opportunityTags', 'opportunities.id', '=', 'opportunityTags.opportunity_id');
         if($search != ''){
@@ -41,9 +41,9 @@ class OpportunitiesController extends BaseController {
             $total = Opportunity::join('companies', 'opportunities.company_id', '=', 'companies.id')
             ->where('opportunities.isPublished', '=', true)->where('companies.id','=',Auth::user()->profile->company->id)->count();
         } else {
-            $total = Opportunity::Where('isPublished', '=', true)->count();
+            $total = Opportunity::Where('opportunities.isPublished', '=', true)->count();
         }
-        $opportunities = $opportunities->orderBy($sort, $order)->groupBy('opportunities.id')->having('isPublished', '=', true)->paginate($limit);
+        $opportunities = $opportunities->orderBy($sort, $order)->groupBy('opportunities.id')->having('opportunities.isPublished', '=', true)->paginate($limit);
         $pills  = array();
             array_push($pills, new Pill("Title", array(
                     new DropdownItem("", URL::route( 'opportunities.index', array('sort' => 'title', 'order' => 'asc', 'search' => $search, 'limit' => $limit)), "sort-alpha-asc"),
