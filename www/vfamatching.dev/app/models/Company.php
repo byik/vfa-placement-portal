@@ -83,8 +83,9 @@ class Company extends BaseModel {
             empty($this->city) ||
             empty($this->url) ||
             empty($this->twitterPitch) ||
-            empty($this->visionAnswer) ||
-            empty($this->needsAnswer) ||
+            // empty($this->visionAnswer) ||
+            // empty($this->needsAnswer) ||
+            empty($this->bio) ||
             empty($this->teamAnswer) ||
             empty($this->employees) ||
             empty($this->yearFounded)){
