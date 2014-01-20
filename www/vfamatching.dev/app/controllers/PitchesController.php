@@ -92,19 +92,30 @@ class PitchesController extends BaseController {
     {
         try{
             $pitch = Pitch::findOrFail($id);
-	        $pitch->status = "Approved";
-	        $pitch->save();
-            //introduce the two
-            $newPlacementStatus = new PlacementStatus();
-            $newPlacementStatus->fellow_id = $pitch->fellow_id;
-            $newPlacementStatus->opportunity_id = $pitch->opportunity_id;
-            $newPlacementStatus->fromRole = "Admin";
-            $newPlacementStatus->status = "Introduced";
-            $newPlacementStatus->eventDate = null;
-            $newPlacementStatus->score = null;
-            $newPlacementStatus->message = "";
-            $newPlacementStatus->isRecent = 1;
-            $newPlacementStatus->save();
+            if(Auth::user()->role == "Hiring Manager"){
+                if($pitch->hasAdminApproval){
+                    $pitch->status = "Approved";
+                    $pitch->save();
+                    //introduce the two
+                    $newPlacementStatus = new PlacementStatus();
+                    $newPlacementStatus->fellow_id = $pitch->fellow_id;
+                    $newPlacementStatus->opportunity_id = $pitch->opportunity_id;
+                    $newPlacementStatus->fromRole = "Admin";
+                    $newPlacementStatus->status = "Introduced";
+                    $newPlacementStatus->eventDate = null;
+                    $newPlacementStatus->score = null;
+                    $newPlacementStatus->message = "";
+                    $newPlacementStatus->isRecent = 1;
+                    $newPlacementStatus->save();
+                } else {
+                    throw new Exception("Hiring Managers can't approve Pitches until they've been approved by an Admin!");
+                }
+            } elseif(Auth::user()->role == "Admin"){
+                $pitch->hasAdminApproval = true;
+                $pitch->save();
+            } else {
+                throw new Exception("Only Admins and Hiring Managers can approve pitches!");
+            }
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return View::make('404')->with('error', 'Pitch not found!');
         } catch (ValidationFailedException $e) {
