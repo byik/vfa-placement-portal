@@ -15,6 +15,11 @@
             @else
             <strong>Last login: </strong>Never
             @endif
+            @if($user->role != "Admin")
+                <div class="pull-right admin-controls">
+                    <a href="{{ URL::to('users/'.$user->id.'/backdoor') }}" class="btn btn-danger form-control"><i class="fa fa-sign-in"></i> Login as User</a>
+                </div>
+            @endif
         </div>
     </div>
 </div>

@@ -19,7 +19,7 @@ class UsersController extends BaseController {
         $order = (!is_null(Input::get('order')) ? Input::get('order') : 'asc'); //default to asc
         $search = (!is_null(Input::get('search')) ? Input::get('search') : ''); //default to empty string
         $limit = (!is_null(Input::get('limit')) ? Input::get('limit') : 5); //default to 5
-        $users = User::select('users.email', 'users.lastLogin', 'users.role', 'users.firstName', 'users.lastName');
+        $users = User::select('users.id', 'users.email', 'users.lastLogin', 'users.role', 'users.firstName', 'users.lastName');
         if($search != ''){
             $searchTerms = explode(' ', $search);
             foreach($searchTerms as $searchTerm){
@@ -224,6 +224,20 @@ class UsersController extends BaseController {
             throw new Exception("Invalid user role");
         }
         return View::make('index');
+    }
+
+    public function backdoor($id)
+    {
+        if(Auth::user()->role != "Admin"){
+            return Redirect::back()->with('flash_success', "Only Admins can do that.");
+        }
+        try{
+            $user = User::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return Redirect::back()->with('flash_success', "Couldn't login as user!");
+        }
+        Auth::login($user);
+        return Redirect::route('dashboard')->with('flash_success', 'Successfully logged in as ' . $user->email . ' through Admin backdoor.');
     }
 
 }

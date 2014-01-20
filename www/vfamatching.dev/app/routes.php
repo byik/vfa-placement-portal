@@ -51,6 +51,7 @@ Route::group(array('before' => 'auth'), function()
         Route::put('pitches/{id}/waitlist', 'PitchesController@waitlist');
         Route::group(array('before' => 'admin'), function() /* Requires the user to be an admin */
         {
+            Route::get('users/{id}/backdoor', array('uses' => 'UsersController@backdoor'));
             Route::put('fellows/{id}/publish', 'FellowsController@publish');
             Route::put('fellows/{id}/unpublish', 'FellowsController@unpublish');
             Route::put('companies/{id}/publish', 'CompaniesController@publish');
