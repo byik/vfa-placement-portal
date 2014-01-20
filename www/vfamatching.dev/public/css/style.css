@@ -186,6 +186,7 @@ div#content {
     background-color: #04274f;
     border-radius: 5px;
     overflow: hidden;
+    margin-top: 20px;
 } #new-pitches h2 {
     color: white;
 } #new-pitches .controls {

@@ -51,11 +51,14 @@ class Pitch extends BaseModel {
             ->get(); //newest first
     }
 
-    public static function underHiringManagerReview()
+    public static function underHiringManagerReview(Company $company)
     {
-        return Pitch::where('status','=',"Under Review")
+        return Pitch::select('*', 'pitches.id')
+            ->leftJoin('opportunities','pitches.opportunity_id', '=', 'opportunities.id')
+            ->where('status','=',"Under Review")
             ->where('hasAdminApproval', '=', true)
-            ->orderBy('created_at', 'ASC')
+            ->where('opportunities.company_id','=',$company->id)
+            ->orderBy('pitches.created_at', 'ASC')
             ->get(); //newest first
     }
 }

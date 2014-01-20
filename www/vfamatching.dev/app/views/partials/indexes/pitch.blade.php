@@ -21,7 +21,7 @@
 			<span class="pull-right">
 				{{ Form::open(array('url' => 'pitches/'.$pitch->id.'/approve', 'method' => 'PUT', 'class'=>'submittable-form')) }}
 					<button type="button" class="btn btn-success submittable">
-						Introduce
+						Approve
 					</button>
 				{{ Form::close() }}
 				</span>
