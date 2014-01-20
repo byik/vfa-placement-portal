@@ -152,7 +152,7 @@ class FellowsController extends BaseController {
             return Redirect::back()->with('validation_errors', $e->getErrorMessages())->withInput();
         }
 
-        return Redirect::route('dashboard')->with('flash_notice', 'Profile successfully updated.');
+        return Redirect::route('dashboard')->with('flash_success', 'Profile successfully updated.');
 
     }
 
@@ -278,7 +278,7 @@ class FellowsController extends BaseController {
             return Redirect::back()->with('validation_errors', $e->getErrorMessages())->withInput();
         }
 
-        return Redirect::route('fellows.show', $fellow->id)->with('flash_notice', 'Profile successfully updated.');
+        return Redirect::route('fellows.show', $fellow->id)->with('flash_success', 'Profile successfully updated.');
     }
 
     /**
@@ -301,7 +301,7 @@ class FellowsController extends BaseController {
         }
         $fellow->isPublished = true;
         $fellow->save();
-        return Redirect::back()->with('flash_notice', "Fellow published");
+        return Redirect::back()->with('flash_success', "Fellow published");
     }
 
     public function unpublish($id)
@@ -313,7 +313,7 @@ class FellowsController extends BaseController {
         }
         $fellow->isPublished = false;
         $fellow->save();
-        return Redirect::back()->with('flash_notice', "Fellow unpublished");
+        return Redirect::back()->with('flash_success', "Fellow unpublished");
     }
 
 }

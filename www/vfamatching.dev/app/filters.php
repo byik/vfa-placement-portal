@@ -64,7 +64,7 @@ Route::filter('auth.basic', function()
 
 Route::filter('guest', function()
 {
-	if (Auth::check()) return Redirect::route('dashboard')->with('flash_notice', 'You are already logged in!');;
+	if (Auth::check()) return Redirect::route('dashboard')->with('flash_success', 'You are already logged in!');;
 });
 
 /*
@@ -100,25 +100,25 @@ Route::filter('profile', function()
 {
     if(Auth::check()){
         //user is logged in
-        $flash_notice = 'Please fill out your profile below to gain access to the rest of the site.';
+        $flash_success = 'Please fill out your profile below to gain access to the rest of the site.';
         if( Auth::user()->role == "Admin" ) {
             Redirect::route('dashboard');
         } elseif( Auth::user()->role == "Fellow" ) {
             if(is_null(Auth::user()->profile)){
-                return Redirect::route('fellows.create')->with('flash_notice', $flash_notice);
+                return Redirect::route('fellows.create')->with('flash_success', $flash_success);
             }
         } elseif( Auth::user()->role == "Hiring Manager" ) {
             //has a profile
             if(is_null(Auth::user()->profile)){
-                return Redirect::route('hiringmanagers.create')->with('flash_notice', $flash_notice);
+                return Redirect::route('hiringmanagers.create')->with('flash_success', $flash_success);
             } else {
                 //profile is complete
                 if(!Auth::user()->profile->isProfileComplete()){
-                    return Redirect::route('hiringmanagers.edit', Auth::user()->profile->id)->with('flash_notice', $flash_notice);
+                    return Redirect::route('hiringmanagers.edit', Auth::user()->profile->id)->with('flash_success', $flash_success);
                 }
                 //company profile is complete
                 if(!Auth::user()->profile->company->isProfileComplete()){
-                    return Redirect::route('companies.edit', Auth::user()->profile->company->id)->with('flash_notice', "Now fill us in on your awesome copmany!");
+                    return Redirect::route('companies.edit', Auth::user()->profile->company->id)->with('flash_success', "Now fill us in on your awesome copmany!");
                 }
             }
         } else {

@@ -155,7 +155,7 @@ class CompaniesController extends BaseController {
             return Redirect::back()->with('validation_errors', $e->getErrorMessages())->withInput();
         }
 
-        return Redirect::route('companies.show', $company->id)->with('flash_notice', 'Profile successfully updated.');
+        return Redirect::route('companies.show', $company->id)->with('flash_success', 'Profile successfully updated.');
 
 	}
 
@@ -179,7 +179,7 @@ class CompaniesController extends BaseController {
         }
         $company->isPublished = true;
         $company->save();
-        return Redirect::back()->with('flash_notice', "Company published");
+        return Redirect::back()->with('flash_success', "Company published");
     }
 
     public function unpublish($id)
@@ -195,7 +195,7 @@ class CompaniesController extends BaseController {
         }
         $company->isPublished = false;
         $company->save();
-        return Redirect::back()->with('flash_notice', "Company unpublished");
+        return Redirect::back()->with('flash_success', "Company unpublished");
     }
 
 }

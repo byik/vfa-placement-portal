@@ -118,7 +118,7 @@ class OpportunitiesController extends BaseController {
             return Redirect::back()->with('validation_errors', $e->getErrorMessages())->withInput();
         }
 
-        return Redirect::route('opportunities.index')->with('flash_notice', 'Opportunity successfully created.');
+        return Redirect::route('opportunities.index')->with('flash_success', 'Opportunity successfully created.');
     }
 
     /**
@@ -184,7 +184,7 @@ class OpportunitiesController extends BaseController {
         }
         $opportunity->isPublished = true;
         $opportunity->save();
-        return Redirect::back()->with('flash_notice', "Opportunity published");
+        return Redirect::back()->with('flash_success', "Opportunity published");
     }
 
     public function unpublish($id)
@@ -197,7 +197,7 @@ class OpportunitiesController extends BaseController {
         //TODO: Cascade the effects of unpublishing an opportunity
         $opportunity->isPublished = false;
         $opportunity->save();
-        return Redirect::back()->with('flash_notice', "Opportunity unpublished");
+        return Redirect::back()->with('flash_success', "Opportunity unpublished");
     }
 
 }

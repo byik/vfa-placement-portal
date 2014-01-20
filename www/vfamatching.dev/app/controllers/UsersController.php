@@ -121,7 +121,7 @@ class UsersController extends BaseController {
 		        return Redirect::back()->with('validation_errors', $e->getErrorMessages())->withInput();
 		    }
 		}
-		return Redirect::route('users.index')->with('flash_notice', 'User added!');
+		return Redirect::route('users.index')->with('flash_success', 'User added!');
 	}
 
 	/**
@@ -183,10 +183,10 @@ class UsersController extends BaseController {
 				$intendedDestination = Session::get('returnUrl');
 				Session::forget('returnUrl');
 			    return Redirect::to($intendedDestination)
-		    	->with('flash_notice', 'You are successfully logged in.');
+		    	->with('flash_success', 'You are successfully logged in.');
 			}
 			return Redirect::to('/')
-		    	->with('flash_notice', 'You are successfully logged in.');
+		    	->with('flash_success', 'You are successfully logged in.');
 		}
 		// authentication failure! lets go back to the login page
 		return Redirect::route('login')
@@ -198,7 +198,7 @@ class UsersController extends BaseController {
 	    Auth::logout();
 
 	    return Redirect::route('login')
-	        ->with('flash_notice', 'You are successfully logged out.');
+	        ->with('flash_success', 'You are successfully logged out.');
 	}
 
     public function dashboard() {

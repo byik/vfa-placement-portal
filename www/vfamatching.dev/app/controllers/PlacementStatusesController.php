@@ -56,7 +56,7 @@ class PlacementStatusesController extends BaseController {
                             $oldPlacementStatus->isRecent = 0;
                             $oldPlacementStatus->save();
                         });
-                return Redirect::back()->with('flash_notice', 'Placement Status successfully updated.');
+                return Redirect::back()->with('flash_success', 'Placement Status successfully updated.');
             } catch (ValidationFailedException $e) {
                 return Redirect::back()->with('validation_errors', $e->getErrorMessages());
             }

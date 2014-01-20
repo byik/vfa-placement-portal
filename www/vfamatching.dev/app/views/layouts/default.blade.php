@@ -35,8 +35,8 @@
             </div>
         </div>
         <div id="content">
-            @if(Session::has('flash_notice'))
-                @include('partials.alerts.notice', array('notice'=>Session::get('flash_notice')))
+            @if(Session::has('flash_success'))
+                @include('partials.alerts.success', array('success'=>Session::get('flash_success')))
             @endif
 
             @if (Session::has('flash_error'))

@@ -46,7 +46,7 @@ class HiringManagersController extends BaseController {
             return Redirect::back()->with('validation_errors', $e->getErrorMessages())->withInput();
         }
 
-        return Redirect::route('dashboard')->with('flash_notice', 'Profile successfully updated.');
+        return Redirect::route('dashboard')->with('flash_success', 'Profile successfully updated.');
 	}
 
 	/**
@@ -103,7 +103,7 @@ class HiringManagersController extends BaseController {
             return Redirect::back()->with('validation_errors', $e->getErrorMessages())->withInput();
         }
 
-        return Redirect::route('dashboard')->with('flash_notice', 'Profile successfully updated.');
+        return Redirect::route('dashboard')->with('flash_success', 'Profile successfully updated.');
 	}
 
 	/**

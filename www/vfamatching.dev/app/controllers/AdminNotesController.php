@@ -56,7 +56,7 @@ class AdminNotesController extends BaseController {
             return Redirect::back()->with('flash_error', 'Invalid $entityType')->withInput();
         }
 
-        return Redirect::back()->with('flash_notice', 'Note saved.');
+        return Redirect::back()->with('flash_success', 'Note saved.');
 	}
 
 	/**

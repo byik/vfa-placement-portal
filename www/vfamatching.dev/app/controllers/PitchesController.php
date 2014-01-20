@@ -38,7 +38,7 @@ class PitchesController extends BaseController {
         try {
             $newPitch->save();
             //make sure only this new placement status is recent
-            return Redirect::back()->with('flash_notice', 'Pitch successfully submitted.');
+            return Redirect::back()->with('flash_success', 'Pitch successfully submitted.');
         } catch (ValidationFailedException $e) {
             return Redirect::back()->with('validation_errors', $e->getErrorMessages());
         }
@@ -110,7 +110,7 @@ class PitchesController extends BaseController {
         } catch (ValidationFailedException $e) {
             return Redirect::back()->with('validation_errors', $e->getErrorMessages());
         }
-        return Redirect::back()->with('flash_notice', "Pitch approved!");
+        return Redirect::back()->with('flash_success', "Pitch approved!");
     }
 
     public function waitlist($id)
@@ -124,7 +124,7 @@ class PitchesController extends BaseController {
         } catch (ValidationFailedException $e) {
             return Redirect::back()->with('validation_errors', $e->getErrorMessages());
         }
-        return Redirect::back()->with('flash_notice', "Pitch waitlisted");
+        return Redirect::back()->with('flash_success', "Pitch waitlisted");
     }
 
 }
