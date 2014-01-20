@@ -8,7 +8,11 @@ Create New Opportunity
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            @include('partials.forms.opportunity')
+        	@if(Auth::user()->role == "Hiring Manager")
+            	@include('partials.forms.opportunity', array('company' => Auth::user()->profile->company))
+            @else
+				Currently, only Hiring Managers can create new Opportunities
+            @endif
         </div>
     </div>
 </div>

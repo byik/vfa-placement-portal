@@ -81,7 +81,7 @@ class OpportunitiesController extends BaseController {
      */
     public function store()
     {
-       //
+       throw new Exception("Form submitted to create opportunity");;
     }
 
     /**
