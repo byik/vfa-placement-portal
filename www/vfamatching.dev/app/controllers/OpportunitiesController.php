@@ -81,7 +81,44 @@ class OpportunitiesController extends BaseController {
      */
     public function store()
     {
-       throw new Exception("Form submitted to create opportunity");;
+        $newOpportunity = new Opportunity();
+        $newOpportunity->company_id = Input::get('company_id');
+        $newOpportunity->isPublished = 1;
+        $newOpportunity->title = Input::get('title');
+        $newOpportunity->teaser = Input::get('teaser');
+        $newOpportunity->city = Input::get('city');
+        $newOpportunity->description = Input::get('description');
+        $newOpportunity->responsibilitiesAnswer = Input::get('responsibilitiesAnswer');
+        $newOpportunity->skillsAnswer = Input::get('skillsAnswer');
+        $newOpportunity->developmentAnswer = Input::get('developmentAnswer');
+
+        $opportunityTags = array();
+        if (Input::has('tags'))
+        {
+            //TODO: Validate that this is a pdf
+            $tags = explode(',', Input::get('tags'));
+            //trim each skill
+            array_walk($tags, function(&$value, $key){
+                $value = trim($value);
+            });
+            foreach($tags as $tag){
+                $opportunityTag = new OpportunityTag();
+                $opportunityTag->tag = $tag;
+                array_push($opportunityTags, $opportunityTag);
+            }
+        }
+
+        try {
+            $newOpportunity->save();
+            foreach($opportunityTags as $opportunityTag){
+                $opportunityTag->opportunity_id = $newOpportunity->id;
+                $opportunityTag->save();
+            }
+        } catch (ValidationFailedException $e) {
+            return Redirect::back()->with('validation_errors', $e->getErrorMessages())->withInput();
+        }
+
+        return Redirect::route('opportunities.index')->with('flash_notice', 'Opportunity successfully created.');
     }
 
     /**
