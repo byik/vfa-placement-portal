@@ -31,9 +31,9 @@
               @if(Auth::user()->profile->isProfileComplete())
                 <li class=""><a href="{{ URL::to('/') }}"><i class="fa fa-home"></i> Dashboard</a></li>
                 <li><a href="{{ URL::to('/fellows') }}"><i class="fa fa-book"></i> Fellows</a></li>
-                <li><a href="{{ URL::to('/companies/' . Auth::user()->profile->company->id) }}"><i class="fa fa-building-o"></i> {{ Auth::user()->profile->company->name }}</a></li>
                 <li><a href="{{ URL::route('opportunities.index') }}"><i class="fa fa-briefcase"></i> Opportunities</a></li>
-                <li><a href="{{ URL::to('/hiringmanagers/' . Auth::user()->profile->id . '/edit') }}"><i class="fa fa-user"></i> Profile</a></li>
+                <li><a href="{{ URL::to('/companies/' . Auth::user()->profile->company->id) }}"><i class="fa fa-building-o"></i> {{ Auth::user()->profile->company->name }}</a></li>
+                <li><a href="{{ URL::to('/hiringmanagers/' . Auth::user()->profile->id . '/edit') }}"><i class="fa fa-user"></i> {{ Auth::user()->firstName }}</a></li>
               @endif
             @else
               <!-- We've got problems -->
