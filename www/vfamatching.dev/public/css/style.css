@@ -311,4 +311,8 @@ div#content {
         display:block;
         margin: 10px;
     }
+
+     #pagination-limit input {
+        display: inline !important;
+    }
 }
