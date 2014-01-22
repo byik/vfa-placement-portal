@@ -9,7 +9,7 @@ class HiringManagersController extends BaseController {
 	 */
 	public function index()
 	{
-        return View::make('hiringmanagers.index');
+        return View::make('hiringManagers.index');
 	}
 
 	/**
@@ -19,7 +19,7 @@ class HiringManagersController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('hiringmanagers.create');
+        return View::make('hiringManagers.create');
 	}
 
 	/**
@@ -57,7 +57,7 @@ class HiringManagersController extends BaseController {
 	 */
 	public function show($id)
 	{
-        return View::make('hiringmanagers.show');
+        return View::make('hiringManagers.show');
 	}
 
 	/**
@@ -73,7 +73,7 @@ class HiringManagersController extends BaseController {
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return View::make('404')->with('error', 'Hiring Manager not found!');
         }
-        return View::make('hiringmanagers.edit')->with('hiringManager',$hiringManager);
+        return View::make('hiringManagers.edit')->with('hiringManager',$hiringManager);
 	}
 
 	/**
