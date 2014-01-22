@@ -101,7 +101,7 @@ class PlacementStatus extends BaseModel {
 
     public static function getAllPlacementStatuses(Fellow $fellow, Opportunity $opportunity)
     {
-        if(self::has($fellow, $opportunity)){
+        if(self::hasPlacementStatus($fellow, $opportunity)){
             return PlacementStatus::where('fellow_id','=', $fellow->id)
                 ->where('opportunity_id','=', $opportunity->id)
                 ->first();
