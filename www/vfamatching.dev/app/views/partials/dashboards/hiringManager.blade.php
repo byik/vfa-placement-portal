@@ -1,17 +1,39 @@
 <div class="container">
-	<div class="upcoming-events">
-        @include('partials.components.pitches', array('pitches' => $newPitches))
-		<div class="row">
-			<div class="col-md-12">
-				<h2><small>UPCOMING EVENTS</small></h2>
-			</div>
-			<div class="col-md-3"><span class="red date"> 2 months from now </span></div>
-	        <div class="col-md-9"><span><i class="fa fa-mobile"></i>Phone Interview with <a href="">John Doe</a></span></div>
+    @include('partials.components.pitches', array('pitches' => $newPitches))
+    @foreach($opportunities as $opportunity)
+    	<?php $placementStatuses = $opportunity->placementStatuses()
+                ->where('isRecent','=',1)
+                ->where('status', '<>', 'Bad Fit')
+                ->orderBy('created_at', 'DESC')
+                ->get(); ?>
+    	<div class="col-xs-12 center"><h1>{{ $opportunity->title }}</h1></div>
+		<div class="upcoming-events">
+			<h2><small>UPCOMING EVENTS</small></h2>
+			<?php $eventCount = 0; ?>
+			@foreach($placementStatuses as $placementStatus)
+				@if($placementStatus->eventDate != "")
+					@include('partials.indexes.upcoming-events', array('placementStatus' => $placementStatus))
+					<?php $eventCount += 1; ?>
+				@endif
+			@endforeach
+			@if($eventCount == 0)
+				<p>Based on your Placement Statuses below, you have no upcoming events.</p>
+			@endif
 		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<h2><small>OPPORTUNITIES</small></h2>
-			</div>
+		<div class="placementStatuses">
+			<h2><small>Fellow Prospects</small></h2>
+		    <div class="row">
+		    <?php $count = 0; ?>
+		    @foreach($placementStatuses as $placementStatus)
+		        @include('partials.indexes.placementStatus', array('placementStatus' => $placementStatus))
+		        <?php 
+		            $count++;
+		            if($count % 3 == 0){
+		                echo '<div class="row"></div>';
+		            }
+		        ?>
+		    @endforeach
+		    </div>
 		</div>
-	</div>
+    @endforeach
 </div>

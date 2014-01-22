@@ -16,8 +16,9 @@
                 <!-- Button trigger modal -->
                 <a data-toggle="modal" href="#placementStatus-update-modal-{{ $placementStatus->id }}" class="btn
                 btn-primary btn-large modal-btn form-control update-button">Update</a>
-                <a data-toggle="modal" href="#placementStatus-history-modal-{{ $placementStatus->id }}" class="btn
-                btn-primary btn-large modal-btn form-control">History</a>    
+                <!-- Commenting this out until we implement the relationship history feature -->
+                <!-- <a data-toggle="modal" href="#placementStatus-history-modal-{{ $placementStatus->id }}" class="btn
+                btn-primary btn-large modal-btn form-control">History</a> -->    
             </div>
             </div>
         </div>
