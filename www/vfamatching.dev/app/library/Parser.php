@@ -6,6 +6,11 @@ class Parser {
         return preg_replace('/[^0-9+]/', '', $string);
     }
 
+    public static function integerToPhoneNumber($integer){
+        $phoneNumber = strval($integer);
+        return "(" . substr($phoneNumber, 0, 3) . ") " . substr($phoneNumber, 3, 3) . "-" . substr($phoneNumber, 6, 4);
+    }
+
     //source: http://css-tricks.com/snippets/php/find-urls-in-text-make-links/
     public static function linkUrlsInText($text){
         // URL starting with http://
