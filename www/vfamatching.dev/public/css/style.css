@@ -311,8 +311,10 @@ div#content {
         display:block;
         margin: 10px;
     }
+}
 
-     #pagination-limit input {
+@media (max-width: 768px){ /*Phone and Tablet*/
+    #pagination-limit input {
         display: inline !important;
     }
 }
