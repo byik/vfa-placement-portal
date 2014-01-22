@@ -8,7 +8,7 @@
                 ->get(); ?>
     	<div class="col-xs-12 center"><h1>{{ $opportunity->title }}</h1></div>
 		<div class="upcoming-events">
-			<h2><small>UPCOMING EVENTS</small></h2>
+			<h2><small>Upcoming Events</small></h2>
 			<?php $eventCount = 0; ?>
 			@foreach($placementStatuses as $placementStatus)
 				@if($placementStatus->eventDate != "")
@@ -17,7 +17,7 @@
 				@endif
 			@endforeach
 			@if($eventCount == 0)
-				<p>Based on your Placement Statuses below, you have no upcoming events.</p>
+				<p>{{ $opportunity->company->name }}'s {{ $opportunity->title }} Opportunity has no upcoming events at the moment</p>
 			@endif
 		</div>
 		<div class="placementStatuses">

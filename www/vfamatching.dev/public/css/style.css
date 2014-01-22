@@ -288,6 +288,11 @@ div#content {
     text-align: center;
 }
 
+.placement-status-header {
+    margin-top: 10px !important;
+    margin-bottom: 20px !important;
+}
+
 @media (min-width: 992px){ /*Laptop and Desktop*/
     #highlights {
         margin-top: 20px;

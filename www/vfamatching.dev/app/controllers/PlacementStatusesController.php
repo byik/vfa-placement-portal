@@ -47,7 +47,7 @@ class PlacementStatusesController extends BaseController {
                     ->where('opportunity_id','=',$newPlacementStatus->opportunity_id)
                     ->where('isRecent', '=',1)
                     ->first();
-        if(array_search($newPlacementStatus->status, PlacementStatus::statuses()) > array_search($recentPlacementStatus->status, PlacementStatus::statuses())){
+        if(array_search($newPlacementStatus->status, PlacementStatus::statuses()) >= array_search($recentPlacementStatus->status, PlacementStatus::statuses())){
             try {
                 $newPlacementStatus->save();
                 //make sure only this new placement status is recent

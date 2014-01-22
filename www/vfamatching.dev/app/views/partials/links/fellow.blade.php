@@ -1,0 +1,1 @@
+<a href="{{ URL::route('fellows.show', array('fellows'=>$fellow->id)) }}"> {{ $fellow->user->firstName . " " . $fellow->user->lastName }}</a>

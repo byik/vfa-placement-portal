@@ -1,7 +1,17 @@
+<?php $isFellow = (Auth::user()->role == "Fellow"); ?>
 <div class="col-lg-4">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3>@include('partials.links.opportunity', array('opportunity' => $placementStatus->opportunity))</h3>
+            @if($isFellow)
+                <h3>
+                    @include('partials.links.opportunity', array('opportunity' => $placementStatus->opportunity))
+                </h3>
+                <h4>
+                    @include('partials.links.company', array('company' => $placementStatus->opportunity->company))
+                </h4>
+            @else
+                <h3>@include('partials.links.fellow', array('fellow' => $placementStatus->fellow))</h3>
+            @endif
         </div>
         <div class="panel-body">
             <div class="row">
@@ -11,8 +21,7 @@
                 </div>
             </div>
             <div class="col-xs-8">
-                <h4>@include('partials.links.company', array('company' => $placementStatus->opportunity->company))</h4>
-                <h4><em><small><strong>{{ $placementStatus->printWithDate() }}</strong></small></em></h4>
+                <h4 class="center placement-status-header"><em><strong>{{ $placementStatus->printWithDate() }}</strong></em></h4>
                 <!-- Button trigger modal -->
                 <a data-toggle="modal" href="#placementStatus-update-modal-{{ $placementStatus->id }}" class="btn
                 btn-primary btn-large modal-btn form-control update-button">Update</a>
@@ -31,7 +40,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <a href="#" class="btn close btn-default" data-dismiss="modal">&times;</a>
-                <h4 class="modal-title">Update Placement Progress: {{ $placementStatus->opportunity->title }}</h4>
+                <h4 class="modal-title">Update Prospect: {{ $placementStatus->fellow->user->firstName . ' ' . $placementStatus->fellow->user->lastName }}</h4>
             </div>
             <div class="modal-body">
                 {{-- This Form POST's to /placementstatus. Data is autofilled from PlacementStatus model in $placementStatus --}}
@@ -39,7 +48,7 @@
             </div>
             <div class="modal-footer">
                 <a href="" class="btn btn-default" data-dismiss="modal">Cancel</a>
-                <a href="" class="btn btn-primary placementStatus-submit">Update Placement Status and Submit Feedback</a>
+                <a href="" class="btn btn-primary placementStatus-submit">Update Prospect and Submit Feedback</a>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
