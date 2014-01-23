@@ -130,7 +130,7 @@ class AdminsController extends BaseController {
 		                    new DropdownItem("Oldest first", URL::route( 'archive', array('sort' => 'created_at', 'order' => 'asc', 'search' => $search, 'limit' => $limit, 'type' => $type))),
 		                    new DropdownItem("Newest first", URL::route( 'archive', array('sort' => 'created_at', 'order' => 'asc', 'search' => $search, 'limit' => $limit, 'type' => $type)))
 		                )));
-		        return View::make('archives.fellows', array('total' => Fellow::Where('isPublished', '=', false)->count(), 'archivedFellows' => $fellows, 'sort' => $sort, 'order' => $order, 'search' => $search, 'limit' => $limit, 'pills' => $pills, 'type' => $type));	
+		        return View::make('archives.fellows', array('total' => Fellow::Where('isPublished', '=', false)->count(), 'archivedFellows' => $fellows, 'sort' => $sort, 'order' => $order, 'search' => $search, 'limit' => $limit, 'pills' => $pills, 'type' => $type, 'archive' => true));	
 			} elseif(Input::get('type') == "Opportunity") {
 				$sort = (!is_null(Input::get('sort')) ? Input::get('sort') : 'companies.name'); //default to company name
 		        $order = (!is_null(Input::get('order')) ? Input::get('order') : 'asc'); //default to asc
@@ -173,7 +173,7 @@ class AdminsController extends BaseController {
 		                    new DropdownItem("Oldest first", URL::route( 'archive', array('sort' => 'created_at', 'order' => 'asc', 'search' => $search, 'limit' => $limit, 'type' => $type))),
 		                    new DropdownItem("Newest first", URL::route( 'archive', array('sort' => 'created_at', 'order' => 'desc', 'search' => $search, 'limit' => $limit, 'type' => $type)))
 		                )));
-		        return View::make('archives.opportunities', array('total' => Opportunity::Where('isPublished', '=', false)->count(), 'archivedOpportunities' => $opportunities, 'sort' => $sort, 'order' => $order, 'search' => $search, 'limit' => $limit, 'pills' => $pills, 'type' => $type));
+		        return View::make('archives.opportunities', array('total' => Opportunity::Where('isPublished', '=', false)->count(), 'archivedOpportunities' => $opportunities, 'sort' => $sort, 'order' => $order, 'search' => $search, 'limit' => $limit, 'pills' => $pills, 'type' => $type, 'archive' => true));
 				// return View::make('archives.opportunities');		
 			}  elseif(Input::get('type') == "Company") {
 				$sort = (!is_null(Input::get('sort')) ? Input::get('sort') : 'name'); //default to name
@@ -219,7 +219,7 @@ class AdminsController extends BaseController {
 		                    new DropdownItem("Oldest first", URL::route( 'archive', array('sort' => 'created_at', 'order' => 'asc', 'search' => $search, 'limit' => $limit, 'type' => $type))),
 		                    new DropdownItem("Newest first", URL::route( 'archive', array('sort' => 'created_at', 'order' => 'desc', 'search' => $search, 'limit' => $limit, 'type' => $type)))
 		                )));
-		        return View::make('archives.companies', array('total' => Company::Where('isPublished', '=', false)->count(), 'archivedCompanies' => $companies, 'sort' => $sort, 'order' => $order, 'search' => $search, 'limit' => $limit, 'type' => $type, 'pills' => $pills));
+		        return View::make('archives.companies', array('total' => Company::Where('isPublished', '=', false)->count(), 'archivedCompanies' => $companies, 'sort' => $sort, 'order' => $order, 'search' => $search, 'limit' => $limit, 'pills' => $pills, 'type' => $type, 'archive' => true));
 			}
 		}
 		return View::make('archives.index');

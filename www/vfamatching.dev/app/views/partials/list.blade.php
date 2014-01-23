@@ -39,8 +39,9 @@
         @endif
 
     @else
+    <?php //We know there aren't any results, so let's check the total ?>
         @if($total == 0)
-            @if(isset($type) /*this must be an archive page*/)
+            @if(isset($archive) /*this must be an archive page*/)
                 @if($search == "")
                     <h2>Sorry!</h2>
                     <p>There aren't any archived {{ str_plural($type) }} on the Placement Portal right now.</p>
@@ -58,16 +59,21 @@
                 @endif
             @endif
         @else
-            <h2>Oh No!</h2>
-            <p>You landed on an invalid page...</p>
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="pull-right">
-                        {{-- TODO: A true solution would strip return the user to page 1 of this list --}}
-                        <a href="{{ URL::route('dashboard') }}" class="btn btn-primary">Return to your Dashboard</a>
+            @if($search == "")
+                <h2>Oh No!</h2>
+                <p>You landed on an invalid page...</p>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="pull-right">
+                            {{-- TODO: A true solution would strip return the user to page 1 of this list --}}
+                            <a href="{{ URL::route('dashboard') }}" class="btn btn-primary">Return to your Dashboard</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @else
+                <h2>Sorry!</h2>
+                <p>There are no {{ str_plural($type) }} mathing that search. <a class="btn btn-primary" href="{{ $url }}">Clear Search</a></p>
+            @endif
         @endif
     @endif
 </div>
