@@ -1,4 +1,14 @@
 <div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="pull-right staff-contact-info">
+				<h4>Questions? Don't hesitate to reach out!</h4>
+				<h6>Jason, 646-736-6460 x 406, jason@ventureforamerica.org</h6>
+				<h6>Liz, 646-736-6460 x 407, elisabeth@ventureforamerica.org</h6>
+				<h6>Mike, 646-736-6460 x 405, mike@ventureforamerica.org</h6>
+			</div>
+		</div>
+	</div>
     @include('partials.components.pitches', array('pitches' => $newPitches))
     @foreach($opportunities as $opportunity)
     	<?php $placementStatuses = $opportunity->placementStatuses()

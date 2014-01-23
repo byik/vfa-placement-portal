@@ -293,6 +293,11 @@ div#content {
     margin-bottom: 20px !important;
 }
 
+.staff-contact-info {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
 @media (min-width: 992px){ /*Laptop and Desktop*/
     #highlights {
         margin-top: 20px;
