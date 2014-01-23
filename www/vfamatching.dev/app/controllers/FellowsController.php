@@ -25,17 +25,19 @@ class FellowsController extends BaseController {
         if($search != ''){
             $searchTerms = explode(' ', $search);
             foreach($searchTerms as $searchTerm){
-                $fellows = $fellows->where(function ($query) use ($searchTerm){
-                    $query->where('bio', 'LIKE', "%$searchTerm%")
-                    ->orWhere('school', 'LIKE', "%$searchTerm%")
-                    ->orWhere('major', 'LIKE', "%$searchTerm%")
-                    ->orWhere('degree', 'LIKE', "%$searchTerm%")
-                    ->orWhere('graduationYear', '=', $searchTerm)
-                    ->orWhere('hometown', 'LIKE', "%$searchTerm%")
-                    ->orWhere('users.firstName', 'LIKE', "%$searchTerm%")
-                    ->orWhere('users.lastName', 'LIKE', "%$searchTerm%")
-                    ->orWhere('fellowSkills.skill', 'LIKE', "%$searchTerm%");
-                });
+                if(strcasecmp($searchTerm, "and")){
+                    $fellows = $fellows->where(function ($query) use ($searchTerm){
+                        $query->where('bio', 'LIKE', "%$searchTerm%")
+                        ->orWhere('school', 'LIKE', "%$searchTerm%")
+                        ->orWhere('major', 'LIKE', "%$searchTerm%")
+                        ->orWhere('degree', 'LIKE', "%$searchTerm%")
+                        ->orWhere('graduationYear', '=', $searchTerm)
+                        ->orWhere('hometown', 'LIKE', "%$searchTerm%")
+                        ->orWhere('users.firstName', 'LIKE', "%$searchTerm%")
+                        ->orWhere('users.lastName', 'LIKE', "%$searchTerm%")
+                        ->orWhere('fellowSkills.skill', 'LIKE', "%$searchTerm%");
+                    });
+                }
             }
         }
         $fellows = $fellows->orderBy($sort, $order)->groupBy('fellows.id')->having('isPublished','=',true)->paginate($limit);

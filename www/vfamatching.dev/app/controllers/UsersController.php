@@ -23,12 +23,14 @@ class UsersController extends BaseController {
         if($search != ''){
             $searchTerms = explode(' ', $search);
             foreach($searchTerms as $searchTerm){
-                $users = $users->where(function ($query) use ($searchTerm){
-            		$query->where('email', 'LIKE', "%$searchTerm%")
-                    ->orWhere('firstName', 'LIKE', "%$searchTerm%")
-                    ->orWhere('lastName', 'LIKE', "%$searchTerm%")
-                    ->orWhere('role', 'LIKE', "%$searchTerm%");
-                });
+            	if(strcasecmp($searchTerm, "and")){
+	                $users = $users->where(function ($query) use ($searchTerm){
+	            		$query->where('email', 'LIKE', "%$searchTerm%")
+	                    ->orWhere('firstName', 'LIKE', "%$searchTerm%")
+	                    ->orWhere('lastName', 'LIKE', "%$searchTerm%")
+	                    ->orWhere('role', 'LIKE', "%$searchTerm%");
+	                });
+	            }
             }
         }
         $users = $users->orderBy($sort, $order)->groupBy('id')->paginate($limit);
