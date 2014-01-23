@@ -54,8 +54,8 @@ class OpportunitiesController extends BaseController {
                     new DropdownItem("", URL::route( 'opportunities.index', array('sort' => 'companies.name', 'order' => 'desc', 'search' => $search, 'limit' => $limit)), "sort-alpha-desc")
                 )));
             array_push($pills, new Pill("City", array(
-                    new DropdownItem("", URL::route( 'opportunities.index', array('sort' => 'city', 'order' => 'asc', 'search' => $search, 'limit' => $limit)), "sort-alpha-asc"),
-                    new DropdownItem("", URL::route( 'opportunities.index', array('sort' => 'city', 'order' => 'desc', 'search' => $search, 'limit' => $limit)), "sort-alpha-desc")
+                    new DropdownItem("", URL::route( 'opportunities.index', array('sort' => 'opportunities.city', 'order' => 'asc', 'search' => $search, 'limit' => $limit)), "sort-alpha-asc"),
+                    new DropdownItem("", URL::route( 'opportunities.index', array('sort' => 'opportunities.city', 'order' => 'desc', 'search' => $search, 'limit' => $limit)), "sort-alpha-desc")
                 )));
             array_push($pills, new Pill("Date Added", array(
                     new DropdownItem("Oldest first", URL::route( 'opportunities.index', array('sort' => 'created_at', 'order' => 'asc', 'search' => $search, 'limit' => $limit))),
