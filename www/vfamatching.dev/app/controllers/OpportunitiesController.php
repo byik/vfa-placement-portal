@@ -24,8 +24,11 @@ class OpportunitiesController extends BaseController {
             ->leftJoin('opportunityTags', 'opportunities.id', '=', 'opportunityTags.opportunity_id');
         if($search != ''){
             $searchTerms = explode(' ', $search);
+            //requiring a match on every keyword from any field
             foreach($searchTerms as $searchTerm){
-                $opportunities = $opportunities->Where('title', 'LIKE', "%$searchTerm%")
+                //using advanced wheres from http://stackoverflow.com/questions/16995102/laravel-4-eloquent-where-with-and-or
+                $opportunities = $opportunities->where(function ($query) use ($searchTerm) {
+                    $query->where('title', 'LIKE', "%$searchTerm%")
                     ->orWhere('companies.name', 'LIKE', "%$searchTerm%")
                     ->orWhere('teaser', 'LIKE', "%$searchTerm%")
                     ->orWhere('description', 'LIKE', "%$searchTerm%")
@@ -34,6 +37,7 @@ class OpportunitiesController extends BaseController {
                     ->orWhere('developmentAnswer', 'LIKE', "%$searchTerm%")
                     ->orWhere('opportunities.city', 'LIKE', "%$searchTerm%")
                     ->orWhere('opportunityTags.tag', 'LIKE', "%$searchTerm%");
+                });
             }
         }
         if(Auth::user()->role == "Hiring Manager"){//Ensure Hiring Manaers only see their Opportunities

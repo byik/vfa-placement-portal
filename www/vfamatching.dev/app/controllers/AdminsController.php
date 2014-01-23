@@ -91,7 +91,8 @@ class AdminsController extends BaseController {
 		        if($search != ''){
 		            $searchTerms = explode(' ', $search);
 		            foreach($searchTerms as $searchTerm){
-		                $fellows = $fellows->Where('bio', 'LIKE', "%$searchTerm%")
+		                $fellows = $fellows->where(function ($query) use ($searchTerm){
+		                	$query->where('bio', 'LIKE', "%$searchTerm%")
 		                    ->orWhere('school', 'LIKE', "%$searchTerm%")
 		                    ->orWhere('major', 'LIKE', "%$searchTerm%")
 		                    ->orWhere('degree', 'LIKE', "%$searchTerm%")
@@ -100,6 +101,7 @@ class AdminsController extends BaseController {
 		                    ->orWhere('users.firstName', 'LIKE', "%$searchTerm%")
 		                    ->orWhere('users.lastName', 'LIKE', "%$searchTerm%")
 		                    ->orWhere('fellowSkills.skill', 'LIKE', "%$searchTerm%");
+		                });
 		            }
 		        }
 		        $fellows = $fellows->orderBy($sort, $order)->groupBy('fellows.id')->having('isPublished','=',false)->paginate($limit);
@@ -140,7 +142,8 @@ class AdminsController extends BaseController {
 		        if($search != ''){
 		            $searchTerms = explode(' ', $search);
 		            foreach($searchTerms as $searchTerm){
-		                $opportunities = $opportunities->Where('title', 'LIKE', "%$searchTerm%")
+		                $opportunities = $opportunities->where(function ($query) use ($searchTerm){
+		                	$query->Where('title', 'LIKE', "%$searchTerm%")
 		                    ->orWhere('companies.name', 'LIKE', "%$searchTerm%")
 		                    ->orWhere('teaser', 'LIKE', "%$searchTerm%")
 		                    ->orWhere('description', 'LIKE', "%$searchTerm%")
@@ -149,6 +152,7 @@ class AdminsController extends BaseController {
 		                    ->orWhere('developmentAnswer', 'LIKE', "%$searchTerm%")
 		                    ->orWhere('opportunities.city', 'LIKE', "%$searchTerm%")
 		                    ->orWhere('opportunityTags.tag', 'LIKE', "%$searchTerm%");
+		                });
 		            }
 		        }
 		        $opportunities = $opportunities->orderBy($sort, $order)->groupBy('opportunities.id')->having('isPublished', '=', false)->paginate($limit);
@@ -180,7 +184,8 @@ class AdminsController extends BaseController {
 		        if($search != ''){
 		            $searchTerms = explode(' ', $search);
 		            foreach($searchTerms as $searchTerm){
-		                $companies = $companies->where('name', 'LIKE', "%$searchTerm%")
+		                $companies = $companies->where(function ($query) use ($searchTerm){
+		                	$query->where('name', 'LIKE', "%$searchTerm%")
 		                    ->orWhere('twitterPitch', 'LIKE', "%$searchTerm%")
 		                    ->orWhere('city', 'LIKE', "%$searchTerm%")
 		                    ->orWhere('url', 'LIKE', "%$searchTerm%")
@@ -189,6 +194,7 @@ class AdminsController extends BaseController {
 		                    ->orWhere('teamAnswer', 'LIKE', "%$searchTerm%")
 		                    ->orWhere('employees', '=', $searchTerm)
 		                    ->orWhere('twitterHandle', 'LIKE', "%$searchTerm%");
+		                });
 		            }
 		        }
 		        $companies = $companies->orderBy($sort, $order)->groupBy('companies.id')->having('isPublished', '=', false)->paginate($limit);

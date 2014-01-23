@@ -24,7 +24,8 @@ class CompaniesController extends BaseController {
         if($search != ''){
             $searchTerms = explode(' ', $search);
             foreach($searchTerms as $searchTerm){
-                $companies = $companies->where('name', 'LIKE', "%$searchTerm%")
+                $companies = $companies->where(function($query) use ($searchTerm) {                    
+                    $query->where('name', 'LIKE', "%$searchTerm%")
                     ->orWhere('twitterPitch', 'LIKE', "%$searchTerm%")
                     ->orWhere('bio', 'LIKE', "%$searchTerm%")
                     ->orWhere('city', 'LIKE', "%$searchTerm%")
@@ -34,6 +35,7 @@ class CompaniesController extends BaseController {
                     ->orWhere('teamAnswer', 'LIKE', "%$searchTerm%")
                     ->orWhere('employees', '=', $searchTerm)
                     ->orWhere('twitterHandle', 'LIKE', "%$searchTerm%");
+                });
             }
         }
         $companies = $companies->orderBy($sort, $order)->groupBy('companies.id')->having('isPublished', '=', true)->paginate($limit);

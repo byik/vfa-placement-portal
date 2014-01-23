@@ -25,7 +25,8 @@ class FellowsController extends BaseController {
         if($search != ''){
             $searchTerms = explode(' ', $search);
             foreach($searchTerms as $searchTerm){
-                $fellows = $fellows->Where('bio', 'LIKE', "%$searchTerm%")
+                $fellows = $fellows->where(function ($query) use ($searchTerm){
+                    $query->where('bio', 'LIKE', "%$searchTerm%")
                     ->orWhere('school', 'LIKE', "%$searchTerm%")
                     ->orWhere('major', 'LIKE', "%$searchTerm%")
                     ->orWhere('degree', 'LIKE', "%$searchTerm%")
@@ -34,6 +35,7 @@ class FellowsController extends BaseController {
                     ->orWhere('users.firstName', 'LIKE', "%$searchTerm%")
                     ->orWhere('users.lastName', 'LIKE', "%$searchTerm%")
                     ->orWhere('fellowSkills.skill', 'LIKE', "%$searchTerm%");
+                });
             }
         }
         $fellows = $fellows->orderBy($sort, $order)->groupBy('fellows.id')->having('isPublished','=',true)->paginate($limit);
