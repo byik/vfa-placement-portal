@@ -94,6 +94,7 @@ class Fellow extends BaseModel {
         $withAcceptedOfferCount = Fellow::select('fellows.*', 'placementStatuses.status')
             ->leftJoin('placementStatuses', 'fellows.id', '=', 'placementStatuses.fellow_id')
             ->where('placementStatuses.status','=','Offer Accepted')
+            ->where('placementStatuses.isRecent','=', true)
             ->where(function($query) {
                 $query->where('fellows.created_at', '>', DB::raw('DATE_SUB(NOW(),INTERVAL 1 YEAR)'))//added this year
                 ->orWhere('fellows.isPublished', '=', true);//or is published
