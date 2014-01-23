@@ -40,7 +40,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <a href="#" class="btn close btn-default" data-dismiss="modal">&times;</a>
-                <h4 class="modal-title">Update Prospect: {{ $placementStatus->fellow->user->firstName . ' ' . $placementStatus->fellow->user->lastName }}</h4>
+                @if($isFellow)
+                    <h4 class="modal-title">Update Prospect: {{ $placementStatus->opportunity->title }} at {{ $placementStatus->opportunity->company->name }}</h4>
+                @else
+                    <h4 class="modal-title">Update Prospect: {{ $placementStatus->fellow->user->firstName . ' ' . $placementStatus->fellow->user->lastName }}</h4>
+                @endif
             </div>
             <div class="modal-body">
                 {{-- This Form POST's to /placementstatus. Data is autofilled from PlacementStatus model in $placementStatus --}}
