@@ -45,7 +45,8 @@
             </div>
             <div class="form-group">
                 {{ Form::label('hasFellow', 'Does a VFA fellow currently work at ' . $company->name . '?') }}
-                {{ Form::select('hasFellow', array(""=>"","Yes"=>"Yes","No"=>"No"), "", array('class'=>'form-control required')) }}
+                <?php $hasFellow = $company->hasFellow ? "Yes" : "No"; ?>
+                {{ Form::select('hasFellow', array(""=>"","Yes"=>"Yes","No"=>"No"), $hasFellow, array('class'=>'form-control required')) }}
             </div>
             <div class="form-group">
                 {{ Form::submit('Save Profile', array('class'=>'btn btn-primary')) }}
