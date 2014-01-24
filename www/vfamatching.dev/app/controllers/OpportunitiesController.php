@@ -98,18 +98,27 @@ class OpportunitiesController extends BaseController {
         $newOpportunity->skillsAnswer = Input::get('skillsAnswer');
         $newOpportunity->developmentAnswer = Input::get('developmentAnswer');
 
+        // *** Commented out in lieu of jobTypes ***
+        // $opportunityTags = array();
+        // if (Input::has('tags')){
+        //     //TODO: Validate that this is a pdf
+        //     $tags = explode(',', Input::get('tags'));
+        //     //trim each skill
+        //     array_walk($tags, function(&$value, $key){
+        //         $value = trim($value);
+        //     });
+        //     foreach($tags as $tag){
+        //         $opportunityTag = new OpportunityTag();
+        //         $opportunityTag->tag = $tag;
+        //         array_push($opportunityTags, $opportunityTag);
+        //     }
+        // }
+
         $opportunityTags = array();
-        if (Input::has('tags'))
-        {
-            //TODO: Validate that this is a pdf
-            $tags = explode(',', Input::get('tags'));
-            //trim each skill
-            array_walk($tags, function(&$value, $key){
-                $value = trim($value);
-            });
-            foreach($tags as $tag){
+        if (Input::has('jobType')){
+            foreach(Input::get('jobType') as $jobType){
                 $opportunityTag = new OpportunityTag();
-                $opportunityTag->tag = $tag;
+                $opportunityTag->tag = $jobType;
                 array_push($opportunityTags, $opportunityTag);
             }
         }
