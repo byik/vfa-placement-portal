@@ -17,7 +17,7 @@ if(!isset($company)){
                 {{ Form::text('title', Input::old('title'), array('class'=>'form-control required character-limit', 'character-limit-max'=>140)) }}
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('teaser') ? "has-error" : ""}}@endif">
-                {{ Form::label('teaser', 'Sell the Opportunity in 140 characters or less') }}
+                {{ Form::label('teaser', 'Sell this Opportunity in 140 characters or less') }}
                 {{ Form::text('teaser', Input::old('teaser'), array('class'=>'form-control required character-limit', 'character-limit-max'=>140)) }}
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('city') ? "has-error" : ""}}@endif">
@@ -40,11 +40,13 @@ if(!isset($company)){
                 {{ Form::label('developmentAnswer', "How will the fellow likely develop in this role?") }}
                 {{ Form::text('developmentAnswer', Input::old('developmentAnswer'), array('class'=>'form-control required character-limit', 'character-limit-max'=>280)) }}
             </div>
-            <div class="form-group @if($validationErrors){{ $validationErrors->has('tags') ? "has-error" : ""}}@endif">
+            <!-- Commented out in lieu of Job Types -->
+            <!-- <div class="form-group @if($validationErrors){{ $validationErrors->has('tags') ? "has-error" : ""}}@endif">
                 {{ Form::label('tags', 'List this Opportunity\'s labels, seperated by commas') }}
                 {{ Form::text('tags', Input::old('tags'), array('class'=>'form-control')) }}
                 <small><span class="">Example:<em> Data Analytics, Digital Marketing, Sales</em></span></small>
-            </div>     
+            </div> -->
+            @include('partials.components.jobTypes')
             <div class="form-group">
                 {{ Form::submit('Create Opportunity', array('class'=>'btn btn-success')) }}
             </div>
