@@ -127,11 +127,12 @@
                 {{ Form::label('hometown', 'Where is your hometown?') }}
                 {{ Form::text('hometown', Input::old('hometown'), array('class'=>'form-control required character-limit', 'character-limit-max' => 140)) }}
             </div>
-            <div class="form-group @if($validationErrors){{ $validationErrors->has('skills') ? "has-error" : ""}}@endif">
+            <!-- <div class="form-group @if($validationErrors){{ $validationErrors->has('skills') ? "has-error" : ""}}@endif">
                 {{ Form::label('skills', 'List your skills, seperated by commas') }}
                 {{ Form::text('skills', Input::old('skills'), array('class'=>'form-control')) }}
                 <small><span class="">Example:<em> Excel, Graphic Design, Social Media Marketing</em></span></small>
-            </div>
+            </div> -->
+            @include('partials.components.jobTypes', array('label' => "What types of Opportunites are you interested in? (select all that apply)"))
             {{ Form::label('displayPicture', 'Select a display picture to upload') }}
             <p>
                 <span class="btn btn-link btn-file">

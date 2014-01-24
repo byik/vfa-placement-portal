@@ -46,7 +46,7 @@ if(!isset($company)){
                 {{ Form::text('tags', Input::old('tags'), array('class'=>'form-control')) }}
                 <small><span class="">Example:<em> Data Analytics, Digital Marketing, Sales</em></span></small>
             </div> -->
-            @include('partials.components.jobTypes')
+            @include('partials.components.jobTypes', array('label' => "What type of Opportunity is this?"))
             <div class="form-group">
                 {{ Form::submit('Create Opportunity', array('class'=>'btn btn-success')) }}
             </div>
