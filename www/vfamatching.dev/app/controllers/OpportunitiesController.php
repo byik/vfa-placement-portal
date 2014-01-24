@@ -98,7 +98,7 @@ class OpportunitiesController extends BaseController {
         $newOpportunity->skillsAnswer = Input::get('skillsAnswer');
         $newOpportunity->developmentAnswer = Input::get('developmentAnswer');
 
-        // *** Commented out in lieu of jobTypes ***
+        // *** Commented out in lieu of Job Types ***
         // $opportunityTags = array();
         // if (Input::has('tags')){
         //     //TODO: Validate that this is a pdf

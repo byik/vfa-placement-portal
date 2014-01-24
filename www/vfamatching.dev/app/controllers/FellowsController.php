@@ -129,18 +129,28 @@ class FellowsController extends BaseController {
             $newFellow->resumePath = Config::get('upload.directory') . '/' . $newName;
         }
 
+        // *** Commented out in lieu of Job Types ***
+        // $fellowSkills = array();
+        // if (Input::has('skills'))
+        // {
+        //     //TODO: Validate that this is a pdf
+        //     $skills = explode(',', Input::get('skills'));
+        //     //trim each skill
+        //     array_walk($skills, function(&$value, $key){
+        //         $value = trim($value);
+        //     });
+        //     foreach($skills as $skill){
+        //         $fellowSkill = new FellowSkill();
+        //         $fellowSkill->skill = $skill;
+        //         array_push($fellowSkills, $fellowSkill);
+        //     }
+        // }
+
         $fellowSkills = array();
-        if (Input::has('skills'))
-        {
-            //TODO: Validate that this is a pdf
-            $skills = explode(',', Input::get('skills'));
-            //trim each skill
-            array_walk($skills, function(&$value, $key){
-                $value = trim($value);
-            });
-            foreach($skills as $skill){
+        if (Input::has('jobType')){
+            foreach(Input::get('jobType') as $jobType){
                 $fellowSkill = new FellowSkill();
-                $fellowSkill->skill = $skill;
+                $fellowSkill->skill = $jobType;
                 array_push($fellowSkills, $fellowSkill);
             }
         }
