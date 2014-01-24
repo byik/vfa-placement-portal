@@ -8,7 +8,7 @@ class OpportunitytagsTableSeeder extends Seeder {
 		// DB::table('opportunitytags')->truncate();
 
         //define a default list of opportunity tags
-        $tags = array("sales", "marketing", "biz dev", "coding", "analytics", "seo", "fundraising", "advertising", "design", "branding", "research", "analysis", "due diligence", "testing", "quality assurance");
+        $tags = JobType::all();
 
         //randomly assign tags to opportunities
         foreach(Opportunity::all() as $opportunity){
