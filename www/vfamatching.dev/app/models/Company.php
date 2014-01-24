@@ -17,7 +17,7 @@ class Company extends BaseModel {
             'employees'=>'required|integer',
             'yearFounded'=>'required|digits:4',
             'twitterHandle'=>'max:15',
-            'isPublished'=> 'required|in:0,1'
+            'isPublished'=> 'required|in:0,1',
             'hasFellow'=> 'required|in:0,1'
         );
     }
@@ -36,7 +36,7 @@ class Company extends BaseModel {
             'employees'=>'integer',
             'yearFounded'=>'digits:4',
             'twitterHandle'=>'max:15',
-            'isPublished'=> 'in:0,1'
+            'isPublished'=> 'in:0,1',
             'hasFellow'=> 'in:0,1'
         );
     }

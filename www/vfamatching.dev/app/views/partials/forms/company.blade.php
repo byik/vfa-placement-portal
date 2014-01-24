@@ -43,7 +43,10 @@
                     {{ Form::text('twitterHandle', Input::old('twitterHandle'), array('class'=>'form-control')) }}
                 </div>
             </div>
-            
+            <div class="form-group">
+                {{ Form::label('hasFellow', 'Does a VFA fellow currently work at ' . $company->name . '?') }}
+                {{ Form::select('hasFellow', array(""=>"","Yes"=>"Yes","No"=>"No"), "", array('class'=>'form-control required')) }}
+            </div>
             <div class="form-group">
                 {{ Form::submit('Save Profile', array('class'=>'btn btn-primary')) }}
             </div>
