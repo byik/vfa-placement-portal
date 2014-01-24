@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('header')
-    @include('partials.components.searchHeader', array('title' => "Users", 'results' => $users->getTotal(), 'total' => $total, 'url' => URL::route( 'users.index' )))
+    @include('partials.components.searchHeader', array('title' => "Users", 'results' => $users->getTotal(), 'total' => $total, 'url' => URL::route( 'users.index' ), 'type' => 'user'))
 @stop
 
 @section('content')

@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('header')
-    @include('partials.components.searchHeader', array('title' => "Opportunity Archive", 'results' => $archivedOpportunities->getTotal(), 'total' => $total, 'url' => URL::to( 'archive' ) . "?type=Opportunity"))
+    @include('partials.components.searchHeader', array('title' => "Opportunity Archive", 'results' => $archivedOpportunities->getTotal(), 'total' => $total, 'url' => URL::to( 'archive' ) . "?type=Opportunity", 'type' => 'opportunity'))
 @stop
 
 @section('content')

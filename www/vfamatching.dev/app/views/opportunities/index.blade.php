@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('header')
-    @include('partials.components.searchHeader', array('title' => Auth::user()->role == "Hiring Manager" ? Auth::user()->profile->company->name . "'s Opportunities" : "Opportunities", 'results' => $opportunities->getTotal(), 'total' => $total, 'url' => URL::route( 'opportunities.index' )))
+    @include('partials.components.searchHeader', array('title' => Auth::user()->role == "Hiring Manager" ? Auth::user()->profile->company->name . "'s Opportunities" : "Opportunities", 'results' => $opportunities->getTotal(), 'total' => $total, 'url' => URL::route( 'opportunities.index' ), 'type' => 'opportunity'))
 @stop
 
 @section('content')
