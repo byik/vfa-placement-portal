@@ -22,6 +22,7 @@ So do you want to be a corporate cog when you grow up, or do you want to join us
         $firstCompany->yearFounded = 2012;
         $firstCompany->twitterHandle = "chalkfly";
         $firstCompany->isPublished = true;
+        $firstCompany->hasFellow = true;
         $firstCompany->save();
 
         $secondCompany = new Company();
@@ -38,6 +39,7 @@ Create & sell t-shirts online the easy way. No paying thousands of dollars upfro
         $secondCompany->yearFounded = 2012;
         $secondCompany->twitterHandle = "teespring";
         $secondCompany->isPublished = true;
+        $secondCompany->hasFellow = true;
         $secondCompany->save();
 	}
 
