@@ -153,6 +153,14 @@ class CompaniesController extends BaseController {
         $company->yearFounded = Input::get('yearFounded');
         $company->twitterHandle = Input::get('twitterHandle');
 
+        if(Input::get('hasFellow') == "Yes"){
+            $company->hasFellow = true;
+        } elseif (Input::get('hasFellow') == "No") {
+            $company->hasFellow = false;
+        } else {
+            return Redirect::back()->with('flash_error', "Please tell us whether or not a VFA fellow currently works at your company!")->withInput();    
+        }
+
         try {
             $company->save();
         } catch (ValidationFailedException $e) {
