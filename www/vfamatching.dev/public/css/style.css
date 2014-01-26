@@ -48,14 +48,16 @@ input#limit {
 }
 
 .vfa-header {
-    color: #04274f;
+    color: #fff;
     margin: 0px;
     margin-bottom: 20px;
 	background-color:#e4ecf3;
+    background-image: url('/img/header_background.png');
 }
 
 .vfa-header h1 {
-    font-weight: bold;
+    font-weight: normal;
+    text-shadow: 1px 1px 2px #000
 }
 
 .fellow-dash h2 {
