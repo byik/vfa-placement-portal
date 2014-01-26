@@ -15,8 +15,10 @@
     	<img src="{{ $fellow->displayPicturePath }}" class="img-responsive" alt="Responsive image">
     @endif
     <div class="row">
-        <div class="container"><h3>Interested In:</h3></div>
-        @include('partials.components.skills', array('skills' => $fellow->fellowSkills))
+        <div class="col-md-12">
+            <h3>Interested In</h3>
+            <p>@include('partials.components.skills', array('skills' => $fellow->fellowSkills))</p>
+        </div>
     </div>
     <div class="row">
         <div class="col-md-12" id="fellow-list-bio">
@@ -32,15 +34,15 @@
         </div>
     </div>
     <div class="row" id="highlights">
-        <div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>School</small></h2><h3 class="text-center">{{ $fellow->school }}</h3></div>
-        <div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>Major</small></h2><h3 class="text-center">{{ $fellow->degree . " in " . $fellow->major }}</h3></div>
-        <div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>Hometown</small></h2><h3 class="text-center">{{ $fellow->hometown }}</h3></div>
-        <div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>Graduated</small></h2><h3 class="text-center">{{ $fellow->graduationYear }}</h3></div>
+        <div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h3>School</h3><p>{{ $fellow->school }}</p></div>
+        <div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h3>Degree(s)</h3><p>{{ $fellow->degree . " in " . $fellow->major }}</p></div>
+        <div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h3>Hometown</h3><p>{{ $fellow->hometown }}</p></div>
+        <div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h3>Graduated</h3><p>{{ $fellow->graduationYear }}</p></div>
     </div>
     @if($fellow->canViewContactInfo())
         <div class="row" id="contact-info">
-            <div class="col-xs-10 col-xs-offset-1">
-                <h2>Contact Info:</h2>
+            <div class="col-xs-10">
+                <h3>Contact Info:</h3>
                 @include('partials.components.contact-info', array('name' => $fellow->user->firstName . ' ' . $fellow->user->lastName, 'email' => $fellow->user->email, 'phoneNumber' => $fellow->phoneNumber))
             </div>
         </div>
