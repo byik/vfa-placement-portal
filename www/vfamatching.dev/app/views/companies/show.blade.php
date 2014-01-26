@@ -17,33 +17,29 @@
 
 <div class="container">
 	<div class="row" id="highlights">
-    	<div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>City</small></h2><h3 class="text-center">{{ $company->city }}</h3></div>
-    	<div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>Founded</small></h2><h3 class="text-center">{{ $company->yearFounded }}</h3></div>
-    	<div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>Employees</small></h2><h3 class="text-center">{{ $company->employees }}</h3></div>
-    	<div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h2 class="text-center"><small>Website</small></h2><h3 class="text-center"><a class="btn btn-link form-control" href="{{ $company->url }}" target="_blank">Visit <i class="fa fa-external-link"></i></a></h3></div>
+    	<div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h3 class="text-center">City</h3><p class="text-center">{{ $company->city }}</p></div>
+    	<div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h3 class="text-center">Founded</h3><p class="text-center">{{ $company->yearFounded }}</p></div>
+    	<div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h3 class="text-center">Employees</h3><p class="text-center">{{ $company->employees }}</p></div>
+    	<div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h3 class="text-center">Website</h3><p class="text-center"><a class="btn btn-link form-control" href="{{ $company->url }}" target="_blank">Visit <i class="fa fa-external-link"></i></a></p></div>
     </div>
 
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <h4><strong>About {{ $company->name }}</strong></h4>
             <p>{{ Parser::linkUrlsInText($company->bio) }}</p>
         </div>
-        <div class="col-md-4 ">
-            <div class="row">
-                <h4><strong>About {{ $company->name }}'s Team</strong></h4>
-                <p>{{ $company->teamAnswer }}</p>
-            </div>
-            <div class="row">
-                <h4><strong>Does a VFA fellow currently work at {{ $company->name }}?</strong></h4>
-                <p>{{ $company->hasFellow ? "Yes" : "No" }}</p>
-            </div>
+        <div class="col-md-6">
+            <h4><strong>About {{ $company->name }}'s Team</strong></h4>
+            <p>{{ $company->teamAnswer }}</p>
+            <h4><strong>Does a VFA fellow currently work at {{ $company->name }}?</strong></h4>
+            <p>{{ $company->hasFellow ? "Yes" : "No" }}</p>
         </div>
     </div>
 
     @if($company->canViewContactInfo())
         <div class="row" id="contact-info">
-            <div class="col-xs-10 col-xs-offset-1">
-                <h2>Contact Info:</h2>
+            <div class="col-xs-10">
+                <h3>Contact Info:</h3>
                 @include('partials.components.company-contacts', array('company' => $company))
             </div>
         </div>
