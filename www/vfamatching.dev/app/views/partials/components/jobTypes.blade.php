@@ -2,7 +2,7 @@
 {{-- Optional $currentJobTypes --}}
 <label>{{ $label }}</label>
 @foreach(JobType::all() as $jobType)
-	@if(in_array($jobType, $currentJobTypes))
+	@if(isset($currentJobTypes) && in_array($jobType, $currentJobTypes))
     	@include('partials.components.checkbox', array('label' => $jobType, 'checked' => true))
     @else
 		@include('partials.components.checkbox', array('label' => $jobType))
