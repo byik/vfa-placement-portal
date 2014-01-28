@@ -145,14 +145,14 @@
             {{ Form::label('displayPicture', 'Select a display picture to upload') }}
             <p>
                 <span class="btn btn-link btn-file">
-                    <span class="btn-file-label">Browser for image...</span>{{ Form::file('displayPicture', array('accept'=>'image/*')) }}
+                    <span class="btn-file-label">Browse for image...</span>{{ Form::file('displayPicture', array('accept'=>'image/*')) }}
                 </span>
             </p>
 
             {{ Form::label('resume', 'Select a resume to upload') }}
             <p>
                 <span class="btn btn-link btn-file">
-                    <span class="btn-file-label">Browser for pdf...</span>{{ Form::file('resume', array('accept'=>'.pdf')) }}
+                    <span class="btn-file-label">Browse for pdf...</span>{{ Form::file('resume', array('accept'=>'.pdf')) }}
                 </span>
             </p>
             

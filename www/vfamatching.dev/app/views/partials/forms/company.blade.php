@@ -48,6 +48,12 @@
                 <?php $hasFellow = $company->hasFellow ? "Yes" : "No"; ?>
                 {{ Form::select('hasFellow', array(""=>"","Yes"=>"Yes","No"=>"No"), $hasFellow, array('class'=>'form-control required')) }}
             </div>
+            {{ Form::label('logo', 'Select a logo to upload') }}
+            <p>
+                <span class="btn btn-link btn-file">
+                    <span class="btn-file-label">Browse for image...</span>{{ Form::file('logo', array('accept'=>'image/*')) }}
+                </span>
+            </p>
             <div class="form-group">
                 {{ Form::submit('Save Profile', array('class'=>'btn btn-primary')) }}
             </div>
