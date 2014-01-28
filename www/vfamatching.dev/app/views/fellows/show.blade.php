@@ -35,7 +35,7 @@
     </div>
     <div class="row" id="highlights">
         <div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h3>School</h3><p>{{ $fellow->school }}</p></div>
-        <div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h3>Degree(s)</h3><p>{{ $fellow->degree . " in " . $fellow->major }}</p></div>
+        <div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h3>Degree(s)</h3><p>{{ $fellow->degree . " in " . $fellow->major }}</p><p>{{ $fellow->degree2 . " in " . $fellow->major2 }}</p><p>{{ $fellow->degree3 . " in " . $fellow->major3 }}</p></div>
         <div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h3>Hometown</h3><p>{{ $fellow->hometown }}</p></div>
         <div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h3>Graduated</h3><p>{{ $fellow->graduationYear }}</p></div>
     </div>

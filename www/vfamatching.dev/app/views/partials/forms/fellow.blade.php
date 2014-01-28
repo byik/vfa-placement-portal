@@ -12,6 +12,10 @@
                 {{ Form::label('lastName', 'Last Name') }}
                 {{ Form::text('lastName', Input::old('lastName') ? Input::old('lastName') : Auth::user()->lastName, array('class'=>'form-control required', 'character-limit-max' => 100)) }}
             </div>
+            <div class="form-group @if($validationErrors){{ $validationErrors->has('hometown') ? "has-error" : ""}}@endif">
+                {{ Form::label('hometown', 'Where is your hometown?') }}
+                {{ Form::text('hometown', Input::old('hometown'), array('class'=>'form-control required character-limit', 'character-limit-max' => 140)) }}
+            </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('email') ? "has-error" : ""}}@endif">
                 {{ Form::label('email', 'Email') }}
                 {{ Form::text('email', Input::old('email') ? Input::old('email') : Auth::user()->email, array('class'=>'form-control required requires-email')) }}
@@ -25,12 +29,13 @@
                 {{ Form::label('bio', 'Introduce yourself') }}
                 {{ Form::textarea('bio', Input::old('bio'), array('class'=>'form-control character-limit required', 'character-limit-max'=>1400, 'character-limit-min'=>140)) }}
             </div>
+            <h3><em>First Degree</em></h3>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('school') ? "has-error" : ""}}@endif">
-                {{ Form::label('school', 'What college or university did you graduate from?') }}
+                {{ Form::label('school', 'College or University') }}
                 {{ Form::text('school', Input::old('school'), array('class'=>'form-control required character-limit', 'character-limit-max'=>140)) }}
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('major') ? "has-error" : ""}}@endif">
-                {{ Form::label('major', 'What did you study?') }}
+                {{ Form::label('major', 'Subject') }}
                 {{ Form::text('major', Input::old('major'), array('class'=>'form-control required character-limit', 'character-limit-max'=>140)) }}
             </div>
             <?php 
@@ -38,16 +43,54 @@
                 array_unshift($degrees, "");
             ?>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('degree') ? "has-error" : ""}}@endif">                        
-                {{ Form::label('degree', 'What degree did you earn?') }}
+                {{ Form::label('degree', 'Degree') }}
                 {{ Form::select('degree', array_combine($degrees,$degrees), Input::old('degree'), array('class'=>'form-control required')) }}
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('graduationYear') ? "has-error" : ""}}@endif">
-                {{ Form::label('graduationYear', 'What year did you graduate?') }}
+                {{ Form::label('graduationYear', 'Graduation Year') }}
                 {{ Form::text('graduationYear', Input::old('graduationYear'), array('class'=>'form-control required requires-year', 'placeholder' => (new DateTime)->format("Y"))) }}
             </div>
-            <div class="form-group @if($validationErrors){{ $validationErrors->has('hometown') ? "has-error" : ""}}@endif">
-                {{ Form::label('hometown', 'Where is your hometown?') }}
-                {{ Form::text('hometown', Input::old('hometown'), array('class'=>'form-control required character-limit', 'character-limit-max' => 140)) }}
+            <h3><em>Second Degree (optional)</em></h3>
+            <div class="form-group @if($validationErrors){{ $validationErrors->has('school2') ? "has-error" : ""}}@endif">
+                {{ Form::label('school2', 'College or University') }}
+                {{ Form::text('school2', Input::old('school2'), array('class'=>'form-control required character-limit', 'character-limit-max'=>140)) }}
+            </div>
+            <div class="form-group @if($validationErrors){{ $validationErrors->has('major2') ? "has-error" : ""}}@endif">
+                {{ Form::label('major2', 'Subject') }}
+                {{ Form::text('major2', Input::old('major2'), array('class'=>'form-control required character-limit', 'character-limit-max'=>140)) }}
+            </div>
+            <?php 
+                $degrees = Fellow::degrees(); 
+                array_unshift($degrees, "");
+            ?>
+            <div class="form-group @if($validationErrors){{ $validationErrors->has('degree2') ? "has-error" : ""}}@endif">                        
+                {{ Form::label('degree2', 'Degree') }}
+                {{ Form::select('degree2', array_combine($degrees,$degrees), Input::old('degree2'), array('class'=>'form-control required')) }}
+            </div>
+            <div class="form-group @if($validationErrors){{ $validationErrors->has('graduationYear2') ? "has-error" : ""}}@endif">
+                {{ Form::label('graduationYear2', 'Graduation Year') }}
+                {{ Form::text('graduationYear2', Input::old('graduationYear2'), array('class'=>'form-control required requires-year', 'placeholder' => (new DateTime)->format("Y"))) }}
+            </div>
+            <h3><em>Third Degree (optional)</em></h3>
+            <div class="form-group @if($validationErrors){{ $validationErrors->has('school3') ? "has-error" : ""}}@endif">
+                {{ Form::label('school3', 'College or University') }}
+                {{ Form::text('school3', Input::old('school3'), array('class'=>'form-control required character-limit', 'character-limit-max'=>140)) }}
+            </div>
+            <div class="form-group @if($validationErrors){{ $validationErrors->has('major2') ? "has-error" : ""}}@endif">
+                {{ Form::label('major2', 'Subject') }}
+                {{ Form::text('major2', Input::old('major2'), array('class'=>'form-control required character-limit', 'character-limit-max'=>140)) }}
+            </div>
+            <?php 
+                $degrees = Fellow::degrees(); 
+                array_unshift($degrees, "");
+            ?>
+            <div class="form-group @if($validationErrors){{ $validationErrors->has('degree3') ? "has-error" : ""}}@endif">                        
+                {{ Form::label('degree3', 'Degree') }}
+                {{ Form::select('degree3', array_combine($degrees,$degrees), Input::old('degree3'), array('class'=>'form-control required')) }}
+            </div>
+            <div class="form-group @if($validationErrors){{ $validationErrors->has('graduationYear3') ? "has-error" : ""}}@endif">
+                {{ Form::label('graduationYear3', 'Graduation Year') }}
+                {{ Form::text('graduationYear3', Input::old('graduationYear3'), array('class'=>'form-control required requires-year', 'placeholder' => (new DateTime)->format("Y"))) }}
             </div>
             <?php  
                 $fellow->skills = $fellow->printSkills();
