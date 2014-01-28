@@ -161,6 +161,19 @@ class CompaniesController extends BaseController {
             return Redirect::back()->with('flash_error', "Please tell us whether or not a VFA fellow currently works at your company!")->withInput();    
         }
 
+        if (Input::hasFile('logo'))
+        {
+            //process file input
+            //TODO: Validate that this is an image
+            $newName = Uploader::processInputFilename(Input::file('logo')->getClientOriginalName());
+            try{
+                Input::file('logo')->move(public_path() . Config::get('upload.directory'), $newName);
+            } catch (FileException $e) {
+                return Redirect::back()->with('flash_error', "Your file could not be uploaded. Please try again")->withInput();
+            }
+            $company->logoPath = Config::get('upload.directory') . '/' . $newName;
+        }
+
         try {
             $company->save();
         } catch (ValidationFailedException $e) {
