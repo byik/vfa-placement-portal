@@ -16,6 +16,9 @@
 <!-- TODO: ADD COMPANY LOGO -->
 
 <div class="container">
+    @if(!empty($company->logoPath))
+        <img src="{{ $company->logoPath }}" class="img-responsive" alt="Responsive image">
+    @endif
 	<div class="row" id="highlights">
     	<div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h3 class="text-center">City</h3><p class="text-center">{{ $company->city }}</p></div>
     	<div class="col-md-3 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2"><h3 class="text-center">Founded</h3><p class="text-center">{{ $company->yearFounded }}</p></div>
