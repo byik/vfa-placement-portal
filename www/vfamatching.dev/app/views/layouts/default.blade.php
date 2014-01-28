@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>VFA Placement Portal</title>
-        <link rel="shortcut icon" href="img/favicon.png" />
+        <link rel="shortcut icon" href="{{ URL::to('img/favicon.png') }}" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- TODO: Add local fallback for bootstrap and jQuery -->
         <!-- Bootstrap CSS -->
