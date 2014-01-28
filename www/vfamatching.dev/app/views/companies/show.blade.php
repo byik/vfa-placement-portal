@@ -29,7 +29,7 @@
             <p>{{ Parser::linkUrlsInText($company->bio) }}</p>
         </div>
         <div class="col-md-6">
-            <h4><strong>About {{ $company->name }}'s Team</strong></h4>
+            <h4><strong>Describe your team culture</strong></h4>
             <p>{{ $company->teamAnswer }}</p>
             <h4><strong>Does a VFA fellow currently work at {{ $company->name }}?</strong></h4>
             <p>{{ $company->hasFellow ? "Yes" : "No" }}</p>

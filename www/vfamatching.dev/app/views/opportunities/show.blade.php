@@ -21,15 +21,15 @@
         </div>
         <div class="row">
             <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
-            	<h4><strong><em>What will the fellow's major daily responsibilities be?</em></strong></h4>
+            	<h4><strong><em>What will be some of the first projects the Fellow works on?</em></strong></h4>
             	<p>{{ $opportunity->responsibilitiesAnswer	}}</p>
             </div>
             <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
-            	<h4><strong><em>What skills are required for this role?</em></strong></h4>
+            	<h4><strong><em>What are the skills and attributes of a Fellow likely to succeed in this role and at this company?</em></strong></h4>
             	<p>{{ $opportunity->skillsAnswer }}</p>
             </div>
             <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
-                <h4><strong><em>How will the fellow likely develop in this role?</em></strong></h4>
+                <h4><strong><em>What are some ways the Fellow may develop in this role?</em></strong></h4>
                 <p>{{ $opportunity->developmentAnswer }}</p>
             </div>
         </div>

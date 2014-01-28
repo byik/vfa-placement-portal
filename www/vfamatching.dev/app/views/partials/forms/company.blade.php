@@ -25,7 +25,7 @@
                 {{ Form::textarea('bio', Input::old('bio'), array('class'=>'form-control character-limit required', 'character-limit-max'=>1400, 'character-limit-min'=>140)) }}
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('teamAnswer') ? "has-error" : ""}}@endif">
-                {{ Form::label('teamAnswer', 'Describe your team:') }}
+                {{ Form::label('teamAnswer', 'Describe your team culture') }}
                 {{ Form::text('teamAnswer', Input::old('teamAnswer'), array('class'=>'form-control required character-limit', 'character-limit-max'=>280)) }}
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('employees') ? "has-error" : ""}}@endif">
