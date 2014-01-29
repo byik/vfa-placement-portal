@@ -14,6 +14,7 @@
             <div class="form-group @if($validationErrors){{ $validationErrors->has('url') ? "has-error" : ""}}@endif">
                 {{ Form::label('url', 'Website URL') }}
                 {{ Form::text('url', Input::old('url'), array('class'=>'form-control required requires-url')) }}
+                <span><small>Example: http://ventureforamerica.org</small></span>
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('twitterPitch') ? "has-error" : ""}}@endif">
                 {{ Form::label('twitterPitch', 'Twitter Pitch') }}
