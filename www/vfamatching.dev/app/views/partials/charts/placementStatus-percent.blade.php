@@ -8,7 +8,7 @@
         var data = [
             {
                 value: {{ $placementStatus->percent() }},
-                color:"#ec5a41"
+                color:"#04274f"
             },
             {
                 value: {{ 1 - $placementStatus->percent() }},

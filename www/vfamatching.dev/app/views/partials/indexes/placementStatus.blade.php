@@ -22,6 +22,15 @@
             </div>
             <div class="col-xs-8">
                 <h4 class="center placement-status-header"><em><strong>{{ $placementStatus->printWithDate() }}</strong></em></h4>
+                @if(Carbon::now()->diffInDays($placementStatus->created_at) >= 14)
+                    <p class="center placement-status-age old">
+                @elseif(Carbon::now()->diffInDays($placementStatus->created_at) >= 7)
+                    <p class="center placement-status-age recent">
+                @else
+                    <p class="center placement-status-age new">
+                @endif
+                    <strong>Last Updated: {{ Carbon::createFromFormat('Y-m-d H:i:s', $placementStatus->created_at)->diffForHumans() }}</strong>
+                </p>
                 <!-- Button trigger modal -->
                 <a data-toggle="modal" href="#placementStatus-update-modal-{{ $placementStatus->id }}" class="btn
                 btn-primary btn-large modal-btn form-control update-button">Update</a>

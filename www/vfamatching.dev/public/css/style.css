@@ -295,6 +295,17 @@ div#content {
     margin-bottom: 20px !important;
 }
 
+.placement-status-age {
+    font-size: 11pt;
+    /*text-shadow: #dedede 1px 1px 2px;*/
+} .placement-status-age.new {
+    color: green;
+} .placement-status-age.recent {
+    color: #FFCC00;
+} .placement-status-age.old {
+    color: red;
+}
+
 .staff-contact-info {
     text-align: right;
     margin-bottom: 20px;
