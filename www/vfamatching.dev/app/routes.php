@@ -30,6 +30,8 @@ Route::group(array('before' => 'auth'), function()
     Route::put('companies/{id}', array('uses' => 'CompaniesController@update'));
     Route::get('opportunities/create', array('uses' => 'OpportunitiesController@create'));
     Route::post('opportunities', array('uses' => 'OpportunitiesController@store'));
+    Route::get('admins/create', array('uses' => 'AdminsController@create'));
+    Route::post('admins', array('uses' => 'AdminsController@store'));
     Route::group(array('before' => 'profile'), function() /* Requires a profile to be created before using the site */
     {
         Route::get('/', array('as' => 'dashboard', 'uses' => 'UsersController@dashboard'));

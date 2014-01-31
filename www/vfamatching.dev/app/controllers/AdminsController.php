@@ -29,7 +29,24 @@ class AdminsController extends BaseController {
 	 */
 	public function store()
 	{
-		//
+		// die('Data Posted!<br/>' . json_encode(Input::all()));
+		$authenticatedUser = Auth::user();
+        $authenticatedUser->firstName = Input::get('firstName');
+        $authenticatedUser->lastName = Input::get('lastName');
+        $authenticatedUser->email = Input::get('email');
+
+        $newAdmin = new Admin();
+        $newAdmin->phoneNumber = Parser::stringToInteger(Input::get('phoneNumber'));
+        $newAdmin->user_id = $authenticatedUser->id;
+
+        try {
+            $authenticatedUser->save();
+            $newAdmin->save();
+        } catch (ValidationFailedException $e) {
+            return Redirect::back()->with('validation_errors', $e->getErrorMessages())->withInput();
+        }
+
+        return Redirect::route('dashboard')->with('flash_success', 'Profile successfully updated!');
 	}
 
 	/**
