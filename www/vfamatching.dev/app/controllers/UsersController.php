@@ -75,7 +75,6 @@ class UsersController extends BaseController {
 	 */
 	public function store()
 	{
-		// die(json_encode(Input::all()));
 		if(Input::get('role') == "Hiring Manager"){
 			//Hiring managers have special needs, create or get the company
 			if(Input::get('company') == 0){
@@ -103,7 +102,8 @@ class UsersController extends BaseController {
 		$user->lastName = Input::get('lastName');
 		$user->email = Input::get('email');
 		//NOTE: THIS IS A HUGE FUCKING SECURITY FLAW. RANDOMIZE THIS SHIT AND EMAIL IT OUT ONCE EMAIL IS WORKING
-		$user->password = Hash::make("fakepassword");
+		$user->requiresPasswordReset = true;
+		$user->passwordResetHash = Hash::make(str_random(10));
 		$user->role = Input::get('role');
 		try {
 	        $user->save(array('adminValidation'=>true));
