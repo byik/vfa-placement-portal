@@ -103,7 +103,7 @@ class UsersController extends BaseController {
 		$user->email = Input::get('email');
 		//NOTE: THIS IS A HUGE FUCKING SECURITY FLAW. RANDOMIZE THIS SHIT AND EMAIL IT OUT ONCE EMAIL IS WORKING
 		$user->requiresPasswordReset = true;
-		$user->passwordResetHash = Hash::make(str_random(10));
+		$user->passwordResetHash = md5(str_random(10));
 		$user->role = Input::get('role');
 		try {
 	        $user->save(array('adminValidation'=>true));
@@ -234,12 +234,12 @@ class UsersController extends BaseController {
     public function backdoor($id)
     {
         if(Auth::user()->role != "Admin"){
-            return Redirect::back()->with('flash_success', "Only Admins can do that.");
+            return Redirect::back()->with('flash_error', "Only Admins can do that.");
         }
         try{
             $user = User::findOrFail($id);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return Redirect::back()->with('flash_success', "Couldn't login as user!");
+            return Redirect::back()->with('flash_error', "Couldn't login as user!");
         }
         Auth::login($user);
         return Redirect::route('dashboard')->with('flash_success', 'Successfully logged in as ' . $user->email . ' through Admin backdoor.');
@@ -247,12 +247,15 @@ class UsersController extends BaseController {
 
     public function passwordReset($hash)
     {
+    	// return User::where('email','=','hans6017@gmail.com')->first()->passwordResetHash;
     	try{
             $user = User::where('passwordResetHash', '=', $hash)->firstOrFail();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return Redirect::back()->with('flash_success', "Couldn't login as user!");
+            return Redirect::route('login')->with('flash_error', "Invalid password reset link. Please contact a VFA staff member at (646) 736-6460");
         }
-        return $hash;
+        
+        //user was found, so send them a form to create a password
+        return View::make('users.password');
     }
 
 }
