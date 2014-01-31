@@ -245,17 +245,58 @@ class UsersController extends BaseController {
         return Redirect::route('dashboard')->with('flash_success', 'Successfully logged in as ' . $user->email . ' through Admin backdoor.');
     }
 
-    public function passwordReset($hash)
+    public function newPassword($hash)
     {
-    	// return User::where('email','=','hans6017@gmail.com')->first()->passwordResetHash;
+    	// return User::find(12)->passwordResetHash;
     	try{
             $user = User::where('passwordResetHash', '=', $hash)->firstOrFail();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return Redirect::route('login')->with('flash_error', "Invalid password reset link. Please contact a VFA staff member at (646) 736-6460");
         }
         
-        //user was found, so send them a form to create a password
-        return View::make('users.password');
+        //user was found
+        $passwordResetKey = Hash::make($string = str_random(10));
+        Session::put('passwordResetKey', $passwordResetKey);
+        //send them a form to create a password
+        return View::make('users.password', array('passwordResetKey' => $passwordResetKey, 'user_id' => $user->id, 'passwordResetHash' => $hash));
     }
 
+    public function updatePassword()
+    {
+    	//verify input passwordResetKey == session passwordResetKey
+    	if(Input::get('passwordResetKey') != Session::get('passwordResetKey')){
+    		return Redirect::back()->with('flash_error', "Something went wrong! Please refresh the page and try again.");
+    	}
+    	//verify input password == input confirmPassword
+    	if(Input::get('password') != Input::get('confirmPassword')){
+    		return Redirect::back()->with('flash_error', "Your passwords do not match! Please try again.");
+    	}
+    	try{
+            $user = User::findOrFail(Input::get('user_id'));
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e){
+            return Redirect::back()->with('flash_error', "Something went wrong! Please refresh the page and try again.");
+        }
+        //verify input user's passwordResetHash = input passwordResetHash
+        if($user->passwordResetHash != Input::get('passwordResetHash')){
+        	return Redirect::back()->with('flash_error', "Something went wrong! Please refresh the page and try again.");
+        }
+    	//verify that this user requires a password reset
+    	if($user->requiresPasswordReset == false){
+    		return Redirect::back()->with('flash_error', "Sorry, your password reset link has expired. Please contact a VFA staff member at (646) 736-6460 for further assistance.");	
+    	}
+    	//verify input password is at least six characters
+        if(strlen(Input::get('password')) < 6){
+        	return Redirect::back()->with('flash_error', "Your password must be at least six characters long.");
+        }
+        $user->requiresPasswordReset = false;
+        $user->passwordResetHash = null;
+        $user->password = Hash::make(Input::get('password'));
+        try {
+			$user->save();
+	    } catch (ValidationFailedException $e) {
+	        return Redirect::back()->with('validation_errors', $e->getErrorMessages())->withInput();
+	    }
+    	return Redirect::route('login')
+			->with('flash_success', 'Your password was successfully updated. Please login below');
+    }
 }

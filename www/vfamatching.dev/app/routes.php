@@ -13,7 +13,8 @@
 
 Route::get('login', array('as' => 'login', function () { return View::make('login'); }))->before('guest');
 Route::post('login', 'UsersController@login');
-Route::get('users/password-reset/{hash}', array('uses' => 'UsersController@passwordReset'));
+Route::get('users/password-reset/{hash}', array('uses' => 'UsersController@newPassword'));
+Route::post('users/password-reset', array('uses' => 'UsersController@updatePassword'));
 Route::get('logout', array('uses' => 'UsersController@logout', 'as' => 'logout'))->before('auth');
 
 Route::group(array('before' => 'auth'), function()

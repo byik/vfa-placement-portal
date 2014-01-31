@@ -8,7 +8,7 @@ Create Password
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            Form goes here!
+            @include('partials.forms.password')
         </div>
     </div>
 </div>
