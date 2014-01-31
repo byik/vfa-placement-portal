@@ -13,6 +13,8 @@ class UsersTableSeeder extends Seeder {
 		$firstUser->role = 'Admin';
 		$firstUser->firstName = "Scott";
 		$firstUser->lastName = "Lowe";
+		$firstUser->requiresPasswordReset = false;
+		$firstUser->passwordResetHash = null;
 		$firstUser->save();
 
 		$secondUser = new User();
@@ -21,6 +23,8 @@ class UsersTableSeeder extends Seeder {
 		$secondUser->role = 'Admin';
 		$secondUser->firstName = "Bruce";
 		$secondUser->lastName = "Wayne";
+		$secondUser->requiresPasswordReset = false;
+		$secondUser->passwordResetHash = null;
 		$secondUser->save();
 
 		$thirdUser = new User();
@@ -29,6 +33,8 @@ class UsersTableSeeder extends Seeder {
 		$thirdUser->role = 'Admin';
 		$thirdUser->firstName = "Sean";
 		$thirdUser->lastName = "Pennino";
+		$thirdUser->requiresPasswordReset = false;
+		$thirdUser->passwordResetHash = null;
 		$thirdUser->save();
 
         $fourthUser = new User();
@@ -37,6 +43,8 @@ class UsersTableSeeder extends Seeder {
         $fourthUser->role = 'Fellow';
         $fourthUser->firstName = "John";
         $fourthUser->lastName = "Doe";
+        $fourthUser->requiresPasswordReset = false;
+		$fourthUser->passwordResetHash = null;
         $fourthUser->save();
 
         $fifthUser = new User();
@@ -45,6 +53,8 @@ class UsersTableSeeder extends Seeder {
         $fifthUser->role = 'Hiring Manager';
         $fifthUser->firstName = "Jane";
         $fifthUser->lastName = "Doe";
+        $fifthUser->requiresPasswordReset = false;
+		$fifthUser->passwordResetHash = null;
         $fifthUser->save();
 
         $sixthUser = new User();
@@ -53,6 +63,8 @@ class UsersTableSeeder extends Seeder {
         $sixthUser->role = 'Fellow';
         $sixthUser->firstName = "Julie";
         $sixthUser->lastName = "Bock";
+        $sixthUser->requiresPasswordReset = false;
+		$sixthUser->passwordResetHash = null;
         $sixthUser->save();
 
 	}

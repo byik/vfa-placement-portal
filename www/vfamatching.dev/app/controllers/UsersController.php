@@ -247,6 +247,11 @@ class UsersController extends BaseController {
 
     public function passwordReset($hash)
     {
+    	try{
+            $user = User::where('passwordResetHash', '=', $hash)->firstOrFail();
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return Redirect::back()->with('flash_success', "Couldn't login as user!");
+        }
         return $hash;
     }
 
