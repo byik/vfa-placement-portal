@@ -245,4 +245,9 @@ class UsersController extends BaseController {
         return Redirect::route('dashboard')->with('flash_success', 'Successfully logged in as ' . $user->email . ' through Admin backdoor.');
     }
 
+    public function passwordReset($hash)
+    {
+        return $hash;
+    }
+
 }
