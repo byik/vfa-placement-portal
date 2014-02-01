@@ -7,9 +7,9 @@ abstract class Mailer {
 	protected $email;
 	protected $subject;
 	protected $view;
-	protected $data;
+	protected $data = [];
 
-	public function __construct($user)
+	public function __construct(\User $user)
 	{
 		if (! is_object($user))
 		{
@@ -17,7 +17,7 @@ abstract class Mailer {
 		}
 
 		$this->data = $user->toArray();
-		$this->to = $user->username;
+		$this->to = $user->firstName . " " . $user->lastName;
 		$this->email = $user->email;
 	}
 

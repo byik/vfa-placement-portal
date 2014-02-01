@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => "robot@vfamatching.com", 'name' => "The VFA Robot"),
+	'from' => array('address' => "robot@ventureforamerica.org", 'name' => "The VFA Robot"),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => "aTSDRXy_xNTJ9MaF7bFDuw",
+	'password' => "API_KEY_GOES_HERE",
 
 	/*
 	|--------------------------------------------------------------------------

@@ -107,7 +107,9 @@ class UsersController extends BaseController {
 		$user->role = Input::get('role');
 		try {
 	        $user->save(array('adminValidation'=>true));
-	        //TODO EMAIL THE NEW USER
+	        //email the new user with their onboarding link
+	        $mailer = new Mailers\UserMailer($user);
+    		$mailer->welcome()->deliver();
 	    } catch (ValidationFailedException $e) {
 	        return Redirect::back()->with('validation_errors', $e->getErrorMessages())->withInput();
 	    }
@@ -247,7 +249,6 @@ class UsersController extends BaseController {
 
     public function newPassword($hash)
     {
-    	// return User::find(12)->passwordResetHash;
     	try{
             $user = User::where('passwordResetHash', '=', $hash)->firstOrFail();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
