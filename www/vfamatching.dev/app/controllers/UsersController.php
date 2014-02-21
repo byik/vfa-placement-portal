@@ -218,7 +218,7 @@ class UsersController extends BaseController {
             $placementStatuses = Auth::user()->profile
                 ->placementStatuses()
                 ->where('isRecent','=',1)
-                ->where('status', '<>', 'Bad Fit')
+                ->where('status', '<>', 'Conversation Closed')
                 ->orderBy('created_at', 'DESC')
                 ->get();
             return View::make('index', array('placementStatuses' => $placementStatuses));

@@ -126,7 +126,7 @@ class Fellow extends BaseModel {
         $histogram = array();
         $histogram['No Introductions'] = 0;
         foreach(PlacementStatus::statuses() as $status){
-            if($status != "Bad Fit"){
+            if($status != "Conversation Closed"){
                 $histogram[$status] = 0;
             }
         }
@@ -151,7 +151,7 @@ class Fellow extends BaseModel {
             $placementStatuses = PlacementStatus::statuses();
             $progressIndex = -1;
             foreach($this->placementStatuses()->where('isRecent','=',true)->get() as $placementStatus){
-                if($placementStatus->status != "Bad Fit"){
+                if($placementStatus->status != "Conversation Closed"){
                     if(array_search($placementStatus->status, $placementStatuses)){
                         $progressIndex = array_search($placementStatus->status, $placementStatuses);
                     }
