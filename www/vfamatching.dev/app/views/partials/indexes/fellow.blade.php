@@ -12,6 +12,13 @@
         </div>
         <div class="panel-body">
             <div class="row">
+                <div class="col-xs-10 col-xs-offset-1">
+                @if(!empty($fellow->displayPicturePath))                    
+                    <a href="{{ URL::route('fellows.show', array('fellows'=>$fellow->id)) }}"><img src="{{ $fellow->displayPicturePath }}" class="img-responsive" alt="Responsive image" style="margin: 0 auto;"></a>
+                @endif
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-12" id="fellow-list-bio">
                     <strong>Bio</strong>: 
                     {{ $fellow->bio }}
