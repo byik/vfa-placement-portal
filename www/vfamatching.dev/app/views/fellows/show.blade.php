@@ -63,6 +63,7 @@
         </div>
     </div>
     @endif
+    {{-- TODO: Display fellow's PlacementStatuses here --}}
     @include('partials.components.adminNotes', array('adminNotes' => $fellow->adminNotes, 'entityType' => "Fellow", 'entityId' => $fellow->id))
 @elseif(Auth::user()->role == "Hiring Manager")
     {{-- Display company waitlisted pitches to hiring managers --}}
@@ -80,5 +81,6 @@
             @endif
         @endforeach
     @endforeach
+    {{-- TODO: Display fellow's PlacementStatuses with Hiring Manger's opportunities here --}}
 @endif
 @stop

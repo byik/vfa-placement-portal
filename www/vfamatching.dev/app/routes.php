@@ -64,3 +64,6 @@ Route::group(array('before' => 'auth'), function()
         });
     });
 });
+
+
+Route::resource('pitchinvites', 'PitchinvitesController');
