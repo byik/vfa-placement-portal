@@ -112,6 +112,7 @@ class PitchesController extends BaseController {
                 }
             } elseif(Auth::user()->role == "Admin"){
                 $pitch->hasAdminApproval = true;
+                $pitch->status = "Under Review"; //in case the admin waitlisted it
                 $pitch->save();
             } else {
                 throw new Exception("Only Admins and Hiring Managers can approve pitches!");
