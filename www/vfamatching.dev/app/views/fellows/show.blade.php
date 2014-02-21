@@ -50,6 +50,7 @@
 </div>
 
 @if(Auth::user()->role == "Admin")
+    {{-- Display a Admin waitlisted pitches to admins --}}
     @if(Pitch::where("fellow_id","=",$fellow->id)->where("hasAdminApproval","=",false)->count())
     <div class="container">
         <div class="row" id="waitlisted-pitches">
@@ -63,5 +64,21 @@
     </div>
     @endif
     @include('partials.components.adminNotes', array('adminNotes' => $fellow->adminNotes, 'entityType' => "Fellow", 'entityId' => $fellow->id))
+@elseif(Auth::user()->role == "Hiring Manager")
+    {{-- Display company waitlisted pitches to hiring managers --}}
+    @foreach(Auth::user()->profile->company->opportunities as $opportunity)
+        @foreach(Pitch::where("fellow_id","=",$fellow->id)->where('opportunity_id','=',$opportunity->id)->where("hasAdminApproval","=",true)->where('status','not-equal', 'Approved')->get() as $pitch)
+            @if(Pitch::where("fellow_id","=",$fellow->id)->where('opportunity_id','=',$opportunity->id)->where("hasAdminApproval","=",true)->count())
+                <div class="container">
+                    <div class="row" id="waitlisted-pitches">
+                        <div class="col-xs-12">
+                            <h3>Waitlisted Pitches for {{ $opportunity->title }}:</h3>
+                                @include('partials.indexes.pitch', array('pitch' => $pitch))
+                        </div>
+                    </div>
+                </div>
+            @endif
+        @endforeach
+    @endforeach
 @endif
 @stop
