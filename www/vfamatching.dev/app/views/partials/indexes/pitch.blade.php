@@ -10,6 +10,7 @@
 	</div>
 	<div class="panel-footer">
 		<div class="row">
+			@if($pitch->hasAdminApproval /* since it's here, the pitch is already waitlisted */)
 			<div class="col-xs-12">
 				<span class="pull-right">
 				{{ Form::open(array('url' => 'pitches/'.$pitch->id.'/waitlist', 'method' => 'PUT', 'class'=>'submittable-form')) }}
@@ -18,6 +19,7 @@
 					</button>
 				{{ Form::close() }}
 			</span>
+			@endif
 			<span class="pull-right">
 				{{ Form::open(array('url' => 'pitches/'.$pitch->id.'/approve', 'method' => 'PUT', 'class'=>'submittable-form')) }}
 					<button type="button" class="btn btn-success submittable">

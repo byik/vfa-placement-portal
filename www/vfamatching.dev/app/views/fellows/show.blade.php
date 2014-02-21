@@ -50,6 +50,18 @@
 </div>
 
 @if(Auth::user()->role == "Admin")
+    @if(Pitch::where("fellow_id","=",$fellow->id)->where("hasAdminApproval","=",false)->count())
+    <div class="container">
+        <div class="row" id="waitlisted-pitches">
+            <div class="col-xs-12">
+                <h3>Waitlisted Pitches:</h3>
+                @foreach(Pitch::where("fellow_id","=",$fellow->id)->where("hasAdminApproval","=",false)->get() as $pitch)
+                    @include('partials.indexes.pitch', array('pitch' => $pitch))
+                @endforeach
+            </div>
+        </div>
+    </div>
+    @endif
     @include('partials.components.adminNotes', array('adminNotes' => $fellow->adminNotes, 'entityType' => "Fellow", 'entityId' => $fellow->id))
 @endif
 @stop
