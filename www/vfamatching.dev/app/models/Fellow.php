@@ -157,7 +157,7 @@ class Fellow extends BaseModel {
             $progressIndex = -1;
             foreach($this->placementStatuses()->where('isRecent','=',true)->get() as $placementStatus){
                 if($placementStatus->status != "Conversation Closed"){
-                    if(array_search($placementStatus->status, $placementStatuses)){
+                    if(array_search($placementStatus->status, $placementStatuses) > $progressIndex){
                         $progressIndex = array_search($placementStatus->status, $placementStatuses);
                     }
                 }
