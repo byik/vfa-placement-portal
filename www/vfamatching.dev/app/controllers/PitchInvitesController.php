@@ -29,7 +29,16 @@ class PitchInvitesController extends BaseController {
 	 */
 	public function store()
 	{
-		die("Submitted to store");
+        $newPitchInvite = new PitchInvite();
+        $newPitchInvite->fellow_id = Input::get('fellow_id');
+        $newPitchInvite->opportunity_id = Input::get('opportunity');
+        $newPitchInvite->pitch_id = null;
+        try {
+            $newPitchInvite->save();
+            return Redirect::back()->with('flash_success', 'Pitch invite sent!');
+        } catch (ValidationFailedException $e) {
+            return Redirect::back()->with('validation_errors', $e->getErrorMessages());
+        }
 	}
 
 	/**

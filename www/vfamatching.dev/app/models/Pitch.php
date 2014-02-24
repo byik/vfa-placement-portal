@@ -27,6 +27,11 @@ class Pitch extends BaseModel {
     	return $this->belongsTo('Opportunity');
     }
 
+    public function pitchInvite()
+    {
+        return $this->hasOne('PitchInvite');
+    }
+
     public static function hasPitch(Fellow $fellow, Opportunity $opportunity)
     {
         return (bool) $fellow->pitches()->where('pitches.opportunity_id', '=', $opportunity->id)->count();

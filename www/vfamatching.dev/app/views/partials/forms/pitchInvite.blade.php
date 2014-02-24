@@ -3,7 +3,7 @@
 <?php $unpitchedOpportunities = array("" => ""); ?>
 @if(Auth::user()->role == "Hiring Manager")
 	@foreach(Auth::user()->profile->company->opportunities as $opportunity)
-		@if(!Pitch::hasPitch($fellow, $opportunity))
+		@if((!PitchInvite::hasPitchInvite($fellow, $opportunity)) && (!Pitch::hasPitch($fellow, $opportunity)))
 			<?php $unpitchedOpportunities[$opportunity->id] = $opportunity->title; ?>
 		@endif
 	@endforeach

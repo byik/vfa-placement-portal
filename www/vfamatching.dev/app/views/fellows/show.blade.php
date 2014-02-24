@@ -85,7 +85,7 @@
     <div class="container">
         <div class="row" id="waitlisted-pitches">
             <div class="col-xs-12 col-md-6">
-                @include('partials.forms.pitchInvite', array("fellow" => $fellow));
+                @include('partials.forms.pitchInvite', array("fellow" => $fellow))
             </div>
         </div>
     </div>

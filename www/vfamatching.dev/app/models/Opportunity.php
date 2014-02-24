@@ -59,4 +59,9 @@ class Opportunity extends BaseModel {
     {
         return $this->hasMany('StaffRecommendation');
     }
+
+    public function pitchInvites()
+    {
+        return $this->hasMany('PitchInvite');
+    }
 }
