@@ -29,7 +29,7 @@ class PitchInvitesController extends BaseController {
 	 */
 	public function store()
 	{
-		//
+		die("Submitted to store");
 	}
 
 	/**

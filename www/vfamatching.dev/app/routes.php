@@ -49,6 +49,7 @@ Route::group(array('before' => 'auth'), function()
         Route::resource('fellowskills', 'FellowSkillsController');
         Route::resource('opportunitytags', 'OpportunityTagsController');
         Route::resource('staffrecommendations', 'StaffRecommendationsController');
+        Route::resource('pitchinvites', 'PitchinvitesController');
         Route::put('opportunities/{id}/publish', 'OpportunitiesController@publish');
         Route::put('opportunities/{id}/unpublish', 'OpportunitiesController@unpublish');
         Route::put('pitches/{id}/approve', 'PitchesController@approve');
@@ -65,5 +66,3 @@ Route::group(array('before' => 'auth'), function()
     });
 });
 
-
-Route::resource('pitchinvites', 'PitchinvitesController');

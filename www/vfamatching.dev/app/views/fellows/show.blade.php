@@ -27,7 +27,7 @@
         </div>
         <div class="col-md-12">
             @if(!empty($fellow->resumePath))
-                <span class="pull-right">
+                <span class="pull-left">
                     <a class="btn btn-primary form-control" href="{{ $fellow->resumePath }}" target="_blank"><i class="fa fa-cloud-download"></i> Download Résumé</a>
                 </span>
             @endif
@@ -82,5 +82,12 @@
         @endforeach
     @endforeach
     {{-- TODO: Display fellow's PlacementStatuses with Hiring Manger's opportunities here --}}
+    <div class="container">
+        <div class="row" id="waitlisted-pitches">
+            <div class="col-xs-12 col-md-6">
+                @include('partials.forms.pitchInvite', array("fellow" => $fellow));
+            </div>
+        </div>
+    </div>
 @endif
 @stop
