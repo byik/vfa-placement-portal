@@ -15,7 +15,7 @@
 					@endif
 			</div>
 			<div class="placementStatuses">
-				<h2><small>Opportunity Prospects</small></h2>
+				<h2><small>Your Placement Progress</small></h2>
                 <div class="row">
                 <?php $count = 0; ?>
                 @foreach($placementStatuses as $placementStatus)

@@ -22,11 +22,8 @@
 </div>
 
 <script type="text/javascript">
-$(document).ready(function() {  
-    //unbind so the click only fires once
-    $('.submittable').unbind().click(function(e){
-        $(this).parent('.submittable-form').submit();
+    $('.pitch-submit').unbind().click(function(e){
+        $(this).parent().parent().find('.pitch-form').submit();
         e.preventDefault();//don't follow the actual link
     });
-});
 </script>

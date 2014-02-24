@@ -37,6 +37,12 @@ class PitchesController extends BaseController {
 
         try {
             $newPitch->save();
+            if(PitchInvite::hasPitchInvite(Fellow::find($newPitch->fellow_id), Opportunity::find($newPitch->opportunity_id))){
+            	//update the pitchinvite
+            	$oldPitchInvite = PitchInvite::where('fellow_id','=', $newPitch->fellow_id)->where('opportunity_id', '=', $newPitch->opportunity_id)->first();
+            	$oldPitchInvite->pitch_id = $newPitch->id;
+            	$oldPitchInvite->save();
+            }
             //make sure only this new placement status is recent
             return Redirect::back()->with('flash_success', 'Pitch successfully submitted.');
         } catch (ValidationFailedException $e) {
