@@ -68,17 +68,15 @@
 @elseif(Auth::user()->role == "Hiring Manager")
     {{-- Display company waitlisted pitches to hiring managers --}}
     @foreach(Auth::user()->profile->company->opportunities as $opportunity)
-        @foreach(Pitch::where("fellow_id","=",$fellow->id)->where('opportunity_id','=',$opportunity->id)->where("hasAdminApproval","=",true)->where('status','not-equal', 'Approved')->get() as $pitch)
-            @if(Pitch::where("fellow_id","=",$fellow->id)->where('opportunity_id','=',$opportunity->id)->where("hasAdminApproval","=",true)->count())
+        @foreach(Pitch::where("fellow_id","=",$fellow->id)->where('opportunity_id','=',$opportunity->id)->where("hasAdminApproval","=",true)->where('status','<>', 'Approved')->get() as $pitch)
                 <div class="container">
                     <div class="row" id="waitlisted-pitches">
                         <div class="col-xs-12">
-                            <h3>Waitlisted Pitches for {{ $opportunity->title }}:</h3>
+                            <h3>Waitlisted Pitch for {{ $opportunity->title }}:</h3>
                                 @include('partials.indexes.pitch', array('pitch' => $pitch))
                         </div>
                     </div>
                 </div>
-            @endif
         @endforeach
     @endforeach
     {{-- TODO: Display fellow's PlacementStatuses with Hiring Manger's opportunities here --}}
