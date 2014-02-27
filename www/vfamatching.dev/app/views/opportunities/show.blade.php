@@ -68,5 +68,9 @@
                     </div>
                 </div>
         @endforeach
+        {{-- Display Placement Progress for this opportunity --}}
+        <div class="container">
+            @include('partials.components.placementStatuses', array('placementStatuses' => $opportunity->placementStatuses, 'heading'=>"Candidate Progress"))
+        </div>
     @endif
 @stop
