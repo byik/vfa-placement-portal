@@ -312,6 +312,14 @@ div#content {
     margin-bottom: 20px;
 }
 
+.divider {
+    border-bottom: 1px solid gray;
+}
+
+.hiring-manager-dashboard .opportunity-title {
+    margin-top: 100px;
+}
+
 @media (min-width: 992px){ /*Laptop and Desktop*/
     #highlights {
         margin-top: 20px;

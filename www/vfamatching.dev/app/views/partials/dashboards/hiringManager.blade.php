@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container hiring-manager-dashboard">
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="pull-right staff-contact-info">
@@ -16,7 +16,9 @@
                 ->where('status', '<>', 'Conversation Closed')
                 ->orderBy('created_at', 'DESC')
                 ->get(); ?>
-    	<div class="col-xs-12 center"><h1>{{ $opportunity->title }}</h1></div>
+    	<div class="row">
+    		<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 center divider"><h1 class="opportunity-title">@include('partials.links.opportunity', array('opportunity' => $opportunity))</h1></div>
+    	</div>
 		<div class="upcoming-events">
 			<h2><small>Upcoming Events</small></h2>
 			<?php $eventCount = 0; ?>
