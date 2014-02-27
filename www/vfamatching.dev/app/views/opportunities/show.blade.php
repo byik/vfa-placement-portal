@@ -36,6 +36,9 @@
     </div>
 
     @if(Auth::user()->role == "Admin")
+        <div class="container">
+            @include('partials.components.placementStatuses', array('placementStatuses' => $opportunity->placementStatuses, 'heading'=>"Candidate Progress"))
+        </div>
         @include('partials.components.adminNotes', array('adminNotes' => $opportunity->adminNotes, 'entityType' => "Opportunity", 'entityId' => $opportunity->id))
     @elseif(Auth::user()->role == "Fellow")
         {{-- Commented out due to VFA's request: https://github.com/lowe0292/vfa-placement-portal/issues/16 }}
