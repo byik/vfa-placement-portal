@@ -63,7 +63,10 @@
         </div>
     </div>
     @endif
-    {{-- TODO: Display fellow's PlacementStatuses here --}}
+    <?php $count = 0; ?>
+    <div class="container">
+        @include('partials.components.placementStatuses', array('placementStatuses' => $fellow->placementStatuses, 'heading'=>"Fellow's Placement Progress"))
+    </div>
     @include('partials.components.adminNotes', array('adminNotes' => $fellow->adminNotes, 'entityType' => "Fellow", 'entityId' => $fellow->id))
 @elseif(Auth::user()->role == "Hiring Manager")
     {{-- Display company waitlisted pitches to hiring managers --}}

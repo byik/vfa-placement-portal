@@ -14,21 +14,7 @@
 						<p>Based on your Placement Statuses below, you have no upcoming events.</p>
 					@endif
 			</div>
-			<div class="placementStatuses">
-				<h2><small>Your Placement Progress</small></h2>
-                <div class="row">
-                <?php $count = 0; ?>
-                @foreach($placementStatuses as $placementStatus)
-                    @include('partials.indexes.placementStatus', array('placementStatus' => $placementStatus))
-                    <?php 
-                        $count++;
-                        if($count % 3 == 0){
-                            echo '<div class="row"></div>';
-                        }
-                    ?>
-                @endforeach
-                </div>
-            </div>
+            @include('partials.components.placementStatuses', array('placementStatuses' => $placementStatuses, 'heading'=>"Your Placement Progress"))
         @else
             <div class="row">
                 <div class="col-xs-12">

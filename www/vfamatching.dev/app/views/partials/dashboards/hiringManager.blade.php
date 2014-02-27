@@ -30,20 +30,6 @@
 				<p>{{ $opportunity->company->name }}'s {{ $opportunity->title }} Opportunity has no upcoming events at the moment</p>
 			@endif
 		</div>
-		<div class="placementStatuses">
-			<h2><small>Fellow Prospects</small></h2>
-		    <div class="row">
-		    <?php $count = 0; ?>
-		    @foreach($placementStatuses as $placementStatus)
-		        @include('partials.indexes.placementStatus', array('placementStatus' => $placementStatus))
-		        <?php 
-		            $count++;
-		            if($count % 3 == 0){
-		                echo '<div class="row"></div>';
-		            }
-		        ?>
-		    @endforeach
-		    </div>
-		</div>
+		@include('partials.components.placementStatuses', array('placementStatuses' => $placementStatuses, 'heading'=>"Candidates"))
     @endforeach
 </div>
