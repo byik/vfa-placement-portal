@@ -56,5 +56,17 @@
     @elseif(Auth::user()->role == "Fellow")
         {{-- Commented out due to VFA's request: https://github.com/lowe0292/vfa-placement-portal/issues/16 }}
         {{-- @include('partials.components.fellowNotes', array('fellowNotes' => $opportunity->fellowNotes, 'entityType' => "Opportunity", 'entityId' => $opportunity->id)) --}}
+    @elseif(Auth::user()->role == "Hiring Manager")
+        {{-- Display company waitlisted pitches to hiring managers --}}
+        @foreach(Pitch::where('opportunity_id','=',$opportunity->id)->where("hasAdminApproval","=",true)->where('status','<>', 'Approved')->get() as $pitch)
+                <div class="container">
+                    <div class="row" id="waitlisted-pitches">
+                        <div class="col-xs-12">
+                            <h3>Waitlisted Pitches for this Opportunity</h3>
+                            @include('partials.indexes.pitch', array('pitch' => $pitch))
+                        </div>
+                    </div>
+                </div>
+        @endforeach
     @endif
 @stop
