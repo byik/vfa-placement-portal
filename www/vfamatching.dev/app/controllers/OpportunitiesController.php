@@ -15,7 +15,7 @@ class OpportunitiesController extends BaseController {
     public function index()
     {
         // $opportunities = Opportunity::all();
-        $sort = (!is_null(Input::get('sort')) ? Input::get('sort') : 'companies.name'); //default to company name
+        $sort = (!is_null(Input::get('sort')) ? Input::get('sort') : 'title'); //default to opportunity title
         $order = (!is_null(Input::get('order')) ? Input::get('order') : 'asc'); //default to asc
         $search = (!is_null(Input::get('search')) ? Input::get('search') : ''); //default to empty string
         $limit = (!is_null(Input::get('limit')) ? Input::get('limit') : 5); //default to 5
