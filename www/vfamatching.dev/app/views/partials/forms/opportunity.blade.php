@@ -30,15 +30,15 @@ if(!isset($company)){
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('responsibilitiesAnswer') ? "has-error" : ""}}@endif">
                 {{ Form::label('responsibilitiesAnswer', "What will be some of the first projects the Fellow works on?") }}
-                {{ Form::text('responsibilitiesAnswer', Input::old('responsibilitiesAnswer'), array('class'=>'form-control required character-limit', 'character-limit-max'=>280)) }}
+                {{ Form::textarea('responsibilitiesAnswer', Input::old('responsibilitiesAnswer'), array('class'=>'form-control required character-limit', 'character-limit-max'=>280, 'rows'=>5)) }}
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('skillsAnswer') ? "has-error" : ""}}@endif">
                 {{ Form::label('skillsAnswer', "What are the skills and attributes of a Fellow likely to succeed in this role and at this company?") }}
-                {{ Form::text('skillsAnswer', Input::old('skillsAnswer'), array('class'=>'form-control required character-limit', 'character-limit-max'=>280)) }}
+                {{ Form::textarea('skillsAnswer', Input::old('skillsAnswer'), array('class'=>'form-control required character-limit', 'character-limit-max'=>280, 'rows'=>5)) }}
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('developmentAnswer') ? "has-error" : ""}}@endif">
                 {{ Form::label('developmentAnswer', "What are some ways the Fellow may develop in this role?") }}
-                {{ Form::text('developmentAnswer', Input::old('developmentAnswer'), array('class'=>'form-control required character-limit', 'character-limit-max'=>280)) }}
+                {{ Form::textarea('developmentAnswer', Input::old('developmentAnswer'), array('class'=>'form-control required character-limit', 'character-limit-max'=>280, 'rows'=>5)) }}
             </div>
             <!-- Commented out in lieu of Job Types -->
             <!-- <div class="form-group @if($validationErrors){{ $validationErrors->has('tags') ? "has-error" : ""}}@endif">
