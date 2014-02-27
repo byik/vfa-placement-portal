@@ -1,5 +1,12 @@
 <div class="fellow-dash">
     <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="pull-right">
+                    Looking for resources or wisdom from past fellows? Check out <a href="http://vfafellows.org/">vfafellow.org</a>
+                </div>
+            </div>
+        </div>
         @if(count($placementStatuses) > 0)
 			<div class="upcoming-events">
 					<h2><small>Upcoming Events</small></h2>
@@ -33,5 +40,15 @@
         @endif
         <!-- Pitch Invites -->
         @include("partials.indexes.pitchInvites", array("fellow" => Auth::user()->profile))
+        <!-- New Companies -->
+        <div class="row">
+            <h2>Newest Companies</h2>
+                @foreach(Company::orderBy("created_at", "DESC")->take(5)->get() as $company)
+                    @include('partials.indexes.company', array('company' => $company))
+                @endforeach
+                <p class="pull-right"><a href="/companies">View All Companies</a></p>
+        </div>
+        <!-- New Opportunities -->
+        
     </div><!-- End Container -->
 </div><!-- End fellow dashboard -->
