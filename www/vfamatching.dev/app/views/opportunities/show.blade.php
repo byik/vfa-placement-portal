@@ -36,6 +36,19 @@
     </div>
 
     @if(Auth::user()->role == "Admin")
+        {{-- Display a Admin waitlisted pitches to admins --}}
+        @if(Pitch::where("opportunity_id","=",$opportunity->id)->where("hasAdminApproval","=",false)->count())
+        <div class="container">
+            <div class="row" id="waitlisted-pitches">
+                <div class="col-xs-12">
+                    <h3>Waitlisted Pitches:</h3>
+                    @foreach(Pitch::where("opportunity_id","=",$opportunity->id)->where("hasAdminApproval","=",false)->where("status","=","Waitlisted")->get() as $pitch)
+                        @include('partials.indexes.pitch', array('pitch' => $pitch))
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        @endif
         <div class="container">
             @include('partials.components.placementStatuses', array('placementStatuses' => $opportunity->placementStatuses, 'heading'=>"Candidate Progress"))
         </div>
