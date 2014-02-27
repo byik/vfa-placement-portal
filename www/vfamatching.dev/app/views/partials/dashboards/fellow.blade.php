@@ -40,6 +40,14 @@
         @endif
         <!-- Pitch Invites -->
         @include("partials.indexes.pitchInvites", array("fellow" => Auth::user()->profile))
+        <!-- New Opportunities -->
+        <div class="row">
+            <h2>Newest Opportunities</h2>
+                @foreach(Opportunity::orderBy("created_at", "DESC")->take(5)->get() as $opportunity)
+                    @include('partials.indexes.opportunity', array('opportunity' => $opportunity))
+                @endforeach
+                <p class="pull-right"><a href="/opportunities">View All Opportunities</a></p>
+        </div>
         <!-- New Companies -->
         <div class="row">
             <h2>Newest Companies</h2>
@@ -48,7 +56,5 @@
                 @endforeach
                 <p class="pull-right"><a href="/companies">View All Companies</a></p>
         </div>
-        <!-- New Opportunities -->
-        
     </div><!-- End Container -->
 </div><!-- End fellow dashboard -->
