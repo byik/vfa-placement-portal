@@ -143,6 +143,35 @@ class Fellow extends BaseModel {
         return $histogram;
     }
 
+    public static function generateReportData()
+    {
+        $columnHeadings = array_merge(array('Fellow', 'Pitch:Under Review', 'Pitch:Waitlisted', 'Pitch:Approved'), PlacementStatus::statuses());
+        $data = array();
+        $data[0] = $columnHeadings;
+
+        $unpublishedFellows = Fellow::where('isPublished','=',true)->get();
+        $count = 1;
+        foreach($unpublishedFellows as $fellow){
+            $data[$count] = array();
+            foreach($columnHeadings as $key => $value){
+                if($value == "Fellow"){
+                    $data[$count][0] = '<a href="' . URL::to('fellows/' . $fellow->id) . '">' . $fellow->user->firstName . ' ' . $fellow->user->lastName . '</a>';
+                } else {
+                    $data[$count][$key] = 0;
+                }                
+            }
+            foreach($fellow->pitches as $pitch){
+                $key = array_search("Pitch:" . $pitch->status, $columnHeadings);
+                $data[$count][$key] += 1;
+            }
+            foreach($fellow->placementStatuses()->where('isRecent','=',true)->get() as $placementStatus){
+                $data[$count][array_search($placementStatus->status, $columnHeadings)] += 1;
+            }
+            $count += 1;
+        }
+        return $data;
+    }
+
     public function getRecentPlacementStatus(Opportunity $opportunity)
     {
         return PlacementStatus::where('fellow_id','=',$this->id)

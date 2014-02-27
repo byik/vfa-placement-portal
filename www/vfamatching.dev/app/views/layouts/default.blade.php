@@ -25,6 +25,8 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <!-- Chart.js -->
         <script src="{{ URL::to('js/Chart.js') }}"></script>
+        <!-- tablesorter.js -->
+        <script src="{{ URL::to('js/jquery.tablesorter.min.js') }}"></script>
         <!-- Noty -->
         <script type="text/javascript" src="{{ URL::to('js/noty/packaged/jquery.noty.packaged.min.js') }}"></script>
     </head>

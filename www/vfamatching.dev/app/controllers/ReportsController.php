@@ -40,7 +40,23 @@ class ReportsController extends BaseController {
 	 */
 	public function show($type)
 	{
-        return $type;
+		switch ($type) {
+		    case "fellows":		    	
+		    	$data = Fellow::generateReportData();		    	
+		        return View::make('reports.show')->with('heading', 'Published Fellows Report')->with('data', $data);
+		        break;
+		    case "companies":
+		        echo "TODO: Companies Report";
+		        break;
+		    case "placementStatuses":
+		        echo "TODO: Placement Statuses Report";
+		        break;
+		    case "custom":
+		        echo "TODO: Custom Report";
+		        break;
+		    default:
+		       return View::make('404')->with('error', 'Invalid Report type!');
+		}
 	}
 
 	/**
