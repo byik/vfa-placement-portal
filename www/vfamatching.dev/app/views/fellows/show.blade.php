@@ -22,7 +22,7 @@
     </div>
     <div class="row">
         <div class="col-md-12" id="fellow-list-bio">
-            <h3>Bio</h3>
+            <h3>Professional Bio</h3>
             <p>{{ Parser::linkUrlsInText($fellow->bio) }}</p>
         </div>
         <div class="col-md-12">

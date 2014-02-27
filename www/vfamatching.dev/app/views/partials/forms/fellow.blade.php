@@ -18,11 +18,11 @@
             </div>
             {{-- Now for the fellow profile stuff --}}
             <div class="form-group @if($validationErrors){{ $validationErrors->has('phoneNumber') ? "has-error" : ""}}@endif">
-                {{ Form::label('phoneNumber', 'What the best number to reach you at?') }}
+                {{ Form::label('phoneNumber', 'What the best number to reach you?') }}
                 {{ Form::text('phoneNumber', Input::old('phoneNumber'), array('class'=>'form-control required requires-phone', 'placeholder' => '(646) 736-6460')) }}
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('bio') ? "has-error" : ""}}@endif">
-                {{ Form::label('bio', 'Introduce yourself') }}
+                {{ Form::label('bio', 'Professional Bio') }}
                 {{ Form::textarea('bio', Input::old('bio'), array('class'=>'form-control character-limit required', 'character-limit-max'=>1400, 'character-limit-min'=>140)) }}
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('school') ? "has-error" : ""}}@endif">
@@ -65,7 +65,7 @@
                     array_push($currentJobTypes, $skill->skill);
                 }
              ?>
-            @include('partials.components.jobTypes', array('label' => "What types of Opportunites are you interested in? (select all that apply)", 'currentJobTypes' => $currentJobTypes))
+            @include('partials.components.jobTypes', array('label' => "What types of Opportunites interest you? (select all that apply)", 'currentJobTypes' => $currentJobTypes))
             {{ Form::label('displayPicture', 'Select a display picture to upload') }}
             <p>
                 <span class="btn btn-link btn-file">
@@ -104,11 +104,11 @@
             </div>
             {{-- Now for the fellow profile stuff --}}
             <div class="form-group @if($validationErrors){{ $validationErrors->has('phoneNumber') ? "has-error" : ""}}@endif">
-                {{ Form::label('phoneNumber', 'What the best number to reach you at?') }}
+                {{ Form::label('phoneNumber', 'What the best number to reach you?') }}
                 {{ Form::text('phoneNumber', Input::old('phoneNumber'), array('class'=>'form-control required requires-phone', 'placeholder' => '(646) 736-6460')) }}
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('bio') ? "has-error" : ""}}@endif">
-                {{ Form::label('bio', 'Tell us about yourself') }}
+                {{ Form::label('bio', 'Professional Bio') }}
                 {{ Form::textarea('bio', Input::old('bio'), array('class'=>'form-control character-limit required', 'character-limit-max'=>1400, 'character-limit-min'=>140)) }}
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('school') ? "has-error" : ""}}@endif">
@@ -141,7 +141,7 @@
                 {{ Form::text('skills', Input::old('skills'), array('class'=>'form-control')) }}
                 <small><span class="">Example:<em> Excel, Graphic Design, Social Media Marketing</em></span></small>
             </div> -->
-            @include('partials.components.jobTypes', array('label' => "What types of Opportunites are you interested in? (select all that apply)"))
+            @include('partials.components.jobTypes', array('label' => "What types of Opportunites interest you? (select all that apply)"))
             {{ Form::label('displayPicture', 'Select a display picture to upload') }}
             <p>
                 <span class="btn btn-link btn-file">
