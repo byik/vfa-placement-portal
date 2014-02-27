@@ -62,6 +62,8 @@ Route::group(array('before' => 'auth'), function()
             Route::put('companies/{id}/publish', 'CompaniesController@publish');
             Route::put('companies/{id}/unpublish', 'CompaniesController@unpublish');
             Route::get('archive', array('as'=>'archive', 'uses'=>'AdminsController@archive'));
+            Route::get('reports', array('as'=>'reports', 'uses'=>'ReportsController@index'));
+            Route::get('reports/{type}', array('uses'=>'ReportsController@show'));
         });
     });
 });
