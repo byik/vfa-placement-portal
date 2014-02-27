@@ -17,7 +17,7 @@ if(!isset($company)){
                 {{ Form::text('title', Input::old('title'), array('class'=>'form-control required character-limit', 'character-limit-max'=>140)) }}
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('teaser') ? "has-error" : ""}}@endif">
-                {{ Form::label('teaser', 'Sell this Opportunity in 140 characters or less') }}
+                {{ Form::label('teaser', 'Pitch this Opportunity in 140 characters or less') }}
                 {{ Form::text('teaser', Input::old('teaser'), array('class'=>'form-control required character-limit', 'character-limit-max'=>140)) }}
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('city') ? "has-error" : ""}}@endif">
@@ -29,7 +29,7 @@ if(!isset($company)){
                 {{ Form::textarea('description', Input::old('description'), array('class'=>'form-control character-limit required', 'character-limit-max'=>1400, 'character-limit-min'=>140)) }}
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('responsibilitiesAnswer') ? "has-error" : ""}}@endif">
-                {{ Form::label('responsibilitiesAnswer', "What will be some of the first projects the Fellow works on?") }}
+                {{ Form::label('responsibilitiesAnswer', "What will be some of the Fellow's initial responsibilities?") }}
                 {{ Form::textarea('responsibilitiesAnswer', Input::old('responsibilitiesAnswer'), array('class'=>'form-control required character-limit', 'character-limit-max'=>280, 'rows'=>5)) }}
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('skillsAnswer') ? "has-error" : ""}}@endif">

@@ -21,7 +21,7 @@
         </div>
         <div class="row">
             <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
-            	<h4><strong><em>What will be some of the first projects the Fellow works on?</em></strong></h4>
+            	<h4><strong><em>What will be some of the Fellow's initial responsibilities?</em></strong></h4>
             	<p>{{ $opportunity->responsibilitiesAnswer	}}</p>
             </div>
             <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
