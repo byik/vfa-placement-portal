@@ -49,7 +49,7 @@ class OpportunitiesController extends BaseController {
         } else {
             $total = Opportunity::Where('opportunities.isPublished', '=', true)->count();
         }
-        $opportunities = $opportunities->orderBy($sort, $order)->groupBy('opportunities.id')->having('opportunities.isPublished', '=', true)->paginate($limit);
+        $opportunities = $opportunities->orderBy("opportunities." . $sort, $order)->groupBy('opportunities.id')->having('opportunities.isPublished', '=', true)->paginate($limit);
         $pills  = array();
             array_push($pills, new Pill("Title", array(
                     new DropdownItem("", URL::route( 'opportunities.index', array('sort' => 'title', 'order' => 'asc', 'search' => $search, 'limit' => $limit)), "sort-alpha-asc"),
