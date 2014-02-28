@@ -47,10 +47,12 @@ class ReportsController extends BaseController {
 		        break;
 		    case "companies":
 	        	$data = Company::generateReportData();		    	
-	            return View::make('reports.show')->with('heading', 'Unfilled Opportunities Report')->with('data', $data);
+	            return View::make('reports.show')->with('heading', 'Unfilled Opportunities Report')->with('data', $data)->with('sort',json_encode([[0,0],[1,0]]));
 		        break;
 		    case "placementStatuses":
-		        echo "TODO: Placement Statuses Report";
+		    	$limit = Input::has('limit') ? Input::get('limit') : 5;
+	        	$data = PlacementStatus::generateReportData($limit);		    	
+	            return View::make('reports.show')->with('heading', 'Recent Placement Updates Report')->with('data', $data)->with('sort',json_encode([[4,1]]))->with('limit',$limit);
 		        break;
 		    case "custom":
 		        echo "TODO: Custom Report";

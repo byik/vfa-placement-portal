@@ -31,7 +31,11 @@
 <script>
 $(document).ready(function() 
     { 
-        $("table").tablesorter( {sortList: [[1,0], [0,0]]} ); 
+    	@if(isset($sort))
+        	$("table").tablesorter( {sortList: {{$sort}} } ); 
+        @else
+        	$("table").tablesorter( {sortList: [[1,0], [0,0]]} ); 
+        @endif
     } 
 );
 </script>

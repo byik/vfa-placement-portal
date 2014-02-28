@@ -144,4 +144,36 @@ class PlacementStatus extends BaseModel {
             2,
             1);
     }
+
+    public static function generateReportData($limit)
+    {
+        $columnHeadings = array('Fellow', 'Opportunity', 'Company', 'Status', 'Created');
+        $data = array();
+        $data[0] = $columnHeadings;
+
+        // $recentPlacementStatuses = PlacementStatus::where('isRecent','=',true)->orderBy('created_at', 'DESC')->take($limit)->get();
+        $recentPlacementStatuses = PlacementStatus::orderBy('created_at', 'DESC')->take($limit)->get();
+        $count = 1;
+        foreach($recentPlacementStatuses as $placementStatus){
+            $data[$count] = array();
+            $fellow = $placementStatus->fellow;
+            $opportunity = $placementStatus->opportunity;
+            $company = $placementStatus->opportunity->company;
+            foreach($columnHeadings as $key => $value){
+                if($value == "Fellow"){
+                    $data[$count][0] = '<a href="' . URL::to('fellows/' . $fellow->id) . '">' . $fellow->user->firstName . ' ' . $fellow->user->lastName . '</a>';
+                } elseif($value == "Opportunity"){
+                    $data[$count][1] = '<a href="' . URL::to('opportunities/' . $opportunity->id) . '">' . $opportunity->title . '</a>';
+                } elseif($value == "Company"){
+                    $data[$count][2] = '<a href="' . URL::to('companies/' . $company->id) . '">' . $company->name . '</a>';
+                } elseif($value == "Status"){
+                    $data[$count][3] = $placementStatus->status;
+                } elseif($value == "Created"){
+                    $data[$count][4] = $placementStatus->created_at;
+                }               
+            }
+            $count += 1;
+        }
+        return $data;
+    }
 }
