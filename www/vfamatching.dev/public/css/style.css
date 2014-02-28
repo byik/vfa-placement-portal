@@ -324,6 +324,11 @@ div#content {
     margin-top: 100px;
 }
 
+table tr th:hover {
+    background-color: #eef3f7;
+    cursor: pointer;
+}
+
 @media (min-width: 992px){ /*Laptop and Desktop*/
     #highlights {
         margin-top: 20px;
