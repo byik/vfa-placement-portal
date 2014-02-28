@@ -123,7 +123,7 @@ class Company extends BaseModel {
 
     public static function generateReportData()
     {
-        $columnHeadings = array_merge(array('Company', 'Opportunity', 'Pitch:Under Review', 'Pitch:Waitlisted', 'Pitch:Approved'), PlacementStatus::statuses());
+        $columnHeadings = array_merge(array('Company', 'Opportunity', 'Average Feedback', 'Pitch:Under Review', 'Pitch:Waitlisted', 'Pitch:Approved'), PlacementStatus::statuses());
         $data = array();
         $data[0] = $columnHeadings;
 
@@ -137,6 +137,8 @@ class Company extends BaseModel {
                         $data[$count][0] = '<a href="' . URL::to('companies/' . $company->id) . '">' . $company->name . '</a>';
                     } else if($value == "Opportunity"){
                         $data[$count][1] = '<a href="' . URL::to('opportunities/' . $opportunity->id) . '">' . $opportunity->title . '</a>';
+                    } else if($value == "Average Feedback"){
+                        $data[$count][2] = $opportunity->averagePlacementStatusFeedbackScore();
                     } else {
                         $data[$count][$key] = 0;
                     }                
