@@ -154,6 +154,10 @@ input#limit {
     font-size: normal;
 }
 
+.comment {
+    margin: 10px auto;
+}
+
 .chart {
     text-align: center;
 }
