@@ -36,9 +36,25 @@
     </div>
 
     @if(Auth::user()->role == "Admin")
+        {{-- Display average feedback --}}
         <div class="row">
             <div class="center">
-                <h3>Average Feedback Score: {{ $opportunity->averagePlacementStatusFeedbackScore() }} our of 5</h3>
+                <h3>Average Feedback Score:<br/> {{ $opportunity->averagePlacementStatusFeedbackScore() }} out of 5</h3>
+            </div>
+        </div>
+        {{-- Display feedback commentary --}}
+        <div class="container">
+            <div class="row">
+            @foreach($opportunity->placementStatuses()->where('fromRole', 'Fellow')->orderBy('created_at', 'DESC')->get() as $placementStatus)
+                <div class="col-xs-12 comment well">
+                    <span>
+                        <strong><i class="fa fa-comments-o"></i> <a href="{{ URL::to('fellows/' . $placementStatus->fellow->id)}}">{{ $placementStatus->fellow->user->firstName . " " . $placementStatus->fellow->user->lastName}}</a></strong>
+                        <em>{{ Carbon::createFromFormat('Y-m-d H:i:s', $placementStatus->created_at)->diffForHumans() }}</em>
+                    </span>
+                    <p>{{ Parser::linkUrlsInText($placementStatus->message) }}</p>
+                    <p><strong>Feedback Score: {{ $placementStatus->score }}</strong></p>
+                </div>
+            @endforeach
             </div>
         </div>
         {{-- Display a Admin waitlisted pitches to admins --}}
