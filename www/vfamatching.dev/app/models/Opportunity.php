@@ -64,4 +64,20 @@ class Opportunity extends BaseModel {
     {
         return $this->hasMany('PitchInvite');
     }
+
+    public function averagePlacementStatusFeedbackScore()
+    {
+        $total = 0;
+        $count = 0;
+        foreach($this->placementStatuses()->where('fromRole','Fellow')->get() as $placementStatus){
+            $count++;
+            $total += $placementStatus->score;
+        }
+
+        if($count == 0){
+            return "No Feedback Yet!";
+        } else {
+            return $total / $count;
+        }
+    }
 }

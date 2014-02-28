@@ -36,6 +36,11 @@
     </div>
 
     @if(Auth::user()->role == "Admin")
+        <div class="row">
+            <div class="center">
+                <h3>Average Feedback Score: {{ $opportunity->averagePlacementStatusFeedbackScore() }} our of 5</h3>
+            </div>
+        </div>
         {{-- Display a Admin waitlisted pitches to admins --}}
         @if(Pitch::where("opportunity_id","=",$opportunity->id)->where("hasAdminApproval","=",false)->count())
         <div class="container">
