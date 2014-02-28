@@ -84,7 +84,7 @@ class PlacementStatus extends BaseModel {
 
     public static function hasPlacementStatus(Fellow $fellow, Opportunity $opportunity)
     {
-        return (bool) $fellow->placementStatuses()->where('placementStatuses.opportunity_id', '=', $opportunity->id)->count();
+        return (bool) $fellow->placementStatuses()->where('placementStatuses.opportunity_id', '=', $opportunity->id)->where('placementStatuses.isRecent', '=', true)->count();
     }
 
     public static function getRecentPlacementStatus(Fellow $fellow, Opportunity $opportunity)
