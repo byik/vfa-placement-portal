@@ -50,7 +50,7 @@
         </div>
         @endif
         <div class="container">
-            @include('partials.components.placementStatuses', array('placementStatuses' => $opportunity->placementStatuses, 'heading'=>"Candidate Progress"))
+            @include('partials.components.placementStatuses', array('placementStatuses' => $opportunity->placementStatuses()->where('isRecent','=',true)->get(), 'heading'=>"Candidate Progress"))
         </div>
         @include('partials.components.adminNotes', array('adminNotes' => $opportunity->adminNotes, 'entityType' => "Opportunity", 'entityId' => $opportunity->id))
     @elseif(Auth::user()->role == "Fellow")
@@ -70,7 +70,7 @@
         @endforeach
         {{-- Display Placement Progress for this opportunity --}}
         <div class="container">
-            @include('partials.components.placementStatuses', array('placementStatuses' => $opportunity->placementStatuses, 'heading'=>"Candidate Progress"))
+            @include('partials.components.placementStatuses', array('placementStatuses' => $opportunity->placementStatuses()->where('isRecent','=',true)->get(), 'heading'=>"Candidate Progress"))
         </div>
     @endif
 @stop

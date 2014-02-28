@@ -65,7 +65,7 @@
     @endif
     <?php $count = 0; ?>
     <div class="container">
-        @include('partials.components.placementStatuses', array('placementStatuses' => $fellow->placementStatuses, 'heading'=>"Fellow's Placement Progress"))
+        @include('partials.components.placementStatuses', array('placementStatuses' => $fellow->placementStatuses()->where('isRecent','=',true)->get(), 'heading'=>"Fellow's Placement Progress"))
     </div>
     @include('partials.components.adminNotes', array('adminNotes' => $fellow->adminNotes, 'entityType' => "Fellow", 'entityId' => $fellow->id))
 @elseif(Auth::user()->role == "Hiring Manager")

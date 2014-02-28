@@ -50,6 +50,26 @@ class PlacementStatusesController extends BaseController {
         if(array_search($newPlacementStatus->status, PlacementStatus::statuses()) >= array_search($recentPlacementStatus->status, PlacementStatus::statuses())){
             try {
                 $newPlacementStatus->save();
+                if($newPlacementStatus->status == "Offer Accepted"){
+                	//TODO: Email fellow
+                	//TODO: Email hiring managers
+                	//TODO: Email other Fellows
+                	//TODO: Unpublish fellow
+                	$fellow = $newPlacementStatus->fellow;
+                	$fellow->isPublished = 0;
+                	$fellow->save();
+                	//TOOD: Unpublish Opportunity
+                	$opportunity = $newPlacementStatus->opportunity;
+                	$opportunity->isPublished = 0;
+                	$opportunity->save();
+                	//TODO: Set other Placement Statuses for this Opportunity to isRecent = false
+                	foreach($opportunity->placementStatuses as $placementStatus){
+                		if($placementStatus->id != $newPlacementStatus->id){
+                			$placementStatus->isRecent = false;
+                			$placementStatus->save();
+                		}
+                	}
+                }
                 //make sure only this new placement status is recent
                 $oldPlacementStatuses->each(function($oldPlacementStatus)
                         {
