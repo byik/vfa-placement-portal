@@ -120,4 +120,37 @@ class Company extends BaseModel {
         }
         return true;
     }
+
+    public static function generateReportData()
+    {
+        $columnHeadings = array_merge(array('Company', 'Opportunity', 'Pitch:Under Review', 'Pitch:Waitlisted', 'Pitch:Approved'), PlacementStatus::statuses());
+        $data = array();
+        $data[0] = $columnHeadings;
+
+        $publishedCompanies = Company::where('isPublished','=',true)->get();
+        $count = 1;
+        foreach($publishedCompanies as $company){
+            foreach($company->opportunities()->where('isPublished','=',true)->get() as $opportunity){
+                $data[$count] = array();
+                foreach($columnHeadings as $key => $value){
+                    if($value == "Company"){
+                        $data[$count][0] = '<a href="' . URL::to('companies/' . $company->id) . '">' . $company->name . '</a>';
+                    } else if($value == "Opportunity"){
+                        $data[$count][1] = '<a href="' . URL::to('opportunities/' . $opportunity->id) . '">' . $opportunity->title . '</a>';
+                    } else {
+                        $data[$count][$key] = 0;
+                    }                
+                }
+                foreach($opportunity->pitches as $pitch){
+                    $key = array_search("Pitch:" . $pitch->status, $columnHeadings);
+                    $data[$count][$key] += 1;
+                }
+                foreach($opportunity->placementStatuses()->where('isRecent','=',true)->get() as $placementStatus){
+                    $data[$count][array_search($placementStatus->status, $columnHeadings)] += 1;
+                }
+                $count += 1;
+            }
+        }
+        return $data;
+    }
 }

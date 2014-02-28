@@ -149,9 +149,9 @@ class Fellow extends BaseModel {
         $data = array();
         $data[0] = $columnHeadings;
 
-        $unpublishedFellows = Fellow::where('isPublished','=',true)->get();
+        $publishedFellows = Fellow::where('isPublished','=',true)->get();
         $count = 1;
-        foreach($unpublishedFellows as $fellow){
+        foreach($publishedFellows as $fellow){
             $data[$count] = array();
             foreach($columnHeadings as $key => $value){
                 if($value == "Fellow"){

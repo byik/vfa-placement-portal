@@ -43,10 +43,11 @@ class ReportsController extends BaseController {
 		switch ($type) {
 		    case "fellows":		    	
 		    	$data = Fellow::generateReportData();		    	
-		        return View::make('reports.show')->with('heading', 'Published Fellows Report')->with('data', $data);
+		        return View::make('reports.show')->with('heading', 'Unplaced Fellows Report')->with('data', $data);
 		        break;
 		    case "companies":
-		        echo "TODO: Companies Report";
+	        	$data = Company::generateReportData();		    	
+	            return View::make('reports.show')->with('heading', 'Unfilled Opportunities Report')->with('data', $data);
 		        break;
 		    case "placementStatuses":
 		        echo "TODO: Placement Statuses Report";
