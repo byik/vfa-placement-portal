@@ -28,7 +28,7 @@
         <div class="col-md-12">
             @if(!empty($fellow->resumePath))
                 <span class="pull-left">
-                    <a class="btn btn-primary form-control" href="{{ $fellow->resumePath }}" target="_blank"><i class="fa fa-cloud-download"></i> Download Résumé</a>
+                    <a class="btn btn-primary form-control" href="{{ $fellow->resumePath }}" target="_blank"><i class="fa fa-cloud-download"></i> View Résumé</a>
                 </span>
             @endif
         </div>
