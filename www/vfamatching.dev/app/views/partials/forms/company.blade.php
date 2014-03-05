@@ -51,6 +51,9 @@
             </div>
             {{ Form::label('logo', 'Select a logo to upload') }}
             <p>
+                @if(!empty($company->logoPath))
+                    <img src="{{ $company->logoPath }}" class="img-responsive" alt="Responsive image">
+                @endif
                 <span class="btn btn-link btn-file">
                     <span class="btn-file-label">Browse for image...</span>{{ Form::file('logo', array('accept'=>'image/*')) }}
                 </span>
