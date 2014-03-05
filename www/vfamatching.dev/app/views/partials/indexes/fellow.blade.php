@@ -2,10 +2,10 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="row">
-                <div class="col-md-7">
+                <div class="col-md-4">
                     <h3><strong><a href="{{ URL::route('fellows.show', array('fellows'=>$fellow->id)) }}">{{ $fellow->firstName . ' ' . $fellow->lastName }}</a></strong></h3>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-8">
                     @include('partials.components.skills', array('skills' => $fellow->fellowSkills))
                 </div>
             </div>
