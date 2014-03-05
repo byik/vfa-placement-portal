@@ -46,7 +46,7 @@
                 @foreach(Opportunity::orderBy("created_at", "DESC")->take(5)->get() as $opportunity)
                     @include('partials.indexes.opportunity', array('opportunity' => $opportunity))
                 @endforeach
-                <p class="pull-right"><a href="/opportunities">View All Opportunities</a></p>
+                <p class="pull-right"><a href="/opportunities" class="btn btn-primary">View All Opportunities</a></p>
         </div>
         <!-- New Companies -->
         <div class="row">
@@ -54,7 +54,7 @@
                 @foreach(Company::orderBy("created_at", "DESC")->take(5)->get() as $company)
                     @include('partials.indexes.company', array('company' => $company))
                 @endforeach
-                <p class="pull-right"><a href="/companies">View All Companies</a></p>
+                <p class="pull-right"><a href="/companies" class="btn btn-primary">View All Companies</a></p>
         </div>
     </div><!-- End Container -->
 </div><!-- End fellow dashboard -->
