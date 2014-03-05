@@ -33,5 +33,8 @@
 			@endif
 		</div>
 		@include('partials.components.placementStatuses', array('placementStatuses' => $placementStatuses, 'heading'=>"Candidates"))
+		@if(count($placementStatuses) == 0)
+			<p>{{ $opportunity->company->name }}'s {{ $opportunity->title }} Opportunity doesn't have any candidates yet. <a href="{{ URL::route('fellows.index') }}" class="btn btn-primary">View Fellows</a></p>
+		@endif
     @endforeach
 </div>
