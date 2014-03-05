@@ -15,7 +15,7 @@
             <div class="row list-summary">
                 <div class="col-md-3"><h4>@include('partials.links.company', array('company' => $opportunity->company))</h4></div>
                 <div class="col-md-3"><strong>City: </strong>{{ $opportunity->city }}</div>
-                <div class="col-md-3"><strong>Date Added: </strong>{{ Carbon::createFromFormat('Y-m-d H:i:s', $opportunity->created_at)->diffForHumans(); }}</div>
+                <div class="col-md-3"><strong>Date Added: </strong>{{ Carbon::createFromFormat('Y-m-d H:i:s', $opportunity->created_at)->diffForHumans() }}</div>
                 <div class="col-md-3">@include('partials.components.pitch-button')</div>
             </div>
             @if(Auth::user()->role == "Admin" || Auth::user()->role == "Hiring Manager")
