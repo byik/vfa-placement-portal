@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('header')
-Create Fellow Profile
+Create Admin Profile
 @stop
 
 @section('content')
