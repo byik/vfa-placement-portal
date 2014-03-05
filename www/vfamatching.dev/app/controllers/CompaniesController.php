@@ -152,6 +152,7 @@ class CompaniesController extends BaseController {
         $company->employees = Input::get('employees');
         $company->yearFounded = Input::get('yearFounded');
         $company->twitterHandle = Input::get('twitterHandle');
+        $company->isPublished = 1; //Publish companies when they're updated
 
         if(Input::get('hasFellow') == "Yes"){
             $company->hasFellow = true;
