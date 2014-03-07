@@ -43,6 +43,9 @@ class PitchesController extends BaseController {
             	$oldPitchInvite->pitch_id = $newPitch->id;
             	$oldPitchInvite->save();
             }
+            //email admins about new pitch
+            $mailer = new Mailers\AdminMailer();
+            $mailer->newFellowPitch($newPitch);
             //make sure only this new placement status is recent
             return Redirect::back()->with('flash_success', 'Pitch successfully submitted.');
         } catch (ValidationFailedException $e) {
@@ -120,6 +123,9 @@ class PitchesController extends BaseController {
                 $pitch->hasAdminApproval = true;
                 $pitch->status = "Under Review"; //in case the admin waitlisted it
                 $pitch->save();
+                //email Hiring Managers to let them know
+                $mailer = new Mailers\HiringManagerMailer();
+                $mailer->newFellowPitch($pitch);
             } else {
                 throw new Exception("Only Admins and Hiring Managers can approve pitches!");
             }
