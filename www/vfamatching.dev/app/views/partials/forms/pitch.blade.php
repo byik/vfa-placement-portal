@@ -5,6 +5,7 @@
         <div class="form-group">
             {{ Form::label('body', 'Why are you interested in this opportunity?') }}
             {{ Form::textarea('body', null, array('class'=>'form-control character-limit required', 'character-limit-max'=>1400, 'character-limit-min'=>140)) }}
+            <span><small>140 characters minimum</small></span>
         </div>
     </fieldset>
     Your pitch will be submitted to VFA. Pending approval, you will be introduced to the hiring managers at this company, and the hiring manager will receive your pitch.

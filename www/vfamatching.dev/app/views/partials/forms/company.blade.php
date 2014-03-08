@@ -24,6 +24,7 @@
             <div class="form-group @if($validationErrors){{ $validationErrors->has('bio') ? "has-error" : ""}}@endif">
                 {{ Form::label('bio', 'About ' . $company->name) }} {{--Company name should always be set, since they're exclusively created by admins with names --}}
                 {{ Form::textarea('bio', Input::old('bio'), array('class'=>'form-control character-limit required', 'character-limit-max'=>1400, 'character-limit-min'=>140)) }}
+                <span><small>140 characters minimum</small></span>
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('teamAnswer') ? "has-error" : ""}}@endif">
                 {{ Form::label('teamAnswer', 'Describe your team culture') }}
@@ -69,3 +70,5 @@
 @endif
 
 <script src="{{ URL::to('js/pretty-file-upload.js') }}"></script>
+
+<script></script>

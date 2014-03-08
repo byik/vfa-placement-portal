@@ -24,6 +24,7 @@
             <div class="form-group @if($validationErrors){{ $validationErrors->has('bio') ? "has-error" : ""}}@endif">
                 {{ Form::label('bio', 'Professional Bio') }}
                 {{ Form::textarea('bio', Input::old('bio'), array('class'=>'form-control character-limit required', 'character-limit-max'=>1400, 'character-limit-min'=>140)) }}
+                <span><small>140 characters minimum</small></span>
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('school') ? "has-error" : ""}}@endif">
                 {{ Form::label('school', 'What college or university did you graduate from?') }}
@@ -118,6 +119,7 @@
             <div class="form-group @if($validationErrors){{ $validationErrors->has('bio') ? "has-error" : ""}}@endif">
                 {{ Form::label('bio', 'Professional Bio') }}
                 {{ Form::textarea('bio', Input::old('bio'), array('class'=>'form-control character-limit required', 'character-limit-max'=>1400, 'character-limit-min'=>140)) }}
+                <span><small>140 characters minimum</small></span>
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('school') ? "has-error" : ""}}@endif">
                 {{ Form::label('school', 'What college or university did you graduate from?') }}

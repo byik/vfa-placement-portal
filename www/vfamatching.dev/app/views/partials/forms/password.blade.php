@@ -9,6 +9,7 @@
         <div class="form-group">
             {{ Form::label('password', 'Password') }}<br/>
             {{ Form::password('password', array('class'=>'form-control required', 'character-limit-min' => 6)) }}
+            <span><small>6 characters minimum</small></span>
         </div>
 
         <!-- confirm password field -->

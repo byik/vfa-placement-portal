@@ -27,6 +27,7 @@ if(!isset($company)){
             <div class="form-group @if($validationErrors){{ $validationErrors->has('description') ? "has-error" : ""}}@endif">
                 {{ Form::label('description', 'Describe the Opportunity') }}
                 {{ Form::textarea('description', Input::old('description'), array('class'=>'form-control character-limit required', 'character-limit-max'=>1400, 'character-limit-min'=>140)) }}
+                <span><small>140 characters minimum</small></span>
             </div>
             <div class="form-group @if($validationErrors){{ $validationErrors->has('responsibilitiesAnswer') ? "has-error" : ""}}@endif">
                 {{ Form::label('responsibilitiesAnswer', "What will be some of the Fellow's initial responsibilities?") }}
