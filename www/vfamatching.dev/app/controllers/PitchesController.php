@@ -126,6 +126,9 @@ class PitchesController extends BaseController {
                 //email Hiring Managers to let them know
                 $mailer = new Mailers\HiringManagerMailer();
                 $mailer->newFellowPitch($pitch);
+                //email Hiring Managers to let them know
+                $mailer = new Mailers\FellowMailer();
+                $mailer->adminApprovedFellowPitch($pitch);
             } else {
                 throw new Exception("Only Admins and Hiring Managers can approve pitches!");
             }

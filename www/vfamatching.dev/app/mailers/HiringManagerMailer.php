@@ -6,7 +6,7 @@ class HiringManagerMailer {
 	{
 		foreach($pitch->opportunity->company->hiringManagers as $hiringManager){
 			$mailer = new UserMailer($hiringManager->user);
-    		$mailer->adminApprovedFellowPitch($pitch)->deliver();
+    		$mailer->adminApprovedFellowPitch($pitch, 'Hiring Manager')->deliver();
 		}
 	}
 }

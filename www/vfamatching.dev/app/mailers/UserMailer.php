@@ -21,10 +21,15 @@ class UserMailer extends Mailer {
 		return $this;
 	}
 
-	public function adminApprovedFellowPitch($pitch)
+	public function adminApprovedFellowPitch($pitch, $role)
 	{
-		$this->subject = 'VFA Fellow ' . $pitch->fellow->user->firstName . ' ' . $pitch->fellow->user->lastName . ', ' . $pitch->fellow->major . ' major, for ' . $pitch->opportunity->company->name . '?';
-		$this->view = 'emails.hiringManager.adminApprovedFellowPitch';
+		if($role == "Hiring Manager"){
+			$this->subject = 'VFA Fellow ' . $pitch->fellow->user->firstName . ' ' . $pitch->fellow->user->lastName . ', ' . $pitch->fellow->major . ' major, for ' . $pitch->opportunity->company->name . '?';
+			$this->view = 'emails.hiringManager.adminApprovedFellowPitch';
+		} else if($role == "Fellow"){
+			$this->subject = 'Your pitch for the ' . $pitch->opportunity->title . ' Opportunity at ' . $pitch->opportunity->company->name . ' was approved by VFA';
+			$this->view = 'emails.fellow.adminApprovedFellowPitch';
+		}
 
 		//add pitch to data array
 		$this->data = array_merge(array("pitch" => $pitch), $this->data);
