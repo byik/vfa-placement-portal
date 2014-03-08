@@ -19,4 +19,10 @@ class FellowMailer {
 		$mailer = new UserMailer($pitch->fellow->user);
 		$mailer->hiringManagerWaitlistedFellowPitch($pitch)->deliver();	
 	}
+
+	public function fellowAcceptedOffer($placementStatus)
+	{
+		$mailer = new UserMailer($placementStatus->fellow->user);
+		$mailer->fellowAcceptedOffer($placementStatus)->deliver();	
+	}
 }

@@ -51,7 +51,9 @@ class PlacementStatusesController extends BaseController {
             try {
                 $newPlacementStatus->save();
                 if($newPlacementStatus->status == "Offer Accepted"){
-                	//TODO: Email fellow
+                	//Send fellow notification email
+                	$mailer = new Mailers\FellowMailer();
+                	$mailer->fellowAcceptedOffer($newPlacementStatus);
                 	//TODO: Email hiring managers
                 	//TODO: Email other Fellows
                 	//TODO: Unpublish fellow

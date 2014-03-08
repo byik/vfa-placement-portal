@@ -58,4 +58,15 @@ class UserMailer extends Mailer {
 
 		return $this;	
 	}
+
+	public function fellowAcceptedOffer($placementStatus)
+	{
+		$this->subject = 'Congratulations, ' . $placementStatus->fellow->user->firstName . '!';
+		$this->view = 'emails.fellow.fellowAcceptedOffer';
+
+		//add pitch to data array
+		$this->data = array_merge(array("placementStatus" => $placementStatus), $this->data);
+
+		return $this;	
+	}
 }
