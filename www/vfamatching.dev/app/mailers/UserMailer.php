@@ -36,4 +36,15 @@ class UserMailer extends Mailer {
 
 		return $this;
 	}
+
+	public function hiringManagerApprovedFellowPitch($pitch)
+	{
+		$this->subject = $pitch->opportunity->company->name . ' wants to interview you for ' . $pitch->opportunity->title . '!';
+		$this->view = 'emails.fellow.hiringManagerApprovedFellowPitch';
+
+		//add pitch to data array
+		$this->data = array_merge(array("pitch" => $pitch), $this->data);
+
+		return $this;
+	}
 }

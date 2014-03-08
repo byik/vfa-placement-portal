@@ -105,6 +105,9 @@ class PitchesController extends BaseController {
                 if($pitch->hasAdminApproval){
                     $pitch->status = "Approved";
                     $pitch->save();
+                    //email the Fellow to let them know
+                    $mailer = new Mailers\FellowMailer();
+                    $mailer->hiringManagerApprovedFellowPitch($pitch);
                     //introduce the two
                     $newPlacementStatus = new PlacementStatus();
                     $newPlacementStatus->fellow_id = $pitch->fellow_id;
@@ -126,7 +129,7 @@ class PitchesController extends BaseController {
                 //email Hiring Managers to let them know
                 $mailer = new Mailers\HiringManagerMailer();
                 $mailer->newFellowPitch($pitch);
-                //email Hiring Managers to let them know
+                //email Fellow to let them know
                 $mailer = new Mailers\FellowMailer();
                 $mailer->adminApprovedFellowPitch($pitch);
             } else {
