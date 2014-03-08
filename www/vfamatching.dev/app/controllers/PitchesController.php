@@ -149,6 +149,11 @@ class PitchesController extends BaseController {
             $pitch = Pitch::findOrFail($id);
 	        $pitch->status = "Waitlisted";
 	        $pitch->save();
+            if(Auth::user()->role == "Hiring Manager"){
+                //notify Fellow that thier pitch was waitlisted
+                $mailer = new Mailers\FellowMailer();
+                $mailer->hiringManagerWaitlistedFellowPitch($pitch);
+            }
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return View::make('404')->with('error', 'Pitch not found!');
         } catch (ValidationFailedException $e) {

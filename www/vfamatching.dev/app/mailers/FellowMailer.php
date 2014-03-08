@@ -13,4 +13,10 @@ class FellowMailer {
 		$mailer = new UserMailer($pitch->fellow->user);
 		$mailer->hiringManagerApprovedFellowPitch($pitch)->deliver();
 	}
+
+	public function hiringManagerWaitlistedFellowPitch($pitch)
+	{
+		$mailer = new UserMailer($pitch->fellow->user);
+		$mailer->hiringManagerWaitlistedFellowPitch($pitch)->deliver();	
+	}
 }

@@ -47,4 +47,15 @@ class UserMailer extends Mailer {
 
 		return $this;
 	}
+
+	public function hiringManagerWaitlistedFellowPitch($pitch)
+	{
+		$this->subject = $pitch->opportunity->company->name . ' has decided to waitlist you for ' . $pitch->opportunity->title;
+		$this->view = 'emails.fellow.hiringManagerWaitlistedFellowPitch';
+
+		//add pitch to data array
+		$this->data = array_merge(array("pitch" => $pitch), $this->data);
+
+		return $this;	
+	}
 }
